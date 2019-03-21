@@ -6,7 +6,7 @@
 
 <header class="page-header">
 
-    <h2>Nível</h2>
+    <h2><?php echo translate("Nível"); ?></h2>
 
 
 
@@ -30,9 +30,9 @@
 
         <?php endif; ?>
 
-        <a name="nivAlt" id="nivAlt" href="#" class="mb-1 mt-3 mr-1 btn btn-xs btn-primary"><strong>Gravar</strong></a>
+        <a name="nivAlt" id="nivAlt" href="#" class="mb-1 mt-3 mr-1 btn btn-xs btn-primary"><strong><?php echo translate("Gravar"); ?></strong></a>
 
-        <a href="/backend/nivel/listar/lang/<?php echo $LANGUAGE_DEFAULT[0]; ?>" class="mb-1 mt-3 mr-1 ml-1 btn btn-xs btn-default"><strong>Voltar</strong></a>
+        <a href="/backend/nivel/listar/lang/<?php echo $LANGUAGE_DEFAULT[0]; ?>" class="mb-1 mt-3 mr-1 ml-1 btn btn-xs btn-default"><strong><?php echo translate("Voltar"); ?></strong></a>
 
         <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-calendar"></i></a>
 
@@ -62,7 +62,7 @@
 
                     <div class="col-sm-6 mt-3">
 
-                        <h2 class="h2 mt-0 mb-4 text-dark font-weight-bold">Alterar Nível</h2>
+                        <h2 class="h2 mt-0 mb-4 text-dark font-weight-bold"><?php echo translate("Alterar Nível"); ?></h2>
 
                         <!-- <h4 class="h4 m-0 text-dark font-weight-bold">#76598345</h4> -->
 
@@ -92,7 +92,7 @@
 
                   <header class="card-header">
 
-                    <h2 class="card-title">Principal</h2>
+                    <h2 class="card-title"><?php echo translate("Principal"); ?></h2>
 
                   </header>
 
@@ -104,7 +104,7 @@
 
                       <div class="form-group row">
 
-                        <label class="col-lg-3 control-label text-lg-right pt-2" for="niv_nome">Nome</label>
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="niv_nome"><?php echo translate("Nome"); ?></label>
 
                         <div class="col-lg-9">
 
@@ -138,13 +138,13 @@
 
                     <h2 class="card-title">
 
-                      Permissões
+                      <?php echo translate("Permissões"); ?>
 
                       
 
                       <div class="pull-right select-all-btn">
 
-                        Selecionar todos
+                        <?php echo translate("Selecionar todos"); ?>
 
                         <div class="switch switch-sm switch-primary">
 
@@ -184,73 +184,40 @@
 
                           $module_nice_names = array(
 
-                            "per_menu" => "Menu",
-
-                            "per_conteudo" => "Conteúdo",
-
-                            "per_parceiros" => "Parceiros",
-
-                            "per_noticias" => "Notícias",
-
-                            "per_slide" => "Slide",
-
-                            "per_contatos" => "Contatos",
-
-                            "per_faq" => "FAQ",
-
-                            "per_configuracao" => "Configuração",
-
-                            "per_institucional" => "Institucional",
-
-                            "per_icones" => "Ícones",
-
-                            "per_produtos" => "Produtos",
-
-                            "per_portfolios" => "Portfolios",
-
-                            "per_testemunho" => "Testemunho",
-
-                            "per_servicos" => "Servicos",
-
-                            "per_calendario" => "Calendário",
-
-                            "per_eventos" => "Eventos",
-
-                            "per_equipe" => "Equipa",
-
-                            "per_cursos" => "Cursos",
-
-                            "per_unidades" => "Unidades",
-
-                            "per_landpage" => "Landpage",
-
-                            "per_banner" => "Banner",
-
-                            "per_processo" => "Processo",
-
-                            "per_recurso" => "Recurso",
-
-                            "per_pacote" => "Pacotes",
-
-                            "per_pedido" => "Pedido",
-
-                            "per_cliente" => "Clientes",
-
-                            "per_orcamento" => "Orçamentos",
-
-                            "per_vendedor" => "Vendedores",
-
-                            "per_area" => "Área",
-
-                            "per_distrito" => "Distrito",
-
-                            "per_cargo" => "Cargo",
-
-                            "per_especialidade" => "Especialidade",
-
-                            "per_tipo" => "Tipo",
-
-                            "per_treinamento" => "Treinamento"
+                            "per_menu" => translate("Menu"),
+                            "per_conteudo" => translate("Conteúdo"),
+                            "per_parceiros" => translate("Parceiros"),
+                            "per_noticias" => translate("Notícias"),
+                            "per_slide" => translate("Slide"),
+                            "per_contatos" => translate("Contatos"),
+                            "per_faq" => translate("FAQ"),
+                            "per_configuracao" => translate("Configuração"),
+                            "per_institucional" => translate("Institucional"),
+                            "per_icones" => translate("Ícones"),
+                            "per_produtos" => translate("Produtos"),
+                            "per_portfolios" => translate("Portfolios"),
+                            "per_testemunho" => translate("Testemunho"),
+                            "per_servicos" => translate("Servicos"),
+                            "per_calendario" => translate("Calendário"),
+                            "per_eventos" => translate("Eventos"),
+                            "per_equipe" => translate("Equipa"),
+                            "per_cursos" => translate("Cursos"),
+                            "per_unidades" => translate("Unidades"),
+                            "per_landpage" => translate("Landpage"),
+                            "per_banner" => translate("Banner"),
+                            "per_processo" => translate("Processo"),
+                            "per_recurso" => translate("Recurso"),
+                            "per_pacote" => translate("Pacotes"),
+                            "per_pedido" => translate("Pedido"),
+                            "per_cliente" => translate("Clientes"),
+                            "per_orcamento" => translate("Orçamentos"),
+                            "per_vendedor" => translate("Vendedores"),
+                            "per_area" => translate("Área"),
+                            "per_distrito" => translate("Distrito"),
+                            "per_cargo" => translate("Cargo"),
+                            "per_especialidade" => translate("Especialidade"),
+                            "per_tipo" => translate("Tipo"),
+                            "per_treinamento" => translate("Treinamento")
 
                           );
 
@@ -258,9 +225,9 @@
 
                           $module_groups = array(
 
-                            "btl" => array("nice_name" => "Plataforma", "items" => array("per_treinamento", "per_vendedor", "per_cargo", "per_especialidade", "per_tipo", "per_produtos")),
+                            "btl" => array("nice_name" => translate("Plataforma"), "items" => array("per_treinamento", "per_vendedor", "per_cargo", "per_especialidade", "per_tipo", "per_produtos")),
 
-                            "outros" => array("nice_name" => "Outros", //os que não se inserem noutras áreas
+                            "outros" => array("nice_name" => translate("Outros"), //os que não se inserem noutras áreas
 
                               "items" => array(
 
@@ -278,7 +245,7 @@
 
                             ),
 
-                            "sistema" => array("nice_name" => "Administração", "items" => array("per_configuracao", "per_institucional")),
+                            "sistema" => array("nice_name" => translate("Administração"), "items" => array("per_configuracao", "per_institucional")),
 
                           );
 
@@ -419,7 +386,7 @@
 
             <span id="retorno" class="col-md-10"></span>            
 
-            <a name="nivAlt" id="nivAlt"  href="javascript:$('#niv_img').uploadifive('upload')" class="btn btn-primary col-md-2 pull-right">Gravar</a>
+            <a name="nivAlt" id="nivAlt"  href="javascript:$('#niv_img').uploadifive('upload')" class="btn btn-primary col-md-2 pull-right"><?php echo translate("Gravar"); ?></a>
 
                
 

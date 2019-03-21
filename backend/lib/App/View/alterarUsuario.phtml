@@ -4,17 +4,15 @@
 
 <header class="page-header">
 
-    <h2>Utilizador</h2>
-
-
+    <h2><?php echo translate("Utilizador"); ?></h2>
 
     <div class="right-wrapper text-right">
 
         <?php $LANGUAGE_DEFAULT = unserialize(LANGUAGE_DEFAULT); ?>
 
-        <a name="bt_usu_alterar" id="bt_usu_alterar" href="javascript:$('#usu_img').uploadifive('upload')" class="mb-1 mt-3 mr-1 btn btn-xs btn-primary"><strong>Gravar</strong></a>
+        <a name="bt_usu_alterar" id="bt_usu_alterar" href="javascript:$('#usu_img').uploadifive('upload')" class="mb-1 mt-3 mr-1 btn btn-xs btn-primary"><strong><?php echo translate("Gravar"); ?></strong></a>
 
-        <a href="/backend/usuario/listar/lang/<?php echo $LANGUAGE_DEFAULT[0]; ?>" class="mb-1 mt-3 mr-1 ml-1 btn btn-xs btn-default"><strong>Voltar</strong></a>
+        <a href="/backend/usuario/listar/lang/<?php echo $LANGUAGE_DEFAULT[0]; ?>" class="mb-1 mt-3 mr-1 ml-1 btn btn-xs btn-default"><strong><?php echo translate("Voltar"); ?></strong></a>
 
         <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-calendar"></i></a>
 
@@ -44,7 +42,7 @@
 
                     <div class="col-sm-6 mt-3">
 
-                        <h2 class="h2 mt-0 mb-4 text-dark font-weight-bold">Alterar Utilizador</h2>
+                        <h2 class="h2 mt-0 mb-4 text-dark font-weight-bold"><?php echo translate("Alterar Utilizador"); ?></h2>
 
                         <!-- <h4 class="h4 m-0 text-dark font-weight-bold">#76598345</h4> -->
 
@@ -74,7 +72,7 @@
 
                   <header class="card-header">
 
-                    <h2 class="card-title">Principal</h2>
+                    <h2 class="card-title"><?php echo translate("Principal"); ?></h2>
 
                   </header>
 
@@ -86,7 +84,7 @@
 
                       <div class="form-group row">
 
-                        <label class="col-lg-3 control-label text-lg-right pt-2" for="usu_nome">Nome</label>
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="usu_nome"><?php echo translate("Nome"); ?></label>
 
                         <div class="col-lg-9">
 
@@ -100,7 +98,7 @@
 
                       <div class="form-group row">
 
-                        <label class="col-lg-3 control-label text-lg-right pt-2" for="usu_funcao">Função</label>
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="usu_funcao"><?php echo translate("Função"); ?></label>
 
                         <div class="col-lg-9">
 
@@ -114,7 +112,7 @@
 
                       <div class="form-group row">
 
-                        <label class="col-lg-3 control-label text-lg-right pt-2" for="usu_texto">Observação</label>
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="usu_texto"><?php echo translate("Observação"); ?></label>
 
                         <div class="col-lg-9">                        
 
@@ -150,7 +148,7 @@
 
              
 
-                        <label class="col-sm-3 control-label text-sm-right pt-2">Status</label>
+                        <label class="col-sm-3 control-label text-sm-right pt-2"><?php echo translate("Status"); ?></label>
 
                         <div class="btn-group col-sm-9 pull-right" data-toggle="buttons">
 
@@ -184,13 +182,13 @@
 
                           <label class="btn btn-primary <?php echo $active1; ?>">
 
-                            <input type="radio" name="usu_status" id="option1" autocomplete="off" value="Sim" <?php echo $checked1; ?>> Sim
+                            <input type="radio" name="usu_status" id="option1" autocomplete="off" value="Sim" <?php echo $checked1; ?>> <?php echo translate("Sim"); ?>
 
                           </label>
 
                           <label class="btn btn-primary <?php echo $active2; ?>">
 
-                            <input type="radio" name="usu_status" id="option2" autocomplete="off"  value="Nao"  <?php echo $checked2; ?>> Não
+                            <input type="radio" name="usu_status" id="option2" autocomplete="off"  value="Nao"  <?php echo $checked2; ?>> <?php echo translate("Não"); ?>
 
                           </label>
 
@@ -210,7 +208,7 @@
 
                   <header class="card-header">
 
-                    <h2 class="card-title">Localização</h2>
+                    <h2 class="card-title"><?php echo translate("Localização"); ?></h2>
 
                   </header>
 
@@ -220,7 +218,7 @@
 
                     <div class="form-group row">
 
-                      <label class="col-lg-3 control-label text-lg-right pt-2" for="usu_morada">Morada</label>
+                      <label class="col-lg-3 control-label text-lg-right pt-2" for="usu_morada"><?php echo translate("Morada"); ?></label>
 
                       <div class="col-lg-9">
 
@@ -234,7 +232,7 @@
 
                     <div class="form-group row">
 
-                      <label class="col-lg-3 control-label text-lg-right pt-2" for="usu_localidade">Localidade</label>
+                      <label class="col-lg-3 control-label text-lg-right pt-2" for="usu_localidade"><?php echo translate("Localidade"); ?></label>
 
                       <div class="col-lg-9">
 
@@ -248,7 +246,7 @@
 
                     <div class="form-group row">
 
-                      <label class="col-lg-3 control-label text-lg-right pt-2" for="usu_distrito">Distrito</label>
+                      <label class="col-lg-3 control-label text-lg-right pt-2" for="usu_distrito"><?php echo translate("Distrito"); ?></label>
 
                       <div class="col-lg-9">
 
@@ -262,7 +260,7 @@
 
                     <div class="form-group row">
 
-                      <label class="col-lg-3 control-label text-lg-right pt-2" for="usu_cp">CP</label>
+                      <label class="col-lg-3 control-label text-lg-right pt-2" for="usu_cp"><?php echo translate("CP"); ?></label>
 
                       <div class="col-lg-9">
 
@@ -280,7 +278,7 @@
 
                   <header class="card-header">
 
-                    <h2 class="card-title">Contactos</h2>
+                    <h2 class="card-title"><?php echo translate("Contactos"); ?></h2>
 
                   </header>
 
@@ -290,7 +288,7 @@
 
                     <div class="form-group row">
 
-                      <label class="col-lg-3 control-label text-lg-right pt-2" for="usu_telefone">Telefone</label>
+                      <label class="col-lg-3 control-label text-lg-right pt-2" for="usu_telefone"><?php echo translate("Telefone"); ?></label>
 
                       <div class="col-lg-9">
 
@@ -302,7 +300,7 @@
 
                     <div class="form-group row">
 
-                      <label class="col-lg-3 control-label text-lg-right pt-2" for="usu_telemovel">Telemóvel</label>
+                      <label class="col-lg-3 control-label text-lg-right pt-2" for="usu_telemovel"><?php echo translate("Telemóvel"); ?></label>
 
                       <div class="col-lg-9">
 
@@ -314,7 +312,7 @@
 
                     <div class="form-group row">
 
-                      <label class="col-lg-3 control-label text-lg-right pt-2" for="usu_email">Email</label>
+                      <label class="col-lg-3 control-label text-lg-right pt-2" for="usu_email"><?php echo translate("Email"); ?></label>
 
                       <div class="col-lg-9">
 
@@ -326,7 +324,7 @@
 
                     <div class="form-group row">
 
-                      <label class="col-lg-3 control-label text-lg-right pt-2" for="usu_website">Website</label>
+                      <label class="col-lg-3 control-label text-lg-right pt-2" for="usu_website"><?php echo translate("Website"); ?></label>
 
                       <div class="col-lg-9">
 
@@ -354,7 +352,7 @@
 
                     <header class="card-header">
 
-                      <h2 class="card-title">Dados de acesso</h2>
+                      <h2 class="card-title"><?php echo translate("Dados de acesso"); ?></h2>
 
                     </header>
 
@@ -363,7 +361,7 @@
 
                       <div class="form-group row">
 
-                          <label class="col-lg-12 control-label text-lg-left pt-2">Email</label>
+                          <label class="col-lg-12 control-label text-lg-left pt-2"><?php echo translate("Email"); ?></label>
 
                           <div class="col-lg-12">
 
@@ -375,7 +373,7 @@
 
                       <div class="form-group row">
 
-                          <label class="col-lg-12 control-label text-lg-left pt-2">Senha</label>
+                          <label class="col-lg-12 control-label text-lg-left pt-2"><?php echo translate("Senha"); ?></label>
 
                           <div class="col-lg-12">
 
@@ -387,7 +385,7 @@
 
                       <div class="form-group row">
 
-                          <label class="col-lg-12 control-label text-lg-left pt-2">Confirmação Senha</label>
+                          <label class="col-lg-12 control-label text-lg-left pt-2"><?php echo translate("Confirmação Senha"); ?></label>
 
                           <div class="col-lg-12">
 
@@ -405,13 +403,13 @@
 
                         
 
-                        <label class="col-sm-12 control-label text-sm-left pt-2">Nivel</label>
+                        <label class="col-sm-12 control-label text-sm-left pt-2"><?php echo translate("eNivel"); ?></label>
 
                         <div class="col-lg-12"> 
 
                           <select id="usu_nivel" class="form-control">
 
-                            <option value="0">SELECIONE</option>
+                            <option value="0"><?php echo translate("SELECIONE"); ?></option>
 
                             <?php
 
@@ -448,7 +446,7 @@
                       <!-- calendar id -->
                     <div class="form-group row">
 
-                    <label class="col-lg-12 control-label text-lg-left pt-2">Calendário Google (ID)</label>
+                    <label class="col-lg-12 control-label text-lg-left pt-2"><?php echo translate("Calendário Google (ID)"); ?></label>
 
                     <div class="col-lg-12">
 
@@ -505,7 +503,7 @@
 
     
 
-                        <label class="col-sm-12 control-label text-sm-right pt-2">Imagem</label>
+                        <label class="col-sm-12 control-label text-sm-right pt-2"><?php echo translate("Imagem"); ?></label>
 
                         <div class="col-sm-12 media-gallery">
 
@@ -557,9 +555,9 @@
 
                                         <div class="dropdown-menu mg-dropdown" role="menu" x-placement="bottom-start" style="position: relative; transform: translate3d(271px, 28px, 0px); top: 0px; left: 0px; will-change: transform;">
 
-                                          <a class="dropdown-item text-1" href="/images/usuario/<?php echo $view_usuario_lista_alt[0]['usu_foto'] ?>" download="Imagem_usuario"><i class="fa fa-download"></i> Download</a>
+                                          <a class="dropdown-item text-1" href="/images/usuario/<?php echo $view_usuario_lista_alt[0]['usu_foto'] ?>" download="Imagem_usuario"><i class="fa fa-download"></i> <?php echo translate("Download"); ?></a>
 
-                                          <a class="dropdown-item text-1" id="img_Del" href="#"><i class="fa fa-trash-o"></i> Apagar</a>
+                                          <a class="dropdown-item text-1" id="img_Del" href="#"><i class="fa fa-trash-o"></i> <?php echo translate("Apagar"); ?></a>
 
                                         </div>
 
@@ -613,7 +611,7 @@
 
             <span id="retorno" class="col-md-10"></span>            
 
-            <a name="bt_usu_alterar" id="bt_usu_alterar"  href="javascript:$('#usu_img').uploadifive('upload')" class="btn btn-primary col-md-2 pull-right">Gravar</a>
+            <a name="bt_usu_alterar" id="bt_usu_alterar"  href="javascript:$('#usu_img').uploadifive('upload')" class="btn btn-primary col-md-2 pull-right"><?php echo translate("Gravar"); ?></a>
 
                
 

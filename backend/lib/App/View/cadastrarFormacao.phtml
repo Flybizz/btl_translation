@@ -7,11 +7,11 @@
 ?>
 <router base="formacao/registar">
 <header class="page-header">
-    <h2>Formação</h2>
+    <h2><?php echo translate("Formação"); ?></h2>
     <div class="right-wrapper text-right">
         <?php $LANGUAGE_DEFAULT = unserialize(LANGUAGE_DEFAULT); ?>
-        <a name="bt_form_cadastrar" id="bt_form_cadastrar" href="javascript:void(0);" class="mb-1 mt-3 ml-2 mr-1 btn btn-xs btn-primary"><strong>Gravar</strong></a>
-        <a href="/backend/cliente/perfil/ref/<?php echo $view_cliente["cli_referencia"]; ?>/tab/formacao" class="mb-1 mt-3 mr-1 ml-1 btn btn-xs btn-default"><strong>Voltar</strong></a>
+        <a name="bt_form_cadastrar" id="bt_form_cadastrar" href="javascript:void(0);" class="mb-1 mt-3 ml-2 mr-1 btn btn-xs btn-primary"><strong><?php echo translate("Gravar"); ?></strong></a>
+        <a href="/backend/cliente/perfil/ref/<?php echo $view_cliente["cli_referencia"]; ?>/tab/formacao" class="mb-1 mt-3 mr-1 ml-1 btn btn-xs btn-default"><strong><?php echo translate("Voltar"); ?></strong></a>
         <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-calendar"></i></a>
     </div>
 </header>
@@ -23,7 +23,7 @@
                 <div class="row">
                     <div class="col-sm-6 mt-3">
                        
-                        <h2 class="h2 mt-0 mb-4 text-dark font-weight-bold">Agendar formação para <?php echo $view_cliente["cli_nome"] ?></h2>
+                        <h2 class="h2 mt-0 mb-4 text-dark font-weight-bold"><?php echo translate("Agendar formação para"); ?> <?php echo $view_cliente["cli_nome"] ?></h2>
                         <!-- <h4 class="h4 m-0 text-dark font-weight-bold">#76598345</h4> -->
                     </div>
                     <div class="col-sm-6 mt-3">
@@ -37,14 +37,14 @@
               <div class="col-md-8">
                 <section class="card mb-4">
                   <header class="card-header">
-                    <h2 class="card-title">Principal</h2>
+                    <h2 class="card-title"><?php echo translate("Principal"); ?></h2>
                   </header>
                   <div class="card-body">
                     <form class="form-horizontal form-bordered" method="post">
                        <!-- a que cliente fica associada a formação ? -->
                        <input type="hidden" name="form_cliente_ref" value="<?php echo $view_ref; ?>" />
                       <div class="form-group row">
-                        <label class="col-lg-3 control-label text-lg-right pt-2" for="form_nome">Data da formação</label>
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="form_nome"><?php echo translate("Data da formação"); ?></label>
                         <div class="col-lg-9">
                            <div class="input-group">
                                  <span class="input-group-addon">
@@ -55,7 +55,7 @@
                         </div>
                       </div>
                       <div class="form-group row">
-                        <label class="col-lg-3 control-label text-lg-right pt-2" for="form_funcao">Formador</label>
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="form_funcao"><?php echo translate("Formador"); ?></label>
                         <div class="col-lg-9">
                            <select class="form-control" name="form_formador" id="">
                               <?php foreach($view_formadores as $formador): ?>
@@ -93,7 +93,7 @@
                         </div>
                       </div> -->
                       <div class="form-group row">
-                        <label class="col-lg-3 control-label text-lg-right pt-2" for="form_funcao">Tipo de formação</label>
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="form_funcao"><?php echo translate("Tipo de formação"); ?></label>
                         <div class="col-lg-9">
                            <select class="form-control" name="form_tipo_formacao" id="">
                               <?php foreach($view_tipos_formacao as $tipo_formacao): ?>
@@ -103,7 +103,7 @@
                         </div>
                       </div>
                       <div class="form-group row">
-                        <label class="col-lg-3 control-label text-lg-right pt-2" for="form_funcao">Produtos</label>
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="form_funcao"><?php echo translate("Produtos"); ?></label>
                         <div class="col-lg-9">
                         <select name="form_produtos[]" class="form-control" multiple="multiple" data-plugin-multiselect data-plugin-options='{ "maxHeight": 200 }'>
                               <?php if(!empty($view_produtos)): ?>
@@ -116,7 +116,7 @@
                       </div>
             
                       <div class="form-group row">
-                        <label class="col-lg-3 control-label text-lg-right pt-2" for="form_observacao">Observação</label>
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="form_observacao"><?php echo translate("Observação"); ?></label>
                         <div class="col-lg-9">                        
                           <!-- <textarea class="form-control" name="fil_texto" id="fil_texto"></textarea> -->
                           <?php $CKEditor->editor("form_observacao", ""); ?>
@@ -169,7 +169,7 @@
             
             <div id="ref" class='clearfix'></div>  
             <span id="retorno" class="col-md-10"></span>            
-            <a name="bt_form_cadastrar" id="bt_form_cadastrar" href="#" class="btn btn-primary col-md-2 pull-right">Gravar</a>
+            <a name="bt_form_cadastrar" id="bt_form_cadastrar" href="#" class="btn btn-primary col-md-2 pull-right"><?php echo translate("Gravar"); ?></a>
                
         </div>
     </div>

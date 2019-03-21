@@ -13,7 +13,7 @@ $habilitados = array_keys($arr);
 ?>
 <div class="sidebar-header">
   <div class="sidebar-title">
-      <input type="text" name="nav_search" placeholder="<?php echo translate(PLACEHOLDER_BUSCAR); ?>" class="search-nav" >
+      <input type="text" name="nav_search" placeholder="<?php echo translate("Buscar"); ?>" class="search-nav" >
   </div>
   <div class="sidebar-toggle hidden-xs" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="sidebar-left-toggle">
       <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
@@ -158,7 +158,7 @@ $habilitados = array_keys($arr);
                       <span><?php echo translate(MENU_LOGS); ?></span>
                     </a>
                     <ul class="nav nav-children">                                    
-                      <li data-search="<?php echo translate(MENU_PESQUISAS_EXPORTADAS); ?>">
+                      <li data-search="<?php echo translate("MENU_PESQUISAS_EXPORTADAS"); ?>">
                         <a class="nav-link" href="/../backend/log/dbgerados"><?php echo translate(MENU_PESQUISAS_EXPORTADAS); ?></a>
                       </li>
                       <li data-search="<?php echo translate(MENU_CONTROLO_ACESSO); ?>">
@@ -199,13 +199,6 @@ $habilitados = array_keys($arr);
                   <a class="nav-link" href="/../backend/logout">
                     <i class="fa fa-power-off" aria-hidden="true"></i>
                     <span><?php echo translate(MENU_SAIR); ?></span>
-                  </a>
-                </li>
-
-                <li data-search="<?php echo translate("Kálmir começa aqui"); ?>">
-                  <a class="nav-link" href="/../backend/logout">
-                    <i class="fa fa-power-off" aria-hidden="true"></i>
-                    <span><?php echo translate("Kálmir começa aqui"); ?></span>
                   </a>
                 </li>
             

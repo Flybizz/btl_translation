@@ -49,7 +49,7 @@ if(router == "nivel/registar"){
   })
 
   $("input[type=checkbox]").bind("change", function(){
-    ajax_enviar_dados2();
+    //ajax_enviar_dados2();
   })
     
   

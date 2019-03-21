@@ -7,7 +7,7 @@
 ?>
 <router base="formacao/alterar">
 <header class="page-header">
-    <h2>Formação</h2>    
+    <h2><?php echo translate("Formação"); ?></h2>    
     <div class="right-wrapper text-right">
         <?php $LANGUAGE_DEFAULT = unserialize(LANGUAGE_DEFAULT); ?>
         <a name="bt_form_cadastrar" id="bt_form_cadastrar"  href="javascript:$('#form_img').uploadifive('upload')" class="mb-1 mt-3 ml-2 mr-1 btn btn-xs btn-primary"><strong>Gravar</strong></a>
@@ -21,7 +21,7 @@
             <header class="clearfix">
                 <div class="row">
                      <div class="col-sm-12 mt-3">                        
-                        <h2 class="h2 mt-0 mb-4 text-dark font-weight-bold">Formação agendada para <?php echo date("d/m/Y", strtotime($view_formacao["form_data_formacao"])) ?> - <?php echo $view_cliente["cli_nome"] ?></h2>
+                        <h2 class="h2 mt-0 mb-4 text-dark font-weight-bold"><?php echo translate("Formação agendada para"); ?> <?php echo date("d/m/Y", strtotime($view_formacao["form_data_formacao"])) ?> - <?php echo $view_cliente["cli_nome"] ?></h2>
                         <!-- <h4 class="h4 m-0 text-dark font-weight-bold">#76598345</h4> -->
                      </div>
                 </div>
@@ -30,13 +30,13 @@
                   <div class="col-md-6">
                      <section class="card mb-4">
                         <header class="card-header">
-                        <h2 class="card-title">Informações</h2>
+                        <h2 class="card-title"><?php echo translate("Informações"); ?></h2>
                         </header>
                         <div class="card-body">
                         <form class="form-horizontal form-bordered" method="post">                       <!-- a que cliente fica associada a formação ? -->
                            <input type="hidden" name="form_cliente_ref" value="<?php echo $view_formacao["form_ref"]; ?>" />
                            <input type="hidden" name="form_id" value="<?php echo $view_formacao["form_id"]; ?>" />                      <div class="form-group row">
-                              <label class="col-lg-3 control-label text-lg-right pt-2" for="form_nome">Data da formação</label>
+                              <label class="col-lg-3 control-label text-lg-right pt-2" for="form_nome"><?php echo translate("Data da formação"); ?></label>
                               <div class="col-lg-9">
                                  <div class="input-group">
                                        <span class="input-group-addon">
@@ -46,7 +46,7 @@
                                  </div>
                               </div>
                            </div>                      <div class="form-group row">
-                              <label class="col-lg-3 control-label text-lg-right pt-2" for="form_funcao">Formador</label>
+                              <label class="col-lg-3 control-label text-lg-right pt-2" for="form_funcao"><?php echo translate("Formador"); ?></label>
                               <div class="col-lg-9">
                                  <select class="form-control" name="form_formador" id="">
                                     <?php foreach($view_formadores as $formador): ?>
@@ -57,7 +57,7 @@
                            </div>
                            
                            <div class="form-group row">
-                              <label class="col-lg-3 control-label text-lg-right pt-2" for="form_funcao">Tipo de formação</label>
+                              <label class="col-lg-3 control-label text-lg-right pt-2" for="form_funcao"><?php echo translate("Tipo de formação"); ?></label>
                               <div class="col-lg-9">
                                  <select class="form-control" name="form_tipo_formacao" id="">
                                     <?php foreach($view_tipos_formacao as $tipo_formacao): ?>
@@ -71,7 +71,7 @@
 
                            <div class="form-group row">
 
-                              <label class="col-lg-3 control-label text-lg-right pt-2" for="form_funcao">Produtos</label>
+                              <label class="col-lg-3 control-label text-lg-right pt-2" for="form_funcao"><?php echo translate("Produtos"); ?></label>
 
                               <div class="col-lg-9">
 
@@ -85,7 +85,7 @@
                                  </select>                        </div>                      </div>
                   
                            <div class="form-group row">
-                              <label class="col-lg-3 control-label text-lg-right pt-2" for="form_texto">Observação</label>
+                              <label class="col-lg-3 control-label text-lg-right pt-2" for="form_texto"><?php echo translate("Observação"); ?></label>
                               <div class="col-lg-9">                        
                               <!-- <textarea class="form-control" name="fil_texto" id="fil_texto"></textarea> -->
                               <?php                                                                                    
@@ -189,7 +189,7 @@
             
             <div id="ref" class='clearfix'></div>  
             <span id="retorno" class="col-md-10"></span>            
-            <a name="bt_form_cadastrar" id="bt_form_cadastrar"  href="#" class="btn btn-primary col-md-2 pull-right">Gravar</a>
+            <a name="bt_form_cadastrar" id="bt_form_cadastrar"  href="#" class="btn btn-primary col-md-2 pull-right"><?php echo translate("Gravar"); ?></a>
                
         </div>
     </div>

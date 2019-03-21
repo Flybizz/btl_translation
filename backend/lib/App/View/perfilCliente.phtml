@@ -11,7 +11,7 @@
 <input type="hidden" id="cli_code" value="<?php echo $view_cliente[0]['cli_id'] ?>">
 <input type="hidden" id="cli_ref" value="<?php echo $view_cliente[0]['cli_referencia']; ?>">
 <header class="page-header">
-	<h2>Perfil do Cliente</h2>
+	<h2><?php echo translate("Perfil do Cliente"); ?></h2>
 	<div class="right-wrapper text-right">
 		<ol class="breadcrumbs">
 			<li>
@@ -19,8 +19,8 @@
 					<i class="fa fa-home"></i>
 				</a>
 			</li>
-			<li><span>Cliente</span></li>
-			<li><span>Perfil</span></li>
+			<li><span><?php echo translate("Cliente"); ?></span></li>
+			<li><span><?php echo translate("Perfil"); ?></span></li>
 		</ol>
 		<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-calendar"></i></a>
 	</div>
@@ -92,14 +92,14 @@
 			<ul class="nav nav-tabs tabs-primary">
 				<?php if (!empty( $view_timeline )): ?>
 				<li class="nav-item <?php echo $tab_follow; ?>">
-					<a class="nav-link" href="#overview" data-toggle="tab">Follow up</a>
+					<a class="nav-link" href="#overview" data-toggle="tab"><?php echo translate("Follow up"); ?></a>
 				</li>
 				<?php endif; ?>
 				<li class="nav-item <?php echo $tab_view; ?>">
-					<a class="nav-link" href="#view" data-toggle="tab">Informações</a>
+					<a class="nav-link" href="#view" data-toggle="tab"><?php echo translate("Informações"); ?></a>
 				</li>
 				<li class="nav-item <?php echo $tab_formacao; ?>">
-					<a class="nav-link" href="#formacao" data-toggle="tab">Formações</a>
+					<a class="nav-link" href="#formacao" data-toggle="tab"><?php echo translate("Formações"); ?></a>
 				</li>
 			</ul>
 			<div class="tab-content">
@@ -123,7 +123,7 @@
 										endif;
 										if($timeline["modulo"] == "tarefa"):
 											$bk = "#47a447";
-											$prioridade = '<p><span>Prioridade: </span> <span style="color:'.$timeline["color"].';">'.$timeline["prioridade"].'</span></p>';
+											$prioridade = '<p><span>'.translate("Prioridade").': </span> <span style="color:'.$timeline["color"].';">'.$timeline["prioridade"].'</span></p>';
 										endif;
 									?>
 									<li>
@@ -150,65 +150,65 @@
 					<div class="form-row pull-right">
 					<?php if(in_array('per_cliente', $habilitados)): ?>
 						<div class="col-md-12 text-right mt-3">
-							<a href="/backend/cliente/alterar/ref/<?php echo $view_cliente[0]["cli_referencia"]; ?>" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Editar dados"><i class="fa fa-pencil fa-lg"></i></a>
+							<a href="/backend/cliente/alterar/ref/<?php echo $view_cliente[0]["cli_referencia"]; ?>" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="<?php echo translate("Editar dados") ?>"><i class="fa fa-pencil fa-lg"></i></a>
 						</div>
 					<?php endif; ?>
 					</div>
 					<div class="p-3">
-						<h4 class="mb-3"><strong>Informações do Cliente</strong></h4>
+						<h4 class="mb-3"><strong><?php echo translate("Informações do Cliente"); ?></strong></h4>
 						<div class="form-group">
-							<label for="inputAddress"><strong>Nome Completo</strong></label>
+							<label for="inputAddress"><strong><?php echo translate("Nome Completo"); ?></strong></label>
 							<span class="form-control"><?php echo $view_cliente[0]["cli_nome"]; ?></span>
 						</div>
 						<div class="form-row">
 							<div class="form-group col-md-6">
-								<label for="inputAddress"><strong>Tipo de cliente</strong></label>
+								<label for="inputAddress"><strong><?php echo translate("Tipo de cliente"); ?></strong></label>
 								<span class="form-control"><?php echo (empty($view_cliente[0]["cli_tipo"])) ? "" : $view_cliente[0]["cli_tipo"]; ?></span>
 							</div>
 							<div class="form-group col-md-6">
-								<label for="inputAddress"><strong>Área de negócio</strong></label>
+								<label for="inputAddress"><strong><?php echo translate("Área de negócio"); ?></strong></label>
 								<span class="form-control"><?php echo (empty($view_cliente[0]["cli_area_negocio"])) ? "" : $view_cliente[0]["cli_area_negocio"]; ?></span>
 							</div>
 						</div>
 						<div class="form-row">
 							<div class="form-group col-md-6">
-								<label for="inputAddress"><strong>CPF / CNPJ</strong></label>
+								<label for="inputAddress"><strong><?php echo translate("CPF / CNPJ"); ?></strong></label>
 								<span class="form-control"><?php echo $view_cliente[0]["cli_nif"]; ?></span>
 							</div>
 							<div class="form-group col-md-6">
-								<label for="inputAddress"><strong>Vendedor</strong></label>
+								<label for="inputAddress"><strong><?php echo translate("Vendedor"); ?></strong></label>
 								<span class="form-control"><?php echo $view_cliente[0]["vendedor"]; ?></span>
 							</div>
 						</div>
 						<div class="form-row">
 							<div class="form-group col-md-6">
-								<label for="inputAddress"><strong>Produtos</strong></label>
+								<label for="inputAddress"><strong><?php echo translate("Produtos"); ?></strong></label>
 								<span class="form-control"><?php echo $view_cliente[0]["cli_produto"]; ?></span>
 							</div>
 							<div class="form-group col-md-6">
-								<label for="inputAddress"><strong>Vendedores associados</strong></label>
+								<label for="inputAddress"><strong><?php echo translate("Vendedores associados"); ?></strong></label>
 								<span class="form-control"><?php echo $view_cliente[0]["associado"]; ?></span>
 							</div>
 						</div>
 						<hr class="dotted tall">
-						<h4 class="mb-3"><strong>Informações de contatos</strong></h4>
+						<h4 class="mb-3"><strong><?php echo translate("Informações de contatos"); ?></strong></h4>
 						<div class="form-row">
 							<div class="form-group col-md-6">
-								<label><strong>Email</strong></label>
+								<label><strong><?php echo translate("Email"); ?></strong></label>
 								<span class="form-control"><?php echo $view_cliente[0]["cli_email"]; ?></span>
 							</div>
 							<div class="form-group col-md-6">
-								<label><strong>Telefone</strong></label>
+								<label><strong><?php echo translate("Telefone"); ?></strong></label>
 								<span class="form-control"><?php echo str_replace("|"," / ",$view_cliente[0]["cli_telefone"]); ?></span>
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="inputAddress"><strong>Endereço</strong></label>
+							<label for="inputAddress"><strong><?php echo translate("Endereço"); ?></strong></label>
 							<span class="form-control"><?php echo $view_cliente[0]["cli_rua"]; ?></span>
 						</div>
 						<?php if(!empty($view_cliente[0]["cli_google_map"])): ?>
 						<div class="form-group">
-								<label for=""><strong>Google Map</strong></label>
+								<label for=""><strong><?php echo translate("Google Map"); ?></strong></label>
 								<?php
 								$str = $view_cliente[0]["cli_google_map"];
 								$matches = [];
@@ -230,25 +230,25 @@
 						<?php endif; ?>
 						<div class="form-row">
 							<div class="form-group col-md-6">
-								<label for="inputAddress2"><strong>Número</strong></label>
+								<label for="inputAddress2"><strong><?php echo translate("Número"); ?></strong></label>
 								<span class="form-control"><?php echo $view_cliente[0]["cli_numero"]; ?></span>
 							</div>
 							<div class="form-group col-md-6">
-								<label for="inputAddress2"><strong>Andar</strong></label>
+								<label for="inputAddress2"><strong><?php echo translate("Andar"); ?></strong></label>
 								<span class="form-control"><?php echo $view_cliente[0]["cli_andar"]; ?></span>
 							</div>
 						</div>
 						<div class="form-row">
 							<div class="form-group col-md-6">
-								<label for="inputCity"><strong>Cidade</strong></label>
+								<label for="inputCity"><strong><?php echo translate("Cidade"); ?></strong></label>
 								<span class="form-control"><?php echo $view_cliente[0]["cli_localidade"]; ?></span>
 							</div>
 							<div class="form-group col-md-4">
-								<label for="inputState"><strong>UF</strong></label>
+								<label for="inputState"><strong><?php echo translate("UF"); ?></strong></label>
 								<span class="form-control"><?php echo $view_cliente[0]["cli_distrito"]; ?></span>
 							</div>
 							<div class="form-group col-md-2">
-								<label for="inputZip"><strong>CP</strong></label>
+								<label for="inputZip"><strong><?php echo translate("CP"); ?></strong></label>
 								<span class="form-control"><?php echo $view_cliente[0]["cli_cp"]; ?></span>
 							</div>
 						</div>
@@ -260,19 +260,19 @@
 				      				<div class="row form-group">
 						          		<label class="col-lg-12 btn-primary"><strong>Contato <?php echo $contato["cont_contato"]; ?></strong></label>
 						        		<?php if(!empty($contato["cont_nome"])): ?>
-						        			<label class="col-lg-3"><strong>Nome: </strong></label>
+						        			<label class="col-lg-3"><strong><?php echo translate("Nome"); ?>: </strong></label>
 						        			<p class="form-control col-lg-9" style="margin-bottom: 3px;"><?php echo trim(str_replace("|", " / ", $contato["cont_nome"]));?></p>
 						        		<?php endif;?>
 						        		<?php if(!empty($contato["cont_cargo"])): ?>
-						        			<label class="col-lg-3"><strong>Cargo: </strong></label>
+						        			<label class="col-lg-3"><strong><?php echo translate("Cargo"); ?>: </strong></label>
 						        			<p class="form-control col-lg-9" style="margin-bottom: 3px;"><?php echo trim($contato["cont_cargo"]);?></p>
 						        		<?php endif;?>
 						        		<?php if(!empty($contato["cont_email"])): ?>
-						        			<label class="col-lg-3"><strong>Email: </strong></label>
+						        			<label class="col-lg-3"><strong><?php echo translate("Email"); ?>: </strong></label>
 						        			<p class="form-control col-lg-9" style="margin-bottom: 3px;"><?php echo trim($contato["cont_email"]); ?></p>
 						        		<?php endif;?>
 						        		<?php if(!empty($contato["cont_telemovel"])): ?>
-						        			<label class="col-lg-3"><strong>Telefone: </strong></label>
+						        			<label class="col-lg-3"><strong><?php echo translate("Telefone"); ?>: </strong></label>
 						        			<p class="form-control col-lg-9" style="margin-bottom: 3px;"><?php echo trim($contato["cont_telemovel"]); ?></p>
 						        		<?php endif;?>
 						        	</div>
@@ -281,7 +281,7 @@
 					      		<?php endif; ?>
 				        	</div>
 				      	</div>
-						<h4 class="mb-3"><strong>Observação</strong></h4>
+						<h4 class="mb-3"><strong><?php echo translate("Observação"); ?></strong></h4>
 						<div class="form-row mb-3">
 							<div class="form-group col-md-12">
 								<span class="form-control"><?php echo str_replace("|", "/", $view_cliente[0]["cli_descricao"]); ?></span>
@@ -289,11 +289,11 @@
 						</div>
 						<div class="form-row">
 							<div class="form-group col-md-6">
-								<label for="inputCity"><strong>Status</strong></label>
+								<label for="inputCity"><strong><?php echo translate("Status"); ?></strong></label>
 								<span class="form-control"><?php echo ($view_cliente[0]["cli_status"] == "sim") ? "ATIVO" : "INATIVO"; ?></span>
 							</div>
 							<div class="form-group col-md-6">
-								<label for="inputCity"><strong>RGPD</strong></label>
+								<label for="inputCity"><strong><?php echo translate("RGPD"); ?></strong></label>
 								<span class="form-control">
 									<?php
 									if(empty($view_cliente[0]["cli_rgpd"])):
@@ -311,24 +311,24 @@
 					<?php if(in_array('per_treinamento', $habilitados)): ?>
 					<div class="form-row pull-right">
 						<div class="col-md-12 text-right mt-3">
-							<a href="/backend/formacao/registar/ref/<?php echo $view_cliente[0]["cli_referencia"]; ?>" id="formacaoCad" class="btn btn-primary pull-right">Criar formação</a>
+							<a href="/backend/formacao/registar/ref/<?php echo $view_cliente[0]["cli_referencia"]; ?>" id="formacaoCad" class="btn btn-primary pull-right"><?php echo translate("Criar formação"); ?></a>
 						</div>
 					</div>
 					<?php endif; ?>
 					<div class="p-3">
-						<h4 class="mb-3"><strong>Formações</strong></h4>
+						<h4 class="mb-3"><strong><?php echo translate("Formações"); ?></strong></h4>
 						<?php $code = rand(5000, 1000000);?>
 						
 						<router base="formacao/listar">
 						<table class="table dataTable table-bordered table-striped mb-0" id="">
 		                    <thead>
 		                        <tr>
-									<th>DATA</th>
-									<th>TIPO</th>
-									<th>FORMADOR</th>
-									<th>FORMANDOS</th>
-									<th>EVOLUÇÃO</th>
-									<th>AÇÕES</th>
+									<th><?php echo translate("DATA"); ?></th>
+									<th><?php echo translate("TIPO"); ?></th>
+									<th><?php echo translate("FORMADOR"); ?></th>
+									<th><?php echo translate("FORMANDOS"); ?></th>
+									<th><?php echo translate("EVOLUÇÃO"); ?></th>
+									<th><?php echo translate("AÇÕES"); ?></th>
 		                        </tr>
 		                    </thead>
 		                    <tbody>
@@ -428,29 +428,29 @@
 				</div>
 				<?php endif; ?>
 				<hr class="dotted short">
-				<h5 class="mb-2 mt-3">Informações</h5>
+				<h5 class="mb-2 mt-3"><?php echo translate("Informações"); ?></h5>
 				<ul class="simple-bullet-list mb-3">
 					<?php if(!empty($view_cliente[0]["cli_telefone"])): ?>
 						<li class="blue">
-							<span class="title">Telefone</span>
+							<span class="title"><?php echo translate("Telefone"); ?></span>
 							<span class="description truncate">(+351) <?php echo $view_cliente[0]["cli_telefone"]; ?></span>
 						</li>
 					<?php endif; ?>
 					<?php if(!empty($view_cliente[0]["cli_email"])): ?>
 						<li class="blue">
-							<span class="title">Email</span>
+							<span class="title"><?php echo translate("Email"); ?></span>
 							<span class="description truncate"><?php echo $view_cliente[0]["cli_email"]; ?></span>
 						</li>
 					<?php endif; ?>
 					<?php if(!empty($view_cliente[0]["cli_tipo"])): ?>
 						<li class="blue">
-							<span class="title">Tipo</span>
+							<span class="title"><?php echo translate("Tipo"); ?></span>
 							<span class="description truncate"><?php echo $view_cliente[0]["cli_tipo"]; ?></span>
 						</li>
 					<?php endif; ?>
 					<?php if(!empty($view_cliente[0]["cli_status"])): ?>
 						<li class="blue">
-							<span class="title">Status</span>
+							<span class="title"><?php echo translate("Status"); ?></span>
 							<span class="description truncate"><?php echo ($view_cliente[0]["cli_status"] == "sim") ? "ATIVO" : "INATIVO"; ?></span>
 						</li>
 					<?php endif; ?>
@@ -462,7 +462,7 @@
 					</div>
 				</div> -->
 				<?php if(!empty($view_contactos_lead)): ?>
-				<h5 class="mb-2 mt-4">Pessoa de contacto</h5>
+				<h5 class="mb-2 mt-4"><?php echo translate("Pessoa de contacto"); ?></h5>
 				<header class="card-header">
 					
 					<div class="widget-profile-info">
@@ -481,7 +481,7 @@
 					</div>
 				</header>
 				<hr class="dotted short">
-				<h5 class="mb-2 mt-3">Situação</h5>
+				<h5 class="mb-2 mt-3"><?php echo translate("Situação"); ?></h5>
 				<strong><?php echo utf8_encode($view_lista_leads[$view_contactos_lead["cont_lead_status"]]["lead_nome"]) ?></strong>
 				<?php $progresso = ceil((($view_contactos_lead["cont_lead_status"]) / count($view_lista_leads) ) * 100); ?>
 				<div class="progress progress-xl light">					

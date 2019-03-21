@@ -15,8 +15,8 @@
           <a href="/backend/cargo/alterar/lang/<?php echo $lang['D008_Sigla']; ?>/ref/<?php echo $view_cargo_lista_alt[0]['cargo_id']; ?>" class="mb-1 mt-3 mr-0 ml-0 p-1 btn btn-xs btn-default"><i class="flag-icon flag-icon-<?php echo $icon_lang; ?>" style="font-size: 14px;"></i></a>
         <?php endforeach; ?>
         <?php endif; ?>
-        <a name="bt_cargo_alterar" id="bt_cargo_alterar" href="javascript:void(0);" class="mb-1 mt-3 mr-1 btn btn-xs btn-primary"><strong>Gravar</strong></a>
-        <a href="/backend/cargo/listar/lang/<?php echo $LANGUAGE_DEFAULT[0]; ?>" class="mb-1 mt-3 mr-1 ml-1 btn btn-xs btn-default"><strong>Voltar</strong></a>
+        <a name="bt_cargo_alterar" id="bt_cargo_alterar" href="javascript:void(0);" class="mb-1 mt-3 mr-1 btn btn-xs btn-primary"><strong><?php echo translate("Gravar"); ?></strong></a>
+        <a href="/backend/cargo/listar/lang/<?php echo $LANGUAGE_DEFAULT[0]; ?>" class="mb-1 mt-3 mr-1 ml-1 btn btn-xs btn-default"><strong><?php echo translate("Voltar"); ?></strong></a>
         <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-calendar"></i></a>
     </div>
 </header>
@@ -27,7 +27,7 @@
             <header class="clearfix">
               <div class="row">
                   <div class="col-sm-6 mt-3">
-                      <h2 class="h2 mt-0 mb-4 text-dark font-weight-bold">Alterar Conteúdo</h2>
+                      <h2 class="h2 mt-0 mb-4 text-dark font-weight-bold"><?php echo translate("Alterar Cargo"); ?></h2>
                   </div>
                   <div class="col-sm-6 mt-3">
                       <div class="m-0 mb-4 pull-right">
@@ -40,19 +40,19 @@
               <div class="col-md-8">
                 <section class="card mb-4">
                   <header class="card-header">
-                    <h2 class="card-title pull-left">Informações Principais</h2>
+                    <h2 class="card-title pull-left"><?php echo translate("Informações Principais"); ?></h2>
                   </header>
                   <div class="card-body">
                     <form class="form-horizontal form-bordered" method="post">
                       <div class="form-group row">
-                        <label class="col-lg-3 control-label text-lg-right pt-2" for="titulo">Título</label>
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="titulo"><?php echo translate("Título"); ?></label>
                         <div class="col-lg-9">
                           <input type="text" id="titulo" class="form-control" value="<?php echo $view_cargo_lista_alt[0]['cargo_nome'] ?>">
                         </div>
                       </div>    
 
                       <div class="form-group row">
-                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Status</label>
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Status"); ?></label>
                         <div class="col-lg-6">
 
                           <div class="btn-group" data-toggle="buttons">
@@ -70,10 +70,10 @@
                               endif;
                             ?>
                             <label class="btn btn-primary <?php echo $active1; ?>" aria-pressed="true">
-                              <input type="radio" name="cargo_status" id="option1" value="sim" <?php echo $checked1; ?>> Ativo
+                              <input type="radio" name="cargo_status" id="option1" value="sim" <?php echo $checked1; ?>> <?php echo translate("Ativo"); ?>
                             </label>
                             <label class="btn btn-primary <?php echo $active2; ?>" aria-pressed="true">
-                              <input type="radio" name="cargo_status" id="option2" value="nao"  <?php echo $checked2; ?>> Inativo
+                              <input type="radio" name="cargo_status" id="option2" value="nao"  <?php echo $checked2; ?>> <?php echo translate("Inativo"); ?>
                             </label>
 
                           </div>
@@ -89,7 +89,7 @@
 
             <div id="ref" class='clearfix'></div>
             <span id="retorno" class="col-md-10"></span>
-            <a name="bt_cargo_alterar" id="bt_cargo_alterar"  href="javascript:void(0);" class="btn btn-primary col-md-2 pull-right">Gravar</a>
+            <a name="bt_cargo_alterar" id="bt_cargo_alterar"  href="javascript:void(0);" class="btn btn-primary col-md-2 pull-right"><?php echo translate("Gravar"); ?></a>
 
         </div>
     </div>

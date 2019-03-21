@@ -4,7 +4,7 @@
 <?php $LANGUAGE_DEFAULT = unserialize(LANGUAGE_DEFAULT); ?>
 <input type="hidden" id="idioma" class="icon" value="<?php echo $LANGUAGE_DEFAULT[0]; ?>" />
 <header class="page-header">
-    <h2>Cargos</h2>
+    <h2><?php echo translate("Cargos"); ?></h2>
 
     <div class="right-wrapper text-right">
         <ol class="breadcrumbs">
@@ -13,8 +13,8 @@
                     <i class="fa fa-home"></i>
                 </a>
             </li>
-            <li><span>Home</span></li>
-            <li><span>Cargos</span></li>
+            <li><span><?php echo translate("Home"); ?></span></li>
+            <li><span><?php echo translate("Cargos"); ?></span></li>
         </ol>
 
         <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-calendar"></i></a>
@@ -29,12 +29,12 @@
             <header class="clearfix">
                 <div class="row">
                     <div class="col-sm-6 mt-3">
-                        <h2 class="h2 mt-0 mb-4 text-dark font-weight-bold">Cargos</h2>
+                        <h2 class="h2 mt-0 mb-4 text-dark font-weight-bold"><?php echo translate("Cargos"); ?></h2>
                         <!-- <h4 class="h4 m-0 text-dark font-weight-bold">#76598345</h4> -->
                     </div>
                     <div class="col-sm-6 mt-3">
                         <div class="m-0 mb-4 pull-right">
-                            <a href="/backend/cargo/registar/lang/<?php echo $LANGUAGE_DEFAULT[0]; ?>" id="cliCad" class="mb-1 mt-1 mr-1 btn btn-primary"> <strong>Registar Área</strong></a>
+                            <a href="/backend/cargo/registar/lang/<?php echo $LANGUAGE_DEFAULT[0]; ?>" id="cliCad" class="mb-1 mt-1 mr-1 btn btn-primary"> <strong><?php echo translate("Registar Área"); ?></strong></a>
                         </div>
                     </div>
                 </div>
@@ -43,10 +43,10 @@
             <table class="table table-bordered table-striped mb-0" id="datatable-tabletools">
                 <thead>
                     <tr>
-                        <th width='8%'>ID</th>
-                        <th width='62%'>NOME</th>
-                        <th width='15%'>STATUS</th>
-                        <th width='15%'>AÇÕES</th>
+                        <th width='8%'><?php echo translate("ID"); ?></th>
+                        <th width='62%'><?php echo translate("NOME"); ?></th>
+                        <th width='15%'><?php echo translate("STATUS"); ?></th>
+                        <th width='15%'><?php echo translate("AÇÕES"); ?></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -60,9 +60,9 @@
                       <td>
                       <?php 
                         if($cargo['cargo_status'] == "sim"): 
-                            echo "ATIVO"; 
+                            echo translate("Ativo");
                         else: 
-                            echo "INATIVO";
+                            echo translate("Inativo");
                         endif; 
                         ?>  
                       </td>

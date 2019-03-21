@@ -4,7 +4,7 @@
     $languageDEFAULT = unserialize (LANGUAGE_DEFAULT);
 ?>
 <header class="page-header">
-    <h2>Níveis de utilizador</h2>
+    <h2><?php echo translate("Níveis de utilizador"); ?></h2>
 
     <div class="right-wrapper text-right">
         <ol class="breadcrumbs">
@@ -13,8 +13,8 @@
                     <i class="fa fa-home"></i>
                 </a>
             </li>
-            <li><span>Home</span></li>
-            <li><span>Níveis de utilizador</span></li>
+            <li><span><?php echo translate("Home"); ?></span></li>
+            <li><span><?php echo translate("Níveis de utilizador"); ?></span></li>
         </ol>
 
         <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-calendar"></i></a>
@@ -29,11 +29,11 @@
             <header class="clearfix">
                 <div class="row">
                     <div class="col-sm-6 mt-3">
-                        <h2 class="h2 mt-0 mb-4 text-dark font-weight-bold">Níveis de utilizador</h2>
+                        <h2 class="h2 mt-0 mb-4 text-dark font-weight-bold"><?php echo translate("Níveis de utilizador"); ?></h2>
                     </div>
                     <div class="col-sm-6 mt-3">
                         <div class="m-0 mb-4 pull-right">
-                            <a href="/backend/nivel/registar" id="notCad" class="mb-1 mt-1 mr-1 btn btn-primary"> <strong>Adicionar</strong></a>
+                            <a href="/backend/nivel/registar" id="notCad" class="mb-1 mt-1 mr-1 btn btn-primary"> <strong><?php echo translate("Adicionar"); ?></strong></a>
                         </div>
                     </div>
                 </div>
@@ -42,8 +42,8 @@
             <table class="table table-bordered table-striped mb-0" id="datatable-tabletools">
                 <thead>                    
                     <tr>                        
-                        <th style="width: 70%">NÍVEL</th>
-                        <th style="width: 30%">AÇÕES</th>                        
+                        <th style="width: 70%"><?php echo translate("NÍVEL"); ?></th>
+                        <th style="width: 30%"><?php echo translate("AÇÕES"); ?></th>                        
                     </tr>
                 </thead>
                 <tbody>
@@ -58,7 +58,7 @@
                         </td>
                         <td align="left" class="actions">
                             <?php if($nivel['niv_id'] > 1 && $nivel['niv_id'] < 5): ?>
-                            <a id="nivAlt" href="/backend/nivel/alterar/lang/<?php echo $languageDEFAULT[0];?>/id/<?php echo $nivel["niv_id"]?>" title="Alterar">
+                            <a id="nivAlt" href="/backend/nivel/alterar/lang/<?php echo $languageDEFAULT[0];?>/id/<?php echo $nivel["niv_id"]?>" title="<?php echo translate("Alterar") ?>">
                                 <i class="fa fa-pencil fa-lg"></i>
                             </a>
                             <input type="hidden" value="<?php echo $nivel['niv_id'] ?>" />                              

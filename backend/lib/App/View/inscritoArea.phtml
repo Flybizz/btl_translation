@@ -1,7 +1,5 @@
 <?php require_once("pagina.segura.php"); ?>
 
-
-
 <router base="area/listar">
 
 <?php $LANGUAGE_DEFAULT = unserialize(LANGUAGE_DEFAULT); ?>
@@ -10,9 +8,7 @@
 
 <header class="page-header">
 
-    <h2>Áreas</h2>
-
-
+    <h2><?php echo translate("Áreas"); ?></h2>
 
     <div class="right-wrapper text-right">
 
@@ -28,9 +24,9 @@
 
             </li>
 
-            <li><span>Home</span></li>
+            <li><span><?php echo translate("Home"); ?></span></li>
 
-            <li><span>Áreas</span></li>
+            <li><span><?php echo translate("Áreas"); ?></span></li>
 
         </ol>
 
@@ -60,7 +56,7 @@
 
                     <div class="col-sm-6 mt-3">
 
-                        <h2 class="h2 mt-0 mb-4 text-dark font-weight-bold">Áreas de Negócio</h2>
+                        <h2 class="h2 mt-0 mb-4 text-dark font-weight-bold"><?php echo translate("Áreas de Negócio"); ?></h2>
 
                         <!-- <h4 class="h4 m-0 text-dark font-weight-bold">#76598345</h4> -->
 
@@ -70,7 +66,7 @@
 
                         <div class="m-0 mb-4 pull-right">
 
-                            <a href="/backend/area/registar/lang/<?php echo $LANGUAGE_DEFAULT[0]; ?>" id="cliCad" class="mb-1 mt-1 mr-1 btn btn-primary"> <strong>Adicionar</strong></a>
+                            <a href="/backend/area/registar/lang/<?php echo $LANGUAGE_DEFAULT[0]; ?>" id="cliCad" class="mb-1 mt-1 mr-1 btn btn-primary"> <strong><?php echo translate("Adicionar"); ?></strong></a>
 
                         </div>
 
@@ -88,13 +84,10 @@
 
                     <tr>
 
-                        <th width='8%'>ID</th>
-
-                        <th width='62%'>NOME</th>
-
-                        <th width='15%'>STATUS</th>
-
-                        <th width='15%'>AÇÕES</th>
+                        <th width='8%'><?php echo translate("ID"); ?></th>
+                        <th width='62%'><?php echo translate("NOME"); ?></th>
+                        <th width='15%'><?php echo translate("STATUS"); ?></th>
+                        <th width='15%'><?php echo translate("AÇÕES"); ?></th>
 
                     </tr>
 
@@ -114,7 +107,7 @@
 
                       <td><?php echo $area['area_id']; ?></td>
 
-                      <td><a class="text-default" href="/backend/area/alterar/ref/<?php echo $area['area_id'];?>" title="Alterar"><?php echo $area['area_nome']; ?></a></td>
+                      <td><a class="text-default" href="/backend/area/alterar/ref/<?php echo $area['area_id'];?>" title="<?php echo translate("Alterar") ?>"><?php echo $area['area_nome']; ?></a></td>
 
                       <td>
 
@@ -122,11 +115,11 @@
 
                         if($area['area_status'] == "sim"): 
 
-                            echo "ATIVO"; 
+                            echo translate("Ativo"); 
 
                         else: 
 
-                            echo "INATIVO";
+                            echo translate("Inativo");
 
                         endif; 
 

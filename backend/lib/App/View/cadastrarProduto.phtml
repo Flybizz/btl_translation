@@ -4,12 +4,12 @@
 <?php $config = unserialize (CONFIG_DB); ?>
 <input type="hidden" id="dominio" value="<?php echo $config[0]['D001_Site'];?>">
 <header class="page-header">
-    <h2>Produto</h2>
+    <h2><?php echo translate("Produto"); ?></h2>
     <div class="right-wrapper text-right">
         <?php $LANGUAGE_DEFAULT = unserialize(LANGUAGE_DEFAULT); ?>
         <?php $LANGUAGE_LIST = unserialize(LANGUAGE_LIST); ?>
-        <a name="bt_produto_cadastrar" id="bt_produto_cadastrar"  href="javascript:$('#img').uploadifive('upload')" class="mb-1 mt-3 ml-2 mr-1 btn btn-xs btn-primary"><strong>Gravar</strong></a>
-        <a href="/backend/produto/listar/lang/<?php echo $LANGUAGE_DEFAULT[0]; ?>" class="mb-1 mt-3 mr-1 ml-1 btn btn-xs btn-default"><strong>Voltar</strong></a>
+        <a name="bt_produto_cadastrar" id="bt_produto_cadastrar"  href="javascript:$('#img').uploadifive('upload')" class="mb-1 mt-3 ml-2 mr-1 btn btn-xs btn-primary"><strong><?php echo translate("Gravar"); ?></strong></a>
+        <a href="/backend/produto/listar/lang/<?php echo $LANGUAGE_DEFAULT[0]; ?>" class="mb-1 mt-3 mr-1 ml-1 btn btn-xs btn-default"><strong><?php echo translate("Gravar"); ?></strong></a>
         <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-calendar"></i></a>
     </div>
 </header>
@@ -21,7 +21,7 @@
             <header class="clearfix">
                 <div class="row">
                     <div class="col-sm-6 mt-3">
-                        <h2 class="h2 mt-0 mb-4 text-dark font-weight-bold">Criar Conteúdo</h2>
+                        <h2 class="h2 mt-0 mb-4 text-dark font-weight-bold"><?php echo translate("Criar Conteúdo"); ?></h2>
                     </div>
                     <div class="col-sm-6 mt-3">
                         <!-- <div class="m-0 mb-4 pull-right">
@@ -34,25 +34,25 @@
               <div class="col-md-8">
                 <section class="card mb-4">
                   <header class="card-header">
-                    <h2 class="card-title pull-left">Principal</h2>
+                    <h2 class="card-title pull-left"><?php echo translate("Principal"); ?></h2>
                   </header>
                   <div class="card-body">
                     <form class="form-horizontal form-bordered" method="post">
                       <div class="form-group row">
-                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Título</label>
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Título"); ?></label>
                         <div class="col-lg-9">
                           <input type="text" id="titulo" class="form-control">
                         </div>
                       </div>                     
                       <div class="form-group row">
-                        <label class="col-lg-3 control-label text-lg-right pt-2" for="textareaDefault">Breve descrição</label>
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="textareaDefault"><?php echo translate("Breve descrição"); ?></label>
                         <div class="col-lg-9">
                           <textarea class="form-control" id="chamada" rows="5"></textarea>
                         </div>
                       </div>
 
                       <div class="form-group row">
-                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Descrição detalhada</label>
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Descrição detalhada"); ?></label>
                         <div class="col-lg-9">
                           <!-- <textarea class="form-control" name="produto_texto" id="produto_texto"></textarea> -->
                           <?php
@@ -69,14 +69,14 @@
                       </div>
 
                       <div class="form-group row">
-                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Ordem</label>
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Ordem"); ?></label>
                         <div class="col-lg-9">
                           <input type="text" id="ordem" class="form-control">
                         </div>
                       </div>
 
                       <div class="form-group row">
-                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Preço</label>
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Preço"); ?></label>
                         <div class="col-lg-9">
                           <input type="text" id="preco" class="form-control">
                         </div>
@@ -90,28 +90,28 @@
 
                 <section class="card mb-4">
                     <header class="card-header">
-                      <h2 class="card-title">Informações</h2>
+                      <h2 class="card-title"><?php echo translate("Informações"); ?></h2>
                     </header>
                     <div class="card-body">
 
 
                       <div class="form-group row">
 
-                        <label class="col-sm-3 control-label text-sm-right pt-2">Status</label>
+                        <label class="col-sm-3 control-label text-sm-right pt-2"><?php echo translate("Status"); ?></label>
                         <div class="btn-group col-sm-9 pull-right" data-toggle="buttons">
 
                           <label class="btn btn-primary active">
-                            <input type="radio" name="destaque" id="option1" autocomplete="off" value="true" checked> Ativo
+                            <input type="radio" name="destaque" id="option1" autocomplete="off" value="true" checked> <?php echo translate("Ativo"); ?>
                           </label>
                           <label class="btn btn-primary">
-                            <input type="radio" name="destaque" id="option2" autocomplete="off"  value="false"> Inativo
+                            <input type="radio" name="destaque" id="option2" autocomplete="off"  value="false"> <?php echo translate("Inativo"); ?>
                           </label>
                         </div>
                       </div>
 
                       <div class="form-group row">
 
-                        <label class="col-sm-3 control-label text-sm-right pt-2">Imagem</label>
+                        <label class="col-sm-3 control-label text-sm-right pt-2"><?php echo translate("Imagem"); ?></label>
                         <div class="col-sm-9 media-gallery">
                           <div id="queue" class="mt-3 mb-3"></div>
                           <input id="img" name="img" type="file" multiple>
@@ -122,7 +122,7 @@
                       </div>
 
                       <div class="form-group row">
-                        <h5 class="control-label text-sm-right pt-2">Tipo de Página</h5>
+                        <h5 class="control-label text-sm-right pt-2"><?php echo translate("Tipo de Página"); ?></h5>
                         <select id="controller" class="form-control" required disabled>
                         <option value="0"></option>
                         <?php
@@ -173,7 +173,7 @@
 
             <div id="ref" class='clearfix'></div>
             <span id="retorno" class="col-md-10"></span>
-            <a name="bt_produto_cadastrar" id="bt_produto_cadastrar"  href="javascript:$('#img').uploadifive('upload')" class="btn btn-primary col-md-2 pull-right">Gravar</a>
+            <a name="bt_produto_cadastrar" id="bt_produto_cadastrar"  href="javascript:$('#img').uploadifive('upload')" class="btn btn-primary col-md-2 pull-right"><?php echo translate("Gravar"); ?></a>
 
         </div>
     </div>

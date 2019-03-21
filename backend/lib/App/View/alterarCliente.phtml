@@ -16,8 +16,8 @@ CKFinder::SetupCKEditor($CKEditor, '/backend/public/vendor/ckfinder/');
   <?php $LANGUAGE_DEFAULT = unserialize(LANGUAGE_DEFAULT); ?>
       
       <!-- <a href="/backend/produto/galeria/lang/<?php //echo $view_cliente[0]['prod_idioma']; ?>/ref/<?php //echo $view_cliente[0]['prod_referencia']; ?>" class="mb-1 mt-3 mr-1 ml-1 btn btn-xs btn-primary"><strong>Galeria de Imagens</strong></a> -->
-      <a name="bt_cliente_alterar" id="bt_cliente_alterar" href="javascript:$('#img').uploadifive('upload')" class="mb-1 mt-3 mr-1 btn btn-xs btn-primary"><strong>Gravar</strong></a>
-      <a href="/backend/cliente/perfil/lang/<?php echo $LANGUAGE_DEFAULT[0]; ?>/ref/<?php echo $view_cliente[0]['cli_referencia']; ?>" class="mb-1 mt-3 mr-1 ml-1 btn btn-xs btn-default"><strong>Voltar</strong></a>
+      <a name="bt_cliente_alterar" id="bt_cliente_alterar" href="javascript:$('#img').uploadifive('upload')" class="mb-1 mt-3 mr-1 btn btn-xs btn-primary"><strong><?php echo translate("Gravar"); ?></strong></a>
+      <a href="/backend/cliente/perfil/lang/<?php echo $LANGUAGE_DEFAULT[0]; ?>/ref/<?php echo $view_cliente[0]['cli_referencia']; ?>" class="mb-1 mt-3 mr-1 ml-1 btn btn-xs btn-default"><strong><?php echo translate("Voltar"); ?></strong></a>
       <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-calendar"></i></a>
   </div>
 </header>
