@@ -16,7 +16,7 @@
 
 					<span class="badge badge-info label-sm font-weight-normal va-middle mr-2 p-2"><i class="fa fa-check-square-o fa-lg" aria-hidden="true"></i></span>
 
-					<span class="va-middle">Tarefas / Lembretes</span>
+					<span class="va-middle"><?php echo translate("Tarefas / Lembretes"); ?></span>
 
 				</h2>
 
@@ -28,26 +28,20 @@
 
 					<form>
 
-						<label class="col-lg-12 control-label text-lg-left pt-2" for="inputDefault">Tipo de contacto</label>
+						<label class="col-lg-12 control-label text-lg-left pt-2" for="inputDefault"><?php echo translate("Tipo de contacto"); ?></label>
 
 						<div class="col-lg-12">
 
 							<select id="cal_tipo" class="form-control">
 
-								<option value="0" selected="">Selecione</option>
+								<option value="0" selected=""><?php echo translate("Selecione"); ?></option>
 
-								<option value="1">Email</option>
-
-								<option value="2">Reunião</option>
-
-								<option value="3">Reunião de pré-agariação</option>
-
-								<option value="4">Telefonema</option>
-
-								<option value="5">Qualificação Financeira</option>
-
-								<option value="6">Outro</option>							
-
+								<option value="1"><?php echo translate("Email"); ?></option>
+								<option value="2"><?php echo translate("Reunião"); ?></option>
+								<option value="3"><?php echo translate("Reunião de pré-agariação"); ?></option>
+								<option value="4"><?php echo translate("Telefonema"); ?></option>
+								<option value="5"><?php echo translate("Qualificação Financeira"); ?></option>
+								<option value="6"><?php echo translate("Outro"); ?></option>
 							</select>
 
 						</div>
@@ -58,7 +52,7 @@
 
 						<div class="form-group">
 
-							<label class="col-lg-12 control-label text-lg-left pt-2" for="tar_client_id">Cliente</label>
+							<label class="col-lg-12 control-label text-lg-left pt-2" for="tar_client_id"><?php echo translate("Cliente"); ?></label>
 
 							<div class="col-lg-12">								
 
@@ -76,7 +70,7 @@
 
 						<div class="form-group">
 
-							<label class="col-lg-12 control-label text-lg-left pt-2" for="inputDefault">Título</label>
+							<label class="col-lg-12 control-label text-lg-left pt-2" for="inputDefault"><?php echo translate("Título"); ?></label>
 
 							<div class="col-lg-12 mb-1">
 
@@ -90,7 +84,7 @@
 
 						<div class="form-group">
 
-							<label class="col-lg-12 control-label text-lg-left pt-1" for="tar_dtstart">Data Inicial</label>
+							<label class="col-lg-12 control-label text-lg-left pt-1" for="tar_dtstart"><?php echo translate("Data Inicial"); ?></label>
 
 							<div class="col-lg-12">
 
@@ -138,7 +132,7 @@
 
 						<div class="form-group">
 
-								<label class="col-lg-12 control-label text-lg-left pt-1" for="tar_dtend">Data Final</label>
+								<label class="col-lg-12 control-label text-lg-left pt-1" for="tar_dtend"><?php echo translate("Data Final"); ?></label>
 
 								<div class="col-lg-12">
 
@@ -184,7 +178,7 @@
 
 						<div class="form-group">
 
-							<label class="col-lg-12 control-label text-lg-left pt-1" for="inputDefault">Observação</label>
+							<label class="col-lg-12 control-label text-lg-left pt-1" for="inputDefault"><?php echo translate("Observação"); ?></label>
 
 							<div class="col-lg-12 mb-4">
 
@@ -196,19 +190,16 @@
 
 						<div class="form-group mb-4">
 
-							<label class="col-lg-12 control-label text-lg-left pt-1" for="inputDefault">Prioridade</label>
+							<label class="col-lg-12 control-label text-lg-left pt-1" for="inputDefault"><?php echo translate("Prioridade"); ?></label>
 
 							<div class="col-lg-12">
 
 								<select id="tar_prioridade" class="form-control">
 
-										<option value="1" selected="">Baixa</option>
-
-										<option value="2">Média</option>
-
-										<option value="3">Alta</option>
-
-										<option value="4">Urgente</option>
+										<option value="1" selected=""><?php echo translate("Baixa"); ?></option>
+										<option value="2"><?php echo translate("Média"); ?></option>
+										<option value="3"><?php echo translate("Alta"); ?></option>
+										<option value="4"><?php echo translate("Urgente"); ?></option>
 
 								</select>
 
@@ -224,7 +215,7 @@
 
 			<div class="card-footer">
 
-				<button type="button" id="cal_gravar" class="btn btn-primary pull-right">Gravar</button>
+				<button type="button" id="cal_gravar" class="btn btn-primary pull-right"><?php echo translate("Gravar"); ?></button>
 
 			</div>
 
