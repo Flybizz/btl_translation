@@ -2,7 +2,7 @@
 <?php $languageLIST = unserialize(LANGUAGE_LIST); ?>
 
 <header class="page-header">
-    <h2>Configuração</h2>
+    <h2><?php echo translate("Configuração"); ?></h2>
 
     <div class="right-wrapper text-right">
         <ol class="breadcrumbs">
@@ -11,8 +11,8 @@
                     <i class="fa fa-home"></i>
                 </a>
             </li>
-            <li><span>Home</span></li>
-            <li><span>Configuração</span></li>
+            <li><span><?php echo translate("Home"); ?></span></li>
+            <li><span><?php echo translate("Configuração"); ?></span></li>
         </ol>
 
         <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-calendar"></i></a>
@@ -46,7 +46,7 @@
           
                         <div class="sidebar-widget m-0">
                             <div class="widget-header clearfix">
-                                <h6 class="title float-left mt-1">MENU</h6>
+                                <h6 class="title float-left mt-1"><?php echo translate("MENU"); ?></h6>
                          <!--        <div class="float-right">
                                     <a href="/backend/idioma/registar" class="btn btn-dark btn-sm btn-widget-act">TESTE</a>
                                 </div> -->
@@ -66,8 +66,8 @@
             <div class="inner-toolbar clearfix">
                 <ul>
                     <li class="col-md-12 pb-3">
-                        <h3 class="mt-0 mb-0 text-light font-weight-bold pull-left">Integração</h3>
-                        <a name="bt_cfg" id="bt_cfg" href="javascript:;" class="btn text-light btn-primary btn-sm btn-widget-act pull-right mt-0 mb-4" style="margin-top: -5px!important;">Guardar</a>
+                        <h3 class="mt-0 mb-0 text-light font-weight-bold pull-left"><?php echo translate("Integração"); ?></h3>
+                        <a name="bt_cfg" id="bt_cfg" href="javascript:;" class="btn text-light btn-primary btn-sm btn-widget-act pull-right mt-0 mb-4" style="margin-top: -5px!important;"><?php echo translate("Guardar"); ?></a>
                     </li>
                 </ul>
             </div>
@@ -77,21 +77,21 @@
                   <section class="card mb-4">
 
                     <header class="card-header">
-                      <h2 class="card-title">Google Analytics</h2>
+                      <h2 class="card-title"><?php echo translate("Google Analytics"); ?></h2>
                     </header>
 
                     <div class="card-body">
                       <form class="form-horizontal form-bordered" method="post">
                           
                           <div class="form-group row">
-                            <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">GA UA-ID </label>
+                            <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("GA UA-ID"); ?> </label>
                             <div class="col-lg-9">
                                 <input type="text" id="cfg_ga_id" class="form-control" value="<?php echo $view_config_lista[0]['D001_GA_id']; ?>">
                             </div>
                           </div>
                           
                           <div class="form-group row">
-                            <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">GA KEY (P)</label>
+                            <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("GA KEY (P)"); ?></label>
                             <div class="col-lg-9">
                                <input type="text" id="cfg_keyvisita" class="form-control" value="<?php echo $view_config_lista[0]['D001_Keyvisita']; ?>">
                             </div>
@@ -103,20 +103,20 @@
                     
 
                     <header class="card-header">
-                      <h2 class="card-title">Google Tag Manager</h2>
+                      <h2 class="card-title"><?php echo translate("Google Tag Manager"); ?></h2>
                     </header>
                     <div class="card-body">
                       <form class="form-horizontal form-bordered" method="post">
 
                           <div class="form-group row">
-                            <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">HEAD</label>
+                            <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("HEAD"); ?></label>
                             <div class="col-lg-9">
                                 <textarea class="form-control" id="cfg_ga_tagscript" rows="10"><?php echo str_replace('|', '/', $view_config_lista[0]['D001_GA_tagscript']);?></textarea>
                             </div>
                           </div>
 
                           <div class="form-group row">
-                            <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">BODY</label>
+                            <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("BODY"); ?></label>
                             <div class="col-lg-9">
                                 <textarea class="form-control" id="cfg_ga_tagiframe" rows="10"><?php echo str_replace('|', '/', $view_config_lista[0]['D001_GA_tagiframe']);?></textarea>
                             </div>
@@ -129,35 +129,35 @@
                     <br />
                     
                     <header class="card-header">
-                      <h2 class="card-title">Configurações SMTP</h2>
+                      <h2 class="card-title"><?php echo translate("Configurações SMTP"); ?></h2>
                     </header>
                     
                     <div class="card-body">
                       <form class="form-horizontal form-bordered" method="post">
                           
                           <div class="form-group row">
-                            <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">SMTP Host </label>
+                            <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("SMTP Host"); ?> </label>
                             <div class="col-lg-9">
                                 <input type="text" id="cfg_d001_smtp_host" class="form-control" value="<?php echo $view_config_lista[0]['D001_SMTP_host']; ?>">
                             </div>
                           </div>
 
                           <div class="form-group row">
-                            <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">SMTP Email </label>
+                            <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("SMTP Email"); ?> </label>
                             <div class="col-lg-9">
                                 <input type="text" id="cfg_d001_smtp_email" class="form-control" value="<?php echo $view_config_lista[0]['D001_SMTP_email']; ?>">
                             </div>
                           </div>
 
                           <div class="form-group row">
-                            <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">SMTP Password </label>
+                            <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("SMTP Password"); ?> </label>
                             <div class="col-lg-9">
                                 <input type="password" id="cfg_d001_smtp_password" class="form-control" value="<?php echo $view_config_lista[0]['D001_SMTP_password']; ?>">
                             </div>
                           </div>
 
                           <div class="form-group row">
-                            <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">SMTP Port </label>
+                            <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("SMTP Port"); ?> </label>
                             <div class="col-lg-9">
                                 <input type="text" id="cfg_d001_smtp_port" class="form-control" value="<?php echo $view_config_lista[0]['D001_SMTP_port']; ?>">
                             </div>

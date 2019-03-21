@@ -4,7 +4,7 @@
 <?php date_default_timezone_set('Europe/Lisbon'); ?>
 <?php setlocale(LC_ALL, 'pt_PT'); ?>
 <header class="page-header">
-    <h2>Logs - Pesquisas exportadas</h2>
+    <h2><?php echo translate("Logs - Pesquisas exportadas"); ?></h2>
 
     <div class="right-wrapper text-right">
         <ol class="breadcrumbs">
@@ -13,8 +13,8 @@
                     <i class="fa fa-home"></i>
                 </a>
             </li>
-            <li><span>Logs</span></li>
-            <li><span>Pesquisas exportadas</span></li>
+            <li><span><?php echo translate("Logs"); ?></span></li>
+            <li><span><?php echo translate("Pesquisas exportadas"); ?></span></li>
         </ol>
 
         <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
@@ -32,9 +32,9 @@
                     <?php $action = ($log["action"] == "excel" ? "success" : "danger"); ?>
                     <h4 class="release-date"><?php echo strftime("%d %B - %H:%M", strtotime($log["date"])); ?> </h4> <span class="badge badge-<?php echo $action; ?>"><?php echo $log["action"]; ?></span>
                     <ul class="list-unstyled">                        
-                        <li>Utilizador: <strong><?php echo $log["user"]; ?></strong></li>
-                        <li>Arquivo: <strong><?php echo $log["action"]; ?></strong></li>
-                        <li>Filtro: <strong><?php echo $log["filter"]; ?></strong></li>
+                        <li><?php echo translate("Utilizador"); ?>: <strong><?php echo $log["user"]; ?></strong></li>
+                        <li><?php echo translate("Arquivo"); ?>: <strong><?php echo $log["action"]; ?></strong></li>
+                        <li><?php echo translate("Filtro"); ?>: <strong><?php echo $log["filter"]; ?></strong></li>
                     </ul>
                 </div>
             </li>

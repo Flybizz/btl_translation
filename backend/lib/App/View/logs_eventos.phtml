@@ -11,16 +11,16 @@
     );
 
     //tipos tarefas - TODO - passar para db ou helper?
-    $tipo_tarefa_label[1] = "Email";
-    $tipo_tarefa_label[2] = "Reunião";
-    $tipo_tarefa_label[3] = "Reunião de pré-agariação";
-    $tipo_tarefa_label[4] = "Telefonema";
-    $tipo_tarefa_label[5] = "Tarefa";
-    $tipo_tarefa_label[6] = "Qualificação Financeira";
-    $tipo_tarefa_label[7] = "Outro";
+    $tipo_tarefa_label[1] = translate("Email");
+    $tipo_tarefa_label[2] = translate("Reunião");
+    $tipo_tarefa_label[3] = translate("Reunião de pré-agariação");
+    $tipo_tarefa_label[4] = translate("Telefonema");
+    $tipo_tarefa_label[5] = translate("Tarefa");
+    $tipo_tarefa_label[6] = translate("Qualificação Financeira");
+    $tipo_tarefa_label[7] = translate("Outro");
 ?>
 <header class="page-header">
-    <h2>Eventos</h2>
+    <h2><?php echo translate("Eventos"); ?></h2>
 
     <div class="right-wrapper text-right">
         <ol class="breadcrumbs">
@@ -29,8 +29,8 @@
                     <i class="fa fa-home"></i>
                 </a>
             </li>
-            <li><span>Home</span></li>
-            <li><span>Eventos</span></li>
+            <li><span><?php echo translate("Home"); ?></span></li>
+            <li><span><?php echo translate("Eventos"); ?></span></li>
         </ol>
 
         <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-calendar"></i></a>
@@ -45,8 +45,7 @@
             <header class="clearfix">
                 <div class="row">
                     <div class="col-sm-6 mt-3">
-                        <h2 class="h2 mt-0 mb-4 text-dark font-weight-bold">Eventos</h2>
-                        <!-- <h4 class="h4 m-0 text-dark font-weight-bold">#76598345</h4> -->
+                        <h2 class="h2 mt-0 mb-4 text-dark font-weight-bold"><?php echo translate("Eventos"); ?></h2>
                     </div>
                     <div class="col-sm-6 mt-3">
                         <div class="m-0 mb-4 pull-right">
@@ -60,10 +59,10 @@
                 <thead>                    
                     <tr>
                         <th style="width: 50px;"></th>
-                        <th style="">COMERCIAL</th>
-                        <th style="">EVENTO</th>
-                        <th style="">CLIENTE</th>
-                        <th style="">DATA</th>
+                        <th style=""><?php echo translate("COMERCIAL"); ?></th>
+                        <th style=""><?php echo translate("EVENTO"); ?></th>
+                        <th style=""><?php echo translate("CLIENTE"); ?></th>
+                        <th style=""><?php echo translate("DATA"); ?></th>
                     </tr>
                 </thead>
                 <tbody>

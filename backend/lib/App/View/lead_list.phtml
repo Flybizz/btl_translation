@@ -3,7 +3,7 @@
 <router base="lead/list">
 
 <header class="page-header">
-    <h2>Lead Conversion</h2>
+    <h2><?php echo translate("Lead Conversion"); ?></h2>
 
     <div class="right-wrapper text-right">
         <ol class="breadcrumbs">
@@ -12,8 +12,8 @@
                     <i class="fa fa-home"></i>
                 </a>
             </li>
-            <li><span>Home</span></li>
-            <li><span>Lead Conversion</span></li>
+            <li><span><?php echo translate("Home"); ?></span></li>
+            <li><span><?php echo translate("Lead Conversion"); ?></span></li>
         </ol>
 
         <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-calendar"></i></a>
@@ -26,7 +26,7 @@
                     <a href="/backend/lead/list/ref/noclassification" class="lead_a">
                         <div class="card-body bg-red">
                             <div class="widget-summary lead-conversion-red">
-                                <h4 class="title">S/Classificação</h4>
+                                <h4 class="title"><?php echo translate("S/Classificação"); ?></h4>
                                 <div class="info">
                                     <strong><?php echo $view_funil_visitantes; ?></strong>
                                 </div>									
@@ -40,7 +40,7 @@
                     <a href="/backend/lead/list/ref/leads" class="lead_a">
                         <div class="card-body bg-yellow">
                             <div class="widget-summary lead-conversion-yellow">
-                                <h4 class="title">Leads</h4>
+                                <h4 class="title"><?php echo translate("Leads"); ?></h4>
                                 <div class="info">
                                     <strong><?php echo $view_funil_leads; ?></strong>
                                 </div>									
@@ -54,7 +54,7 @@
                     <a href="/backend/lead/list/ref/prospects" class="lead_a">
                         <div class="card-body bg-orange">
                             <div class="widget-summary lead-conversion-orange">
-                                <h4 class="title">Prospects</h4>
+                                <h4 class="title"><?php echo translate("Prospects"); ?></h4>
                                 <div class="info">
                                     <strong><?php echo $view_funil_conversao; ?></strong>
                                 </div>									
@@ -68,7 +68,7 @@
                     <a href="/backend/lead/list/ref/clients" class="lead_a">
                         <div class="card-body bg-green">
                             <div class="widget-summary lead-conversion-green">
-                                <h4 class="title">Clients</h4>
+                                <h4 class="title"><?php echo translate("Clients"); ?></h4>
                                 <div class="info">
                                     <strong><?php echo $view_funil_clientes; ?></strong>
                                 </div>									
@@ -119,13 +119,13 @@
                             </div>                            
                         </th>
                         <?php if($view_ref == "noclassification" ): ?>                            
-                        <th width='60%'>CLIENTE</th>
+                        <th width='60%'><?php echo translate("CLIENTE"); ?></th>
                         <?php else: ?>
-                        <th width='30%'>NOME</th>
-                        <th width='30%'>CLIENTE</th>
+                        <th width='30%'><?php echo translate("NOME"); ?></th>
+                        <th width='30%'><?php echo translate("CLIENTE"); ?></th>
                         <?php endif; ?>
-                        <th width='20%'>EMAIL</th>
-                        <th width='12%'>TELEFONE</th>
+                        <th width='20%'><?php echo translate("EMAIL"); ?></th>
+                        <th width='12%'><?php echo translate("TELEFONE"); ?></th>
                     </tr>
                 </thead>
                 <tbody>                   

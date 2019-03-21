@@ -3,7 +3,7 @@
 <?php $languageLIST = unserialize(LANGUAGE_LIST); ?>
 
 <header class="page-header">
-    <h2>Configuração</h2>
+    <h2><?php echo translate("Configuração"); ?></h2>
 
     <div class="right-wrapper text-right">
         <ol class="breadcrumbs">
@@ -12,8 +12,8 @@
                     <i class="fa fa-home"></i>
                 </a>
             </li>
-            <li><span>Home</span></li>
-            <li><span>Configuração</span></li>
+            <li><span><?php echo translate("Home"); ?></span></li>
+            <li><span><?php echo translate("Configuração"); ?></span></li>
         </ol>
 
         <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-calendar"></i></a>
@@ -46,7 +46,7 @@
           
                         <div class="sidebar-widget m-0">
                             <div class="widget-header clearfix">
-                                <h6 class="title float-left mt-1">MENU</h6>
+                                <h6 class="title float-left mt-1"><?php echo translate("MENU"); ?></h6>
                          <!--        <div class="float-right">
                                     <a href="/backend/idioma/registar" class="btn btn-dark btn-sm btn-widget-act">TESTE</a>
                                 </div> -->
@@ -66,8 +66,8 @@
             <div class="inner-toolbar clearfix">
                 <ul>
                     <li class="col-md-12 pb-3">
-                        <h3 class="mt-0 mb-0 text-light font-weight-bold pull-left">Integração</h3>
-                        <a name="bt_cfg" id="bt_cfg" href="javascript:;" class="btn text-light btn-primary btn-sm btn-widget-act pull-right mt-0 mb-4" style="margin-top: -5px!important;">Guardar</a>
+                        <h3 class="mt-0 mb-0 text-light font-weight-bold pull-left"><?php echo translate("Integração"); ?></h3>
+                        <a name="bt_cfg" id="bt_cfg" href="javascript:;" class="btn text-light btn-primary btn-sm btn-widget-act pull-right mt-0 mb-4" style="margin-top: -5px!important;"><?php echo translate("Guardar"); ?></a>
                     </li>
                 </ul>
             </div>
@@ -76,7 +76,7 @@
                 <div class="col-md-9">
                   <section class="card mb-4">
                     <header class="card-header">
-                      <h2 class="card-title">Google Calendar</h2>
+                      <h2 class="card-title"><?php echo translate("Google Calendar"); ?></h2>
                     </header>
                     <div class="card-body">
                       <form class="form-horizontal form-bordered" method="post">
@@ -87,14 +87,14 @@
 
                                 <div class="col-lg-9">
                                     <div class="google-calendar-signed-in-info"></div>
-                                    <button type="button" class="btn-xs btn btn-primary" id="authorize_button" style="display: none;">Autorizar Calendário Google</button>
-                                    <button type="button" class="btn btn-xs btn-primary" id="signout_button" style="display: none;">Desligar conta</button>
+                                    <button type="button" class="btn-xs btn btn-primary" id="authorize_button" style="display: none;"><?php echo translate("Autorizar Calendário Google"); ?></button>
+                                    <button type="button" class="btn btn-xs btn-primary" id="signout_button" style="display: none;"><?php echo translate("Desligar conta"); ?></button>
                                 </div>
 
                             </div>
                           
                           <div class="form-group row">
-                            <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Google API Key</label>
+                            <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Google API Key"); ?></label>
                             <div class="col-lg-9">
                                 <input type="text" id="cfg_ga_api_key" class="form-control" value="<?php echo $view_config_lista[0]['D001_GA_api_key']; ?>">
                             </div>
@@ -103,7 +103,7 @@
                           <br />
 
                           <div class="form-group row">
-                            <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Google Client Key</label>
+                            <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Google Client Key"); ?></label>
                             <div class="col-lg-9">
                                 <input type="text" id="cfg_ga_client_id" class="form-control" value="<?php echo $view_config_lista[0]['D001_GA_client_id']; ?>">
                             </div>
