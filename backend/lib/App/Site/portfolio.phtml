@@ -1,0 +1,128 @@
+   
+
+
+
+
+<div class="head-title">
+  <div class="container-fluid">
+      <div class="row">
+          <h2 class="page-title">Portfólio</h2>
+          <!-- <p class="title-desc">Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum</p> -->
+      </div><!-- end row -->
+  </div><!-- end container -->
+</div><!-- end head-title -->
+
+<section id="main">
+    <div class="container-fluid">
+        <div class="row">
+            <div id="primary" class="content-area">
+                <div id="content" class="site-content">
+                   <article class=" hentry">
+
+                        <div class="blog row top-content">
+                            <header>
+                                <div class="format-gallery col-lg-8 col-md-8 col-ms-8 col-xs-12">    
+              
+                                    <div class="entry-media">
+                                        <div id="media-gallery" class="carousel slide" data-ride="carousel">
+                                            
+                                            <div class="carousel-inner">
+                                              <?php 
+                                              if(!empty($site_foto)):  
+                                                $count = 0;        
+                                                foreach ($site_foto as $value): 
+                                                  $count++;
+                                                  if($count == 1):
+                                                    $active = "active";
+                                                  else:
+                                                    $active = "";
+                                                  endif;
+                                              ?> 
+            
+                                                <div class="item <?php echo $active; ?>">
+                                                  <img src="/images/portfolio/<?php echo $value['D011_Portfolio'];?>/<?php echo $value['D011_Imagem']; ?>" alt="">
+                                                </div>
+
+                                              <?php 
+                                                endforeach;
+                                              endif;
+                                              ?>  
+                                            </div><!-- end carousel-inner -->
+
+                                            <!-- Controls -->
+                                            <a class="left carousel-control" href="#media-gallery" role="button" data-slide="prev">
+                                                <span class="fa fa-fw fa-long-arrow-left"></span>
+                                            </a>
+                                            <a class="right carousel-control" href="#media-gallery" role="button" data-slide="next">
+                                                <span class="fa fa-fw fa-long-arrow-right"></span>
+                                            </a>
+
+                                        </div><!-- end carousel -->
+                                    </div>
+                                       
+                                    
+                                </div>
+                                <div class="entry-meta col-lg-4 col-md-4 col-ms-4 col-xs-12">
+                                    <h1 class="entry-title">
+                                        <?php echo str_replace("|", "/", $site_portfolio[0]['D011_Titulo']);?>
+                                    </h1>
+                                    <div class="entry-content">
+                                       <?php echo str_replace("|", "/", $site_portfolio[0]['D011_Descricao']);?>
+                                       
+                                    </div><!-- end entry-content -->
+                                    <hr>
+                                    <ul>
+                                        <li>CLIENTE: <?php echo str_replace("|", "/", $site_portfolio[0]['D011_Cliente']);?></li>
+                                        <hr>
+                                        <li>SERVIÇO: <?php echo $site_tipo;?> - <?php echo str_replace("|", "/", $site_portfolio[0]['D011_Tecnologia']);?></li>
+                                        <hr>
+                                    </ul>
+
+                                    <?php if(!empty($site_testemunho)): ?>  
+
+                                    <section id="testimonial" class="group testimonial-page-section">
+                                      <div id="testimonial-home">
+                                          <div id="primary-testimonial">
+
+                                              <div class="testimonial-list">
+
+                                                  <div class="col-md-12">
+                                                      <div class="media" style="padding-left:0 !important;">
+                                                          <figure class="ava media-left">
+                                                              <div class="avatar">
+                                                                  <img src="/images/testemunho/<?php echo $site_testemunho[0]['D004_Imagem']; ?>" alt="">
+                                                              </div>
+                                                          </figure>
+                                                          <div class="context media-body">
+                                                              <div class="inner" style="word-wrap: break-word !important;">
+                                                                  <h5 class="who"><?php echo $site_testemunho[0]['D004_Titulo']; ?>, <?php echo $site_testemunho[0]['D004_Funcao']; ?></h5>
+                                                                  <i class="icofont icofont-quote-left"></i> <?php echo strip_tags( str_replace("|", "/", $site_testemunho[0]['D004_Texto'])); ?> <i class="icofont icofont-quote-right"></i>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+
+                                              </div><!-- end testimonial-list -->
+
+                                          </div>
+                                      </div>
+                                    </section><!-- cd-section -->
+
+                                    <?php endif; ?>
+
+
+                                </div>
+                            </header>
+                            <a href="/page/portfolios/tipo/all/p/0" class="button button-large button-rounded pull-right">VOLTAR</a>                          
+                        </div>  
+
+                        
+
+                   </article>
+                </div><!-- end #content -->
+            </div><!-- end #primary -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section><!-- cd-section -->
+
+                        

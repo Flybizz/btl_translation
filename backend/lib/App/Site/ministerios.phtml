@@ -1,0 +1,87 @@
+<section id="cromaheader">
+  <!-- <div class="cro_headermask" style=" background: #000000;  opacity: 0.2; "></div> -->
+  <h1 class="cro_cust_font" style=" color: #ffffff; ">MINISTÉRIO</h1>
+</section>
+
+<!-- start tit hthe page layout -->
+<section id="pagelayout">
+  <div class="row">
+    <div id="main">
+      <div class="main singlemain cro_pagelayout">    
+
+        <!-- render the page subject to the sidebar settings 1> sidebar left -->
+                
+          <div class="large-12 column">
+            <div class="row">
+              <div class="large-12 column">
+                <div class="cromax-htm" style=" padding: 20px 40px; " >
+
+                  <div class="cromax-maskholder" >&nbsp;</div>
+                  <?php if(!empty($site_ministerios)): ?>
+
+                  <h3 class="cro_cust_font" style=" color:  #272727 !important;  font-size:  30px;  margin-bottom: 20px; "><?php echo utf8_decode(str_replace("|", "/", $site_ministerios[0]['D007_Titulo'])); ?></h3>
+                  <p style=" color:  #000000;  font-size:  20px; "><?php echo utf8_decode(str_replace("|", "/", $site_ministerios[0]['D007_Texto'])); ?></p>
+
+                  <?php endif; ?>
+
+                </div>
+              </div>
+              <div class="large-12 column">
+                <hr class="cromax-seperator" style=" height: 20px;" />
+              </div>
+            </div>
+          </div>              
+        <div class="clearfix"></div>
+            </div>
+        </div>
+
+        <?php if( !empty($site_galeria) ): ?>
+
+        <!-- start the section & add the foater -->
+        <section class="cro_frontpage_gal rtixklbpow" data-cro-showgals="12" style='margin-bottom:50px;'>
+
+            <h3 style='background-color:#444444; color:rgba(250,250,250,1); padding: 10px; margin-bottom:20px; margin-top: -50px; ' ><span class="fa fa-camera fa-lg"></span> Galeria de Fotos </h3>  
+
+          <?php
+              $show = 120;
+
+                foreach ($site_galeria as $value):
+
+                  $show += 120;
+
+        ?>
+          <!-- do the title & link -->
+          <div class="blg_titlebg demo-gallery">
+
+                  <h3 class="cro_cust_font cro_header" ><?php echo utf8_decode($value['D015_Titulo']); ?></h3>
+                  
+                    <ul class="cro_gallery_outer clearfix list-unstyled row">
+            
+                    <?php foreach ($site_imagens as $k2 => $value2):
+
+                        if($value["D015_Uid"] == $k2):
+
+                          foreach ($value2 as $value3):
+
+                     ?>  
+
+                    <li  class=" animated "  data-cro-anim-data="fadeInUp"  data-cro-anim-delay="<?php echo $show; ?>" data-src="/images/galeria/<?php echo $value3['D015_Imagem'] ?>" data-sub-html="<h4><?php echo $value3['D015_Descricao'] ?></h4>">
+                      <a href="">
+                        <img class="img-responsive" src="/qualidade.php?&lar=300&alt=300&imagem=images/galeria/<?php echo $value3['D015_Imagem'] ?>" alt="image" data-cro-title="<h4><?php echo $value3['D015_Descricao'] ?></h4>">
+                      </a>
+                    </li>
+                    <?php endforeach; endif; endforeach; ?>
+
+              </ul>
+          </div>
+        
+        <?php   endforeach; ?>
+
+        </section>
+        <?php      endif;
+               ?>
+
+      </div>
+    </div>
+  </div>
+</section>

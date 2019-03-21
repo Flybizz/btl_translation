@@ -1,0 +1,352 @@
+ <?php 
+      if( !empty($site_dados) ):
+      if(!empty($site_dados[0]['D019_Bgtema'])):
+        $tema = hex2rgb($site_dados[0]['D019_Bgtema']);
+        $t1_dark1 = $tema[0] - 15;
+        $t1_dark2 = $tema[1] - 15;
+        $t1_dark3 = $tema[2] - 15;
+        if($tema[0] >= 180):
+          $tema_text = "rgba(25,25,25,0.9)";
+        else:
+          $tema_text = "rgba(250,250,250,0.9)";
+        endif;
+      else:
+        $tema = array( 0 => 250, 1 => 250, 2 => 250);
+      endif; ?>
+      <style>
+
+          #header {/*  background:#ff7469 url(../images/bg-header.png) no-repeat top left;  */}
+          #header.header-page { /* background:#212425; */ }
+
+          #header .header-content {
+              color: <?php echo $site_dados[0]["D019_Temapadrao"]; ?> !important;
+              padding:60px 0px 60px;
+          }
+            
+          #header .header-content .header-heading-title h1 {
+             color: <?php echo $site_dados[0]["D019_Tematitulo"]; ?> !important; 
+             text-shadow:0px 0px 4px 1px rgba(0,0,0,.3);
+             -webkit-text-shadow:0px 0px 4px 1px rgba(0,0,0,.3);
+             -moz-text-shadow:0px 0px 4px 1px rgba(0,0,0,.3);
+             -ms-text-shadow:0px 0px 4px 1px rgba(0,0,0,.3);
+             -o-text-shadow:0px 0px 4px 1px rgba(0,0,0,.3);
+          }
+
+          #header .header-content .header-form {
+              overflow:hidden;
+              position:relative;
+              background-color: <?php echo $site_dados[0]["D019_Temaform"]; ?> !important;
+              padding:25px 30px 30px;
+              border-radius:3px;
+              box-shadow:0px 0px 0px 1px rgba(0,0,0,.1), inset 0px 1px 1px rgba(255,255,255,.15), inset 0px -1px 1px rgba(255,255,255,.1), 0px 1px 3px rgba(0,0,0,.2);
+          }
+
+          #header .header-content .header-form form label{
+              color: <?php echo $site_dados[0]["D019_Temalabel"]; ?> !important;
+          }
+
+          #header .header-content .header-form form input[type="text"], #header .header-content .header-form form input[type="email"], #header .header-content .header-form form textarea, #header .header-content .header-form form input[type="tel"], #header .header-content .header-form form input[type="number"] {
+            width:100%;
+            color: <?php echo $site_dados[0]["D019_Tematextinput"]; ?> !important;
+            background-color: <?php echo $site_dados[0]["D019_Temainput"]; ?>!important;
+            margin-bottom:15px;
+            border:0px;
+            box-shadow:1px 1px 1px rgba(255,255,255,.1), inset 1px 1px 2px rgba(0,0,0,.1);
+        }
+
+        #header .header-content h1, #header .header-content h2, #header .header-content h3, #header .header-content h4, #header .header-content h5, #header .header-content h6, #header .header-content a { color: <?php echo $site_dados[0]["D019_Temapadrao"]; ?> !important; }
+    
+        
+        .ie #header .header-content .header-form form input[type="text"], .ie #header .header-content .header-form form input[type="email"], .ie #header .header-content .header-form form textarea,.ie #header .header-content .header-form form input[type="tel"],.ie #header .header-content .header-form form input[type="number"]  { line-height:50px; }
+        #header .header-content .header-form form input[type="text"].error, #header .header-content .header-form form input[type="email"].error, #header .header-content .header-form form textarea.error, #header .header-content .header-form form input[type="tel"].error, #header .header-content .header-form form input[type="number"].error  { background-color: <?php echo $site_dados[0]["D019_Tematextinput"]; ?> !important; }
+        #header .header-content .header-form form input[type="text"]::-webkit-input-placeholder, #header .header-content .header-form form input[type="email"]::-webkit-input-placeholder, #header .header-content .header-form form textarea::-webkit-input-placeholder, #header .header-content .header-form form input[type="tel"]::-webkit-input-placeholder, #header .header-content .header-form form input[type="number"]::-webkit-input-placeholder { color: <?php echo $site_dados[0]["D019_Tematextinput"]; ?> !important;}
+        #header .header-content .header-form form input[type="text"]:-moz-placeholder, #header .header-content .header-form form input[type="email"]:-moz-placeholder, #header .header-content .header-form form textarea:-moz-placeholder, #header .header-content .header-form form input[type="tel"]:-moz-placeholder, #header .header-content .header-form form input[type="number"]:-moz-placeholder  { color: <?php echo $site_dados[0]["D019_Tematextinput"]; ?> !important; }
+        #header .header-content .header-form form input[type="text"]::-moz-placeholder, #header .header-content .header-form form input[type="email"]::-moz-placeholder, #header .header-content .header-form form textarea::-moz-placeholder, #header .header-content .header-form form input[type="tel"]::-moz-placeholder, #header .header-content .header-form form input[type="number"]::-moz-placeholder  { color: <?php echo $site_dados[0]["D019_Tematextinput"]; ?> !important; }
+        #header .header-content .header-form form input[type="text"]:-ms-input-placeholder, #header .header-content .header-form form input[type="email"]:-ms-input-placeholder, #header .header-content .header-form form textarea:-ms-input-placeholder, #header .header-content .header-form form input[type="tel"]:-ms-input-placeholder, #header .header-content .header-form form input[type="number"]:-ms-input-placeholder  { color: <?php echo $site_dados[0]["D019_Tematextinput"]; ?> !important; }
+        #header .header-content .header-form form input[type="text"]:disabled, #header .header-content .header-form form input[type="email"]:disabled, #header .header-content .header-form form textarea:disabled, #header .header-content .header-form form input[type="tel"]:disabled, #header .header-content .header-form form input[type="number"]:disabled  {
+            color: <?php echo $site_dados[0]["D019_Tematextinput"]; ?> !important;
+            background-color: <?php echo $site_dados[0]["D019_Temainput"]; ?> !important;
+            box-shadow:none;
+        }
+        #header .header-content .header-form form input[type="text"]:disabled::-webkit-input-placeholder, #header .header-content .header-form form input[type="email"]:disabled::-webkit-input-placeholder, #header .header-content .header-form form textarea:disabled::-webkit-input-placeholder { color:#a9a9a9; }
+        #header .header-content .header-form form input[type="text"]:disabled:-moz-placeholder, #header .header-content .header-form form input[type="email"]:disabled:-moz-placeholder, #header .header-content .header-form form textarea:disabled:-moz-placeholder { color:#a9a9a9; }
+        #header .header-content .header-form form input[type="text"]:disabled::-moz-placeholder, #header .header-content .header-form form input[type="email"]:disabled::-moz-placeholder, #header .header-content .header-form form textarea:disabled::-moz-placeholder { color:#a9a9a9; }
+        #header .header-content .header-form form input[type="text"]:disabled:-ms-input-placeholder, #header .header-content .header-form form input[type="email"]:disabled:-ms-input-placeholder, #header .header-content .header-form form textarea:disabled:-ms-input-placeholder { color:#a9a9a9; }
+
+
+        #header .header-content .header-form form button[type="submit"] {
+            width:100%;
+            color:<?php echo $site_dados[0]["D019_Temabuttontext"]; ?> !important;
+            text-align:center;
+            background: <?php echo $site_dados[0]["D019_Temabutton"]; ?> !important;
+            padding-top:19px;
+            padding-bottom:19px;
+        }
+        #header .header-content .header-form form button[type="submit"]:hover { 
+            color:<?php echo $site_dados[0]["D019_Temabuttontexthover"]; ?> !important;
+            background-color: <?php echo $site_dados[0]["D019_Temabuttonhover"]; ?> !important; 
+        }
+        #header .header-content .header-form form button[type="submit"]:disabled, #header .header-content .header-form form button[type="submit"]:disabled:hover {
+            color:<?php echo $site_dados[0]["D019_Temabuttontexthover"]; ?> !important;
+            background-color: <?php echo $site_dados[0]["D019_Temabuttonhover"]; ?> !important;
+        }
+        #header .header-content .header-form .txt-desc {
+            color:#f9e1e0;
+            font-size:12px;
+            line-height:18px;
+            text-align:center;
+            margin-top:20px;
+        }
+
+
+
+        #header .header-content .header-imagem {
+            /* position:relative; */
+            top:0px;
+            bottom:0px;
+            left:0px;
+            margin-bottom: 20px;
+        }
+        #header .header-content .header-imagem .header-imagem-bg {
+            /* position:relative; */
+            top:0px;
+            right:15px;
+            bottom:0px;
+            left:15px;
+            background:rgba(250,250,250,0) no-repeat center center;
+            background-size:cover;
+            /* box-shadow:0px 0px 4px 1px rgba(0,0,0,.3); */
+        }
+
+        #header .header-content .header-imagem .header-imagem-bg img {
+
+            box-shadow:0px 0px 4px 1px rgba(0,0,0,.3); 
+        }
+
+        #header.header-page .nav > li > a { color:#b0b0b0; }
+        #header .nav > li.menu-btn > a, #navigation_affix .nav > li.menu-btn > a {
+            color:<?php echo $site_dados[0]["D019_Tematitulo"]; ?> !important;
+            background:#FFF !important;
+            padding:6.5px 12px 5.5px;
+            border-radius:15px;
+        }
+        #header.header-page .nav > li.menu-btn > a, #navigation_affix .nav > li.menu-btn > a {
+            color:#FFF !important;
+            background:#ff7469 !important;
+        }
+
+        #features{
+            color:<?php echo $site_dados[0]["D019_Tematextdesc"]; ?> !important;
+            background:<?php echo $site_dados[0]["D019_Temadesc"]; ?> !important;
+        }
+
+   
+        #footer {text-align: center; padding:23px 0px; background-color: <?php echo $site_dados[0]["D019_Temafooter"]; ?>; }
+        #footer .copyright-txt {
+            text-align: center;
+            padding:16px 0px;
+            margin:0px;
+            color:<?php echo $site_dados[0]["D019_Tematextfooter"]; ?>;
+        }
+        #footer .copyright-txt a {
+            color:<?php echo $site_dados[0]["D019_Tematextfooter"]; ?>;
+        }
+        #footer .copyright-txt a:hover { color: <?php echo $site_dados[0]["D019_Tematextbuttonhover"]; ?> }
+        #footer .nav  { display: inline-block; margin: 0!important;  text-align: center !important;}
+        #footer .nav li { display: inline-block; text-align: center !important;}
+        #footer .nav a {
+            text-align: center;
+            width:100%;
+            color:<?php echo $site_dados[0]["D019_Tematextfooter"]; ?>;
+            font-size:14px;
+            text-align:center;
+            background-color:rgba(0,0,0,0);
+            border-radius:3px;
+            font-weight: 700;
+        }
+
+        #footer .nav a:hover {
+            color:<?php echo $site_dados[0]["D019_Temabuttontexthover"]; ?>;        
+            background-color:<?php echo $site_dados[0]["D019_Temabuttonhover"]; ?>;          
+        }
+
+/*         @media (max-width: 767px) {
+            #footer {
+                text-align:center;
+            }
+            #footer .copyright-txt, #footer .nav { float:none; }
+            #footer .copyright-txt { padding:0px; }
+            #footer .nav { margin-top:10px; margin-right: 15px; }
+            #footer .nav a {
+                
+                width:100%;
+                float:none;
+            }
+        } */
+
+
+      </style>
+<!-- #body-wrap -->
+
+    <div id="body-wrap">
+        
+        <!-- #header -->
+        <header id="header" style=" color: <?php echo $site_dados[0]["D019_Temapadrao"] ?>; background-color: rgba(<?php echo $tema[0]; ?>,<?php echo $tema[1]; ?>,<?php echo $tema[2]; ?>,1)!important; ">
+            
+            <!-- #navigation -->
+            <nav id="navigation" class="navbar scrollspy">
+                
+                <!-- .container -->
+                <div class="container">
+                    <?php if (!empty($site_dados[0]['D019_Posicao'])): ?>
+                        <?php if ($site_dados[0]['D019_Posicao'] == "left"): ?>
+                            <?php $pos = "float:left !important;" ?>
+                            <?php $base = "margin-top: 25px;"; ?>
+                        <?php endif ?>
+                        <?php if ($site_dados[0]['D019_Posicao'] == "center"): ?>
+                            <?php $pos = "margin: 0 auto !important; display: table; table-layout: fixed;" ?>
+                            <?php $base = "margin-top: 25px; float:none !important;"; ?>
+                        <?php endif ?>
+                        <?php if ($site_dados[0]['D019_Posicao'] == "right"): ?>
+                            <?php $pos = "float:right !important;" ?>
+                            <?php $base = "margin-top: 25px;"; ?>
+                        <?php endif ?>
+
+                    
+                    <?php endif; ?>
+                    <div class="" style="<?php echo $base; ?>">
+                        <a href="#" style="<?php echo $pos; ?>"><img src="/images/landpage/<?php echo $site_dados[0]['D019_Logo'] ?>" alt="Logo" style="max-height:135px;" class="img-responsive" ></a> <!-- site logo -->
+                    </div>
+                                    
+                </div>
+                <!-- .container end -->
+                
+            </nav>
+            <!-- #navigation end -->
+            
+            <!-- .header-content -->
+            <div class="header-content">
+                
+                <!-- .container -->
+                <div class="container">
+                    
+                    <div class="header-heading-title">
+                        <h1><?php echo str_replace("|", "/", $site_dados[0]["D019_Titulo"]); ?></h1>
+                        <h4 style=" color: <?php echo $site_dados[0]["D019_Temachamada"]; ?> !important; "><?php echo strip_tags(str_replace("|", "/", $site_dados[0]["D019_Chamada"])); ?></h4>
+                    </div>
+                    
+                    <!-- .row -->
+                    <div class="row header-row">
+                        <div class="col-sm-7 col-md-8 header-imagem">
+                            <div class="header-imagem-bg">
+                                <img src="/images/landpage/<?php echo $site_dados[0]["D019_Imagem"] ?>"  style="margin: 0 auto;" class="img-responsive" alt="">
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-5 col-md-4">
+                            <div class="header-form">
+                                <div class="submit-status"></div> <!-- submit status -->
+                                <div class="header-form-heading">
+                                    <h4 style=" color: <?php echo $site_dados[0]["D019_Texttema"]; ?> !important; "><i class="fa fa-pencil"></i> Cadastre-se</h4>
+                                    <p style=" color: <?php echo $site_dados[0]["D019_Texttema2"]; ?> !important; ">Preencha o formulário abaixo:</p>
+                                </div>
+                                <?php echo str_replace("|", "/", $site_dados[0]["D019_Html"]); ?>
+                                
+                                <p style=" color: <?php echo $site_dados[0]["D019_Texttema2"]; ?> !important; margin-top:15px; ">* Respeitamos a sua privacidade. Somos contra SPAM.</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <!-- .row end -->
+                    
+                </div>
+                <!-- .container end -->
+                
+            </div>
+            <!-- .header-content end -->
+            
+        </header>
+        <!-- #header end -->
+      
+        <?php if (!empty($site_dados[0]["D019_Descricao"])): ?>
+          
+         <!-- #features -->
+        <div id="features" class="padding-top80">            
+            <!-- .container -->
+            <div class="container">        
+                <!-- .row -->
+                <div class="row">                    
+                    <div class="col-md-12 margin-bottom20">
+                        <div class="col-txt5">                          
+                          <?php echo str_replace("|", "/", $site_dados[0]["D019_Descricao"]); ?>                            
+                        </div>
+                    </div>
+                </div>
+                <!-- .row end -->                
+            </div>
+            <!-- .container end -->            
+        </div>
+        <!-- #features end -->
+        
+        <?php endif ?>
+
+        <?php if (!empty($site_dados[0]["D019_Termo"])): ?>
+          
+         <!-- #features -->
+        <div id="termo" class="padding-top80 padding-bottom80" style="display: none;">            
+            <!-- .container -->
+            <div class="container">        
+                <!-- .row -->
+                <div class="row">                    
+                    <div class="col-md-12 margin-bottom20">
+                        <div class="col-txt5">                          
+                          <?php echo str_replace("|", "/", $site_dados[0]["D019_Termo"]); ?>                            
+                        </div>
+                    </div>
+                </div>
+                <!-- .row end -->                
+            </div>
+            <!-- .container end -->            
+        </div>
+        <!-- #features end -->
+        
+        <?php endif ?>
+              
+        <!-- #footer -->
+        <footer id="footer">
+            
+            <!-- .container -->
+            <div class="container">
+                
+                <p class="copyright-txt col-lg-6 col-md-6 col-sm-12 col-xs-12">&copy; 2016 Copyrights <?php echo $site_config[0]["D001_Empresa"]; ?></a>. Todos os Direitos Reservados.</p>
+
+                <ul class="nav col-lg-6 col-md-6 col-sm-12 col-xs-12" >
+
+                    <?php if(!empty($site_dados[0]["D019_Linktermo"])): ?>
+                    <li class="menu-btn pull-right hidden-xs hidden-sm"><a href="<?php echo $site_dados[0]["D019_Linktermo"] ?>" target="_blank">Termo de uso e serviços</a></li>
+                    <li class="menu-btn hidden-lg hidden-md"><a href="<?php echo $site_dados[0]["D019_Linktermo"] ?>" target="_blank">Termo de uso e serviços</a></li>
+                    <?php endif; ?>
+                    <?php if(!empty($site_dados[0]["D019_Linkpolitica"])): ?>
+                    <li class="menu-btn pull-right hidden-xs hidden-sm"><a href="<?php echo $site_dados[0]["D019_Linkpolitica"] ?>" target="_blank">Política de Privacidade</a></li>
+                    <li class="menu-btn hidden-lg hidden-md"><a href="<?php echo $site_dados[0]["D019_Linkpolitica"] ?>" target="_blank">Política de Privacidade</a></li>
+                    <?php endif; ?>
+                    
+                </ul>
+                
+             
+                
+            </div>
+            <!-- .container end -->
+            
+        </footer>
+        <!-- #footer end -->
+        
+    </div>
+    <!-- #body-wrap end --> 
+
+<?php else: ?>
+    <center>
+    <h1 style="margin-top: 60px; color: rgba(45,45,45,0.9);"> PROMOÇÃO ENCERRADA! </h1>
+    </center>
+<?php endif; ?>      
+    

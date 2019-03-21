@@ -1,0 +1,223 @@
+
+  <!-- Page Banner -->
+    <section class="page-banner" style="background-image:url(/images/config/bg/<?php echo $site_config[0]['D001_Imgfundo'] ?>);">
+      <div class="auto-container">
+          <h1 style="color:rgba(250,250,250,0.9);">ATRAÇÕES</h1>
+        </div>
+    </section>
+
+  <!-- Blog -->
+    <section id="blog" class="blog-area section sponsors">
+        <div class="auto-container">
+            <div class="row">
+                <!-- Blog Left Side Begins -->
+                <div class="col-md-8">
+                    <br><br>
+
+                    <?php if (!empty($site_equipe["dados"])): ?>
+                    <?php foreach ($site_equipe["dados"] as $equipe): ?>
+
+                    <div class="single-sponsors">
+                        <div class="row">
+                            <div class="col-lg-4 sponsors-image">
+                                <img src="/images/equipe/<?php echo $equipe['D016_Img']; ?>" width="100%" alt="">
+                            </div>
+                            <div class="col-lg-8">
+                                <p class="clearfix"></p>
+                                <h2><?php echo $equipe['D016_Titulo']; ?></h2>
+                                <h4><?php echo $equipe['D016_Funcao']; ?></h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil facilis saepe nam sequi, numquam, nisi! Reprehenderit quisquam ex esse facilis dolor est, quas earum ea, sunt, cupiditate vitae, cumque soluta ab quibusdam.</p>
+                                <a href="/page/atracao/link/<?php echo $equipe['D016_Chave']; ?>">VER PERFIL</a>
+                            </div>
+                        </div>
+                    </div>                    
+
+                    <?php endforeach ?>
+                    <?php endif ?>
+
+                    <br><br>
+                    <!-- Pagination -->
+                    <!-- <div class="post-nav wow fadeInRight" data-animation="fadeInUp" data-animation-delay="300">
+                            <ul class="pagination">
+                            <li><a href="#">&laquo;</a></li>
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li class="active"><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#">&raquo;</a></li>
+                        </ul>
+                    </div>  --> <!-- Pagination Ends-->
+
+                  
+                    <!-- single-latest-blog end -->           
+                    <div class="post-nav wow fadeInRight" data-animation="fadeInUp" data-animation-delay="300">
+                       <?php 
+                    if(!empty($site_equipe)):
+
+                       $info['pagination']['reg_final'] =  $site_equipe['reg_final'];
+                       $info['pagination']['n_paginas'] =  $site_equipe['n_paginas'];
+                       $info['pagination']['pg_atual'] =  $site_equipe['pg_atual'];
+                       $info['pagination']['pg_anterior'] =  $site_equipe['pg_anterior'];
+                       $info['pagination']['pg_proxima'] =  $site_equipe['pg_proxima'];
+                       $info['pagination']['lnk_impressos'] =  $site_equipe['lnk_impressos'];
+                       $info['pagination']['finalpag'] =  $site_equipe['finalpag'];
+                       $info['pagination']['arquivo'] =  $site_equipe['arquivo'];
+                       $info['pagination']['pag'] =  $site_equipe['pag'];
+                       $info['pagination']['nlinks'] =  $site_equipe['nlinks'];
+                       $info['pagination']['temp'] =  $site_equipe['temp'];
+                       $info['pagination']['totreg'] =  $site_equipe['totreg'];
+
+                    else:
+
+                       $info['pagination']['reg_final'] =  0;
+                       $info['pagination']['n_paginas'] =  0;
+                       $info['pagination']['pg_atual'] =  0;
+                       $info['pagination']['pg_anterior'] =  0;
+                       $info['pagination']['pg_proxima'] =  0;
+                       $info['pagination']['lnk_impressos'] =  0;
+                       $info['pagination']['finalpag'] =  0;
+                       $info['pagination']['arquivo'] =  0;
+                       $info['pagination']['pag'] =  0;
+                       $info['pagination']['nlinks'] =  0;
+                       $info['pagination']['temp'] =  0;
+                       $info['pagination']['totreg'] =  0;
+
+                    endif;
+
+                      navipages($home=1,$center=1,$info); 
+
+
+                     function navipages($home=0,$center=0, array $info)
+                    {
+
+                       $reg_final = $info['pagination']['reg_final'];
+                       $n_paginas =  $info['pagination']['n_paginas'];         
+                       $pg_atual =  $info['pagination']['pg_atual'];
+                       $pg_anterior =  $info['pagination']['pg_anterior'];
+                       $pg_proxima =  $info['pagination']['pg_proxima'];
+                       $lnk_impressos =  $info['pagination']['lnk_impressos'];
+                       $finalpag =  $info['pagination']['finalpag'];
+                       $arquivo =  $info['pagination']['arquivo'];
+                       $pag =  $info['pagination']['pag'];
+                       $nlinks =  $info['pagination']['nlinks'];
+                       $temp =  $info['pagination']['temp'];
+                       $totreg =  $info['pagination']['totreg'];
+
+                      // global $pg_atual, 
+                      // $pg_anterior,
+                      // $pg_proxima,  
+                      // $n_paginas, 
+                      // $reg_final, 
+                      // $totreg, 
+                      // $temp, 
+                      // $nlinks,       
+                      // $lnk_impressos,        
+                      // $arquivo, 
+                      // $pag,
+                      // $urlhomepage,
+                      // $finalpag,
+                      // $barborder;
+                      ?>
+                      <?php 
+                      if($n_paginas > 1){ ?>
+                      <ul class="pagination">
+                        <li><a href="<?php echo $arquivo; ?>/1"><i class="fa fa-fast-backward" aria-hidden="true"></i></a></li>
+                        <?php if (isset($pag) && $pag > 1){ ?>
+                        <li><a href="<?php echo $arquivo; ?>/<?php echo $pg_anterior; ?>"><i class="fa fa-step-backward" aria-hidden="true"></i></a></li>
+                        <?php } ?>
+                        <?php
+                                    if ($temp >= $nlinks)
+                                    {
+                                    if ($n_paginas > $nlinks) 
+                                    {
+                                    $n_maxlnk = $temp + 4;
+                                    $nlinks   = $n_maxlnk;
+                                    $n_start  = $temp - 6;
+                                    if($n_start==-1)
+                                    {
+                                    $n_start=0;
+                                    }
+                                    $lnk_impressos = $n_start;
+                                    }
+                                    }
+                                    while(($lnk_impressos < $n_paginas) and ($lnk_impressos < $nlinks))
+                                    { 
+                                    $lnk_impressos ++;
+                                    ?>
+                        <?php
+                                    if ($pg_atual != $lnk_impressos)
+                                    {
+                                    echo "<li><a href=\"$arquivo/$lnk_impressos\">";
+                                    }
+                                    if ($pg_atual == $lnk_impressos)
+                                    {
+                                    echo "<li class=\"active\"><a href=\"javascript:;\">$lnk_impressos</a></li>";
+                                    } 
+                                    else 
+                                    {
+                                    echo "$lnk_impressos"."</li>";
+                                    }
+                                    ?>
+                        </a>
+                        <?php
+                                    }
+                                    ?>
+                        <?php
+                                    if ($reg_final < $totreg) 
+                                    {
+                                    ?>
+                        <li><a href="<?php echo $arquivo; ?>/<?php echo $pg_proxima; ?>"><i class="fa fa-step-forward" aria-hidden="true"></i></a></li>
+                        <?php
+                                    } 
+                                    ?>
+                        <li><a href="<?php echo $arquivo; ?>/<?php echo $finalpag; ?>"><i class="fa fa-fast-forward" aria-hidden="true"></i> </a></li>
+                      </ul>
+                      <?php }} ?> 
+                  </div> 
+                  <!-- shop-content end -->
+
+
+                </div><!-- Blog Left Side Ends -->
+                
+                
+                <!-- Blog Sidebar Begins -->
+                <div class="col-md-4">
+                
+                    <div class="sidebar">
+                    
+                        <!-- Category Posts -->
+                        <div class="category widget wow fadeInUp">
+                            <!-- Title -->
+                            <h2>Categorias</h2>
+                            <ul class="category-list">
+                              <?php if (!empty($site_cat_equipes)): ?>
+                                <?php foreach ($site_cat_equipes as $cat): ?>
+                                <li>
+                                    <h3><a href="/page/atracoes/cat/<?php echo $cat['D016_Chave']; ?>/p/1"><?php echo $cat['D016_Nome']; ?></a></h3>
+                                </li>
+
+                                <?php endforeach ?>
+                              <?php endif; ?>
+                               
+                            </ul>
+                        </div><!-- Category Ends-->
+                        
+                        
+                        
+                    </div>
+                    
+                </div><!-- Blog Sidebar Ends -->
+                
+            </div>
+        
+        </div>
+    </section>
+    <!-- Our Blog Section Ends -->
+    
+
+  
+
+  
+
+  

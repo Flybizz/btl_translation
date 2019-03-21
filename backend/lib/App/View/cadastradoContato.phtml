@@ -1,0 +1,70 @@
+<div class="container-fluid"> 
+    <div class="row">
+        <div id="editor_acao" class="col-md-12"></div>
+    </div>
+    <div  id="editor_lista"  class="row ">
+        <div class="col-md-12">
+            <div class="titleIdent col-md-12">
+              <h2 class="col-md-4">Contactos Registados</h2>               
+              <div class="col-md-8">
+                <div class="pull-right">
+                  <div class="col-xs-12">
+                    <input type="text" id="search-table" class="form-control pull-right" placeholder="Buscar">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel-body col-md-12">
+              <table class="table table-hover table-condensed" id="tableWithSearch">
+                  <thead>
+                      <tr>
+                          <th width='23%'>NOME</th>
+                          <th width="23%">EMAIL</th>
+                          <th width="20%">MORADA</th>
+                          <th width="8%">DISTRITO</th>
+                          <th width="14%">DATA</th>
+                          <th width="10%">STATUS</th>
+                          <th width='15%'>AÇÕES</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <?php 
+                      if(!empty($view_contato_lista)):
+                      foreach ($view_contato_lista as $contato): ?>
+                      <tr id="<?php echo $contato['D005_Uid'] ?>">
+                          <td><?php echo $contato['D005_Nome']; ?></td>
+                          <td><?php echo $contato['D005_Email']; ?></td>
+                          <td><?php echo $contato['D005_Cidade']; ?></td>
+                          <td><?php echo $contato['D005_Estado']; ?></td>     
+                          <td><?php echo date('d/m/Y H:i:s', strtotime($contato['D005_Data_Cadastro'])); ?></td>
+                          <td>
+                            <input type="hidden" class="icon" value="<?php echo $contato['D005_Uid'] ?>" />
+                            
+                            <?php if($contato['D005_Status'] == 'true'): ?>
+                            <input type="checkbox" id="cont_status" class="switchery view<?php echo $contato['D005_Uid'] ?>" data-init-plugin="switchery" data-switchery="<?php echo $contato['D005_Status']; ?>" style="display: none;" checked>
+                            <?php else: ?>
+                            <input type="checkbox" id="cont_status" class="switchery view<?php echo $contato['D005_Uid'] ?>" data-init-plugin="switchery" data-switchery="<?php echo $contato['D005_Status']; ?>" style="display: none;">
+                            <?php endif; ?>
+                              
+                              
+                          </td>
+                          <td align="left">
+                              <input type="hidden" value="<?php echo $contato['D005_Uid'] ?>" />
+                              <a id="contatoView" class="btn btn-info" href="#" data-placement="top" title="Visualizar">
+                                <i class="fa fa-eye fa-lg" aria-hidden="true"></i>
+                              </a>                                    
+                              <input type="hidden" class="icon" value="<?php echo $contato['D005_Uid'] ?>" />
+                              <a  id="contatoDel" class="btn btn-danger" href="#" data-toggle="modal" data-target="#modalshow"  data-placement="top" title="Deletar">
+                                <i class="fa fa-remove fa-lg"></i>
+                              </a>
+                              <input type="hidden" class="icon" value="<?php echo $contato['D005_Uid'] ?>" />
+                          </td>
+                      </tr>
+                      <?php endforeach; 
+                      endif; ?>
+                  </tbody>
+              </table>
+            </div>
+        </div>
+    </div>
+</div>

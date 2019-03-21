@@ -1,0 +1,62 @@
+<?php require_once("pagina.segura.php"); ?>
+
+<div class="container-fluid"> 
+    <div class="row">
+        <div id="editor_acao" class="col-md-12"></div>
+    </div>
+    <div  id="editor_lista"  class="row ">
+        <div class="col-md-12">
+            <div class="titleIdent col-md-12">
+            <p class="clearfix"></p>
+               <h2 class="col-md-4"><?php echo translate(LABEL_CLIENTES_REGISTADOS); ?></h2>
+               <div class="col-md-8">
+                  <div class="pull-right">
+                    <div class="col-xs-12">
+                      <input type="text" id="search-table" class="form-control pull-right" placeholder="Buscar">
+                    </div>
+                  </div>
+               </div>          
+            </div>
+            <div class="panel-body col-md-12">
+              <table class="table table-hover table-condensed" id="tableWithSearch">
+                  <thead>
+                      <tr>                                
+                          <th width='7%'>ID</th>
+                          <th width='20%'><?php echo translate(LABEL_NOME); ?></th>
+                          <th width='15%'><?php echo translate(LABEL_CPF); ?></th>
+                          <th width='20%'><?php echo translate(LABEL_CIDADE); ?></th>
+                          <th width='14%'><?php echo translate(LABEL_CONTATO); ?></th>
+                          <th width='12%'><?php echo translate(LABEL_STATUS); ?></th>
+                          <th width='12%'><?php echo translate(LABEL_ACOES); ?></th>
+                      </tr>                          
+                  </thead>
+                  <tbody>
+                      <?php 
+                      if(!empty($view_cliente_lista)):
+                      foreach ($view_cliente_lista as $cliente): ?>
+                      <tr id="<?php echo $cliente['cli_id'] ?>">
+                          <td><?php echo $cliente['cli_id']; ?></td>
+                          <td><?php echo $cliente['cli_nome']; ?></td>
+                          <td><?php echo $cliente['cli_cpf']; ?></td>
+                          <td><?php echo $cliente['cli_cidade']."/".$cliente['cli_uf']; ?></td>
+                          <td><?php echo $cliente['cli_telefone'];?></td>
+                          <td><?php echo $cliente['cli_status']; ?></td>
+                          <td align="left">                                 
+                              <input type="hidden" value="<?php echo $cliente['cli_id'] ?>" />
+                              <a id="cliAlt" href="#" class="btn btn-dafault" data-original-title="Alterar" data-toggle="modal" data-target="#painelModel">
+                                  <i id="cAlt" class="fa fa-edit"></i>
+                              </a>
+                              <input type="hidden" value="<?php echo $cliente['cli_id'] ?>" />
+                              <a id="pedView" href="#" class="btn btn-dafault"  data-original-title=" Novo Pedido " data-toggle="modal" data-target="#painelPedido">
+                                  <i class="fa fa-file-text-o"></i>
+                              </a> 
+                          </td>
+                      </tr>
+                      <?php endforeach;
+                      endif; ?>
+                  </tbody>
+              </table>
+            </div>
+        </div>
+    </div>
+</div>

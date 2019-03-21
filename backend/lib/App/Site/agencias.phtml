@@ -1,0 +1,116 @@
+ <div class="site-content">
+
+    <!-- Page Heading -->
+    <div class="page-head bg-four">
+      <div class="parallax-mask"></div>
+      <div class="container">
+        <h1>Onde Comprar</h1>
+      </div>
+    </div>
+    
+    <!-- Blog Page -->
+    <div class="blog-page-wrapper">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-md-4 sidebar">
+ 
+            <div class="sidebar-widget categories-list">
+              <h3 class="widget-title"><i class="icofont icofont-curved-double-right"></i>Escolha o Estado</h3>
+              <div class="widget-content">
+
+                <ul class="categories">
+
+                  <li>
+            
+                   
+
+                    <select name="" id="list_agencia" class="" style="width:100%; text-align:center; padding: 10px !important; font-size:16px; font-weight:600;">
+                      <option value="all">Selecione</option>
+                          <?php 
+
+                          if(!empty($site_estado)):
+
+                            foreach ($site_estado as $est): 
+
+                            if($view_chave == $est['D018_Chave'] ){
+                              $selected = "selected"; 
+                              echo  '<option value="'.$est['D018_Chave'].'" '.$selected.'>'.$est['D018_Titulo'].'</option>';
+                            }elseif($view_chave != $est['D018_Chave']){
+                              echo  '<option value="'.$est['D018_Chave'].'" >'.$est['D018_Titulo'].'</option>';
+                            }
+
+                            endforeach;//submaster
+
+                          endif; ?>
+                    </select>
+                  
+                     
+                  
+
+                        
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+
+
+          <div class="col-md-8 posts-list ">
+
+            <div class="section-title" style="padding-top:1px; padding-bottom:1px; margin-bottom:10px;">
+             <?php if (empty($site_title)): ?>
+                <h2><span></span> NENHUM ESTADO SELECIONADO</h2>
+              <?php else: ?>
+                <h2><span></span> <?php echo $site_title; ?></h2>
+              <?php endif ?>
+            </div>
+         
+            <div class="services-wrapper">
+              <div class="col-md-12">
+
+                <div class="row services" style="padding-left:10px; padding-right:10px;">
+
+                  <?php if (!empty($site_agencia)): ?>
+
+                    <?php 
+                      foreach ($site_agencia as $agencia): 
+                    ?>
+                    <h3 style="margin-top:10px; margin-bottom:10px; padding-left:10px; padding-top:5px; padding-bottom:5px; background-color: rgba(190,190,190,0.4);" > <i class="icofont icofont-location-pin" style="margin-right:10px;"></i><?php echo str_replace("|", "/", $agencia['D018_Cidade']); ?></h3>
+                    <h4><?php echo $agencia['D018_Titulo']; ?></h4>
+                    <?php echo str_replace("|", "/", $agencia['D018_Texto']); ?>
+                    
+                    <?php  
+                      endforeach;//submaster
+                    ?>
+
+                  <?php else: ?>
+
+                    <?php if (empty($site_title)): ?>
+                      
+                    <?php else: ?>
+                      <h4 style="margin-top:10px; margin-bottom:0px; padding-left:10px; padding-top:0px; padding-bottom:0px;" > 
+                      <i class="icofont icofont-envelope"></i><?php echo " ".$site_config[0]['D001_Email']; ?></h4>
+                      <h4 style="margin-top:5px; margin-bottom:10px; padding-left:10px; padding-top:5px; padding-bottom:5px;">
+                      <i class="icofont icofont-social-whatsapp"></i><?php echo " ".$site_config[0]['D001_Whatsapp']; ?></h4>
+                    <?php endif ?>
+
+                  <?php endif ?>
+
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+
+
+
+        </div>
+      </div>
+    </div>
+    
+
+  </div>
+  

@@ -1,0 +1,205 @@
+ <section class="page-banner" style="background-color: <?php echo $site_config[0]['D001_Tema'] ?>; background-image:url(/images/config/bg/<?php echo $site_config[0]['D001_Imgfundo'] ?>);">
+
+  <div class="auto-container">
+
+      <h1 style="color: rgba(255,255,255,0.9);">EVENTOS</h1>
+
+    </div>
+
+</section>
+
+<?php 
+
+    $dt = explode("-", $site_evento[0]['D016_Data']);
+
+    switch ($dt[1]):
+
+      case 1: $mes = "JAN"; break;
+      case 2: $mes = "FEV"; break;
+      case 3: $mes = "MAR"; break;
+      case 4: $mes = "ABR"; break;
+      case 5: $mes = "MAI"; break;
+      case 6: $mes = "JUN"; break;
+      case 7: $mes = "JUL"; break;
+      case 8: $mes = "AGO"; break;
+      case 9: $mes = "SET"; break;
+      case 10: $mes = "OUT"; break;
+      case 11: $mes = "NOV"; break;
+      case 12: $mes = "DEZ"; break;
+
+    endswitch;
+
+    $hora = explode(":", $site_evento[0]['D016_Hora']);
+    $hr = $hora[0].":".$hora[1];
+
+    if($site_evento[0]['D016_Horaend'] != "00:00:00"):
+        $hora2 = explode(":", $site_evento[0]['D016_Horaend']);
+        $hr2 = " - ".$hora2[0].":".$hora2[1];
+    else:
+        $hr2 = "";
+    endif;
+
+    ?>                            
+    
+
+    <section id="blog" class="blog-area single section faq">
+        <div class="auto-container">
+            <div class="row">
+                <!-- .faq-content -->
+                <div class="col-lg-8 faq-content">
+                    <!-- article -->
+                    <article>
+                        <div class="event">
+                            
+                                <div class="widget wow fadeInUp">
+
+                                    <div class="row">
+                                        <div class="col-lg-12 faq-title">
+                                            <h2><?php echo $site_evento[0]['D016_Titulo']; ?></h2>
+                                        </div>
+                                    </div>
+                             
+                                    
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <img src="/images/evento/<?php echo $site_evento[0]['D016_Foto']; ?>" class="img-responsive"  alt="">
+                                            <br>
+                                            <div class="faq-text">
+                                                <?php echo str_replace("|", "/", $site_evento[0]['D016_Descricao']); ?>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <?php if (!empty($site_evento[0]["D016_Video"])): ?>
+                                                                    
+                                <div class="widget wow fadeInUp">
+
+                                    <div class="row">
+                                        <div class="col-lg-12 faq-title">
+                                            <h2>VÍDEO</h2>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="embed-responsive embed-responsive-16by9">
+
+                                                <?php if($site_evento[0]['D016_Tipo'] == "youtube" ): //YOUTUBE ?>
+
+                                                  <!-- <iframe width="1080" height="608" src="https://www.youtube.com/embed/<?php echo $site_evento[0]['D016_Video'];?>" frameborder="0" allowfullscreen></iframe>    -->
+
+                                                  <iframe src="https://www.youtube.com/embed/<?php echo $site_evento[0]['D016_Video']; ?>?rel=0&amp;controls=0&amp;showinfo=0" allowfullscreen></iframe>           
+
+                                                <?php else: ?>
+
+                                                  <iframe src="http://player.vimeo.com/video/<?php echo $site_evento[0]['D016_Video']; ?>" width="100%" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+
+                                                <?php endif; ?>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <?php endif ?>
+                            
+                                <div class="category widget wow fadeInUp">
+                                   <!-- Title -->
+                                    <div class="faq-title">
+                                        <h2>Informações do Evento</h2>
+                                    </div>
+                                    <ul class="category-list">
+                                        <li>
+                                            <b>DATA: </b><?php echo "   ".$dt[2]." ".$mes." ".$dt[0]; ?>
+                                        </li>
+                                        <li>
+                                            <b>HORA: </b><?php echo "  ".$hr.$hr2; ?>
+                                        </li>
+
+                                        <?php if (!empty($site_evento[0]["D016_Local"])): ?>
+                                        <li>
+                                            <b>LOCAL: </b><?php echo $site_evento[0]["D016_Local"]; ?>
+                                        </li>
+                                        <?php endif ?>
+
+                                        <?php if (!empty($site_evento[0]["D016_Endereco"])): ?>
+                                        <li>
+                                            <b>ENDEREÇO: </b><?php echo $site_evento[0]["D016_Endereco"]; ?>
+                                        </li>
+                                        <?php endif ?>
+
+                                        <?php if (!empty($site_evento[0]["D016_Bairro"])): ?>
+                                        <li>
+                                            <b>BAIRRO: </b><?php echo $site_evento[0]["D016_Bairro"]; ?>
+                                        </li>
+                                        <?php endif ?>
+
+                                        <?php if (!empty($site_evento[0]["D016_Cidade"])): ?>
+                                        <li>
+                                            <b>CIDADE: </b><?php echo $site_evento[0]["D016_Cidade"]; ?>
+                                        </li>
+                                        <?php endif ?>
+
+                                        <?php if (!empty($site_evento[0]["D016_Estado"])): ?>
+                                        <li>
+                                            <b>ESTADO: </b><?php echo $site_evento[0]["D016_Estado"]; ?>
+                                        </li>
+                                        <?php endif ?>
+                                        
+                                    </ul>
+                                </div><!-- Category Ends-->
+                            
+                             
+                            </div>   
+                           
+                            
+                        <a href="/page/eventos/cat/all/p/0" class="theme-btn btn-style-one hvr-bounce-to-right pull-right" style="position:relative; botton:0px; right:0px; margin-top:20px;">VOLTAR</a>    
+                        
+                    </article> <!-- /article -->
+
+                        
+
+
+                </div> <!-- /.Testimonials-V1 -->
+                
+                
+                <!-- Blog Sidebar Begins -->
+                <div class="col-md-4">
+                
+                    <div class="sidebar" style="margin-top:0px !important; margin-left:0px !important;">
+                    
+                                     
+                        <!-- Popular Post -->
+                        <div class="blog/popular-post widget wow fadeInUp">
+                            <!-- Title -->
+                            <h2>PARTICIPAÇÃO</h2>
+                            <ul class="popular-list">
+                                <!-- Item -->
+                                <?php foreach ($site_evento[0]["D016_Atracao"] as $atr): ?>
+                                <li>
+                                    <!-- Post Image -->
+                                    <a href="#"><img src="/images/equipe/<?php echo $atr['D016_Img'] ?>" width="65px" alt="" /></a>
+                                    <!-- Details -->
+                                    <div class="content">
+                                        <h3><a href="#"><?php echo $atr['D016_Titulo'] ?></a></h3>
+                                        <div class="posted-date"><?php echo $atr['D016_Funcao'] ?></div>
+                                    </div>
+                                </li>
+                                <?php endforeach; ?>
+                       
+                            </ul>
+
+                        </div><!-- Popular Post Ends-->
+      
+                        
+                    </div>
+                    
+                </div><!-- Blog Sidebar Ends -->
+                
+            </div>
+        
+        </div>
+    </section><!-- Our Blog Section Ends -->
+    

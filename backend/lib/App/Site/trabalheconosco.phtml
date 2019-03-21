@@ -1,0 +1,236 @@
+<section>
+  <div class="container">
+    <div class="row">
+      
+      <h2 class=" wow fadeInUp text-center" data-wow-delay="0.5s" data-wow-offset="75"><span>Trabalhe Conosco</span></h2> 
+      
+        <p class="clearfix"></p>
+
+        <div class="row">
+
+          <div class="col-md-12">
+            <label for="rc_nome">Nome</label>
+            <div class="form-row">
+              <input type="text" class="form-control" id="rc_nome" placeholder="Nome Completo" minlength="8" required>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-6">
+
+            <label for="rc_cpf">CPF</label>
+
+            <div class="form-row">
+
+              <input type="text" class="form-control" id="rc_cpf" placeholder="CPF" maxlength="14" required>
+
+            </div>
+
+            <span id="msn2"></span> <span id="msn3"></span>
+
+            <input id="validacpf" type="hidden" value="1">
+
+          </div>
+
+          <div class="col-md-6">
+
+            <label for="rc_rg">RG</label>
+
+            <div class="form-row">
+
+              <input type="text" class="form-control" id="rc_rg" placeholder="RG" maxlength="14" required>
+
+            </div>
+
+          </div>
+
+        </div>
+        
+        <div class="row">
+
+          <div class="col-md-12">
+  
+          <label for="rc_email">Email</label>
+
+          <div class="form-row">
+
+            <input type="email" class="form-control" id="rc_email" placeholder="Email" maxlength="100" required>
+
+          </div>
+
+          <span id="msnEmail"></span>
+
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-4">
+
+              <label for="rc_cep">CEP</label>
+
+              <div class="form-row">
+
+                <input type="text" class="form-control" id="rc_cep" maxlength="9" placeholder="CEP" onKeyPress="mascara(this,icep);return Teclanum(event);">
+
+              </div>
+
+          </div>
+
+          <div class="col-md-5">
+
+              <label for="rc_endereco">Endereço</label>
+
+              <div class="form-row">
+
+                <input type="text" class="form-control" id="rc_endereco" placeholder="Endereço" maxlength="150">
+
+              </div>
+
+          </div>
+
+          <div class="col-md-3">
+
+              <label for="rc_bairro">Bairro</label>
+
+              <div class="form-row">
+
+                <input type="text" class="form-control" id="rc_bairro" placeholder="Bairro" maxlength="80">
+
+              </div>
+
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-8">
+
+              <label for="rc_cidade">Cidade</label>
+
+              <div class="form-row">
+
+                <input type="text" class="form-control" id="rc_cidade" placeholder="Cidade">
+
+              </div>
+
+          </div>
+
+          <div class="col-md-4">
+
+              <label for="rc_uf">UF</label>
+
+              <div class="form-row">
+
+                <input type="text" class="form-control" id="rc_uf" placeholder="UF">
+
+              </div>
+
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-6">
+
+              <label for="rc_telefone">Telefone</label>
+
+              <div class="form-row">
+
+                <input type="text" class="form-control" id="rc_telefone" placeholder="Telefone" maxlength="15" onKeyPress="mascara(this,itelefone);return Teclanum(event);">
+
+              </div>
+
+          </div>
+
+          <div class="col-md-6">
+
+              <label for="rc_celular">Celular</label>
+
+              <div class="form-row">
+
+                <input type="text" class="form-control" id="rc_celular" placeholder="Celular" maxlength="15" onKeyPress="mascara(this,itelefone);return Teclanum(event);">
+
+              </div>
+
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-12">
+  
+          <label for="rc_ramo">Ramo de Atividade</label>
+
+          <div class="form-row">
+
+            <select class="form-control" id="rc_ramo">
+              <option value='0'>Selecione</option>
+              <?php 
+                if($site_cargo):
+
+                  foreach ($site_cargo as $cargo):
+               ?>
+                  <option value="<?php echo $cargo['D008_Uid']; ?>"><?php echo utf8_decode($cargo['D008_DescriCategoria']); ?></option>
+              <?php 
+                  endforeach;
+                endif;
+              ?>
+            </select>
+
+          </div>
+
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-12">
+  
+          <label for="rc_profissao">Profissão</label>
+
+          <div class="form-row">
+
+            <select class="form-control" id="rc_profissao">
+              <option value='0'>Selecione o Ramo de Atividade</option>
+            </select>
+
+          </div>
+
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-12">
+  
+          <label for="rc_pdescricao">Profissão Descrição</label>
+
+          <div class="form-row">
+
+            <textarea class="form-control" id="rc_pdescricao" placeholder="Profissão Descrição" maxlength="100" required> </textarea>
+
+          </div>
+
+          </div>
+
+        </div>
+
+        <button name="bt_trab_cadastrar" id="bt_trab_cadastrar" class="btn btn-danger pull-right">Cadastrar</button>
+
+         <p class="clearfix"></p>
+         <span id="retorno"></span> <span id="ref"></span>
+
+    </div>
+  </div>
+</section>

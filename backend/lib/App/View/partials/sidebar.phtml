@@ -1,0 +1,67 @@
+<div class="nano">
+   <div class="nano-content">
+      <a href="#" class="mobile-close d-md-none">
+         Collapse <i class="fa fa-chevron-right"></i>
+      </a>
+
+      <div class="sidebar-right-wrapper">
+
+         <div class="sidebar-widget widget-calendar">
+            
+            <h6><?php echo translate(SIDEBAR_LABEL_RESUMO_ACTIVIDADE); ?></h6>
+
+            <?php
+               $tarefa_obj = new App_Model_tarefaModel();
+               $resumo_tarefas_feitas = $tarefa_obj->listaResumoDashboard();
+               $icon_map = array(
+                  1 => "fa-envelope",
+                  2 => "fa-group",
+                  3 => "fa-phone",
+                  4 => "fa-list"
+                );
+            ?>
+
+            <?php if(!empty($resumo_tarefas_feitas)): ?>)
+
+            <ul class="tasks-done">
+               <?php foreach($resumo_tarefas_feitas as $task): ?>
+               <li>
+                  
+                  <div class="row">
+
+                     <div class="col-md-2">
+                        <div class="icon">
+                           <i class="fa <?php echo !empty($icon_map[$task["tipo"]]) ? $icon_map[$task["tipo"]] : "fa-info-circle" ?>"></i>
+                        </div>
+                     </div>
+
+                     <div class="col-md-8">
+                        <time><?php echo $task["dtstart"] ?> (<?php echo substr($task["hrstart"], 0, 5) ?>)</time>
+                        <span><?php echo $task["usu_nome"] ?> - <?php echo $task["titulo"] ?></span>
+                     </div>
+
+                     <div class="col-md-1"><i style="color:#8BC34A;" class="fa fa-check "></i></div>
+
+                  </div>
+               </li>	
+               <?php endforeach; ?>
+               
+            </ul>
+
+            <div class="tasks-done-end" style="font-size: 12px;">
+               <p>(<?php echo translate(SIDEBAR_APRESENTAR_EVENTOS_HOJE); ?> - <a href="/backend/log/eventos"><?php echo translate(LABEL_VER_TODOS); ?></a>)</p>
+               
+            </div>
+
+            <?php else: ?>
+
+            <p><?php echo translate(SIDEBAR_LABEL_SEM_EVENTOS); ?>.</p>
+
+            <?php endif; ?>
+
+         </div>
+
+
+      </div>
+   </div>
+</div>

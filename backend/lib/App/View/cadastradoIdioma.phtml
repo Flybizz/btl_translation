@@ -1,0 +1,99 @@
+<router base="idioma/listar">
+<header class="page-header">
+    <h2>Idioma</h2>
+
+    <div class="right-wrapper text-right">
+        <ol class="breadcrumbs">
+            <li>
+                <a href="/">
+                    <i class="fa fa-home"></i>
+                </a>
+            </li>
+            <li><span>Home</span></li>
+            <li><span>Idioma</span></li>
+        </ol>
+
+        <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-calendar"></i></a>
+    </div>
+</header>
+
+<!-- start: page -->
+
+<section class="card">
+    <div class="card-body">
+        <div class="invoice">
+            <header class="clearfix">
+                <div class="row">
+                    <div class="col-sm-6 mt-3">
+                        <h2 class="h2 mt-0 mb-4 text-dark font-weight-bold">Idiomas Registados</h2>
+                        <!-- <h4 class="h4 m-0 text-dark font-weight-bold">#76598345</h4> -->
+                    </div>
+                    <div class="col-sm-6 mt-3">
+                        <div class="m-0 mb-4 pull-right">
+                            <a href="/backend/idioma/registar" id="notCad" class="mb-1 mt-1 mr-1 btn btn-primary"> <strong>Criar Idioma</strong></a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <table class="table table-bordered table-striped mb-0" id="datatable-tabletools">
+                <thead>                    
+                    <tr>
+                        <th width='50'>ID</th>
+                        <th width='180'>NOME</th>
+                        <th width='80'>FLAGS</th>
+                        <th width='80'>SIGLA</th>
+                        <th width='80'>ORDEM</th>
+                        <th width='80'>PADRÃO</th>
+                        <th width='80'>STATUS</th>
+                        <th width='180'>AÇÕES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php 
+                    if(!empty($view_idioma_lista)):
+                        $arr_master = array();
+                        foreach ($view_idioma_lista as $idioma): ?>
+                        <tr id="<?php echo $idioma['D008_Uid'] ?>">
+                            <td><?php echo $idioma['D008_Uid']; ?></td>
+                            <td>
+                            <?php echo $idioma['D008_Nome']; ?>
+                            </td>
+                            <td><span class="flag-icon flag-icon-<?php echo $idioma['D008_Icon']; ?>"></span></td>
+                            <td><?php echo $idioma['D008_Sigla']; ?></td>
+                            <td><?php echo $idioma['D008_Ordem']; ?></td>
+                            <td><?php 
+                            if($idioma['D008_Destaque'] == "sim"):                                    
+                                echo "PADRÃO";
+                            else:
+                                echo "-";
+                            endif;
+                            ?></td>
+                            <td><?php 
+                            if($idioma['D008_Status'] == "sim"):                                    
+                                echo "ATIVO";
+                            else:
+                                echo "INATIVO";
+                            endif;
+                            ?></td>
+                            <td class="actions">
+                                <input type="hidden" value="<?php echo $idioma['D008_Uid'] ?>" />
+                                <a id="idiomaAlt" class="" href="/backend/idioma/alterar/ref/<?php echo $idioma['D008_Uid'] ?>" data-placement="top" title="Alterar">
+                                    <i class="fa fa-pencil fa-lg"></i>
+                                </a>
+                                <input type="hidden" class="icon" value="<?php echo $idioma['D008_Uid'] ?>" />
+                                <a  class="idiomaDel" href="#modalAnim">
+                                    <i class="fa fa-trash-o fa-lg"></i>
+                                </a>                                
+                            </td>
+                        </tr>            
+                        <?php endforeach;//idioma
+                    endif; ?>
+                </tbody>
+            </table>
+               
+        </div>
+    </div>
+</section>
+
+<!-- end: page -->

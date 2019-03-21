@@ -1,0 +1,75 @@
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/pagina.segura2.php'; ?>
+<section class="page-header-custom-background page-header page-header-center page-header-more-padding page-header-no-title-border" style="background-image: url('/images/config/bg/<?php echo trim($site_config[0]['D001_Imgfundo']); ?>')">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h1><strong>PROJETOS</strong></h1>
+      </div>
+<!--       <div class="col-lg-6">
+        <ul class="breadcrumb">
+          <li><a href="#">Features</a></li>
+          <li class="active">Header Custom Background</li>
+        </ul>
+      </div> -->
+    </div>
+  </div>
+</section>
+
+<div class="container">
+
+  <h2>Alguns de nossos projetos</h2>
+
+  <ul class="nav nav-pills sort-source" data-sort-id="portfolio" data-option-key="filter" data-plugin-options="{'layoutMode': 'masonry', 'filter': '*'}">
+
+    <li class="nav-item" data-option-value="*"><a class="nav-link active" href="javascript:;">Todos</a></li>
+    
+    <?php if (!empty( $site_menu_lista )): ?>
+    <?php foreach ($site_menu_lista as $lista): ?>
+      <li class="nav-item" data-option-value=".<?php echo $lista['D011_Chave'] ?>"><a class="nav-link" href="javascript:;"><?php echo $lista['D011_DescriCategoria'] ?></a></li>
+    <?php endforeach; ?>
+    <?php endif; ?> 
+
+  </ul>
+
+  <div class="sort-destination-loader sort-destination-loader-showing mt-4 pt-2">
+    <div class="row portfolio-list sort-destination" data-sort-id="portfolio">
+
+      <?php if (!empty( $site_dados2 )): ?>
+      <?php foreach ($site_dados2 as $prod):
+
+        if ($prod['D011_Categoria'] != "null"):  
+                $tipo = "/tipo/".$prod['D011_Categoria']."";
+        else:
+            $tipo = "";
+        endif;
+
+        if ($prod['D011_Categoria'] != "null"): 
+            $modelo = "/modelo/".$prod['D011_SubCategoria']."";
+        else:
+            $modelo = "";
+        endif; 
+      ?>
+
+      <div class="col-12 col-sm-6 col-lg-3 isotope-item <?php echo $prod['D011_Categoria'] ?>">
+        <div class="portfolio-item">
+          <a href="/produto<?php echo $tipo; ?><?php echo $modelo; ?>/ref/<?php echo $prod['D011_Chave'] ?>">
+            <span class="thumb-info thumb-info-centered-info thumb-info-no-borders">
+              <span class="thumb-info-wrapper">
+                <img src="/images/produto/<?php echo $prod['D011_Uid']; ?>/<?php echo $prod['D011_Imageminicio']; ?>" class="img-fluid" alt="">
+                <span class="thumb-info-title">
+                  <span class="thumb-info-inner"><?php echo $prod['D011_Titulo']; ?></span>
+                  <span class="thumb-info-type">Saiba mais</span>
+                </span>
+              </span>
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <?php endforeach; ?>   
+      <?php endif; ?>  
+
+    </div>
+  </div>
+
+</div>

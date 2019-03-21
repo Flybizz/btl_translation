@@ -1,0 +1,89 @@
+<div class="col-md-12">
+  <div class=" titleIdent"> 
+      <h2  class="col-md-10">Alterar Evento</h2><span class="closed_acao col-md-2"><i class="pg-close_line pull-right"></i></span>
+    <br>
+  </div>
+  <div class="panel panel-default"> 
+    <div class="panel-header">
+    <br>
+    </div>
+    <div class="panel-body">
+      <div class="form-group form-group-default">
+        <label>Evento</label>
+        <input type="text" id="age_titulo" class="form-control" value="<?php echo utf8_decode($view_agenda_lista_alt[0]['D040_Evento']) ?>">
+      </div>
+      <div class="form-group form-group-default">
+        <label>Chamada</label>
+        <textarea class="form-control" id="age_chamada"><?php echo utf8_decode($view_agenda_lista_alt[0]['D040_Chamada']) ?></textarea>
+      </div>
+      <div class="form-group form-group-default">
+        <label>Conteúdo</label>
+        <!-- <textarea class="form-control" name="age_texto" id="age_texto"></textarea> -->
+
+        <?php
+          require_once $_SERVER['DOCUMENT_ROOT']."/backend/public/plugins/ckeditor/ckeditor.php";
+          require_once $_SERVER['DOCUMENT_ROOT'].'/backend/public/plugins/ckfinder/ckfinder.php';
+          
+          $initialValue = str_replace("|", "/", utf8_decode($view_agenda_lista_alt[0]['D040_Descricao']));
+          $CKEditor = new CKEditor();
+          $CKEditor->basePath = '/backend/public/plugins/ckeditor/';
+          CKFinder::SetupCKEditor($CKEditor, '/backend/public/plugins/ckfinder/');
+          $CKEditor->editor("age_texto", $initialValue);
+        ?>
+
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group form-group-default">
+            <div class="input-group date">
+              <label>Data</label>
+              <input type="text" id="age_data" class="form-control" value='<?php echo implode('/', array_reverse(explode('-', $view_agenda_lista_alt[0]['D040_Data'] )))." ".$view_agenda_lista_alt[0]['D040_Hora']; ?>'><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group form-group-default styleradio">
+            <label class="col-sm-3 pull-left">Destaque</label>
+            <div class="btn-group col-sm-9 pull-right" data-toggle="buttons">
+              <?php 
+                if($view_agenda_lista_alt[0]['D040_Status'] == "Sim"):
+                  $checked1 = "checked";
+                  $checked2 = "";
+                  $active1 = "active";
+                  $active2 = "";
+                elseif($view_agenda_lista_alt[0]['D040_Status'] == "Nao"):
+                  $checked1 = "";
+                  $checked2 = "checked";
+                  $active1 = "";
+                  $active2 = "active";
+                endif;
+              ?>
+              <label class="btn btn-primary <?php echo $active1; ?>">
+                <input type="radio" name="age_destaque" id="option1" autocomplete="off" value="Sim" <?php echo $checked1; ?>> Sim
+              </label>
+              <label class="btn btn-primary <?php echo $active2; ?>">
+                <input type="radio" name="age_destaque" id="option2" autocomplete="off"  value="Nao" <?php echo $checked2; ?>> Não
+              </label>
+            </div>
+          </div>
+        </div>     
+      </div>
+
+      <div class="form-group  form-group-default">
+      <label>Imagem</label>
+        <form>
+          <div id="queue"></div>
+          <input id="age_img" name="age_img_alt" type="file" multiple>
+        </form>
+        <input type="hidden" id="timestamp" value="<?php echo $timestamp = time();?>">
+        <input type="hidden" id="unique_salt" value="<?php echo md5('unique_salt' . $timestamp);?>"> 
+        <span>tam: 900px x 550px</span>
+      </div> 
+    </div>
+  </div>
+  <div class=" titleIdent"> 
+      <span id="retorno" class="col-md-10"></span><a name="bt_age_alterar" id="bt_age_alterar"  href="javascript:$('#age_img').uploadifive('upload')" class="btn btn-primary col-md-2">Alterar</a>'
+    <br>
+  </div>
+</div>
+<div id="ref" class='clearfix'></div>

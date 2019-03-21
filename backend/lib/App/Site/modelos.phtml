@@ -1,0 +1,179 @@
+
+
+  <div id="grve-feature-section" data-height="290" style="background-color: #000000;" class="grve-with-image grve-custom-size grve-bg-animated">
+
+    <div class="grve-wrapper clearfix" style="height:290px !important; ">
+
+      <div class="grve-content grve-align-center-center" data-animation="fade-in-up">
+
+        <div class="grve-container">
+
+          <div class="grve-graphic clearfix">
+
+          </div>
+
+          <div class="grve-title clearfix grve-text-light" style="margin-top:5%;">
+
+            <span>PRODUTOS</span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="grve-background-wrapper">
+
+      <div class="grve-bg-overlay color_base"></div>
+
+      <div class="grve-bg-image grve-bg-center-center" style="background-image: url(/images/config/bg/<?php echo $site_config[0]['D001_Imgfundo']; ?>);"></div>
+
+    </div>
+
+  </div>
+
+
+
+    <!-- CONTENT -->
+
+    <div id="grve-content" class="clearfix ">
+
+      <div class="grve-content-wrapper">
+
+        <!-- MAIN CONTENT -->
+
+        <div id="grve-main-content">
+
+          <div class="grve-main-content-wrapper clearfix">
+
+
+
+
+
+
+
+            <!-- PAGE CONTENT -->
+
+            <div id="page-4672" class="post-4672 page type-page status-publish hentry">
+
+              <div class="grve-section grve-fullwidth grve-bg-none grve-feature-header grve-feature-footer">  
+
+                <div class="grve-container"> 
+
+
+
+                  <div id="grve-related-post" class="grve-singular-section grve-fullwidth clearfix">
+
+                    <div class="grve-container grve-padding-top-md grve-border grve-border-top  grve-animated-item fadeInUp">
+
+                      <div class="grve-subtitle">SELECIONE UM DE NOSSOS</div>
+
+                      <h2 class="grve-related-title">MODELOS DE EMBALAGENS</h2>
+
+                      <div class="grve-related-post-wrapper">
+
+
+
+                      <?php   
+
+
+
+
+
+
+
+                      if(!empty($site_modelos["dados"])):
+
+                        foreach ($site_modelos["dados"] as $modelos):
+
+                      ?>
+
+
+
+                        <article id="grve-related-post-27" class="grve-related-item post-27 post type-post status-publish format-standard has-post-thumbnail hentry category-design category-photography tag-materials tag-project tag-clean" itemscope itemType="http://schema.org/BlogPosting">
+
+
+
+                          <a href="<?php echo str_replace("|", "/", $modelos['D011_Link']) ?>" target="_self">
+
+                            <div class="grve-content">
+
+                              <h5 class="grve-title" itemprop="name headline"><?php echo $modelos['D011_DescriCategoria'] ?></h5>
+
+                              <div class="grve-caption grve-small-text">  
+
+                                <div class="grve-subtitle">PERSONALIZADA</div>
+
+                              </div>
+
+                            </div>
+
+                          </a>
+
+
+
+                          <meta itemprop="image" content="/images/config/bg/<?php echo $site_config[0]['D001_Imgfundo']; ?>"/>
+
+                          <div class="grve-background-wrapper">
+
+                            <div class="grve-bg-image" style="background-image: url(/images/config/bg/<?php echo $site_config[0]['D001_Imgfundo']; ?>); opacity:0.3;"></div>
+
+                          </div>
+
+                        </article>
+
+
+
+
+
+                          <?php                             
+
+                          endforeach;
+
+                        endif; 
+
+                      ?>
+
+     
+
+                      </div>
+
+                    </div>
+
+                  </div>                   
+
+
+
+                </div>  
+
+                <div class="grve-background-wrapper">  </div>
+
+              </div>
+
+
+
+            </div>
+
+            <!-- END PAGE CONTENT -->
+
+
+
+            
+
+          </div>
+
+        </div>
+
+        <!-- END MAIN CONTENT -->
+
+
+
+                
+
+      </div>
+
+    </div>
+
+    <!-- END CONTENT -->

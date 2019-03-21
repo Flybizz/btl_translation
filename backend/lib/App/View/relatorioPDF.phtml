@@ -1,0 +1,80 @@
+<?php 
+//header('Content-type: application/pdf');
+//NOME RELATORIO
+$_SESSION['relatorio'] = "CLIENTE";
+$_SESSION['logo'] = $view_config[0]["D001_Logosite"];
+//CRIA A PÁGINA EM PDF
+$pdf = new App_pdf();
+$pdf->Open();
+$pdf->AliasNbPages();
+$pdf->AddPage('L','','A4');
+//POPULANDO A TABELA
+$pdf->SetFont('Arial', '', 7);
+$pdf->SetFillColor(255,255,255);
+$pdf->SetTextColor(0,0,0);
+//Table with 20 rows and 4 columns
+$pdf->SetWidths(array(10,60,40,25,40,30,35,37));
+if(isset($view_cliente)):
+  $num = 0;
+  $cargo = new App_Model_cargoModel();
+  
+	foreach ($view_cliente as $cliente):
+    $num++;
+    $vl_area = "";
+      
+    if(!empty($cliente["cli_area_negocio"])):
+      foreach ($cliente["cli_area_negocio"] as $area):       
+        $vl_area .= $area["area_nome"].", ";
+      endforeach;
+    else:
+        $rs_area = "";  
+    endif; 
+    $rs_area = substr($vl_area,0,-2);
+    $vl_contato = "";
+    
+    if(!empty($cliente["cli_contato"])):
+      foreach ($cliente["cli_contato"] as $cont):  
+        $sel_cargo = $cargo->cargoSelecionar($cont["cont_cargo"]);
+        if(!empty( $sel_cargo )):
+          $vl_contato .= $cont["cont_nome"].", ".$sel_cargo[0]["cargo_nome"].", ".$cont["cont_telemovel"].", ".$cont["cont_email"]." | ";
+        else:
+          $vl_contato .= $cont["cont_nome"].", ".$cont["cont_telemovel"].", ".$cont["cont_email"]." | ";
+        endif;
+      endforeach;
+    else:
+        $vl_contato = "";  
+    endif; 
+    $rs_contato = substr($vl_contato,0,-2);
+    if($num % 2 == 0):
+        $pdf->SetFillColor(235,235,235);
+    else:
+        $pdf->SetFillColor(255,255,255);
+    endif;
+    
+    $pdf->Rowclient(array(
+      $num,
+      str_replace("|", "/", utf8_decode($cliente["cli_nome"])),
+      str_replace("|", "/", utf8_decode($cliente["cli_rua"])),
+      str_replace("|", "/", utf8_decode($cliente["cli_localidade"])),      
+      str_replace("|", "/", strtolower(utf8_decode($cliente["cli_email"]))),
+      str_replace("|", "/", utf8_decode($cliente["cli_telefone"])),
+      utf8_decode($rs_area),
+      utf8_decode($rs_contato)
+      ));
+	endforeach;
+	if(empty($view_cliente)):
+   		$pdf->Cell(277, 6, "Não existe registo", 1);
+   		$pdf->Ln();
+  	endif;
+endif;
+$pdf->Ln(10);
+$pdf->Cell(277, 6,utf8_decode("INFORMAÇÃO DA PESQUISA:"),"B",1,'L');
+$pdf->Ln(3);
+if(!empty($view_pesquisa)):
+	foreach ($view_pesquisa as $key => $pesq):
+	  $pdf->Cell(55,5, strtoupper($key).': '.utf8_decode($pesq),0,1,'L');  
+	endforeach;
+endif;
+//FORÇA O DOWNLOAD PELO BROWSER
+$pdf->Output($_SERVER['DOCUMENT_ROOT'].'/backend/public/pdf/relatorio_cliente.pdf', 'F');
+?>

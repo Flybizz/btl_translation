@@ -1,0 +1,497 @@
+<router base="usuario/registar">
+
+<header class="page-header">
+
+    <h2>Utilizador</h2>
+
+
+
+    <div class="right-wrapper text-right">
+
+        <?php $LANGUAGE_DEFAULT = unserialize(LANGUAGE_DEFAULT); ?>
+
+        <a name="bt_usu_cadastrar" id="bt_usu_cadastrar"  href="javascript:$('#usu_img').uploadifive('upload')" class="mb-1 mt-3 ml-2 mr-1 btn btn-xs btn-primary"><strong>Gravar</strong></a>
+
+        <a href="/backend/usuario/listar/lang/<?php echo $LANGUAGE_DEFAULT[0]; ?>" class="mb-1 mt-3 mr-1 ml-1 btn btn-xs btn-default"><strong>Voltar</strong></a>
+
+        <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-calendar"></i></a>
+
+    </div>
+
+</header>
+
+
+
+<!-- start: file -->
+
+
+
+<section class="card">
+
+    <div class="card-body">
+
+        <div class="invoice">
+
+            <header class="clearfix">
+
+                <div class="row">
+
+                    <div class="col-sm-6 mt-3">
+
+                        <h2 class="h2 mt-0 mb-4 text-dark font-weight-bold">Criar Utilizador</h2>
+
+                        <!-- <h4 class="h4 m-0 text-dark font-weight-bold">#76598345</h4> -->
+
+                    </div>
+
+                    <div class="col-sm-6 mt-3">
+
+                        <div class="m-0 mb-4 pull-right">
+
+                          
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+
+
+            <div class="row">
+
+              <div class="col-md-8">
+
+                <section class="card mb-4">
+
+                  <header class="card-header">
+
+                    <h2 class="card-title">Principal</h2>
+
+                  </header>
+
+                  <div class="card-body">
+
+                    <form class="form-horizontal form-bordered" method="post">
+
+
+
+                      <div class="form-group row">
+
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="usu_nome">Nome</label>
+
+                        <div class="col-lg-9">
+
+                          <input type="text" id="usu_nome" class="form-control">
+
+                        </div>
+
+                      </div>
+
+
+
+                      <div class="form-group row">
+
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="usu_funcao">Função</label>
+
+                        <div class="col-lg-9">
+
+                          <input type="text" id="usu_funcao" class="form-control">
+
+                        </div>
+
+                      </div>
+
+            
+
+                      <div class="form-group row">
+
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="usu_texto">Observação</label>
+
+                        <div class="col-lg-9">                        
+
+                          <!-- <textarea class="form-control" name="fil_texto" id="fil_texto"></textarea> -->
+
+                          <?php
+
+                            require_once $_SERVER['DOCUMENT_ROOT']."/backend/public/vendor/ckeditor/ckeditor.php";
+
+                            require_once $_SERVER['DOCUMENT_ROOT']."/backend/public/vendor/ckfinder/ckfinder.php";
+
+                            
+
+                            $initialValue = "";
+
+                            $CKEditor = new CKEditor();
+
+                            $CKEditor->basePath = '/backend/public/vendor/ckeditor/';
+
+                            CKFinder::SetupCKEditor($CKEditor, '/backend/vendor/plugins/ckfinder/');
+
+                            $CKEditor->editor("usu_texto", $initialValue);
+
+                          ?>
+
+                        </div>
+
+                      </div>
+
+                   
+
+                      <div class="form-group row">
+
+             
+
+                        <label class="col-sm-3 control-label text-sm-right pt-2">Status</label>
+
+                        <div class="btn-group col-sm-9 pull-right" data-toggle="buttons">
+
+                       
+
+                          <label class="btn btn-primary ">
+
+                            <input type="radio" name="usu_status" id="option1" autocomplete="off" value="Sim"> Ativo
+
+                          </label>
+
+                          <label class="btn btn-primary active">
+
+                            <input type="radio" name="usu_status" id="option2" autocomplete="off"  value="Nao" checked> Inativo
+
+                          </label>
+
+                        </div>
+
+
+
+                      </div>
+
+                         
+
+                    </form>
+
+                  </div>
+
+
+
+                  <header class="card-header">
+
+                    <h2 class="card-title">Localização</h2>
+
+                  </header>
+
+                  <div class="card-body">
+
+
+
+                    <div class="form-group row">
+
+                      <label class="col-lg-3 control-label text-lg-right pt-2" for="usu_morada">Morada</label>
+
+                      <div class="col-lg-9">
+
+                        <input type="text" id="usu_morada" class="form-control">
+
+                      </div>
+
+                    </div>
+
+
+
+                    <div class="form-group row">
+
+                      <label class="col-lg-3 control-label text-lg-right pt-2" for="usu_localidade">Localidade</label>
+
+                      <div class="col-lg-9">
+
+                        <input type="text" id="usu_localidade" class="form-control">
+
+                      </div>
+
+                    </div>
+
+
+
+                    <div class="form-group row">
+
+                      <label class="col-lg-3 control-label text-lg-right pt-2" for="usu_distrito">Distrito</label>
+
+                      <div class="col-lg-9">
+
+                        <input type="text" id="usu_distrito" class="form-control">
+
+                      </div>
+
+                    </div>
+
+
+
+                    <div class="form-group row">
+
+                      <label class="col-lg-3 control-label text-lg-right pt-2" for="usu_cp">CP</label>
+
+                      <div class="col-lg-9">
+
+                        <input type="text" id="usu_cp" class="form-control">
+
+                      </div>
+
+                    </div>
+
+                
+
+                  </div>
+
+
+
+                  <header class="card-header">
+
+                    <h2 class="card-title">Contactos</h2>
+
+                  </header>
+
+                  <div class="card-body">
+
+
+
+                    <div class="form-group row">
+
+                      <label class="col-lg-3 control-label text-lg-right pt-2" for="usu_telefone">Telefone</label>
+
+                      <div class="col-lg-9">
+
+                        <input type="text" id="usu_telefone" class="form-control">
+
+                      </div>
+
+                    </div>
+
+                    <div class="form-group row">
+
+                      <label class="col-lg-3 control-label text-lg-right pt-2" for="usu_telemovel">Telemóvel</label>
+
+                      <div class="col-lg-9">
+
+                        <input type="text" id="usu_telemovel" class="form-control">
+
+                      </div>
+
+                    </div>
+
+                    <div class="form-group row">
+
+                      <label class="col-lg-3 control-label text-lg-right pt-2" for="usu_email">Email</label>
+
+                      <div class="col-lg-9">
+
+                        <input type="text" id="usu_email" class="form-control">
+
+                      </div>
+
+                    </div>
+
+                    <div class="form-group row">
+
+                      <label class="col-lg-3 control-label text-lg-right pt-2" for="usu_website">Website</label>
+
+                      <div class="col-lg-9">
+
+                        <input type="text" id="usu_website" class="form-control">
+
+                      </div>
+
+                    </div>
+
+                  
+
+                  </div> 
+
+
+
+                </section>
+
+
+
+              </div>
+
+              <div class="col-md-4">
+
+                <section class="card mb-4">
+
+                    <header class="card-header">
+
+                      <h2 class="card-title">Dados de acesso</h2>
+
+                    </header>
+
+                    <div class="card-body">
+
+
+
+                      <div class="form-group row">
+
+                          <label class="col-lg-12 control-label text-lg-left pt-2">Email</label>
+
+                          <div class="col-lg-12">
+
+                            <input type="text" id="usu_login" class="form-control">
+
+                          </div>
+
+                      </div> 
+
+                      <div class="form-group row">
+
+                          <label class="col-lg-12 control-label text-lg-left pt-2">Senha</label>
+
+                          <div class="col-lg-12">
+
+                            <input type="password" id="usu_senha" class="form-control">
+
+                          </div>
+
+                      </div>  
+
+                      <div class="form-group row">
+
+                          <label class="col-lg-12 control-label text-lg-left pt-2">Confirmação Senha</label>
+
+                          <div class="col-lg-12">
+
+                            <input type="password" id="usu_confsenha" class="form-control">
+
+                            <span id="msgSenha" class="obg" style="padding-left:3px; padding-top:5px;"></span>
+
+                          </div>
+
+                      </div>   
+
+
+
+                      <div class="form-group row">
+
+
+
+                        <label class="col-sm-12 control-label text-sm-left pt-2">Nivel</label>
+
+                        <div class="col-lg-12"> 
+
+                          <select id="usu_nivel" class="form-control">
+
+                            <option value="0">SELECIONE</option>
+
+                            <?php
+
+                                if(!empty($view_usuario_nivel)):
+
+                                    foreach ($view_usuario_nivel as $nivel):                    
+
+                                      echo  '<option value="'.$nivel['niv_id'].'">'.$nivel['niv_nome'].'</option>';
+
+                                    endforeach;
+
+                                endif; ?>
+
+                          </select>
+
+                        </div>
+
+                      </div>   
+
+          
+
+                      <hr>
+
+
+
+                      <!--div class="form-group row">
+
+                        <h5 class="control-label text-sm-right pt-2">Tipo de Página</h5>
+
+                        <select id="usu_controller" class="form-control" required disabled>
+
+                        <option value="0"></option> 
+
+                        <?php
+
+                        if(isset($view_modulo)):
+
+                            foreach ($view_modulo as $modulo):
+
+                                if($modulo["mod_modulo"] == "usuario"):
+
+                                  echo  '<option value="'.$modulo["mod_modulo"].'" selected>'.$modulo["mod_titulo"].'</option>';
+
+                                else:
+
+                                  echo  '<option value="'.$modulo["mod_modulo"].'" >'.$modulo["mod_titulo"].'</option>';
+
+                                endif;
+
+                            endforeach;
+
+                        endif; ?>
+
+                        </select>
+
+                      </div> 
+
+
+
+                      <hr-->
+
+
+
+                      <div class="form-group row">
+
+    
+
+                        <label class="col-sm-3 control-label text-sm-right pt-2">Imagem</label>
+
+                        <div class="col-sm-9 media-gallery">
+
+                          <div id="queue" class="mt-3 mb-3"></div>
+
+                          <input id="usu_img" name="usu_img" type="file" multiple>
+
+                          <input type="hidden" id="timestamp" value="<?php echo $timestamp = time();?>">
+
+                          <input type="hidden" id="unique_salt" value="<?php echo md5('unique_salt' . $timestamp);?>">                         
+
+                          <!-- <span class="pull-right">tam: 1920px x 480px</span> -->
+
+
+
+                        </div> 
+
+
+
+                    </div>       
+
+
+
+                    </div>
+
+                  </section>
+
+                </div>
+
+            </div>  
+
+            
+
+            <div id="ref" class='clearfix'></div>  
+
+            <span id="retorno" class="col-md-10"></span>            
+
+            <a name="bt_usu_cadastrar" id="bt_usu_cadastrar"  href="javascript:$('#usu_img').uploadifive('upload')" class="btn btn-primary col-md-2 pull-right">Gravar</a>
+
+               
+
+        </div>
+
+    </div>
+
+</section>

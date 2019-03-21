@@ -1,0 +1,75 @@
+<!-- Page Header -->
+<div class="page-header bg-dark">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <!-- Page Header Wrapper -->
+                <div class="page-header-wrapper">
+                    <!-- Title & Sub Title -->
+                    <h3 class="title">Área de Estudo </h3>
+                    <!-- <h6 class="sub-title">All you want know</h6> -->
+                    <ol class="breadcrumb">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="active">Área de Estudo</li>
+                    </ol><!-- Breadcrumb -->
+                </div><!-- Page Header Wrapper -->
+            </div><!-- Coloumn -->
+        </div><!-- Row -->
+    </div><!-- Container -->
+</div><!-- Page Header -->
+
+<div role="main" class="main shop">
+    <div class="page-default bg-grey typo-dark">
+        <!-- Container -->
+        <div class="container">
+        
+            <div class="row shop-forms">
+                <div class="col-sm-12">
+                    <div class="content-box shadow bg-white text-center">
+                        <h4><?php echo $site_curso[0]['D016_Nome']; ?></h4>
+                        <h5><?php echo $site_disciplina[0]['D016_Titulo']; ?></h5>
+                    </div>  
+                </div>
+            </div>
+            
+            <div class="row shop-forms margin-top-30">
+          
+                
+                <!-- Timeline Container -->
+                <div id="universh-timeline" class="universh-container">
+                    <!-- Start -->
+                    <div class="universh-timeline-img"><span><i class="icofont icofont-read-book" style="font-size: 30px;"></i></span></div>
+
+                    <?php foreach ($site_aulas as $aulas): ?>
+
+                    <!-- Wrapper -->
+                    <div class="universh-timeline-block">
+                        <div class="universh-timeline-img bg-green"><i class="icofont icofont-files" style="font-size: 30px;"></i></div>
+                        <!-- Timeline Image -->
+                        <div class="universh-timeline-content">
+                            <h5>Aula <?php echo $aulas['ordem']; ?></h5>
+                            <p> <?php echo $aulas['titulo']; ?></p>
+                            <?php if (!empty($aulas['arquivo'])): ?>
+                                
+                            
+                            <a href="/images/aula/<?php echo $aulas['disciplina']; ?>/<?php echo $aulas['arquivo']; ?>" class="btn">Baixar PDF</a>
+                            <?php else: ?>
+                                <a href="javascript:;" class="btn">Em Breve o PDF estará disponível</a> 
+                            <?php endif; ?>
+                            <span class="universh-date"><?php echo $aulas['data']; ?></span>
+                        </div><!-- Timeline Content -->
+                    </div><!-- Wrapper -->
+
+
+                    <?php endforeach; ?>
+            
+
+
+                </div><!-- Timeline Container -->
+        
+
+                
+            </div><!-- Row -->
+        </div><!-- Container -->
+    </div><!-- Page Default -->
+</div><!-- Page Main -->

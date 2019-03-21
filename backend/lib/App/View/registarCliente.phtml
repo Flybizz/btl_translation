@@ -1,0 +1,399 @@
+<router base="cliente/registar">
+<?php $LANGUAGE_DEFAULT = unserialize(LANGUAGE_DEFAULT); ?>
+<input type="hidden" id="idioma" class="icon" value="<?php echo $LANGUAGE_DEFAULT[0]; ?>" />
+<?php $config = unserialize (CONFIG_DB); ?>
+<input type="hidden" id="dominio" value="<?php echo $config[0]['D001_Site'];?>">
+<header class="page-header">
+    <h2><?php echo translate(LABEL_CLIENTES) ?></h2>
+    <div class="right-wrapper text-right">
+        <?php $LANGUAGE_LIST = unserialize(LANGUAGE_LIST); ?>
+        <a name="bt_cliente_cadastrar" id="bt_cliente_cadastrar"  href="javascript:$('#img').uploadifive('upload')" class="mb-1 mt-3 ml-2 mr-1 btn btn-xs btn-primary"><strong>Gravar</strong></a>
+        <a href="/backend/cliente/listar/lang/<?php echo $LANGUAGE_DEFAULT[0]; ?>" class="mb-1 mt-3 mr-1 ml-1 btn btn-xs btn-default"><strong>Voltar</strong></a>
+        <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-calendar"></i></a>
+    </div>
+</header>
+
+<!-- start: page -->
+
+<?php 
+require_once $_SERVER['DOCUMENT_ROOT']."/backend/public/vendor/ckeditor/ckeditor.php";
+require_once $_SERVER['DOCUMENT_ROOT']."/backend/public/vendor/ckfinder/ckfinder.php";
+$CKEditor = new CKEditor();
+$CKEditor->basePath = '/backend/public/vendor/ckeditor/';
+CKFinder::SetupCKEditor($CKEditor, '/backend/public/vendor/ckfinder/');
+?>
+
+<section class="card">
+  <div class="card-body">
+    <div class="invoice">
+      <header class="clearfix">
+          <div class="row">
+              <div class="col-sm-6 mt-3">
+                  <h2 class="h2 mt-0 mb-4 text-dark font-weight-bold">Registar Cliente</h2>
+              </div>
+              <div class="col-sm-6 mt-3">
+              </div>
+          </div>
+      </header>
+
+      <div class="row">
+        <div class="col-xl-6 col-md-12">
+          <section class="card mb-4">
+            <header class="card-header">
+              <h2 class="card-title">Dados Pessoais</h2>
+            </header>
+            <div class="card-body">
+              <form class="form-horizontal form-bordered" method="post">
+       
+                <?php $referencia = rand(10000, 9999999); ?>
+       
+                <div class="form-group row">
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Referência</label>
+                  <div class="col-lg-9">
+                    <input type="text" id="cli_referencia" class="form-control" value="<?php echo $referencia;?>" disabled>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Saudação</label>
+                  <div class="col-lg-9">
+                    <select id="cli_saudacao" class="form-control">
+                      <?php
+                        $arr_referencia = Array(0 => "Nenhum", 1 => "Sr.", 2 => "Sra.", 3 => "Srta.", 4 => "Dr.", 5 => "Dra." );
+                        foreach ($arr_referencia as $chave => $saudacao): 
+                            echo  '<option value="'.$chave.'" >'.$saudacao.'</option>';
+                        endforeach;
+                      ?>                    
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Nome Completo</label>
+                  <div class="col-lg-9">
+                    <input type="text" id="cli_nome" class="form-control" required>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Telefone</label>
+                  <div class="col-lg-9">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="fa fa-phone"></i>
+                      </span>
+                      <input id="cli_telefone" type="text" class="form-control" required>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Email</label>
+                  <div class="col-lg-9">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="fa fa-envelope"></i>
+                      </span>
+                      <input id="cli_email" type="text" class="form-control" required>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Website</label>
+                  <div class="col-lg-9">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="fa fa-globe"></i>
+                      </span>
+                      <input id="cli_url" type="text" class="form-control" required>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">NIF / NIPC</label>
+                  <div class="col-lg-9">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="fa fa-id-card-o"></i>
+                      </span>
+                      <input id="cli_nif" type="text" class="form-control" required>
+                    </div>
+                  </div>
+                </div>
+
+              </form>
+            </div>  
+
+            <header class="card-header">
+              <h2 class="card-title">Endereço</h2>
+            </header>
+            <div class="card-body">
+              <form class="form-horizontal form-bordered">
+                
+                <div class="form-group row">
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Morada</label>
+                  <div class="col-lg-9">
+                    <input type="text" id="cli_rua" class="form-control" required>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Número</label>
+                  <div class="col-lg-9">
+                    <input type="text" id="cli_numero" class="form-control" required>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Andar</label>
+                  <div class="col-lg-9">
+                    <input type="text" id="cli_andar" class="form-control" required>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">CP</label>
+                  <div class="col-lg-9">
+                    <input type="text" id="cli_cp" class="form-control" required>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Localidade</label>
+                  <div class="col-lg-9">
+                    <input type="text" id="cli_localidade" class="form-control" required>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Distrito</label>
+                  <div class="col-lg-9">
+                    <select class="form-control" id="cli_distrito">
+                        <option value="0"></option>
+                        <?php
+                        if(!empty($view_distrito)):                 
+                            foreach ($view_distrito as $distrito): 
+                                echo  '<option value="'.$distrito['cod_distrito'].'" >'.$distrito['nome_distrito'].'</option>';                              
+                            endforeach;
+                        endif; 
+                        ?>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Descrição</label>
+                  <div class="col-lg-9">
+                    <?php
+                      $initialValue = "";
+                      $CKEditor->editor("cli_descricao", $initialValue);
+                    ?>
+                  </div>
+                </div>               
+
+              </form>
+            </div>  
+          </section>            
+        </div>
+
+        <div class="col-xl-6 col-md-12">
+          <section class="card mb-4">
+              <header class="card-header">
+              <h2 class="card-title">Informações Gerais </h2>
+            </header>
+            <div class="card-body">
+              <form class="form-horizontal form-bordered" method="post">
+
+                <div class="form-group row">
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Tipo de cliente</label>
+                  <div class="col-lg-9">
+                    <select id="cli_tipo" class="form-control">
+                        <option value="0"></option>
+                        <?php
+                        if(!empty($view_tipo)):                 
+                            foreach ($view_tipo as $tipo): 
+                              echo  '<option value="'.$tipo['tipo_id'].'" >'. str_replace("|", "/", $tipo['tipo_nome']).'</option>';                              
+                            endforeach;
+                        endif; 
+                        ?>
+                    </select>
+                  </div>
+                </div>       
+
+                <div class="form-group row">
+                  <label class="col-lg-3 control-label text-lg-right pt-2">Área de negócio</label>
+                  <div class="col-lg-6">
+                    <div class="input-group btn-group">
+                      <span class="input-group-addon">
+                        <i class="fa fa-th-list"></i>
+                      </span>
+                      <select class="form-control" multiple="multiple" data-plugin-multiselect data-plugin-options='{ "maxHeight": 200 }' id="cli_area">
+                      <?php
+                      if(!empty($view_area)):
+                          $arr_area_1 = explode(",", $view_cliente_lista_alt[0]['cli_area_negocio'] );
+                          foreach ($view_area as $area): 
+                            echo  '<option value="'.$area['area_id'].'" >'.$area['area_nome'].'</option>';                            
+                          endforeach;
+                      endif; 
+                      ?>
+                      </select>
+                    </div>
+                  </div>
+                </div>         
+
+                <div class="form-group row">
+                  <label class="col-lg-3 control-label text-lg-right pt-2">Produtos</label>
+                  <div class="col-lg-6">
+                    <div class="input-group btn-group">
+                      <span class="input-group-addon">
+                        <i class="fa fa-th-list"></i>
+                      </span>
+                      <select class="form-control" multiple="multiple" data-plugin-multiselect data-plugin-options='{ "maxHeight": 200 }' id="cli_produto">
+                      <?php
+                      if(!empty($view_produto)):                          
+                          foreach ($view_produto as $produto): 
+                            echo  '<option value="'.$produto['prod_id'].'" >'.$produto['prod_nome'].'</option>';                            
+                          endforeach;
+                      endif; 
+                      ?>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-lg-3 control-label text-lg-right pt-2">Vendedores Associados</label>
+                  <div class="col-lg-6">
+                    <div class="input-group btn-group">
+                      <span class="input-group-addon">
+                        <i class="fa fa-th-list"></i>
+                      </span>
+                      <select class="form-control" multiple="multiple" data-plugin-multiselect data-plugin-options='{ "maxHeight": 200 }' id="cli_associado">
+                      <?php
+                      if(!empty($view_vendedor)):
+                          foreach ($view_vendedor as $vendedor): 
+                            if($vendedor['usu_id'] != $_SESSION['id_usuario']):
+
+                            echo '<option value="'.$vendedor['usu_id'].'" >'.$vendedor['usu_nome'].'</option>';                            
+
+                            endif;
+                          endforeach;
+                      endif; 
+                      ?>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                
+
+                <div class="form-group row" style="display: <?php echo $_SESSION["nivel_acesso"] < 3 ? "flex" : "none"; ?>">
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Vendedor</label>
+                  <div class="col-lg-9">
+                    <select id="cli_vendedor" class="form-control">
+                        <option value="0"></option>
+                        <?php
+                        if(!empty($view_vendedor)):                 
+                            foreach ($view_vendedor as $vendedor): 
+                              if($vendedor['usu_id'] == $_SESSION['id_usuario']):
+                                echo '<option value="'.$vendedor['usu_id'].'" selected>'.$vendedor['usu_nome'].'</option>';                            
+                              else:
+                                echo '<option value="'.$vendedor['usu_id'].'">'.$vendedor['usu_nome'].'</option>';                              
+                              endif;                                                          
+                            endforeach;
+                        endif; 
+                        ?>
+                    </select>
+                  </div>
+                </div> 
+
+                <div class="form-group row">
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Status</label>
+                  <div class="col-lg-9">
+
+                    <div class="btn-group" data-toggle="buttons">
+                      <label class="btn btn-primary active" aria-pressed="true">
+                        <input type="radio" name="cli_status" id="option1" value="sim" checked> Ativo
+                      </label>
+                      <label class="btn btn-primary" aria-pressed="true">
+                        <input type="radio" name="cli_status" id="option2" value="nao"> Inativo
+                      </label>
+
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group row" style="display:none;">
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">RGPD</label>
+                  <div class="col-lg-9">
+                      <div class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-primary active" aria-pressed="true">
+                          <input type="radio" name="cli_rgpd" id="option1" value="" checked> ?
+                        </label>
+                        <label class="btn btn-primary" aria-pressed="true">
+                          <input type="radio" name="cli_rgpd" id="option2" value="true"> Concordo
+                        </label>
+                        <label class="btn btn-primary" aria-pressed="true">
+                          <input type="radio" name="cli_rgpd" id="option3" value="false"> Não concordo
+                        </label>
+                      </div>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-sm-3 control-label text-sm-right pt-2">
+                    <p class="p-0 m-0">Logótipo</p>
+                    <span class="pull-right"> 250 x 250 (px)</span>
+                  </label>
+                  <div class="col-sm-9 media-gallery">
+                    <div id="queue" class="mt-3 mb-3"></div>
+                    <input id="img" name="img" type="file" multiple>
+                    <input type="hidden" id="timestamp" value="<?php echo $timestamp = time();?>">
+                    <input type="hidden" id="unique_salt" value="<?php echo md5('unique_salt' . $timestamp);?>">
+                    <!-- <span class="pull-right">tam: 1920px x 480px</span> -->
+                  </div>
+                </div>
+
+              </form>
+            </div>
+
+            <header class="card-header">
+              <h2 class="card-title">Contactos</h2>
+            </header>
+            <div class="card-body">
+              <form class="form-horizontal form-bordered">
+
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div id="new_contato"></div>  
+                  </div>        
+                </div>
+
+                <div class="row mt-4">
+                  <div class="col-md-12 ml-0 pl-0">
+                    <div class="col-md-2">
+                      <button class="btn btn-primary" id='add_contato'><i class="fa fa-plus fa-lg"></i> Adicionar Contato</button>
+                    </div>           
+                  </div>        
+                </div>
+
+                <br>
+                <br>
+
+              </form>
+            </div>  
+          </section>
+        </div>
+      </div>  
+      
+      <div id="ref" class='clearfix'></div>  
+      <span id="retorno" class="col-md-10"></span>            
+      <a name="bt_cliente_cadastrar" id="bt_cliente_cadastrar"  href="javascript:$('#img').uploadifive('upload')" class="btn btn-primary col-md-2 pull-right">Gravar</a>
+         
+    </div>
+  </div>
+</section>
+
+<!-- end: page -->

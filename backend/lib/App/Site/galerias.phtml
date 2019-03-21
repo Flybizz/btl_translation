@@ -1,0 +1,68 @@
+     <div class="nk-header-title nk-header-title-parallax nk-header-title-parallax-opacity">
+        <div class="bg-image">
+              <div style="background-image: url('/images/config/bg/<?php echo trim($site_config[0]['D001_Imgfundo']); ?>');"></div>
+          </div>
+          <div class="nk-header-table">
+            <div class="nk-header-table-cell">
+              <div class="container">                                
+                <h1 class="nk-title">GALLERY</h1>  
+                <!-- <h2 class="nk-sub-title">Optional Sub Title</h2> -->       
+              </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="nk-gap-4"></div>
+
+    <div class="container">
+        <div class="nk-isotope nk-isotope-gap nk-isotope-3-cols">
+
+            <?php if (!empty($site_galerias)): $num = 0; ?>
+            <?php foreach ($site_galerias as $galeria): 
+
+                if($num % 2 == 0):
+                    $direct1 =  "col-md-push-4";
+                    $direct2 =  "col-md-pull-8";
+                else: 
+                    $direct1 =  "";
+                    $direct2 =  "";
+                endif;
+
+                $num++;
+
+            ?> 
+            
+            <div class="nk-portfolio-item nk-isotope-item">
+                <div class="nk-image-box-1-a">
+                     <?php if(!empty($galeria['D011_Imagem'])): ?>
+                        <img src="/images/galeria/<?php echo $galeria['D011_Uid']; ?>/<?php echo $galeria['D011_Imagem']; ?>" class="nk-portfolio-image img-responsive" alt="<?php echo $galeria['D011_Titulo']; ?>">                                
+                    <?php else: ?>
+                        <img src="/imagem/sem_imagem.jpg" class="nk-portfolio-image img-responsive" alt="<?php echo $galeria['D011_Titulo']; ?>">
+                    <?php endif ?>
+                    <div class="nk-image-box-overlay nk-image-box-center">
+                        <div>
+                            <a href="/galeria/link/<?php echo $galeria['D011_Chave']; ?>" class="nk-image-box-icon-btn"><span class="fa fa-link"></span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="nk-image-box-bottom-info">
+                    <h2 class="nk-portfolio-title nk-post-title h4"><a href="/galeria/link/<?php echo $galeria['D011_Chave']; ?>"><?php echo $galeria['D011_Titulo']; ?></a></h2>
+                    <div class="nk-post-meta">                       
+                        <div class="nk-post-date">
+                            <!-- June 10, 2017 -->
+                        </div>
+                    </div>
+                </div>
+            </div>  
+
+            <?php endforeach; ?>
+            <?php endif; ?>                          
+
+        </div>
+
+        <!-- <div class="nk-pagination nk-pagination-center">
+            <a href="#!" class="nk-btn nk-btn-sm nk-btn-circle nk-btn-color-dark-1">Load More ...</a>
+        </div> -->
+    </div>
+
+    <div class="nk-gap-4"></div>

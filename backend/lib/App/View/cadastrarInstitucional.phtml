@@ -1,0 +1,198 @@
+<router base="institucional/registar">
+<header class="page-header">
+    <h2>Quem Somos</h2>
+
+    <div class="right-wrapper text-right">
+        <ol class="breadcrumbs">
+            <li>
+                <a href="/">
+                    <i class="fa fa-home"></i>
+                </a>
+            </li>
+            <li><span>Home</span></li>
+            <li><span>Quem Somos</span></li>
+        </ol>
+
+        <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-calendar"></i></a>
+    </div>
+</header>
+
+<!-- start: inste -->
+
+<section class="card">
+    <div class="card-body">
+        <div class="invoice">
+            <header class="clearfix">
+                <div class="row">
+                    <div class="col-sm-6 mt-3">
+                        <h2 class="h2 mt-0 mb-4 text-dark font-weight-bold">Criar Conteúdo</h2>
+                        <!-- <h4 class="h4 m-0 text-dark font-weight-bold">#76598345</h4> -->
+                    </div>
+                    <div class="col-sm-6 mt-3">
+                        <div class="m-0 mb-4 pull-right">
+                            <a href="/backend/institucional/listar" class="mb-1 mt-1 mr-1 btn btn-primary"><strong>Voltar</strong></a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="row">
+              <div class="col-md-8">
+                <section class="card mb-4">
+                  <header class="card-header">
+                    <h2 class="card-title">Principal</h2>
+                  </header>
+                  <div class="card-body">
+                    <form class="form-horizontal form-bordered" method="post">
+
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Título</label>
+                        <div class="col-lg-9">
+                          <input type="text" id="inst_titulo" class="form-control">
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="textareaDefault">Breve descrição</label>
+                        <div class="col-lg-9">
+                          <textarea class="form-control" id="inst_chamada" rows="3" data-plugin-maxlength maxlength="140"></textarea>
+                          <p>
+                            <code>max-length</code> set to 140.
+                          </p>
+                        </div>
+                      </div>
+            
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Descrição detalhada</label>
+                        <div class="col-lg-9">                        
+                          <!-- <textarea class="form-control" name="inst_texto" id="inst_texto"></textarea> -->
+                          <?php
+                            require_once $_SERVER['DOCUMENT_ROOT']."/backend/public/vendor/ckeditor/ckeditor.php";
+                            require_once $_SERVER['DOCUMENT_ROOT']."/backend/public/vendor/ckfinder/ckfinder.php";
+                            
+                            $initialValue = "";
+                            $CKEditor = new CKEditor();
+                            $CKEditor->basePath = '/backend/public/vendor/ckeditor/';
+                            CKFinder::SetupCKEditor($CKEditor, '/backend/vendor/plugins/ckfinder/');
+                            $CKEditor->editor("inst_texto", $initialValue);
+                          ?>
+                        </div>
+                      </div>
+                   
+                      <div class="form-group row">
+             
+                        <label class="col-sm-3 control-label text-sm-right pt-2">Em status</label>
+                        <div class="btn-group col-sm-9 pull-right" data-toggle="buttons">
+                       
+                          <label class="btn btn-primary ">
+                            <input type="radio" name="inst_destaque" id="option1" autocomplete="off" value="Sim"> Sim
+                          </label>
+                          <label class="btn btn-primary active">
+                            <input type="radio" name="inst_destaque" id="option2" autocomplete="off"  value="Nao" checked> Não
+                          </label>
+                        </div>
+
+                      </div>
+
+                      <div class="form-group row">
+    
+                        <label class="col-sm-3 control-label text-sm-right pt-2">Imagem</label>
+                        <div class="col-sm-9 media-gallery">
+                          <div id="queue" class="mt-3 mb-3"></div>
+                          <input id="inst_img" name="inst_img" type="file" multiple>
+                          <input type="hidden" id="timestamp" value="<?php echo $timestamp = time();?>">
+                          <input type="hidden" id="unique_salt" value="<?php echo md5('unique_salt' . $timestamp);?>">                         
+                          <!-- <span class="pull-right">tam: 1920px x 480px</span> -->
+
+                        </div> 
+
+                      </div> 
+                
+                    </form>
+                  </div>
+                </section>            
+              </div>
+              <div class="col-md-4">
+                <section class="card mb-4">
+                    <header class="card-header">
+                      <h2 class="card-title">Otimização para Motores de Pesquisa – SEO</h2>
+                    </header>
+                    <div class="card-body">
+
+                      <div class="form-group row">
+                          <label class="col-lg-12 control-label text-lg-left pt-2">Título</label>
+                          <div class="col-lg-12">
+                            <input type="text" id="inst_titulo_seo" class="form-control">
+                          </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-lg-12 control-label text-lg-left pt-2">Descrição</label>  
+                        <div  class="col-lg-12">     
+                            <textarea class="form-control" id="inst_descricao_seo" rows="7"></textarea>
+                        </div> 
+                      </div>
+
+                      <div class="form-group row">
+                          <label class="col-lg-12 control-label text-lg-left pt-2">Slug</label>
+                          <div class="col-lg-12">
+                            <input type="text" id="inst_slug_seo" class="form-control">
+                          </div>
+                      </div>
+
+                      <div class="form-group row">
+                          <label class="col-lg-12 control-label text-lg-left pt-2"><i class="icofont icofont-key"></i> Palavra-chave principal</label>
+                          <div class="col-lg-12">
+                            <input type="text" id="inst_key_seo" class="form-control" >
+                          </div>
+                      </div>
+
+                      <hr>
+
+                      <div class="col-md-12 checklis_seo">
+                        <h5>Análise - SEO</h5>
+                        <ul>
+                          <li id="seo_title" style="color: #FF0000;"><i class='icofont icofont-close-circled'></i> - A meta título não está em bom tamanho.</li>
+                          <li id="seo_description" style="color: #FF0000;"><i class='icofont icofont-close-circled'></i> - A meta descrição não está em bom tamanho.</li>
+                          <li id="seo_slug" style="color: #FF0000;"><i class='icofont icofont-close-circled'></i> - A meta slug não está em bom tamanho.</li>
+                          <li id="seo_key" style="color: #ee7c1b;"><i class='icofont icofont-exclamation-circle'></i> - Não há palavra-chave principal definida para esta página. Se não definir uma, não pode ser calculado nenhuma classificação.</li>
+
+                          <li id="seo_key_title" style="color: #ee7c1b;"><i class='icofont icofont-exclamation-circle'></i> - A palavra-chave principal não aparece no TÍTULO desta página.</li>
+                          <li id="seo_key_description" style="color: #ee7c1b;"><i class='icofont icofont-exclamation-circle'></i> - A palavra-chave principal não aparece na DESCRIÇÃO desta página.</li>
+                          <li id="seo_key_slug" style="color: #ee7c1b;"><i class='icofont icofont-exclamation-circle'></i> - A palavra-chave principal não aparece no SLUG desta página.</li>
+                        </ul>
+                      </div>
+
+                      <div class="form-group row">
+                        <h5 class="control-label text-sm-right pt-2">Tipo de Página</h5>
+                        <select id="inst_controller" class="form-control" required disabled>
+                        <option value="0"></option> 
+                        <?php
+                        $controller = array("institucional" => "Quem Somos","noticias" => "Blog","servicos" => "Serviços","index" => "Homeinste","portfolios" => "Portfolio","contato" => "Contacto");
+                        if(isset($controller)):
+                            foreach ($controller as $ctrl => $tipo):
+                                if($ctrl == "institucional"):
+                                  echo  '<option value="'.$ctrl.'" selected>'.$tipo.'</option>';
+                                else:
+                                  echo  '<option value="'.$ctrl.'" >'.$tipo.'</option>';
+                                endif;
+                            endforeach;
+                        endif; ?>
+                        </select>
+                      </div>
+
+
+                    </div>
+                  </section>
+                </div>
+            </div>  
+            
+            <div id="ref" class='clearfix'></div>  
+            <span id="retorno" class="col-md-10"></span>            
+            <a name="bt_inst_cadastrar" id="bt_inst_cadastrar"  href="javascript:$('#inst_img').uploadifive('upload')" class="btn btn-primary col-md-2 pull-right">Criar</a>
+               
+        </div>
+    </div>
+</section>
+
+<!-- end: inste -->

@@ -1,0 +1,43 @@
+<router base="cliente/listar">
+<?php $LANGUAGE_DEFAULT = unserialize(LANGUAGE_DEFAULT); ?>
+<input type="hidden" id="idioma" class="icon" value="<?php echo $LANGUAGE_DEFAULT[0]; ?>" />
+<?php date_default_timezone_set('Europe/Lisbon'); ?>
+<?php setlocale(LC_ALL, 'pt_PT'); ?>
+<header class="page-header">
+    <h2>Logs - Controlo de acesso</h2>
+
+    <div class="right-wrapper text-right">
+        <ol class="breadcrumbs">
+            <li>
+                <a href="/backend/index/">
+                    <i class="fa fa-home"></i>
+                </a>
+            </li>
+            <li><span>Logs</span></li>
+            <li><span>Controlo de acesso</span></li>
+        </ol>
+
+        <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
+    </div>
+</header>
+
+<!-- start: page -->
+<div class="timeline timeline-simple changelog">
+    <div class="tm-body">
+        <ol class="tm-items">
+            <?php if(!empty($view_logs)): ?>            
+            <?php foreach ($view_logs as $log): ?>
+            <li>
+                <div class="tm-box">  
+                    <h4 class="release-date"><?php echo strftime("%d %B - %H:%M", strtotime($log["date"])); ?> </h4>
+                    <ul class="list-unstyled">                        
+                        <li>Utilizador: <strong><?php echo $log["user"]; ?></strong></li>
+                    </ul>
+                </div>
+            </li>
+            <?php endforeach; ?>
+            <?php endif; ?>     
+        </ol>
+    </div>
+</div>
+<!-- end: page -->

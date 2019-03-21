@@ -1,0 +1,130 @@
+<!-- Contact Section -->
+
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+            
+            <h2><i class="fa fa-user-plus fa-4x"></i> CADASTRAR CLIENTE</h2>        
+            <!--p>
+                <img src="<?php //echo PUBLIC_DIR ?>/img/chefe.png" alt="An Poparome" class="img-responsive center-block">
+                <i class="fa fa-unlock-alt fa-4x"></i>
+            </p--> 
+
+            <div class="form_cliente">
+              <div class="form-group">
+                <label for="cli_nome">Nome</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="cli_nome" placeholder="Nome Completo"required>
+                    <div class="input-group-addon"></div>
+                  </div>
+              </div>
+              <div class="form-group">
+                <label for="cli_cpf">CPF</label>
+                <div class="input-group">
+                  <input type="text" class="form-control" id="cli_cpf" placeholder="CPF"required>
+                  <div class="input-group-addon"></div>
+                </div>
+                  <span id="msn2"></span>
+                  <span id="msn3"></span>
+                  <input id="validacpf" type="hidden" value="1">  
+              </div>
+              <div class="form-group">
+                <label for="cli_email">Email</label>
+                <div class="input-group">  
+                  <input type="email" class="form-control" id="cli_email" placeholder="Email"required>
+                  <div class="input-group-addon"></div>
+                </div>
+                <span id="msnEmail"></span>
+              </div>
+              <div class="form-group">
+                <label for="cli_cep">CEP</label>
+                <div class="input-group">  
+                  <input type="text" class="form-control" id="cli_cep" placeholder="CEP"required>
+                  <div class="input-group-addon"></div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="cli_endereco">Endereço</label>
+                <div class="input-group">  
+                  <input type="text" class="form-control" id="cli_endereco" placeholder="Endereço"required>
+                  <div class="input-group-addon"></div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="cli_endereco">Número</label>
+                <div class="input-group">  
+                  <input type="text" class="form-control" id="cli_numero" placeholder="Número"required>
+                  <div class="input-group-addon"></div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="cli_bairro">Bairro</label>
+                <div class="input-group">    
+                  <input type="text" class="form-control" id="cli_bairro" placeholder="Bairro"required>
+                  <div class="input-group-addon"></div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="cli_cidade">Cidade</label>
+                <div class="input-group">  
+                  <input type="text" class="form-control" id="cli_cidade" placeholder="Cidade"required>
+                  <div class="input-group-addon"></div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="cli_uf">UF</label>
+                <div class="input-group">  
+                  <input type="text" class="form-control" id="cli_uf" placeholder="UF"required>
+                  <div class="input-group-addon"></div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="cli_telefone">Telefone</label>
+                <div class="input-group">  
+                  <input type="text" class="form-control" id="cli_telefone" placeholder="Telefone"required>
+                  <div class="input-group-addon"></div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="cli_telefone2">Telefone2</label>
+                <div class="input-group">  
+                  <input type="text" class="form-control" id="cli_telefone2" placeholder="Telefone">
+                  <div class="input-group-addon"></div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="cli_celular">Celular</label>
+                <div class="input-group">  
+                  <input type="text" class="form-control" id="cli_celular" placeholder="Celular"required>
+                  <div class="input-group-addon"></div>
+                </div>
+              </div>
+              <h3> DADOS ACESSO </h3>
+              <div class="form-group">
+                <label for="usuario_login">Login</label>
+                <div class="input-group">  
+                  <input type="text" class="form-control" id="usuario_login" placeholder="Usuário"required>
+                  <div class="input-group-addon"></div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="usuario_senha">Senha</label>
+                <div class="input-group">  
+                  <input type="password" class="form-control" id="usuario_senha" placeholder="Senha"required>
+                </div>                
+                <input id="validasenha" type="hidden" value="1">
+              </div>
+              <div class="form-group">
+                <label for="usuario_confsenha">Confirmar Senha</label>
+                <div class="input-group">  
+                  <input type="password" class="form-control" id="usuario_confsenha" placeholder="Confirmar Senha"required>
+                  <div class="input-group-addon"></div>                  
+                </div>
+                <span id="msgSenha"></span>
+                <input id="validasenha" type="hidden" value="1">
+              </div>
+              <button name="bt_cli_cadastrar" id="bt_cli_cadastrar" class="btn btn-default">Cadastrar</button>
+              <span id="retorno"></span>
+              <span id="ref"></span>  
+            </div>                        
+        </div>
+    </div>

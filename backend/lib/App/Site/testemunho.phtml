@@ -1,0 +1,309 @@
+
+ 
+ <!-- Header  Inner style-->
+ <section class="row final-inner-header">
+  <div class="container">
+    <h2 class="this-title">Depoimentos</h2>
+  </div>
+ </section>
+ <section class="row final-breadcrumb">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li><a href="index.html">Home</a></li>
+      <li class="active">Depoimentos</li>
+    </ol>
+  </div>
+ </section>
+<!-- Header  Slider style-->
+    
+
+<!-- About Resort style-->
+  <section class="container clearfix common-pad-inner about-info-box">
+    
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-xs-12">
+      
+      <div class="sec-header3">
+         <h2>O que dizem nossos clientes</h2>
+             <h3>Estamos felizes com esta sintonia</h3>
+         </div>
+      <p>O Hotel Panorama conta com 54 apartamentos. Em todos os quartos possui ar condicionado, TV a cabo, frigobar, telefone e banheiro. O Hotel oferece ainda serviço de internet sem fio (wireless), computadores para acesso remoto, estacionamento, sala para convenções e ótimos serviços.</p>
+      </div>
+    </div>
+    </section> 
+    
+<!-- About Resort style-->
+    
+
+<!-- Testimonials clients -->
+ <section class="clearfix news-wrapper">
+    <div class="container clearfix common-pad-test">
+     <div class="row">
+
+       <?php foreach ($site_testemunho["dados"] as $testemunho): ?>
+
+        <div class="col-lg-12 col-md-12 testimonial-sec-p">
+                <div class="media testimonial-p">
+                    <div class="media-left">
+                        <a href="#">
+                            <img src="/images/testemunho/<?php echo $testemunho['D004_Imagem']; ?>"  alt="" style='border-radius: 50%;'>
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h3><?php echo $testemunho["D004_Titulo"]; ?></h3>
+                        <p><?php echo strip_tags(str_replace("|", "/", $testemunho["D004_Texto"])); ?></p>
+                        <a href="#">-  <?php echo $testemunho["D004_Titulo"]; ?> <span>(<?php echo $testemunho["D004_Funcao"]; ?>)</span></a>
+                    </div>
+                </div>
+            </div>
+         
+         <?php endforeach; ?>
+        
+       
+        </div>
+     </div>
+
+
+      <div class="col-md-12" style="text-align: center;">
+
+          <div class="pagination">
+
+           <?php 
+
+            if(!empty($site_testemunho)):
+
+               $info['pagination']['reg_final'] =  $site_testemunho['reg_final'];
+
+               $info['pagination']['n_paginas'] =  $site_testemunho['n_paginas'];
+
+               $info['pagination']['pg_atual'] =  $site_testemunho['pg_atual'];
+
+               $info['pagination']['pg_anterior'] =  $site_testemunho['pg_anterior'];
+
+               $info['pagination']['pg_proxima'] =  $site_testemunho['pg_proxima'];
+
+               $info['pagination']['lnk_impressos'] =  $site_testemunho['lnk_impressos'];
+
+               $info['pagination']['finalpag'] =  $site_testemunho['finalpag'];
+
+               $info['pagination']['arquivo'] =  $site_testemunho['arquivo'];
+
+               $info['pagination']['pag'] =  $site_testemunho['pag'];
+
+               $info['pagination']['nlinks'] =  $site_testemunho['nlinks'];
+
+               $info['pagination']['temp'] =  $site_testemunho['temp'];
+
+               $info['pagination']['totreg'] =  $site_testemunho['totreg'];
+
+            else:
+
+               $info['pagination']['reg_final'] =  0;
+
+               $info['pagination']['n_paginas'] =  0;
+
+               $info['pagination']['pg_atual'] =  0;
+
+               $info['pagination']['pg_anterior'] =  0;
+
+               $info['pagination']['pg_proxima'] =  0;
+
+               $info['pagination']['lnk_impressos'] =  0;
+
+               $info['pagination']['finalpag'] =  0;
+
+               $info['pagination']['arquivo'] =  0;
+
+               $info['pagination']['pag'] =  0;
+
+               $info['pagination']['nlinks'] =  0;
+
+               $info['pagination']['temp'] =  0;
+
+               $info['pagination']['totreg'] =  0;
+
+
+
+          endif;
+
+
+
+            navipages($home=1,$center=1,$info); 
+
+
+
+
+
+           function navipages($home=0,$center=0, array $info)
+
+          {
+
+
+
+             $reg_final = $info['pagination']['reg_final'];
+
+             $n_paginas =  $info['pagination']['n_paginas'];         
+
+             $pg_atual =  $info['pagination']['pg_atual'];
+
+             $pg_anterior =  $info['pagination']['pg_anterior'];
+
+             $pg_proxima =  $info['pagination']['pg_proxima'];
+
+             $lnk_impressos =  $info['pagination']['lnk_impressos'];
+
+             $finalpag =  $info['pagination']['finalpag'];
+
+             $arquivo =  $info['pagination']['arquivo'];
+
+             $pag =  $info['pagination']['pag'];
+
+             $nlinks =  $info['pagination']['nlinks'];
+
+             $temp =  $info['pagination']['temp'];
+
+             $totreg =  $info['pagination']['totreg'];
+
+
+
+            // global $pg_atual, 
+
+            // $pg_anterior,
+
+            // $pg_proxima,  
+
+            // $n_paginas, 
+
+            // $reg_final, 
+
+            // $totreg, 
+
+            // $temp, 
+
+            // $nlinks,       
+
+            // $lnk_impressos,        
+
+            // $arquivo, 
+
+            // $pag,
+
+            // $urlhomepage,
+
+            // $finalpag,
+
+            // $barborder;
+
+            ?>
+
+            <?php 
+
+            if($n_paginas > 1){ ?>
+
+            <ul>
+
+              <li><a href="<?php echo $arquivo; ?>/1"><i class="icofont icofont-double-left" aria-hidden="true"></i></a></li>
+
+              <?php if (isset($pag) && $pag > 1){ ?>
+
+              <li><a href="<?php echo $arquivo; ?>/<?php echo $pg_anterior; ?>"><i class="icofont icofont-simple-left" aria-hidden="true"></i></a></li>
+
+              <?php } ?>
+
+              <?php
+
+                if ($temp >= $nlinks)
+
+                {
+
+                if ($n_paginas > $nlinks) 
+
+                {
+
+                $n_maxlnk = $temp + 4;
+
+                $nlinks   = $n_maxlnk;
+
+                $n_start  = $temp - 6;
+
+                if($n_start==-1)
+
+                {
+
+                $n_start=0;
+
+                }
+
+                $lnk_impressos = $n_start;
+
+                }
+
+                }
+
+                while(($lnk_impressos < $n_paginas) and ($lnk_impressos < $nlinks))
+
+                { 
+
+                $lnk_impressos ++;
+
+                ?>
+
+              <?php
+
+                if ($pg_atual != $lnk_impressos)
+
+                {
+
+                echo "<li><a href=\"$arquivo/$lnk_impressos\">$lnk_impressos</a></li>";
+
+                }
+
+                if ($pg_atual == $lnk_impressos)
+
+                {
+
+                echo "<li class='active'><a href=\"javascript:;\">$lnk_impressos</a></li>";
+
+                } 
+
+                else 
+
+                {
+
+                echo "";
+
+                }
+
+                ?>                        
+
+              <?php
+
+                }
+
+                ?>
+
+              <?php
+
+                if ($reg_final < $totreg) 
+
+                {
+
+                ?>
+
+              <li><a href="<?php echo $arquivo; ?>/<?php echo $pg_proxima; ?>"><i class="icofont icofont-simple-right" aria-hidden="true"></i></a></li>
+
+              <?php } ?>
+
+              <li><a href="<?php echo $arquivo; ?>/<?php echo $finalpag; ?>"><i class="icofont icofont-double-right" aria-hidden="true"></i> </a></li>
+
+            </ul>
+
+            <?php }} ?> 
+
+        </div> 
+        
+      </div>
+    
+    
+    </section>   
+<!-- Testimonials clients -->  

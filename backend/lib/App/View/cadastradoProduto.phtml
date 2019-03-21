@@ -1,0 +1,92 @@
+<router base="produto/listar">
+<input type="hidden" id="idioma" class="icon" value="<?php echo $view_lang; ?>" />
+<?php
+    $languageLIST = unserialize (LANGUAGE_LIST);
+    $languageDEFAULT = unserialize (LANGUAGE_DEFAULT);
+?>
+<header class="page-header">
+    <h2>Páginas</h2>
+    <div class="right-wrapper text-right">
+        <ol class="breadcrumbs">
+            <li>
+                <a href="/">
+                    <i class="fa fa-dest"></i>
+                </a>
+            </li>
+            <li><span>Páginas</span></li>
+            <li><span>Produtos</span></li>
+        </ol>
+        <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-calendar"></i></a>
+    </div>
+</header>
+<!-- start: page -->
+<section class="card">
+    <div class="card-body">
+        <div class="invoice">
+            <header class="clearfix">
+                <div class="row">
+                    <div class="col-sm-6 mt-3">
+                        <h2 class="h2 mt-0 mb-4 text-dark font-weight-bold">Produtos</h2>
+                        <!-- <h4 class="h4 m-0 text-dark font-weight-bold">#76598345</h4> -->
+                    </div>
+                    <div class="col-sm-6 mt-3">
+                        <div class="m-0 mb-4 pull-right">
+                            <a href="/backend/produto/registar/lang/<?php echo $languageDEFAULT[0]; ?>" id="destCad" class="mb-1 mt-1 mr-1 btn btn-primary"> <strong>Criar produto</strong></a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <table class="table table-bordered table-striped mb-0" id="datatable-tabletools">
+                <thead>
+                    <tr>
+                        <th style="width: 5%">ID</th>
+                        <th style="width: 65%">TÍTULO</th>
+                        <!--th style="width: 20%">CATEGORIA</th-->
+                        <th style="width: 10%">TRADUÇÃO</th>
+                        <th style="width: 10%">STATUS</th>
+                        <th style="width: 10%">AÇÕES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php
+                    if(!empty($view_produto)):
+                    foreach ($view_produto as $produto): ?>
+                    <tr id="<?php echo $produto['prod_id'] ?>">
+                        <td class="actions"><?php echo $produto['prod_id']; ?></td>
+                        <td class="actions"><a href="/backend/produto/alterar/lang/<?php echo $languageDEFAULT[0];?>/ref/<?php echo $produto["prod_referencia"]?>"><strong><?php echo $produto['prod_nome']; ?></strong></a></td>
+                        <!--td class="actions"><strong><?php //echo $produto['prod_categoria']." / ".$produto['prod_Subcategoria']; ?></strong></td-->
+                        <td class="actions">
+                            <ul class="language">
+                            <?php
+                                foreach ($languageLIST as $idioma):
+                                    if($languageDEFAULT[0] != $idioma["D008_Sigla"]):
+                            ?>
+                            <li>
+                                <a href="/backend/produto/alterar/lang/<?php echo $idioma["D008_Sigla"]?>/ref/<?php echo $produto["prod_referencia"]?>" class="menu-item"><i class="flag-icon flag-icon-<?php echo $idioma["D008_Icon"]?>"></i></a>
+                            </li>
+                            <?php
+                                    endif;
+                                endforeach;
+                            ?>
+                            </ul>
+                        </td>
+                        <td class="actions">
+                        <?php
+                        echo $produto['prod_status'];
+                        ?>
+                        </td>
+                        <td class="actions">
+                            <a btndelete class="btn btn-danger btn-small text-light" href="#modalAnim" ref-id="<?php echo $produto['prod_id'] ?>" ref-name="<?php echo $produto['prod_nome'] ?>" title="Duplo Clique">
+                                <i class="fa fa-trash-o fa-lg"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <?php endforeach;
+                    endif; ?>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</section>
+<!-- end: page -->

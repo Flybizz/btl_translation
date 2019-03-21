@@ -1,0 +1,16 @@
+Options -Indexes
+RewriteEngine on
+# Change '/pro/' if directory is renamed
+RewriteBase /backend/
+
+# Ensure we are using HTTPS version of the site.
+RewriteCond %{HTTPS} !on
+RewriteCond %{HTTP_HOST} !=localhost
+RewriteRule (.*) https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Change the '/pro/' portion of the condition if directory is renamed
+RewriteCond %{REQUEST_URI} ^/backend/(.+)$
+RewriteCond %{SCRIPT_FILENAME} !-f
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-l
+RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]

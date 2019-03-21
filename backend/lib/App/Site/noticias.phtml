@@ -1,0 +1,150 @@
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/pagina.segura2.php'; ?>
+<input type="hidden" id="list_url" value="<?php echo str_replace("/", "|", $_GET["url"]); ?>">
+
+<section class="page-header-custom-background page-header page-header-center page-header-more-padding page-header-no-title-border" style="background-image: url('/images/config/bg/<?php echo trim($site_config[0]['D001_Imgfundo']); ?>')">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h1><strong>NOTÍCIAS</strong></h1>
+      </div>
+<!--       <div class="col-lg-6">
+        <ul class="breadcrumb">
+          <li><a href="#">Features</a></li>
+          <li class="active">Header Custom Background</li>
+        </ul>
+      </div> -->
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-9">
+      <div id="output" class="blog-posts">
+
+        <?php
+        if(!empty($site_noticias)):
+          foreach ($site_noticias as $noticia):            
+            $exp = explode(" ", $noticia['D007_Data']);
+            $dt = explode("-", $exp[0]);
+            switch ($dt[1]):
+              case 1: $mes = "Jan"; break;
+              case 2: $mes = "Fev"; break;
+              case 3: $mes = "Mar"; break;
+              case 4: $mes = "Abr"; break;
+              case 5: $mes = "Mai"; break;
+              case 6: $mes = "Jun"; break;
+              case 7: $mes = "Jul"; break;
+              case 8: $mes = "Ago"; break;
+              case 9: $mes = "Set"; break;
+              case 10: $mes = "Out"; break;
+              case 11: $mes = "Nov"; break;
+              case 12: $mes = "Dez"; break;
+            endswitch;
+        ?>   
+
+        <article class="post post-large">
+          <div class="post-image">
+            <div class="owl-carousel owl-theme" data-plugin-options="{'items':1}">
+              <div>
+                <div class="img-thumbnail d-block">
+                  <img class="img-fluid" src="/images/noticia/<?php echo $noticia['D007_Foto']; ?>" alt="<?php echo $noticia['D007_Titulo'];?>">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="post-date">
+            <span class="day"><?php echo $dt[2]; ?></span>
+            <span class="month"><?php echo $mes; ?></span>
+          </div>
+
+          <div class="post-content">
+
+            <h2><a href="/noticias/<?php echo $noticia['D007_Categoria']; ?>/<?php echo $noticia['D007_Chave']; ?>"><?php echo $noticia['D007_Titulo'];?></a></h2>
+            <?php echo str_replace("|", "/", $noticia['D007_Chamada']);?>
+
+            <div class="post-meta">
+              <span class="d-block d-sm-inline-block float-sm-right mt-3 mt-sm-4"><a href="/noticias/<?php echo $noticia['D007_Categoria']; ?>/<?php echo $noticia['D007_Chave']; ?>" class="btn btn-xs btn-primary">Saiba mais</a></span>
+            </div>
+
+          </div>
+        </article>
+
+        <?php  
+            endforeach;
+          endif; 
+        ?> 
+
+      </div>
+        <input type="hidden" name="total_pages" id="total_pages" value="<?php echo $site_count_noticias[0]["COUNT"]; ?>">
+        <input type="hidden" name="page" id="page" value="0">
+      <div class="loader" style="display: none;"><img src="/images/loading.gif" /></div>
+    </div>
+
+    <div class="col-lg-3">
+      <aside class="sidebar">
+               
+        <h4 class="heading-primary">Categorias</h4>
+        <ul class="nav nav-list flex-column mb-5">
+          <li class="nav-item"><a class="nav-link" href="/noticias">Todos</a></li>
+          <?php if (!empty($site_cat_noticias)): ?>
+            <?php foreach ($site_cat_noticias as $cat): ?>
+            <li class="nav-item"><a class="nav-link" href="/noticias/<?php echo $cat['D007_Chave']; ?>"><?php echo $cat['D007_Nome']; ?></a></li>
+            <?php endforeach; ?>
+          <?php endif; ?>
+        </ul>
+
+        <hr>
+
+        <h4 class="heading-primary">Posts Recentes</h4>      
+        <ul class="simple-post-list">
+
+          <?php if(!empty($site_last_noticias)): ?>
+          <?php foreach ($site_last_noticias as $last_not): 
+
+            $exp1 = explode(" ", $last_not['D007_Data']);
+            $dt1 = explode("-", $exp1[0]);
+            switch ($dt1[1]):
+              case 1: $mes1 = "Jan"; break;
+              case 2: $mes1 = "Fev"; break;
+              case 3: $mes1 = "Mar"; break;
+              case 4: $mes1 = "Abr"; break;
+              case 5: $mes1 = "Mai"; break;
+              case 6: $mes1 = "Jun"; break;
+              case 7: $mes1 = "Jul"; break;
+              case 8: $mes1 = "Ago"; break;
+              case 9: $mes1 = "Set"; break;
+              case 10: $mes1 = "Out"; break;
+              case 11: $mes1 = "Nov"; break;
+              case 12: $mes1 = "Dez"; break;
+            endswitch;  
+          ?>
+
+          <li>
+            <div class="post-image">
+              <div class="img-thumbnail d-block">
+                <a href="/noticias/<?php echo $last_not['D007_Categoria']; ?>/<?php echo $last_not['D007_Chave']; ?>">
+                  <img src="/images/noticia/<?php echo $last_not['D007_Foto']; ?>" alt="<?php echo $last_not["D007_Titulo"]; ?>" height="55"
+                  >
+                </a>
+              </div>
+            </div>
+            <div class="post-info">
+              <a href="/noticias/<?php echo $last_not['D007_Categoria']; ?>/<?php echo $last_not['D007_Chave']; ?>"><?php echo $last_not["D007_Titulo"]; ?></a>
+              <div class="post-meta">
+                <?php echo $mes1." ".$dt1[2].", ".$dt1[0]; ?>
+              </div>
+            </div>
+          </li>  
+
+        <?php endforeach; ?>
+        <?php endif; ?>  
+
+        </ul>
+      
+      </aside>
+    </div>
+  </div>
+
+</div>

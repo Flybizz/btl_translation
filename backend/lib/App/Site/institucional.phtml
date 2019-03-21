@@ -1,0 +1,110 @@
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/pagina.segura2.php'; ?>
+<section class="page-header-custom-background page-header page-header-center page-header-more-padding page-header-no-title-border" style="background-image: url('/images/pagina/<?php echo $site_header[0]["D007_Foto"]; ?>'); height: 680px; padding-top:250px;">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <img src="/images/pagina/morazzo_bco_icon.png" alt="morazzo" height="70px;" style="margin-bottom:20px;"/>
+        <br>
+        <h1 class="fbz-font-titulo" style="margin-top: 30px; font-size:4.8em;"><?php echo strtoupper($site_header[0]["D007_Titulo"]); ?></h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-default section-default-scale-9 section-front m-0 pt-3">
+  
+  <?php if (!empty($site_conteudo)):
+          $line_content = 0;
+          foreach ($site_conteudo as $conteudo):
+            $line_content++;
+            if ($line_content % 2): 
+  ?>
+
+  <div class="container-fluid bg-light">
+          
+    <div class="row">
+      <div class="col-lg-6 m-0 p-0">
+
+          <div class="row portfolio-list">
+
+            <div class="col-lg-12" style="margin-left: 0px!important; margin-right: 0px!important;">
+
+              <div class="portfolio-item" style="margin-bottom: 0px!important;">
+                <span class="thumb-info thumb-info-centered-icons thumb-info-no-borders">
+                  <span class="thumb-info-wrapper">
+                    <img src="/images/institucional/<?php echo $conteudo["D007_Foto"]; ?>" class="img-fluid" alt="">  
+                    <a href="javascript:;" class="lightbox-portfolio">
+                      <span class="thumb-info-action">
+                        <img src="/images/config/<?php echo $site_config[0]['D001_Favicon']; ?>" class="" alt="" style="height:50px; width:50px;">
+                      </span>
+                    </a>      
+                  </span>
+                </span>
+              </div>
+
+            </div>
+
+          </div>
+
+      </div>
+
+      <div class="col-lg-6 m-0 p-0">
+        <div class="container" style="padding: 5em; align-items: center;">
+
+          <h1 class="fbz-font-titulo mt-4" style="font-size:1.4em; color: rgba(0,0,0,1)!important; text-align: center!important; line-height: 25px; vertical-align: middle;"><?php echo $conteudo["D007_Titulo"]; ?></h1>
+          <div class="mt-4" style="text-align: justify; text-justify: auto; vertical-align: middle;"><?php echo str_replace("|", "/", $conteudo["D007_Texto"]); ?></div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <?php else: ?>
+  <div class="container-fluid bg-black">
+          
+    <div class="row">
+      <div class="col-lg-6 m-0 p-0">
+        <div class="container" style="padding: 5em;  align-items: center;">
+
+          <h1 class="fbz-font-titulo mt-4" style="font-size:1.4em; color: rgba(255,255,255,1)!important; text-align: center!important; line-height: 25px;"><?php echo $conteudo["D007_Titulo"]; ?></h1>
+          <div class="mt-4" style="text-align: justify; text-justify: auto;"><?php echo str_replace("|", "/", $conteudo["D007_Texto"]); ?></div>
+
+        </div>
+      </div>
+      <div class="col-lg-6 m-0 p-0">
+
+          <div class="row portfolio-list">
+
+            <div class="col-lg-12" style="margin-left: 0px!important; margin-right: 0px!important;">
+
+              <div class="portfolio-item" style="margin-bottom: 0px!important;">
+                <span class="thumb-info thumb-info-centered-icons thumb-info-no-borders">
+                  <span class="thumb-info-wrapper">
+                    <img src="/images/institucional/<?php echo $conteudo["D007_Foto"]; ?>" class="img-fluid" alt="">   
+                    <a href="javascript:;" class="lightbox-portfolio">
+                      <span class="thumb-info-action">
+                        <img src="/images/config/<?php echo $site_config[0]['D001_Favicon']; ?>" class="" alt="" style="height:50px; width:50px;">
+                      </span>
+                    </a>        
+                  </span>
+                </span>
+              </div>
+
+            </div>
+
+          </div>
+
+      </div>   
+    </div>
+
+  </div>
+  <?php
+    endif; 
+  ?>
+
+  <?php endforeach; ?>
+  <?php endif; ?>
+
+  
+</section>

@@ -1,0 +1,49 @@
+     <div class="nk-header-title nk-header-title-parallax nk-header-title-parallax-opacity">
+        <div class="bg-image">
+              <div style="background-image: url('/images/config/bg/<?php echo trim($site_config[0]['D001_Imgfundo']); ?>');"></div>
+          </div>
+          <div class="nk-header-table">
+            <div class="nk-header-table-cell">
+              <div class="container">                                
+                <h1 class="nk-title">GALLERY</h1>  
+                <!-- <h2 class="nk-sub-title">Optional Sub Title</h2> -->       
+              </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="nk-gap-4"></div>
+
+    <div class="container">
+
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+                    <h2 class="h1 nk-title"><?php echo strip_tags($site_galeria[0]['D011_Titulo']); ?></h2>
+                    <!-- <h3 class="nk-sub-title">Use wrapper or default embed code for Youtube / Vimeo videos</h3> -->
+                    <div class="nk-gap"></div>
+                    <?php echo str_replace("|", "/", $site_galeria[0]['D011_Descricao']); ?>
+                </div>
+            </div>
+        </div>
+
+        <div class="nk-isotope nk-isotope-gap nk-isotope-3-cols nk-popup-gallery">
+
+
+            <?php if (!empty($site_foto)): ?>
+              <?php foreach ($site_foto as $foto): ?>
+
+                <div class="nk-isotope-item">
+                    <div class="nk-image-box-1">
+                        <a href="/images/galeria/<?php echo $site_galeria[0]['D011_Uid'] ?>/<?php echo $foto['D011_Imagem']; ?>" class="nk-gallery-item" data-size="1920x1280"><img src="/images/galeria/<?php echo $site_galeria[0]['D011_Uid'] ?>/<?php echo $foto['D011_Imagem']; ?>" alt=""></a>
+                    </div>
+                </div>
+              
+              <?php endforeach; ?>
+            <?php endif; ?>            
+  
+        </div>
+        <a href="/galerias/cat/all/p/0" class="nk-btn nk-btn-circle nk-btn-x2 nk-btn-effect-5-left nk-btn-color-dark-4" style="margin-top: 30px; margin-bottom: 30px;">Voltar</a> 
+    </div>
+
+    <div class="nk-gap-4"></div>

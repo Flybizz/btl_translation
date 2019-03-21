@@ -1,0 +1,49 @@
+<script>
+$(document).ready(function() {
+    $(".breadcrumb").html('<li><a href="/../backend/index">Principal</a> <span class="divider">/</span></li><li><a href="#">Relatório</a> <span class="divider">/</span></li><li class="active"><a href="/../backend/relatorio/paciente">Paciente</a></li>');
+});
+</script>
+<div class="row">
+    <div class="col-lg-12">
+        <h2 class="page-header"> Relatório Pacientes</h2>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="col-md-12">
+  <label>BUSCAR POR:</label>
+  <a id="gpdf" href="#" data-original-title="Gerar PDF" data-placement="left" class="pull-right"><i id="gepdf" class="fa fa-file-pdf-o fa-2x"></i></a>
+  <hr/>
+  <div class="form-group col-md-4">
+    <label for="rpc_status">Status</label>    
+    <select id="rpc_status" class="form-control">
+      <option value="0">SELECIONE</option>
+      <option value="1">ATIVO</option>
+      <option value="2">INATIVO</option>
+      <option value="3">EM TRATAMENTO</option>
+    </select>
+  </div>
+  <div class="form-group col-md-4">
+    <div class="col-md-6">
+      <label for="rpc_dtnascimento">ANO i</label>
+      <div class="input-group">
+        <input type="text" class="form-control" id="rpc_dtnascimento" placeholder="Ano i" maxlength="10">
+        <div class="input-group-addon"></div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label for="rpc_dtnascimento">ANO f</label>
+      <div class="input-group">
+        <input type="text" class="form-control" id="rpc_dtnascimento2" placeholder="Ano f" maxlength="10">
+        <div class="input-group-addon"></div>
+      </div>
+    </div>
+  </div>  
+  <div class="form-group col-md-4">
+    <label for="rpc_cidade">Cidade</label>
+    <div class="input-group">
+      <input type="text" class="form-control" id="rpc_cidade" placeholder="Cidade">
+      <div class="input-group-addon"></div>
+    </div>
+  </div>            
+</div>

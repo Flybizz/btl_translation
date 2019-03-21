@@ -1,0 +1,176 @@
+<?php
+   require_once $_SERVER['DOCUMENT_ROOT']."/backend/public/vendor/ckeditor/ckeditor.php";
+   require_once $_SERVER['DOCUMENT_ROOT']."/backend/public/vendor/ckfinder/ckfinder.php";   
+   $CKEditor = new CKEditor();
+   $CKEditor->basePath = '/backend/public/vendor/ckeditor/';
+   CKFinder::SetupCKEditor($CKEditor, '/backend/public/vendor/ckfinder/');
+?>
+<router base="formacao/registar">
+<header class="page-header">
+    <h2>Formação</h2>
+    <div class="right-wrapper text-right">
+        <?php $LANGUAGE_DEFAULT = unserialize(LANGUAGE_DEFAULT); ?>
+        <a name="bt_form_cadastrar" id="bt_form_cadastrar" href="javascript:void(0);" class="mb-1 mt-3 ml-2 mr-1 btn btn-xs btn-primary"><strong>Gravar</strong></a>
+        <a href="/backend/cliente/perfil/ref/<?php echo $view_cliente["cli_referencia"]; ?>/tab/formacao" class="mb-1 mt-3 mr-1 ml-1 btn btn-xs btn-default"><strong>Voltar</strong></a>
+        <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-calendar"></i></a>
+    </div>
+</header>
+<!-- start: file -->
+<section class="card">
+    <div class="card-body">
+        <div class="invoice">
+            <header class="clearfix">
+                <div class="row">
+                    <div class="col-sm-6 mt-3">
+                       
+                        <h2 class="h2 mt-0 mb-4 text-dark font-weight-bold">Agendar formação para <?php echo $view_cliente["cli_nome"] ?></h2>
+                        <!-- <h4 class="h4 m-0 text-dark font-weight-bold">#76598345</h4> -->
+                    </div>
+                    <div class="col-sm-6 mt-3">
+                        <div class="m-0 mb-4 pull-right">
+                          
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <div class="row">
+              <div class="col-md-8">
+                <section class="card mb-4">
+                  <header class="card-header">
+                    <h2 class="card-title">Principal</h2>
+                  </header>
+                  <div class="card-body">
+                    <form class="form-horizontal form-bordered" method="post">
+                       <!-- a que cliente fica associada a formação ? -->
+                       <input type="hidden" name="form_cliente_ref" value="<?php echo $view_ref; ?>" />
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="form_nome">Data da formação</label>
+                        <div class="col-lg-9">
+                           <div class="input-group">
+                                 <span class="input-group-addon">
+                                 <i class="fa fa-calendar"></i>
+                                 </span>
+                                 <input name="form_data" id="form_data" type="text" data-plugin-datepicker data-date-format="dd/mm/yyyy" class="form-control" value="">
+                           </div>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="form_funcao">Formador</label>
+                        <div class="col-lg-9">
+                           <select class="form-control" name="form_formador" id="">
+                              <?php foreach($view_formadores as $formador): ?>
+                                 <option value="<?php echo $formador["usu_id"] ?>"><?php echo $formador["usu_nome"] ?></option>
+                              <?php endforeach; ?>
+                           </select>
+                        </div>
+                      </div>
+                      <!-- <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="form_funcao">Formandos</label>
+                        <div class="col-lg-9">
+                        
+                        <div class="form-group">
+                           <div data-id="0" class="formando-repeat">
+                              <label class="col-lg-12 control-label text-lg-right pt-2" for="inputDefault">
+                                 <a href="#modalAnim" data-remove="remove" data-id="" data-name="" data-db="" class="btn btn-primary btn-trash"> <i class="fa fa-trash-o fa-lg"></i> </a>
+                              </label>
+                              <input type="hidden" data-tipo="id" class="form-control" value="">                           
+                              <div class="" data-tipo="contato">
+                                    <table width="100%" class="table-formandos">
+                                       <tr>
+                                          <th>Nome</th>
+                                          <td><input type="text" name="formando[0][nome]" data-tipo="nome" class="form-control" value=""></td>
+                                          <th width="70px">NIF / CPF</th>
+                                          <td><input type="text" name="formando[0][nif]" data-tipo="nome" class="form-control" value=""></td>
+                                          <th>Email</th>
+                                          <td><input type="text" name="formando[0][email]" data-tipo="nome" class="form-control" value=""></td>
+                                       </tr>
+                                    </table>
+                              </div>
+                           </div>
+                           <button type="button" class="btn-repeat btn btn-sm btn-primary pull-right">Adicionar</button>
+                        </div>
+                                       
+                        </div>
+                      </div> -->
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="form_funcao">Tipo de formação</label>
+                        <div class="col-lg-9">
+                           <select class="form-control" name="form_tipo_formacao" id="">
+                              <?php foreach($view_tipos_formacao as $tipo_formacao): ?>
+                                 <option value="<?php echo $tipo_formacao["form_tipo_id"] ?>"><?php echo utf8_encode($tipo_formacao["form_tipo_nome"]) ?></option>
+                              <?php endforeach; ?>
+                           </select>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="form_funcao">Produtos</label>
+                        <div class="col-lg-9">
+                        <select name="form_produtos[]" class="form-control" multiple="multiple" data-plugin-multiselect data-plugin-options='{ "maxHeight": 200 }'>
+                              <?php if(!empty($view_produtos)): ?>
+                                 <?php foreach ($view_produtos as $produto): ?>
+                                    <option value="<?php echo $produto["prod_id"]; ?>"><?php echo utf8_encode($produto["prod_nome"]); ?></option>									
+                                 <?php endforeach; ?>
+                              <?php endif; ?>
+                           </select>
+                        </div>
+                      </div>
+            
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="form_observacao">Observação</label>
+                        <div class="col-lg-9">                        
+                          <!-- <textarea class="form-control" name="fil_texto" id="fil_texto"></textarea> -->
+                          <?php $CKEditor->editor("form_observacao", ""); ?>
+                        </div>
+                      </div>
+                   
+                      <!--div class="form-group row">
+             
+                        <label class="col-sm-3 control-label text-sm-right pt-2">Status</label>
+                        <div class="btn-group col-sm-9 pull-right" data-toggle="buttons">
+                       
+                          <label class="btn btn-primary ">
+                            <input type="radio" name="form_status" id="option1" autocomplete="off" value="Sim"> Ativo
+                          </label>
+                          <label class="btn btn-primary active">
+                            <input type="radio" name="form_status" id="option2" autocomplete="off"  value="Nao" checked> Inativo
+                          </label>
+                        </div>
+                      </div-->
+                         
+                    </form>
+                  </div>
+                </section>
+              </div>
+              <!-- <div class="col-md-4">
+                <section class="card mb-4">
+                    <header class="card-header">
+                      <h2 class="card-title">Processo de formação</h2>
+                    </header>
+                    <div class="card-body">
+                     
+                     <div class="timeline timeline-simple mt-3 mb-3">
+                        <div class="tm-body">
+                          
+                           <ol class="tm-items tm-items-custom">
+                              <?php //foreach($view_tipos_formacao as $tipo_formacao): ?>
+                              <li class="<?php //echo ($tipo_formacao["form_tipo_id"] == $view_formacao["form_passo_actual"]) ? "active" : ""; ?>">
+                                 <div class="tm-box">
+                                    <?php //echo utf8_encode($tipo_formacao["form_tipo_nome"]) ?>
+                                 </div>
+                              </li>
+                              <?php //endforeach; ?>
+                           </ol>
+                        </div>
+                     </div>
+                    </div>
+                  </section>
+                </div> -->
+            </div>  
+            
+            <div id="ref" class='clearfix'></div>  
+            <span id="retorno" class="col-md-10"></span>            
+            <a name="bt_form_cadastrar" id="bt_form_cadastrar" href="#" class="btn btn-primary col-md-2 pull-right">Gravar</a>
+               
+        </div>
+    </div>
+</section>

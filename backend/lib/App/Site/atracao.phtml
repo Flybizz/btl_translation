@@ -1,0 +1,257 @@
+  <?php 
+    function removerAcentos($string){
+        $string = preg_replace("`\[.*\]`U","",$string);
+        $string = preg_replace('`&(amp;)?#?[a-z0-9]+;`i','-',$string);
+        $string = htmlentities($string, ENT_COMPAT, 'utf-8');
+        $string = preg_replace( "`&([a-z])(acute|uml|circ|grave|ring|cedil|slash|tilde|caron|lig|quot|rsquo);`i","\\1", $string );
+        $string = preg_replace( array("`[^a-z0-9]`i","`[-]+`") , "-", $string);
+        return strtolower(trim($string, '-'));
+    }
+?>
+
+  <!-- Page Banner -->
+    <section class="page-banner" style="background-image:url(/images/config/bg/<?php echo $site_config[0]['D001_Imgfundo'] ?>);">
+      <div class="auto-container">
+          <h1>ATRAÇÕES</h1>
+        </div>
+    </section>
+    
+    <div id="single-speakers">
+        <div class="auto-container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="info-wrap">
+                        <img src="/images/equipe/<?php echo $site_equipe[0]['D016_Img']; ?>" class="img-responsive"  alt="">
+                        <h2><?php echo $site_equipe[0]['D016_Titulo']; ?></h2>
+                        <p class="position"><?php echo $site_equipe[0]['D016_Funcao']; ?></p>
+
+
+
+
+                        <?php if(!empty($site_equipe[0]['D016_Twitter']) || !empty($site_equipe[0]['D016_Google']) || !empty($site_equipe[0]['D016_Youtube']) || !empty($site_equipe[0]['D016_Facebook']) || !empty($site_equipe[0]['D016_Instagram']) || !empty($site_equipe[0]['D016_Snapchat']) || !empty($site_equipe[0]['D016_Linkedin'])): ?>
+
+                          <div class="social-links wow fadeInRight" data-wow-delay="1000ms" data-wow-duration="1500ms">
+                         
+                            <?php if(!empty($site_equipe[0]['D016_Facebook'])): ?>
+
+                            <a target="_blank" href="<?php echo str_replace('|', '/',$site_equipe[0]['D016_Facebook']); ?>"><i class="icofont icofont-social-facebook"></i></a>
+
+                            <?php  endif; ?>
+
+                            <?php if(!empty($site_equipe[0]['D016_Twitter'])): ?>
+
+                            <a target="_blank" href="<?php echo str_replace('|', '/',$site_equipe[0]['D016_Twitter']); ?>"><i class="icofont icofont-social-twitter"></i></a>
+
+                            <?php  endif; ?>
+
+                            <?php if( !empty($site_equipe[0]['D016_Instagram'])): ?>
+
+                            <a target="_blank" href="<?php echo str_replace('|', '/',$site_equipe[0]['D016_Instagram']); ?>"><i class="icofont icofont-social-instagram"></i></a>
+
+                            <?php  endif; ?>
+
+                            <?php if(!empty($site_equipe[0]['D016_Google'])): ?>
+
+                            <a target="_blank" href="<?php echo str_replace('|', '/',$site_equipe[0]['D016_Google']); ?>"><i class="icofont icofont-social-google-plus"></i></a>
+
+                            <?php  endif; ?>
+
+                            <?php if(!empty($site_equipe[0]['D016_Snapchat'])): ?>
+
+                            <a target="_blank" href="<?php echo str_replace('|', '/',$site_equipe[0]['D016_Snapchat']); ?>"><i class="icofont icofont-social-snapchat"></i></a>
+
+                            <?php  endif; ?>
+
+                            <?php if(!empty($site_equipe[0]['D016_Linkedin'])): ?>
+
+                            <a target="_blank" href="<?php echo str_replace('|', '/',$site_equipe[0]['D016_Linkedin']); ?>"><i class="icofont icofont-social-linkedin"></i></a>
+
+                            <?php  endif; ?>
+
+                        </div>
+
+                        <?php  endif; ?>
+
+                        <ul>
+                            <!-- <li><i class="fa fa-phone"></i> +123456987</li> -->
+                            <li style="font-size:11px; word-wrap: break-word;"><i class="fa fa-envelope"></i> <?php echo $site_equipe[0]['D016_Email']; ?></li>
+                            <li style="font-size:12px; word-wrap: break-word;"><i class="fa fa-globe"></i> <a href="<?php echo str_replace("|", "/", $site_equipe[0]['D016_Url']); ?>"><?php echo str_replace("|", "/", $site_equipe[0]['D016_Url']); ?></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <h2><?php echo $site_equipe[0]['D016_Titulo']; ?></h2>
+                    <h4 ><?php echo $site_equipe[0]['D016_Funcao']; ?></h4>
+                    <?php echo str_replace("|", "/", $site_equipe[0]['D016_Dados']); ?>
+                    
+                    <h4>CONFIRA MINHA AGENDA</h4>
+
+
+
+                    <!--Schedule Box-->
+                    <div class="schedule-box clearfix wow fadeInUp" data-wow-delay="200ms" data-wow-duration="1500ms">
+
+                        <!--Tab Buttons-->
+                        <ul class="tab-buttons clearfix">
+                        
+                        <?php 
+                        
+                        $dataEnviada = date('d/m/Y H:i');
+                        $diasExtenso = array("Domingo","Segunda","Terça","Quarta","Quinta","Sexta","Sábado");
+                        //$feriados = array('01/01','31/12','25/12','01/05','25/04');
+
+                        $dataEnviada_exp = explode(" ", $dataEnviada);
+
+                        for ($x = 0; $x <= 5; $x++): 
+
+                            $interval = new DateInterval('P'.$x.'D');
+                            $date = DateTime::createFromFormat('d/m/Y H:i', $dataEnviada);
+                            $date->add($interval);
+                                               
+                            $dt_atual = $date->format('d/m/Y H:i');
+                            $dt_cod = $date->format('w');
+                            $dt_nome = $diasExtenso[$date->format('w')];
+                            // echo 'Data Informada: ', $date->format('d/m/Y H:i'), PHP_EOL;
+                            // echo 'Dia da semana (numero): ', $date->format('w'), PHP_EOL;
+                            // echo 'Dia da semana (extenso): ', $diasExtenso[$date->format('w')], PHP_EOL;
+
+
+                            $dados_dt = explode(" ", $dt_atual);
+                            $dt = $dados_dt[0];
+                            $hr = $dados_dt[1];
+
+                            if($dt == $dataEnviada_exp[0]):
+                                $active = "active";
+                            else:
+                                $active = "";
+                            endif;
+                            
+                        ?>
+                                                            
+                            <li class="tab-btn <?php echo $active; ?>" data-id="#<?php echo strtolower(removerAcentos($dt_nome)); ?>"><span class="day"><?php echo $dt_nome; ?></span><span class="date"><?php echo $dt; ?></span><span class="curve"></span></li>                
+
+                            <?php endfor; ?>
+                        </ul>
+                        
+                        <!--Tabs Box-->
+                        <div class="tabs-box">
+
+                            <?php 
+
+                                for ($y = 0; $y <= 5; $y++): 
+
+                                    $interval2 = new DateInterval('P'.$y.'D');
+                                    $date2 = DateTime::createFromFormat('d/m/Y H:i', $dataEnviada);
+                                    $date2->add($interval2);
+                                                       
+                                    $dt_atual2 = $date2->format('d/m/Y H:i');
+                                    $dt_cod2 = $date2->format('w');
+                                    $dt_nome2 = $diasExtenso[$date2->format('w')];
+                                    // echo 'Data Informada: ', $date->format('d/m/Y H:i'), PHP_EOL;
+                                    // echo 'Dia da semana (numero): ', $date->format('w'), PHP_EOL;
+                                    // echo 'Dia da semana (extenso): ', $diasExtenso[$date->format('w')], PHP_EOL;
+
+
+                                    $dados_dt2 = explode(" ", $dt_atual2);
+                                    $dt2 = $dados_dt2[0];
+                                    $hr2 = $dados_dt2[1];
+
+                                    if($dt2 == $dataEnviada_exp[0]):
+                                        //$active2 = "active-box";
+                                        $current = "current";
+                                    else:
+                                        //$active2 = "";
+                                        $current = "";
+                                    endif;
+                                    
+                                ?>
+                            
+                            <!--Tab / Current / Monday-->
+                            <div class="tab <?php echo $current; ?>" id="<?php echo strtolower(removerAcentos($dt_nome2)); ?>">
+                                    
+                                <?php 
+                                
+                                foreach ($site_agenda as $key => $agenda): 
+                                    
+                                    $dt_key = implode("/", array_reverse(explode("-", $key)));
+                                    if($dt_key == $dt2):
+                                        $on = 0;
+                                       foreach ($agenda as $ag): 
+                                        $on++;
+                                        $active3 = "";
+                                        if($on == 1):
+                                            $active3 = "active-box";
+                                        else:
+                                            $active3 = "";
+                                        endif;
+
+                                       $ag_hora = explode(":", $ag['D016_Hora']); 
+                                ?> 
+
+                                <div class="hour-box <?php echo $active3; ?>">
+                                    <div class="hour"><?php echo $ag_hora[0].":".$ag_hora[1]; ?>h</div>
+                                    <div class="img-circle circle"><span></span></div>
+                                    <div class="toggle-btn active"><h3><?php echo $ag['D016_Titulo']; ?></h3></div>
+                                    <div class="content-box collapsed">
+                                        <div class="content"><?php echo str_replace("|", "/", $ag['D016_Chamada']); ?></div>
+                                        <br>
+                                        <div class="row professional clearfix">
+                                            <div class="col-md-12 col-sm-12 col-xs-12">                                    
+                                                
+                                                <?php foreach ($ag["D016_Atracao"] as $atr): ?>
+                                                <div class="col-md-4 col-sm-4 col-xs-12 info">
+                                                    <div class="col-md-3 col-sm-3 col-xs-4">
+                                                        <figure class="img-circle image">
+                                                            <img class="img-circle" src="/images/equipe/<?php echo $atr['D016_Img'] ?>" alt="">
+                                                        </figure>
+                                                    </div>
+                                                    <div class="col-md-9 col-sm-9 col-xs-8 info">
+                                                        <h5 class="prof-title"><?php echo $atr['D016_Titulo'] ?></h5>
+                                                        <h6 class="prof-occup"><?php echo $atr['D016_Funcao'] ?></h6>
+                                                    </div>
+                                                    
+                                                </div>
+                                                <?php endforeach; ?>
+                                            
+                                            </div>
+                                            <div class="col-md-12 col-sm-12 col-xs-12 text-right">
+                                                
+                                                <a href="#" class="theme-btn btn-style-one hvr-bounce-to-right dull"><?php echo $ag_hora[0].":".$ag_hora[1]; ?></a>
+                                                <a href="single-event.html" class="theme-btn btn-style-one hvr-bounce-to-right"><span class="fa fa-play"></span>SAIBA MAIS DESTE EVENTO</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <?php 
+                                        endforeach;
+                                    endif; 
+                                endforeach; ?>                       
+                                
+                            </div>
+
+                            <?php endfor; ?>                    
+                                              
+                        </div>
+                        <!--Tabs Box End-->
+                        
+                    </div>
+                    <!--Schedule Box End-->
+    
+                    
+                    <br>
+                    <div class="text-right">                        
+                        <a href="/page/atracoes/cat/all/p/0" class="download-btn theme-btn"><span>Voltar</span></a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+  
+
+  
+
+  

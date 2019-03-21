@@ -1,0 +1,264 @@
+<router base="produto/alterar">
+
+<input type="hidden" id="code" value="<?php echo $view_produto_lista_alt[0]['prod_id'];?>">
+<input type="hidden" id="idioma" value="<?php echo $view_produto_lista_alt[0]['prod_idioma'];?>">
+<?php $config = unserialize (CONFIG_DB); ?>
+<input type="hidden" id="dominio" value="<?php echo $config[0]['D001_Site'];?>">
+<header class="page-header">
+    <h2>Produtos</h2>
+    <div class="right-wrapper text-right">
+        <?php $LANGUAGE_DEFAULT = unserialize(LANGUAGE_DEFAULT); ?>       
+        <a href="/backend/produto/galeria/lang/<?php echo $view_produto_lista_alt[0]['prod_idioma']; ?>/ref/<?php echo $view_produto_lista_alt[0]['prod_referencia']; ?>" class="mb-1 mt-3 mr-1 ml-1 btn btn-xs btn-primary"><strong>Galeria de Imagens</strong></a>
+        <a name="bt_produto_alterar" id="bt_produto_alterar" href="javascript:$('#img').uploadifive('upload')" class="mb-1 mt-3 mr-1 btn btn-xs btn-primary"><strong>Gravar</strong></a>
+        <a href="/backend/produto/listar/lang/<?php echo $LANGUAGE_DEFAULT[0]; ?>" class="mb-1 mt-3 mr-1 ml-1 btn btn-xs btn-default"><strong>Voltar</strong></a>
+        <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-calendar"></i></a>
+    </div>
+</header>
+<!-- start: Homee -->
+<?php $icon = ($view_produto_lista_alt[0]['prod_idioma'] == "en" ? "gb" : $view_produto_lista_alt[0]['prod_idioma']); ?>
+<section class="card">
+    <div class="card-body">
+        <div class="invoice">
+            <header class="clearfix">
+              <div class="row">
+                  <div class="col-sm-6 mt-3">
+                      <h2 class="h2 mt-0 mb-4 text-dark font-weight-bold">Alterar Conteúdo</h2>
+                  </div>
+                  <div class="col-sm-6 mt-3">
+                      <!-- <div class="m-0 mb-4 pull-right">
+                        <i class="flag-icon flag-icon-<?php //echo $icon; ?>" style="font-size: 24px;"></i>
+                      </div> -->
+                  </div>
+              </div>
+            </header>
+            <div class="row">
+              <div class="col-md-8">
+                <section class="card mb-4">
+                  <header class="card-header">
+                    <h2 class="card-title pull-left">Informações Principais</h2>
+                  </header>
+                  <div class="card-body">
+                    <form class="form-horizontal form-bordered" method="post">
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Título</label>
+                        <div class="col-lg-9">
+                          <input type="text" id="titulo" class="form-control" value="<?php echo $view_produto_lista_alt[0]['prod_nome'] ?>">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="textareaDefault">Breve descrição</label>
+                        <div class="col-lg-9">
+                          <textarea class="form-control" id="chamada" rows="3"><?php echo $view_produto_lista_alt[0]['prod_chamada'] ?></textarea>
+                          <p>
+                            <!-- <code>max-length</code> set to 140. -->
+                          </p>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Descrição detalhada</label>
+                        <div class="col-lg-9">
+                          <!-- <textarea class="form-control" name="Home_texto" id="Home_texto"></textarea> -->
+                          <?php
+                            require_once $_SERVER['DOCUMENT_ROOT']."/backend/public/vendor/ckeditor/ckeditor.php";
+                            require_once $_SERVER['DOCUMENT_ROOT']."/backend/public/vendor/ckfinder/ckfinder.php";
+
+                            $initialValue = str_replace("|", "/", $view_produto_lista_alt[0]['prod_texto']);
+                            $CKEditor = new CKEditor();
+                            $CKEditor->basePath = '/backend/public/vendor/ckeditor/';
+                            CKFinder::SetupCKEditor($CKEditor, '/backend/public/vendor/ckfinder/');
+                            $CKEditor->editor("texto", $initialValue);
+                          ?>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Ordem</label>
+                        <div class="col-lg-9">
+                          <input type="text" id="ordem" class="form-control" value="<?php echo $view_produto_lista_alt[0]['prod_ordem'] ?>">
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Preço</label>
+                        <div class="col-lg-9">
+                          <input type="text" id="preco" class="form-control" value="<?php echo $view_produto_lista_alt[0]['prod_preco'] ?>">
+                        </div>
+                      </div>
+                   
+                    </form>
+                  </div>
+                </section>
+              </div>
+
+              <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+
+                <section class="card mb-4">
+                    <header class="card-header">
+                      <h2 class="card-title">Destaque / Imagem</h2>
+                    </header>
+                    <div class="card-body">
+
+
+                      <div class="form-group row">
+
+                        <label class="col-sm-3 control-label text-sm-right pt-2">Status</label>
+                        <div class="btn-group col-sm-9 pull-right" data-toggle="buttons">
+                          <?php
+                            if($view_produto_lista_alt[0]['prod_status'] == "true"):
+                              $checked1 = "checked";
+                              $checked2 = "";
+                              $active1 = "active";
+                              $active2 = "";
+                            elseif($view_produto_lista_alt[0]['prod_status'] == "false"):
+                              $checked1 = "";
+                              $checked2 = "checked";
+                              $active1 = "";
+                              $active2 = "active";
+                            endif;
+                          ?>
+                          <label class="btn btn-primary <?php echo $active1; ?>">
+                            <input type="radio" name="destaque" id="option1" autocomplete="off" value="true" <?php echo $checked1; ?>> Ativo
+                          </label>
+                          <label class="btn btn-primary <?php echo $active2; ?>">
+                            <input type="radio" name="destaque" id="option2" autocomplete="off"  value="false"  <?php echo $checked2; ?>> Inativo
+                          </label>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+
+                        <label class="col-sm-3 control-label text-sm-right pt-2">Imagem</label>
+                        <div class="col-sm-9 media-gallery">
+                          <div id="queue" class="mt-3 mb-3"></div>
+                          <input id="img" name="img" type="file" multiple>
+                          <input type="hidden" id="timestamp" value="<?php echo $timestamp = time();?>">
+                          <input type="hidden" id="unique_salt" value="<?php echo md5('unique_salt' . $timestamp);?>">
+                          <input type="hidden" id="referecia" value="<?php echo $view_produto_lista_alt[0]['prod_referencia'];?>">
+                          <!-- <span class="pull-right">tam: 880px x 480px</span> -->
+                          <hr class="mt-3 mb-3">
+                          <?php if(!empty($view_produto_lista_alt[0]['prod_foto'] )): ?>
+                          <div class="row mg-files" data-sort-destination="" data-sort-id="media-gallery" style="position: relative; height:auto; padding-bottom: 20px;">
+                            <div class="isotope-item document col-xs-12 col-sm-12 col-md-12 col-lg-12" style="position: relative; left: 0px; top: 5px;">
+                              <div class="thumbnail">
+                                <div class="thumb-preview">
+                                  <a class="thumb-image" href="/images/produto/<?php echo $view_produto_lista_alt[0]['prod_foto'] ?>">
+                                    <img src="/images/produto/<?php echo $view_produto_lista_alt[0]['prod_foto'] ?>" class="img-fluid" alt="<?php echo $view_produto_lista_alt[0]['prod_nome'] ?>">
+                                  </a>
+                                  <div class="mg-thumb-options" style="overflow: visible;">
+                                    <div class="mg-zoom"><i class="fa fa-search"></i></div>
+                                    <div class="mg-toolbar">
+                                      <div class="mg-group float-right show">
+                                        <button class="dropdown-toggle mg-toggle" data-toggle="dropdown" aria-expanded="true"><span class="caret"></span></button>
+                                        <div class="dropdown-menu mg-dropdown show" role="menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(271px, 28px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                          <a class="dropdown-item text-1" href="/images/produto/<?php echo $view_produto_lista_alt[0]['prod_foto'] ?>" download="Imagem_produto"><i class="fa fa-download"></i> Download</a>
+                                          <a class="dropdown-item text-1" id="img_Del" href="javascript:;"><i class="fa fa-trash-o"></i> Apagar</a>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- <div class="mg-description">
+                                  <small class="float-left text-muted">Design, Websites</small>
+                                  <small class="float-right text-muted">07/10/2017</small>
+                                </div> -->
+                              </div>
+                            </div>
+                          </div>
+                          <?php endif; ?>
+                        </div>
+                      </div>
+
+                      <hr>
+                      <div class="form-group row">
+                        <h5 class="control-label text-sm-right pt-2">Tipo de Página</h5>
+                        <select id="controller" class="form-control" required disabled>
+                        <option value="0"></option>
+                        <?php
+                        if(isset($view_modulo)):
+                            foreach ($view_modulo as $modulo):
+                              if($view_produto_lista_alt[0]['prod_controle'] == $modulo["mod_modulo"] ){
+                                $selected = "selected";
+                                echo  '<option value="'.$modulo["mod_modulo"].'" '.$selected.'>'.$modulo["mod_titulo"].'</option>';
+                              }elseif($view_produto_lista_alt[0]['prod_controle'] != $modulo["mod_modulo"]){
+                                echo  '<option value="'.$modulo["mod_modulo"].'" >'.$modulo["mod_titulo"].'</option>';
+                              }
+                            endforeach;
+                        endif; ?>
+                        </select>
+                      </div>
+
+
+                     <!--  <div class="form-group row">
+                        <h4 class="control-label text-sm-right pt-2">Categoria</h4>
+                        <select id="categoria" class="form-control" required>
+                          <option value="0">Selecione</option>
+                          <?php
+
+                         /*  if(isset($view_categoria)):
+                              foreach ($view_categoria as $categoria):
+                                if($view_produto_lista_alt[0]['prod_Categoria'] == $categoria["prod_id"] ){
+                                  $selected = "selected";
+                                  echo  '<option value="'.$categoria["prod_id"].'" '.$selected.'>'.$categoria["prod_nome"].'</option>';
+                                }elseif($view_produto_lista_alt[0]['prod_Categoria'] != $categoria["prod_id"]){
+                                  echo  '<option value="'.$categoria["prod_id"].'" >'.$categoria["prod_nome"].'</option>';
+                                }
+                              endforeach; 
+                          endif;*/ ?>
+                        </select>
+                      </div>
+
+                      <div class="form-group row">
+                        <h4 class="control-label text-sm-right pt-2">Subcategoria - Lv1</h4>
+                        <select id="subcategoria" class="form-control" required>
+                          <option value="0">Selecione</option>
+                          <?php
+
+                          /* if(isset($view_subcategoria)):
+                              foreach ($view_subcategoria as $subcategoria):
+                                if($view_produto_lista_alt[0]['prod_Subcategoria'] == $subcategoria["prod_id"] ){
+                                  $selected = "selected";
+                                  echo  '<option value="'.$subcategoria["prod_id"].'" '.$selected.'>'.$subcategoria["prod_nome"].'</option>';
+                                }elseif($view_produto_lista_alt[0]['prod_Subcategoria'] != $subcategoria["prod_id"]){
+                                  echo  '<option value="'.$subcategoria["prod_id"].'" >'.$subcategoria["prod_nome"].'</option>';
+                                }
+                              endforeach;
+                          endif;  */
+                          ?>
+                        </select>
+                      </div>
+
+                      <div class="form-group row">
+                        <h4 class="control-label text-sm-right pt-2">Subcategoria - Lv2</h4>
+                        <select id="ssubcategoria" class="form-control" required>
+                          <option value="0">Selecione</option>
+                          <?php
+
+                       /*    if(isset($view_ssubcategoria)):
+                              foreach ($view_ssubcategoria as $ssubcategoria):
+                                if($view_produto_lista_alt[0]['prod_Sub2'] == $ssubcategoria["prod_id"] ){
+                                  $selected = "selected";
+                                  echo  '<option value="'.$ssubcategoria["prod_id"].'" '.$selected.'>'.$ssubcategoria["prod_nome"].'</option>';
+                                }elseif($view_produto_lista_alt[0]['prod_Sub2'] != $ssubcategoria["prod_id"]){
+                                  echo  '<option value="'.$ssubcategoria["prod_id"].'" >'.$ssubcategoria["prod_nome"].'</option>';
+                                }
+                              endforeach;
+                          endif;  */
+                          ?>
+                        </select>
+                      </div>
+ -->
+
+                    </div>
+                  </section>
+                </div>
+            </div>
+
+            <div id="ref" class='clearfix'></div>
+            <span id="retorno" class="col-md-10"></span>
+            <a name="bt_produto_alterar" id="bt_produto_alterar"  href="javascript:$('#img').uploadifive('upload')" class="btn btn-primary col-md-2 pull-right">Gravar</a>
+
+        </div>
+    </div>
+</section>
+<!-- end: Homee -->

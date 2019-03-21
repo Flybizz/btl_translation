@@ -1,0 +1,215 @@
+
+<section id="cromaheader" style="">
+  <h1 class="cro_cust_font" style=" color: #ffffff; ">SERMÕES IBI</h1>
+</section>
+
+<div class="main singleitem">       
+  <div class="row singlepage">
+            
+      <!-- structure for the page with left sidebar -->
+      
+      <!-- structure for the main content part -->
+      <div class="large-12 column">
+        <div class="croma_pad_right">
+          
+  <!-- Start the section -->
+      <article id="post-140" class="post-140 post type-post status-publish format-standard has-post-thumbnail hentry category-annnouncements category-bible-study category-latest-news category-uncategorized cromatheme-format-post">
+        <div class="cro-articleinner">
+          <!-- category time handler -->
+
+          <?php if(!empty($site_sermao['dados'])):
+                  foreach ($site_sermao['dados'] as $sermao):
+           ?>
+
+          <div class="cat_post_wrapper">  
+            <div class="croma_blogtime cro_time cro_cust_bg">
+            <?php
+
+              $dt = explode(" ", $sermao['D007_Data']);
+
+              $dt2 = explode("-", $dt[0]);
+
+              switch ($dt2[1]):
+                case 1: $mes = "JAN"; break;
+                case 2: $mes = "FEV"; break;
+                case 3: $mes = "MAR"; break;
+                case 4: $mes = "ABR"; break;
+                case 5: $mes = "MAI"; break;
+                case 6: $mes = "JUN"; break;
+                case 7: $mes = "JUL"; break;
+                case 8: $mes = "AGO"; break;
+                case 9: $mes = "SET"; break;
+                case 10: $mes = "OUT"; break;
+                case 11: $mes = "NOV"; break;
+                case 12: $mes = "DEZ"; break;
+
+              endswitch;
+
+             echo $dt2[2]."<br/>".$mes; ?>
+            </div>
+
+          <!-- Post title -->
+          <header class="entry-title">
+            <h2 class="entry-title cro_cust_font">
+              <a href="/page/sermoes/link/<?php echo $sermao['D007_Chave'] ?>" title="<?php echo utf8_decode($sermao['D007_Titulo']); ?> " rel="bookmark">
+                <?php echo utf8_decode($sermao['D007_Titulo']); ?> </a>
+            </h2>
+          </header>      
+
+          <!-- image -->
+          <!-- <div class="cro_postimageholder">
+            <a href="/page/sermoes/link/<?php echo $sermao['D007_Chave'] ?>">
+              <img width="900" height="601" src="/images/noticia/<?php echo utf8_decode($sermao['D007_Foto']); ?> " class="attachment-full wp-post-image" alt="edit5" />
+            </a>
+          </div> -->
+                    
+          <div class="entry-summary">
+
+            <p><?php echo utf8_decode(str_replace("|", "/", $sermao['D007_Texto'])); ?></p>
+
+            <p class="cro_readmorep cro_accent">
+              <a href="/page/sermoes/link/<?php echo $sermao['D007_Chave'] ?>" class="cro_readmorea cro_cust_bg">
+                <i class="fa fa-volume-up"></i>
+              </a>
+            </p>  
+          </div><!-- .entry-summary -->
+
+          <!-- render summary meta -->
+          <footer class="summarymeta clearfix">
+            <div class="entry-meta">  
+                      <div class="comments-link">
+                      <span class="disqus-comment-count comment-count" data-disqus-url="/page/sermoes/link/<?php echo $sermao['D007_Chave'] ?>"><a href="/page/sermoes/link/<?php echo $sermao['D007_Chave'] ?>" title="<?php echo utf8_decode($sermao['D007_Titulo']) ?>"><i class="icon-comments"></i></a> </span>
+                      </div><!-- .comments-link -->
+                
+            </div>
+          </footer>
+
+        </div>
+        
+        <?php endforeach; 
+        endif;
+        ?>
+      
+      </div>
+    </article>
+
+    </div>
+
+<!--     <div class="cro_paging">
+      <span class='page-numbers current'>1</span>
+      <a class='page-numbers' href='page/2/index.html'>2</a>
+      <a class="next page-numbers" href="page/2/index.html"><i class="icon-chevron-right"></i></a>
+    </div> -->
+<center>
+  <nav>
+      <?php 
+
+           $info['pagination']['reg_final'] =  $site_sermao['reg_final'];
+           $info['pagination']['n_paginas'] =  $site_sermao['n_paginas'];
+           $info['pagination']['pg_atual'] =  $site_sermao['pg_atual'];
+           $info['pagination']['pg_anterior'] =  $site_sermao['pg_anterior'];
+           $info['pagination']['pg_proxima'] =  $site_sermao['pg_proxima'];
+           $info['pagination']['lnk_impressos'] =  $site_sermao['lnk_impressos'];
+           $info['pagination']['finalpag'] =  $site_sermao['finalpag'];
+           $info['pagination']['arquivo'] =  $site_sermao['arquivo'];
+           $info['pagination']['pag'] =  $site_sermao['pag'];
+           $info['pagination']['nlinks'] =  $site_sermao['nlinks'];
+           $info['pagination']['temp'] =  $site_sermao['temp'];
+           $info['pagination']['totreg'] =  $site_sermao['totreg'];
+
+          navipages($home=1,$center=1,$info); 
+
+
+         function navipages($home=0,$center=0, array $info)
+        {
+
+           $reg_final = $info['pagination']['reg_final'];
+           $n_paginas =  $info['pagination']['n_paginas'];         
+           $pg_atual =  $info['pagination']['pg_atual'];
+           $pg_anterior =  $info['pagination']['pg_anterior'];
+           $pg_proxima =  $info['pagination']['pg_proxima'];
+           $lnk_impressos =  $info['pagination']['lnk_impressos'];
+           $finalpag =  $info['pagination']['finalpag'];
+           $arquivo =  $info['pagination']['arquivo'];
+           $pag =  $info['pagination']['pag'];
+           $nlinks =  $info['pagination']['nlinks'];
+           $temp =  $info['pagination']['temp'];
+           $totreg =  $info['pagination']['totreg'];
+
+          // global $pg_atual, 
+          // $pg_anterior,
+          // $pg_proxima,  
+          // $n_paginas, 
+          // $reg_final, 
+          // $totreg, 
+          // $temp, 
+          // $nlinks,       
+          // $lnk_impressos,        
+          // $arquivo, 
+          // $pag,
+          // $urlhomepage,
+          // $finalpag,
+          // $barborder;
+          ?>
+                  <?php 
+                  if($n_paginas > 1){ ?>
+                  <ul class="pagination">
+                    <li><a href="<?php echo $arquivo; ?>/1">Primeira Página</a></li>
+                    <?php if (isset($pag) && $pag > 1){ ?>
+                    <li><a href="<?php echo $arquivo; ?>/<?php echo $pg_anterior; ?>"><i class="fa fa-angle-double-left"></i></a></li>
+                    <?php } ?>
+                    <?php
+                                if ($temp >= $nlinks)
+                                {
+                                if ($n_paginas > $nlinks) 
+                                {
+                                $n_maxlnk = $temp + 4;
+                                $nlinks   = $n_maxlnk;
+                                $n_start  = $temp - 6;
+                                if($n_start==-1)
+                                {
+                                $n_start=0;
+                                }
+                                $lnk_impressos = $n_start;
+                                }
+                                }
+                                while(($lnk_impressos < $n_paginas) and ($lnk_impressos < $nlinks))
+                                { 
+                                $lnk_impressos ++;
+                                ?>
+                    <?php
+                                if ($pg_atual != $lnk_impressos)
+                                {
+                                echo "<li><a href=\"$arquivo/$lnk_impressos\">";
+                                }
+                                if ($pg_atual == $lnk_impressos)
+                                {
+                                echo "<li class=\"active\"><a href=\"javascript:void(0);\">$lnk_impressos</a></li>";
+                                } 
+                                else 
+                                {
+                                echo "$lnk_impressos"."</li>";
+                                }
+                                ?>
+                    </a>
+                    <?php
+                                }
+                                ?>
+                    <?php
+                                if ($reg_final < $totreg) 
+                                {
+                                ?>
+                    <li><a href="<?php echo $arquivo; ?>/<?php echo $pg_proxima; ?>"><i class="fa fa-angle-double-right"></i></a></li>
+                    <?php
+                                } 
+                                ?>
+                    <li><a href="<?php echo $arquivo; ?>/<?php echo $finalpag; ?>">Útilma Página </a></li>
+                  </ul>
+                  <?php }} ?> 
+  </nav>
+</center>
+   
+
+  </div>
+</div>
+</div>

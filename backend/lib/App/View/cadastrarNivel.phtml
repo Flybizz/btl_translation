@@ -1,0 +1,170 @@
+<router base="nivel/registar">
+<input type="hidden" id="niv_idioma" value="<?php echo $view_nivel_info[0]['niv_idioma'];?>">
+<input type="hidden" id="niv_id" value="<?php echo $view_nivel_info[0]['niv_id'];?>">                   
+<header class="page-header">
+    <h2>Nível</h2>
+
+    <div class="right-wrapper text-right">
+        <?php $LANGUAGE_DEFAULT = unserialize(LANGUAGE_DEFAULT); ?>
+        <?php $LANGUAGE_LIST = unserialize(LANGUAGE_LIST); ?>
+        <?php if(!empty($LANGUAGE_LIST)): ?>        
+          <?php foreach ($LANGUAGE_LIST as $lang): 
+          $icon_lang = ($lang["D008_Icon"] == "en" ? "gb" : $lang["D008_Icon"]);
+          ?>
+          <a href="/backend/nivel/alterar/lang/<?php echo $lang['D008_Sigla']; ?>/id/<?php echo $view_usuario_lista_alt[0]['niv_id']; ?>" class="mb-1 mt-3 mr-0 ml-0 p-1 btn btn-xs btn-default"><i class="flag-icon flag-icon-<?php echo $icon_lang; ?>" style="font-size: 14px;"></i></a>         
+        <?php endforeach; ?>   
+        <?php endif; ?>
+        <a name="nivCad" id="nivCad" href="#" class="mb-1 mt-3 mr-1 btn btn-xs btn-primary"><strong>Gravar</strong></a>
+        <a href="/backend/nivel/listar/lang/<?php echo $LANGUAGE_DEFAULT[0]; ?>" class="mb-1 mt-3 mr-1 ml-1 btn btn-xs btn-default"><strong>Voltar</strong></a>
+        <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-calendar"></i></a>
+    </div>
+</header>
+
+<!-- start: file -->
+
+<?php //$icon = ($view_usuario_lista_alt[0]['niv_idioma'] == "en" ? "gb" : $view_usuario_lista_alt[0]['niv_idioma']); ?>
+
+<section class="card">
+    <div class="card-body">
+        <div class="invoice">
+            <header class="clearfix">
+                <div class="row">
+                    <div class="col-sm-6 mt-3">
+                        <h2 class="h2 mt-0 mb-4 text-dark font-weight-bold">Adicionar Nível</h2>
+                        <!-- <h4 class="h4 m-0 text-dark font-weight-bold">#76598345</h4> -->
+                    </div>
+                    <div class="col-sm-6 mt-3">
+                        <div class="m-0 mb-4 pull-right">
+                          <i class="flag-icon flag-icon-<?php echo $icon; ?>" style="font-size: 24px;"></i>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="row">
+              <div class="col-md-4">
+                <section class="card mb-4">
+                  <header class="card-header">
+                    <h2 class="card-title">Principal</h2>
+                  </header>
+                  <div class="card-body">
+                    <form class="form-horizontal form-bordered" method="post">
+
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="niv_nome">Nome</label>
+                        <div class="col-lg-9">
+                          <input type="text" id="niv_nome" class="form-control" value="">
+                        </div>
+                      </div>
+                         
+                    </form>
+                  </div>
+
+                </section>
+
+              </div>
+
+              <div class="col-md-8">
+                <section class="card mb-4">
+                <header class="card-header">
+                    <h2 class="card-title">
+                      Permissões
+                      
+                      <div class="pull-right select-all-btn">
+                        Selecionar todos
+                        <div class="switch switch-sm switch-primary">
+                          <input id="toggle_all_permissions" type="checkbox" name="switch" data-plugin-ios-switch style="display:none;" />
+                        </div>
+                      </div>
+
+                    </h2>
+                  </header>
+                  <div class="card-body">
+                    
+                    <!-- permissions start -->
+                    <div class="permissions row">
+                      <?php 
+                        if (!empty($view_nivel_permissao)): 
+                          $arr_nome = "";
+                          $arr_permissao = array_shift($view_nivel_permissao);
+                          array_shift($arr_permissao);
+
+                          //gambiarra 1.0
+                          $module_nice_names = array(
+                            "per_menu" => "Menu",
+                            "per_conteudo" => "Conteúdo",
+                            "per_parceiros" => "Parceiros",
+                            "per_noticias" => "Notícias",
+                            "per_slide" => "Slide",
+                            "per_contatos" => "Contatos",
+                            "per_faq" => "FAQ",
+                            "per_configuracao" => "Configuração",
+                            "per_institucional" => "Institucional",
+                            "per_icones" => "Ícones",
+                            "per_produtos" => "Produtos",
+                            "per_portfolios" => "Portfolios",
+                            "per_testemunho" => "Testemunho",
+                            "per_servicos" => "Servicos",
+                            "per_calendario" => "Calendário",
+                            "per_eventos" => "Eventos",
+                            "per_equipe" => "Equipa",
+                            "per_cursos" => "Cursos",
+                            "per_unidades" => "Unidades",
+                            "per_landpage" => "Landpage",
+                            "per_banner" => "Banner",
+                            "per_processo" => "Processo",
+                            "per_recurso" => "Recurso",
+                            "per_pacote" => "Pacotes",
+                            "per_pedido" => "Pedido",
+                            "per_cliente" => "Clientes",
+                            "per_orcamento" => "Orçamentos",
+                            "per_vendedor" => "Vendedores",
+                            "per_area" => "Área",
+                            "per_distrito" => "Distrito",
+                            "per_cargo" => "Cargo",
+                            "per_especialidade" => "Especialidade",
+                            "per_tipo" => "Tipo"
+                          );
+                        ?>
+
+                        <?php foreach ($arr_permissao as $per_key => $permissao):
+                          $nome = str_replace("per_", "", $per_key);
+                          $nice_nome = !empty($module_nice_names[$per_key]) ? $module_nice_names[$per_key] : $nome;
+                        ?>
+                                            
+                        <div class="col-md-3 switcher-container">
+                            <label class="col-md-8 col-sm-8 col-xs-8"><?php echo $nice_nome; ?></label>
+                            <div class="switch switch-sm switch-primary">
+                              <input id="nivel_permissao_<?php echo $nome; ?>" type="checkbox" name="switch" data-plugin-ios-switch style="display:none;" />
+                            </div>
+                            <p class="clearfix"></p>
+                        </div>
+                        <?php $arr_nome .= $nome.",";  ?>
+                        <?php endforeach; ?>
+                        
+                        <?php endif; 
+                          $arr_nome = substr($arr_nome,0,-1);
+                          $arr_col = explode(",", $arr_nome);
+                        ?>
+                        
+                        <input type="hidden" id="nivel_permissao_array" value='<?php echo json_encode($arr_col); ?>'>
+                      </div>
+                      <!-- permissions end -->
+
+                  </div>
+
+                </section>
+
+                
+
+              </div>
+
+            </div>  
+            
+            <div id="ref" class='clearfix'></div>  
+            <span id="retorno" class="col-md-10"></span>            
+            <a name="nivCad" id="nivCad"  href="javascript:$('#niv_img').uploadifive('upload')" class="btn btn-primary col-md-2 pull-right">Gravar</a>
+               
+        </div>
+    </div>
+</section>

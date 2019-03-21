@@ -1,0 +1,196 @@
+<div class="container-fluid"> 
+    <div class="row">
+        <div id="editor_acao" class="col-md-12"></div>         
+    </div>
+    <div  id="editor_lista"  class="row ">
+        <div class="col-md-12">
+            <div class="titleIdent col-md-12">
+                <p class="clearfix"></p>
+               <h2 class="col-md-4">Eventos Cadastrados</h2>
+               <span class="col-md-8"><span id="agendaCad" class="btn btn-info pull-right">ADD Evento</span></span> 
+            </div>
+            <div class="panel-body col-md-12">
+                <div class="table-responsive" ng-controller="customersCtrl">
+                    <table class="table table-hover table-condensed" id="condensedTable">
+                        <thead>
+                            <tr>
+                                <th width='10%'>ID</th>                                
+                                <th width='30%'>EVENTO</th>
+                                <th width='30%'>DATA/HORAS</th>
+                                <th width='20%'>CHAMADA</th>
+                                <th width='20%'>STATUS</th>
+                                <th width='20%'>AÇÕES</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php 
+                            if(!empty($view_agenda_lista["dados"])):
+                            foreach ($view_agenda_lista["dados"] as $agenda): ?>
+                            <tr id="<?php echo $agenda['D040_Uid'] ?>">
+                                <td><?php echo $agenda['D040_Uid']; ?></td>
+                                <td><?php echo utf8_decode($agenda['D040_Evento']); ?></td>
+                                <td><?php echo implode('/', array_reverse(explode('-', $agenda['D040_Data'])))." ".$agenda['D040_Hora']; ?></td>
+                                <td><?php echo utf8_decode($agenda['D040_Chamada']); ?></td>
+                                <td>
+                                    <?php if($agenda['D040_Status'] == "Sim"):
+
+                                        $rs = "Ativo";
+
+                                    else:
+
+                                        $rs = "Inativo";
+
+                                    endif; 
+
+                                        echo $rs;
+
+                                    ?>
+                                </td>
+                                </td>
+                                <td align="left">
+                                    <a id="agendaAlt" class="btn btn-info" href="#" data-placement="top" title="Alterar">
+                                      <i class="fa fa-pencil fa-lg"></i>
+                                    </a>
+                                    <input type="hidden" value="<?php echo $agenda['D040_Uid'] ?>" />
+                                    <a  id="agendaDel" class="btn btn-danger" href="#" data-toggle="modal" data-target="#modalshow">
+                                      <i class="fa fa-remove fa-lg"></i>
+                                    </a>
+                                    <input type="hidden" class="icon" value="<?php echo $agenda['D040_Uid'] ?>" />
+                                </td>
+                            </tr>
+                            <?php endforeach;
+                            endif; ?>
+                        </tbody>
+                    </table>
+                </div>
+                <center>
+                  <nav>
+                      <?php 
+
+                        if(!empty($view_agenda_lista)):
+
+                           $info['pagination']['reg_final'] =  $view_agenda_lista['reg_final'];
+                           $info['pagination']['n_paginas'] =  $view_agenda_lista['n_paginas'];
+                           $info['pagination']['pg_atual'] =  $view_agenda_lista['pg_atual'];
+                           $info['pagination']['pg_anterior'] =  $view_agenda_lista['pg_anterior'];
+                           $info['pagination']['pg_proxima'] =  $view_agenda_lista['pg_proxima'];
+                           $info['pagination']['lnk_impressos'] =  $view_agenda_lista['lnk_impressos'];
+                           $info['pagination']['finalpag'] =  $view_agenda_lista['finalpag'];
+                           $info['pagination']['arquivo'] =  $view_agenda_lista['arquivo'];
+                           $info['pagination']['pag'] =  $view_agenda_lista['pag'];
+                           $info['pagination']['nlinks'] =  $view_agenda_lista['nlinks'];
+                           $info['pagination']['temp'] =  $view_agenda_lista['temp'];
+                           $info['pagination']['totreg'] =  $view_agenda_lista['totreg'];
+
+                        else:
+
+                           $info['pagination']['reg_final'] =  0;
+                           $info['pagination']['n_paginas'] =  0;
+                           $info['pagination']['pg_atual'] =  0;
+                           $info['pagination']['pg_anterior'] =  0;
+                           $info['pagination']['pg_proxima'] =  0;
+                           $info['pagination']['lnk_impressos'] =  0;
+                           $info['pagination']['finalpag'] =  0;
+                           $info['pagination']['arquivo'] =  0;
+                           $info['pagination']['pag'] =  0;
+                           $info['pagination']['nlinks'] =  0;
+                           $info['pagination']['temp'] =  0;
+                           $info['pagination']['totreg'] =  0;
+
+                        endif;
+
+                          navipages($home=1,$center=1,$info); 
+
+
+                         function navipages($home=0,$center=0, array $info)
+                        {
+
+                           $reg_final = $info['pagination']['reg_final'];
+                           $n_paginas =  $info['pagination']['n_paginas'];         
+                           $pg_atual =  $info['pagination']['pg_atual'];
+                           $pg_anterior =  $info['pagination']['pg_anterior'];
+                           $pg_proxima =  $info['pagination']['pg_proxima'];
+                           $lnk_impressos =  $info['pagination']['lnk_impressos'];
+                           $finalpag =  $info['pagination']['finalpag'];
+                           $arquivo =  $info['pagination']['arquivo'];
+                           $pag =  $info['pagination']['pag'];
+                           $nlinks =  $info['pagination']['nlinks'];
+                           $temp =  $info['pagination']['temp'];
+                           $totreg =  $info['pagination']['totreg'];
+
+                          // global $pg_atual, 
+                          // $pg_anterior,
+                          // $pg_proxima,  
+                          // $n_paginas, 
+                          // $reg_final, 
+                          // $totreg, 
+                          // $temp, 
+                          // $nlinks,       
+                          // $lnk_impressos,        
+                          // $arquivo, 
+                          // $pag,
+                          // $urlhomepage,
+                          // $finalpag,
+                          // $barborder;
+                          ?>
+                          <?php 
+                          if($n_paginas > 1){ ?>
+                          <ul class="pagination">
+                            <li><a href="<?php echo $arquivo; ?>/1">Primeira Página</a></li>
+                            <?php if (isset($pag) && $pag > 1){ ?>
+                            <li><a href="<?php echo $arquivo; ?>/<?php echo $pg_anterior; ?>"><i class="fa fa-angle-double-left"></i></a></li>
+                            <?php } ?>
+                            <?php
+                                        if ($temp >= $nlinks)
+                                        {
+                                        if ($n_paginas > $nlinks) 
+                                        {
+                                        $n_maxlnk = $temp + 4;
+                                        $nlinks   = $n_maxlnk;
+                                        $n_start  = $temp - 6;
+                                        if($n_start==-1)
+                                        {
+                                        $n_start=0;
+                                        }
+                                        $lnk_impressos = $n_start;
+                                        }
+                                        }
+                                        while(($lnk_impressos < $n_paginas) and ($lnk_impressos < $nlinks))
+                                        { 
+                                        $lnk_impressos ++;
+                                        ?>
+                            <?php
+                                        if ($pg_atual != $lnk_impressos)
+                                        {
+                                        echo "<li><a href=\"$arquivo/$lnk_impressos\">";
+                                        }
+                                        if ($pg_atual == $lnk_impressos)
+                                        {
+                                        echo "<li class=\"active\"><a href=\"javascript:void(0);\">$lnk_impressos</a></li>";
+                                        } 
+                                        else 
+                                        {
+                                        echo "$lnk_impressos"."</li>";
+                                        }
+                                        ?>
+                            </a>
+                            <?php
+                                        }
+                                        ?>
+                            <?php
+                                        if ($reg_final < $totreg) 
+                                        {
+                                        ?>
+                            <li><a href="<?php echo $arquivo; ?>/<?php echo $pg_proxima; ?>"><i class="fa fa-angle-double-right"></i></a></li>
+                            <?php
+                                        } 
+                                        ?>
+                            <li><a href="<?php echo $arquivo; ?>/<?php echo $finalpag; ?>">Útilma Página </a></li>
+                          </ul>
+                          <?php }} ?> 
+                  </nav>
+                </center>
+            </div>
+        </div>
+    </div>
+</div>

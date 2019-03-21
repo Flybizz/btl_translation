@@ -1,0 +1,83 @@
+<router base="especialidade/registar">
+
+<input type="hidden" id="code" value="<?php echo $view_especialidade_lista_alt[0]['esp_id'];?>">
+<?php $config = unserialize (CONFIG_DB); ?>
+<input type="hidden" id="dominio" value="<?php echo $config[0]['D001_Site'];?>">
+<header class="page-header">
+    <h2>Áreas</h2>
+    <div class="right-wrapper text-right">
+        <?php $LANGUAGE_DEFAULT = unserialize(LANGUAGE_DEFAULT); ?>
+        <?php $LANGUAGE_LIST = unserialize(LANGUAGE_LIST); ?>
+        <?php if(!empty($LANGUAGE_LIST)): ?>
+          <?php foreach ($LANGUAGE_LIST as $lang):
+          $icon_lang = ($lang["D008_Icon"] == "en" ? "gb" : $lang["D008_Icon"]);
+          ?>
+          <a href="/backend/especialidade/alterar/lang/<?php echo $lang['D008_Sigla']; ?>/ref/<?php echo $view_especialidade_lista_alt[0]['esp_id']; ?>" class="mb-1 mt-3 mr-0 ml-0 p-1 btn btn-xs btn-default"><i class="flag-icon flag-icon-<?php echo $icon_lang; ?>" style="font-size: 14px;"></i></a>
+        <?php endforeach; ?>
+        <?php endif; ?>
+        <a name="bt_especialidade_alterar" id="bt_especialidade_alterar" href="javascript:void(0);" class="mb-1 mt-3 mr-1 btn btn-xs btn-primary"><strong>Gravar</strong></a>
+        <a href="/backend/especialidade/listar/lang/<?php echo $LANGUAGE_DEFAULT[0]; ?>" class="mb-1 mt-3 mr-1 ml-1 btn btn-xs btn-default"><strong>Voltar</strong></a>
+        <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-calendar"></i></a>
+    </div>
+</header>
+<!-- start: Homee -->
+<section class="card">
+    <div class="card-body">
+        <div class="invoice">
+            <header class="clearfix">
+              <div class="row">
+                  <div class="col-sm-6 mt-3">
+                      <h2 class="h2 mt-0 mb-4 text-dark font-weight-bold">Adicionar Especialidade</h2>
+                  </div>
+                  <div class="col-sm-6 mt-3">
+                      <div class="m-0 mb-4 pull-right">
+                        <i class="flag-icon flag-icon-<?php echo $icon; ?>" style="font-size: 24px;"></i>
+                      </div>
+                  </div>
+              </div>
+            </header>
+            <div class="row">
+              <div class="col-md-8">
+                <section class="card mb-4">
+                  <header class="card-header">
+                    <h2 class="card-title pull-left">Informações Principais</h2>
+                  </header>
+                  <div class="card-body">
+                    <form class="form-horizontal form-bordered" method="post">
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="titulo">Título</label>
+                        <div class="col-lg-9">
+                          <input type="text" id="titulo" class="form-control" value="">
+                        </div>
+                      </div>    
+
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Status</label>
+                        <div class="col-lg-6">
+
+                          <div class="btn-group" data-toggle="buttons">
+                          <label class="btn btn-primary active" aria-pressed="true">
+                              <input type="radio" name="especialidade_status" id="option1" value="sim" checked="checked"> Ativo
+                            </label>
+                            <label class="btn btn-primary" aria-pressed="true">
+                              <input type="radio" name="especialidade_status" id="option2" value="nao"> Inativo
+                            </label>
+
+                          </div>
+                        </div>
+                      </div> 
+
+                   
+                    </form>
+                  </div>
+                </section>
+              </div>
+            </div>
+
+            <div id="ref" class='clearfix'></div>
+            <span id="retorno" class="col-md-10"></span>
+            <a name="bt_especialidade_alterar" id="bt_especialidade_alterar"  href="javascript:void(0);" class="btn btn-primary col-md-2 pull-right">Gravar</a>
+
+        </div>
+    </div>
+</section>

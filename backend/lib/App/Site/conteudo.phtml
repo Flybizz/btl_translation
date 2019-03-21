@@ -1,0 +1,55 @@
+
+<!-- heading-banner start -->
+<!-- <div class="heading-banner">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="heading-banner-title">
+                    <h2></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+<!-- heading-banner end --> 
+<!-- about-us-area start -->
+<!-- <div class="about-us-area">
+    <div class="container">
+        <div class="row">
+                   
+        </div>
+    </div>
+</div> -->
+<!-- about-us-area end -->
+
+
+<div class="head-title">
+    <div class="container-fluid">
+        <div class="row">
+            <h2 class="page-title"><?php echo $site_conteudo[0]['D004_Titulo']; ?></h2>
+        
+        </div><!-- end row -->
+    </div><!-- end container -->
+</div><!-- end head-title -->
+
+
+
+<section id="main">
+    <div class="container-fluid">
+        <div class="row">
+            <div id="primary" class="content-area">
+                <div id="content" class="site-content">
+                   <article class="post hentry">
+
+                        <div class="row top-content">           
+                            <div class="entry-content col-md-12">
+                               <?php echo str_replace("|", "/", utf8_decode($site_conteudo[0]['D004_Texto'])); ?> 
+                            </div><!-- end entry-content -->
+                        </div>  
+
+                   </article>
+                </div><!-- end #content -->
+            </div><!-- end #primary -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section><!-- cd-section -->

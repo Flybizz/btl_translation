@@ -1,0 +1,160 @@
+<?php 
+//header('Content-type: application/pdf');
+//NOME RELATORIO
+$_SESSION['relatorio'] = "FORMAÇÃO";
+$_SESSION['logo'] = $view_config[0]["D001_Logosite"];
+//CRIA A PÁGINA EM PDF
+$pdf = new App_pdf();
+$pdf->Open();
+$pdf->AliasNbPages();
+$pdf->AddPage('P','','A4');
+//POPULANDO A TABELA
+$pdf->SetFont('Arial', '', 7);
+$pdf->SetFillColor(255,255,255);
+$pdf->SetTextColor(0,0,0);
+//Table with 20 rows and 4 columns
+$pdf->SetWidths(array(10,70,50,30,30));
+$pdf->SetAligns(array("C","L","L","C","L"));
+if(isset($view_formacao)):
+  $num = 0;
+  $_SESSION['ref'] = $view_formacao[0]["form_ref"];
+  $_SESSION['title'] = "FORMAÇÃO - ".$view_formacao[0]["form_tipo_nome"];
+  $_SESSION['date'] = $view_formacao[0]["form_data_formacao"];
+  $produto = new App_Model_produtoModel();
+  $area = new App_Model_areaModel();
+  $formando = new App_Model_formandoModel();
+  $contato = new App_Model_contatoModel();
+  $distrito = new App_Model_distritoModel();
+  $sel_contato = $contato->contatoSelecionarClienteLead($view_formacao[0]["cli_id"]);
+  $sel_distrito = $distrito->distritoSelecionar($view_formacao[0]["cli_distrito"]);
+  $sel_area = $area->areaSelecionarIn($view_formacao[0]["cli_area_negocio"]);
+  $sel_produto = $produto->produtoSelecionarIn($view_formacao[0]["form_produtos"]);   
+  
+  $vl_area = "";
+      
+  if(!empty($formacao["cli_area_negocio"])):
+    foreach ($formacao["cli_area_negocio"] as $area):       
+      $vl_area .= $area["area_nome"].", ";
+    endforeach;
+  else:
+      $rs_area = "";  
+  endif; 
+  $rs_area = substr($vl_area,0,-2);
+  $vl_produto = "";
+      
+  if(!empty($sel_produto)):
+    foreach ($sel_produto as $produto):       
+      $vl_produto .= $produto["prod_nome"].", ";      
+    endforeach;
+    $rs_produto = substr($vl_produto,0,-2);
+  else:
+      $rs_produto = "";  
+  endif; 
+  $vl_contato = "";
+  
+  if(!empty($sel_contato)):            
+    $vl_contato = $sel_contato[0]["cont_nome"];           
+  endif;
+  $pdf->SetFont('Arial', 'B', 9);
+  $pdf->SetFillColor(6,101,153);
+  $pdf->SetTextColor(255,255,255);
+  $pdf->Cell(190, 7, 'DADOS CLIENTES', 0,0,'L',1);
+  $pdf->Ln(12);
+  $pdf->SetFillColor(255,255,255);
+  $pdf->SetTextColor(25,25,25);
+  $pdf->SetFont('Arial', 'B', 9);
+  $pdf->Cell(20, 7, 'Nome: ', 0,0,'L',1);
+  $pdf->SetFont('Arial', '', 9);
+  $pdf->Cell(70, 7, utf8_decode($view_formacao[0]["cli_nome"]), 0,0,'L',1);
+  $pdf->SetFont('Arial', 'B', 9);
+  $pdf->Cell(20, 7, utf8_decode('Endereço: '), 0,0,'L',1);
+  $pdf->SetFont('Arial', '', 9);
+  $pdf->Cell(70, 7, utf8_decode($view_formacao[0]["cli_rua"]), 0,0,'L',1);  
+  $pdf->SetFont('Arial', 'B', 9);
+  $pdf->Ln(6);
+  $pdf->Cell(20, 7, 'CNPJ/CPF: ', 0,0,'L',1);
+  $pdf->SetFont('Arial', '', 9);
+  $pdf->Cell(70, 7, ($view_formacao[0]["cli_nif"] == 0)?"":$view_formacao[0]["cli_nif"], 0,0,'L',1);
+  $pdf->SetFont('Arial', 'B', 9);
+  $pdf->Cell(20, 7, 'Cidade/UF: ', 0,0,'L',1);
+  $pdf->SetFont('Arial', '', 9);
+  $pdf->Cell(70, 7, utf8_decode($view_formacao[0]["cli_localidade"])." / ".$view_formacao[0]["sigla_distrito"], 0,0,'L',1);
+  $pdf->Ln(6);
+  $pdf->SetFont('Arial', 'B', 9);
+  $pdf->Cell(20, 7, 'Email: ', 0,0,'L',1);
+  $pdf->SetFont('Arial', '', 9);
+  $pdf->Cell(70, 7, utf8_decode($view_formacao[0]["cli_email"]), 0,0,'L',1);
+  $pdf->SetFont('Arial', 'B', 9);
+  $pdf->Cell(20, 7, 'Vendedor: ', 0,0,'L',1);
+  $pdf->SetFont('Arial', '', 9);
+  $pdf->Cell(70, 7, utf8_decode($view_formacao[0]["usu_nome"]), 0,0,'L',1);
+  $pdf->Ln(6);
+  $pdf->SetFont('Arial', 'B', 9);
+  $pdf->Cell(20, 7, 'Telefone: ', 0,0,'L',1);
+  $pdf->SetFont('Arial', '', 9);
+  $pdf->Cell(70, 7, utf8_decode($view_formacao[0]["cli_telefone"]), 0,0,'L',1);
+  $pdf->SetFont('Arial', 'B', 9);
+  $pdf->Cell(20, 7, 'Contato: ', 0,0,'L',1);
+  $pdf->SetFont('Arial', '', 9);
+  $pdf->Cell(70, 7, utf8_decode($vl_contato), 0,0,'L',1);
+  $pdf->Ln(12);
+  $pdf->SetFont('Arial', 'B', 9);
+  $pdf->SetFillColor(255,255,255);
+  $pdf->SetTextColor(25,25,25);
+  $pdf->Cell(40, 7, utf8_decode('DADOS FORMAÇÃO'), 0,0,'L',1);
+  $pdf->SetTextColor(25,25,25);
+  $pdf->Cell(150, 7, '____________________________________________________________________________________', 0,0,'L',1);
+  $pdf->Ln(8);
+  $pdf->SetFillColor(255,255,255);
+  $pdf->SetTextColor(25,25,25);
+  $pdf->SetFont('Arial', 'B', 9);
+  $pdf->Cell(20, 7, utf8_decode('Formador: '), 0,0,'L',1);
+  $pdf->SetFont('Arial', '', 9);
+  $pdf->Cell(70, 7, utf8_decode($view_formacao[0]["formador_nome"]), 0,0,'L',1);
+  $pdf->SetFont('Arial', 'B', 9);
+  $pdf->Cell(20, 7, 'Produtos: ', 0,0,'L',1);
+  $pdf->SetFont('Arial', '', 9);
+  $pdf->Cell(70, 7, utf8_decode($rs_produto), 0,0,'L',1);  
+  $pdf->Ln(10);
+  $sel_formando = $formando->formandoSelecionarIn($view_formacao[0]["form_formandos"]);
+  $pdf->SetFont('Arial', 'B', 9);
+  $pdf->SetFillColor(6,101,153);
+  $pdf->SetTextColor(255,255,255);
+  $pdf->Cell(190, 7, 'LISTA DE FORMANDOS', 1,0,'L',1);
+  $pdf->Ln();            
+  $pdf->SetFont('Arial', 'B', 7);
+  $pdf->SetFillColor(210,210,210);
+  $pdf->SetTextColor(0,0,0);
+  $pdf->Cell(10, 7, '-', 1,0,'C',1);
+  $pdf->Cell(70, 7, 'NOME', 1,0,'C',1);
+  $pdf->Cell(50, 7, 'EMAIL', 1,0,'C',1);
+  $pdf->Cell(30, 7, 'CPF', 1,0,'C',1);          
+  $pdf->Cell(30, 7, utf8_decode('ASS.'), 1,0,'C',1);          
+  $pdf->Ln(7);
+    
+	foreach ($sel_formando as $list):
+    $num++;    
+    $pdf->SetTextColor(25,25,25);
+    if($num % 2 == 0):        
+        $pdf->SetFillColor(235,235,235);
+    else:
+        $pdf->SetFillColor(255,255,255);
+    endif;
+    
+    $pdf->Row(array(
+      $num,
+      str_replace("|", "/", utf8_decode($list["form_nome"])),
+      str_replace("|", "/", utf8_decode($list["form_email"])),
+      str_replace("|", "/", utf8_decode($list["form_nif"])),
+      ""                   
+      ),1,0,"C",1);
+	endforeach;
+	if(empty($view_formacao)):
+   		$pdf->Cell(190, 6, "Não existe registo", 1);
+   		$pdf->Ln();
+  endif;
+endif;
+$pdf->Ln(10);
+//FORÇA O DOWNLOAD PELO BROWSER
+$pdf->Output($_SERVER['DOCUMENT_ROOT'].'/backend/public/pdf/view_formacao.pdf', 'F');
+?>

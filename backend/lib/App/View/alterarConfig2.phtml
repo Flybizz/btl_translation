@@ -1,0 +1,301 @@
+<router base="configuracao/avancado">
+<?php $languageLIST = unserialize (LANGUAGE_LIST); ?>
+
+<header class="page-header">
+    <h2>Configuração</h2>
+
+    <div class="right-wrapper text-right">
+        <ol class="breadcrumbs">
+            <li>
+                <a href="/">
+                    <i class="fa fa-home"></i>
+                </a>
+            </li>
+            <li><span>Home</span></li>
+            <li><span>Configuração</span></li>
+        </ol>
+
+        <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-calendar"></i></a>
+    </div>
+</header>
+
+
+<!-- start: page -->
+<section class="content-with-menu content-with-menu-has-toolbar media-gallery">
+    <div class="content-with-menu-container">
+        <div class="inner-menu-toggle">
+            <a href="#" class="inner-menu-expand" data-open="inner-menu">
+                Show Bar <i class="fa fa-chevron-right"></i>
+            </a>
+        </div>
+        
+        <menu id="content-menu" class="inner-menu" role="menu">
+            <div class="nano">
+                <div class="nano-content">
+        
+                    <div class="inner-menu-toggle-inside">
+                        <a href="#" class="inner-menu-collapse">
+                            <i class="fa fa-chevron-up visible-xs-inline"></i><i class="fa fa-chevron-left hidden-xs-inline"></i> Hide Bar
+                        </a>
+                        <a href="#" class="inner-menu-expand" data-open="inner-menu">
+                            Show Bar <i class="fa fa-chevron-down"></i>
+                        </a>
+                    </div>
+        
+                    <div class="inner-menu-content">
+          
+                        <div class="sidebar-widget m-0">
+                            <div class="widget-header clearfix">
+                                <h6 class="title float-left mt-1">MENU</h6>
+                         <!--        <div class="float-right">
+                                    <a href="/backend/idioma/registar" class="btn btn-dark btn-sm btn-widget-act">TESTE</a>
+                                </div> -->
+                            </div>
+
+                            <!-- config navigation menu -->
+                            <?php include_once("partials/nav-config-menu.phtml") ?>
+                            <!-- /config navigation menu -->
+
+                        </div>        
+                    </div>
+                </div>
+            </div>
+        </menu>
+        <div class="inner-body mg-main">
+        
+            <div class="inner-toolbar clearfix">
+                <ul>
+                    <li class="col-md-12 pb-3">
+                        <h3 class="mt-0 mb-0 text-light font-weight-bold pull-left">Dados Avançados</h3>
+                        <a name="bt_cfg" id="bt_cfg" href="javascript:;" class="btn text-light btn-primary btn-sm btn-widget-act pull-right mt-0 mb-4" style="margin-top: -5px!important;">Guardar</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="row">
+              <div class="col-md-9">
+                <section class="card mb-4">
+                  <header class="card-header">
+                    <h2 class="card-title">Informações</h2>
+                  </header>
+                  <div class="card-body">
+                    <form class="form-horizontal form-bordered" method="post">
+
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Fonts Google</label>
+                        <div class="col-lg-9">
+                          <textarea class="form-control" id="cfg_fontgoogle"><?php echo $view_config_lista[0]['D001_Fontgoogle']; ?></textarea>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Font Config Google</label>
+                        <div class="col-lg-9">
+                           <input type="text" id="cfg_fontconfig" class="form-control" value="<?php echo $view_config_lista[0]['D001_Fontconfig']; ?>">
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">RSS</label>
+                        <div class="col-lg-9">
+                          <input type="text" id="cfg_rss" class="form-control" value="<?php echo $view_config_lista[0]['D001_Rss']; ?>">
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Ao vivo</label>
+                        <div class="col-lg-9">
+                          <input type="text" id="cfg_aovivo" class="form-control" value="<?php echo $view_config_lista[0]['D001_Aovivo']; ?>">
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Ao vivo radio</label>
+                        <div class="col-lg-9">
+                          <input type="text" id="cfg_aovivoradio" class="form-control" value="<?php echo $view_config_lista[0]['D001_Aovivoradio']; ?>">
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">META TAG Description</label>
+                        <div class="col-lg-9">
+                          <textarea class="form-control" maxlength="255" id="cfg_descricao"><?php echo $view_config_lista[0]['D001_Descricao']; ?></textarea>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Skype</label>
+                        <div class="col-lg-9">
+                          <input type="text" id="cfg_skype" class="form-control" value="<?php echo $view_config_lista[0]['D001_Skypeusu']; ?>">
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Whatsapp</label>
+                        <div class="col-lg-9">
+                          <input type="text" id="cfg_whatsapp" class="form-control" value="<?php echo $view_config_lista[0]['D001_Whatsapp']; ?>">
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Facebook</label>
+                        <div class="col-lg-9">
+                           <input type="text" id="cfg_facebook" class="form-control" value="<?php echo $view_config_lista[0]['D001_Facebook']; ?>">
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Widget Facebook</label>
+                        <div class="col-lg-9">
+                           <textarea class="form-control" id="cfg_facebooktxt"><?php echo $view_config_lista[0]['D001_Facebooktxt'];?></textarea>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Twitter</label>
+                        <div class="col-lg-9">
+                          <input type="text" id="cfg_twitter" class="form-control" value="<?php echo $view_config_lista[0]['D001_Twitter']; ?>">
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Widget Twitter</label>
+                        <div class="col-lg-9">
+                          <textarea class="form-control" id="cfg_twittertxt"><?php echo $view_config_lista[0]['D001_Twittertxt']; ?></textarea>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Youtube</label>
+                        <div class="col-lg-9">
+                          <input type="text" id="cfg_youtube" class="form-control" value="<?php echo $view_config_lista[0]['D001_Youtube']; ?>">
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Blog</label>
+                        <div class="col-lg-9">
+                           <input type="text" id="cfg_blog" class="form-control" value="<?php echo $view_config_lista[0]['D001_Blog']; ?>">
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Google+</label>
+                        <div class="col-lg-9">
+                          <input type="text" id="cfg_google" class="form-control" value="<?php echo $view_config_lista[0]['D001_Google']; ?>">
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Instagram</label>
+                        <div class="col-lg-9">
+                          <input type="text" id="cfg_instagram" class="form-control" value="<?php echo $view_config_lista[0]['D001_Instagram']; ?>">
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Widget Instagram</label>
+                        <div class="col-lg-9">
+                          <textarea class="form-control" id="cfg_instagramtxt"><?php echo $view_config_lista[0]['D001_Instagramtxt']; ?></textarea>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Instagram Ativação</label>
+                        <div class="col-lg-9">
+                          <?php
+                            if ($view_config_lista[0]['D001_Instagramview'] == "true"):
+                                $checked = "checked";
+                            else:
+                                $checked = "";
+                            endif;
+                            ?>
+                            <div class="switch switch-sm switch-primary">
+                              <input type="checkbox" id="cfg_instagramview" <?php echo $checked; ?> name="switch" data-plugin-ios-switch />
+                            </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Tema</label>
+                        <div class="col-lg-9">
+                          <div class="input-group color" data-plugin-colorpicker>
+                            <span class="input-group-addon"><i></i></span>
+                            <input type="text" class="form-control" id="cfg_tema" value="<?php echo $view_config_lista[0]['D001_Tema'] ?>" >
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Tema2</label>
+                        <div class="col-lg-9">
+                          <div class="input-group color" data-plugin-colorpicker>
+                            <span class="input-group-addon"><i></i></span>
+                            <input type="text" class="form-control" id="cfg_tema2" value="<?php echo $view_config_lista[0]['D001_Tema2'] ?>" >
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Latitude</label>
+                        <div class="col-lg-9">
+                           <input type="text" id="cfg_latitude" class="form-control" value="<?php echo $view_config_lista[0]['D001_Latitude']; ?>">
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Longitude</label>
+                        <div class="col-lg-9">
+                           <input type="text" id="cfg_longitude" class="form-control" value="<?php echo $view_config_lista[0]['D001_Longitude']; ?>">
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Google Map</label>
+                        <div class="col-lg-9">
+                           <textarea class="form-control" id="cfg_googlemap"><?php echo $view_config_lista[0]['D001_Googlemap']; ?></textarea>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">GAPI</label>
+                        <div class="col-lg-9">
+                           <input type="text" id="cfg_keyvisita" class="form-control" value="<?php echo $view_config_lista[0]['D001_Keyvisita']; ?>">
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+             
+                        <label class="col-sm-3 control-label text-sm-right pt-2">Template - NAVBAR</label>
+                        <div class="btn-group col-sm-9 pull-right" data-toggle="buttons">
+                          <?php 
+                            if($view_config_lista[0]['D001_TP_Header'] == "left"):
+                              $checked1 = "checked";
+                              $checked2 = "";
+                              $active1 = "active";
+                              $active2 = "";
+                            elseif($view_config_lista[0]['D001_TP_Header'] == "center"):
+                              $checked1 = "";
+                              $checked2 = "checked";
+                              $active1 = "";
+                              $active2 = "active";
+                            endif;
+                          ?>
+                          <label class="btn btn-primary <?php echo $active1; ?>">
+                            <input type="radio" name="cfg_nav" id="option1" autocomplete="off" value="left" <?php echo $checked1; ?>> LEFT
+                          </label>
+                          <label class="btn btn-primary <?php echo $active2; ?>">
+                            <input type="radio" name="cfg_nav" id="option2" autocomplete="off"  value="center"  <?php echo $checked2; ?>> CENTER
+                          </label>
+                        </div>
+
+                      </div>
+                                          
+                    </form>
+                  </div>
+                </section>            
+              </div>                        
+            </div>  
+        </div>
+    </div>
+</section>
+<!-- end: page -->

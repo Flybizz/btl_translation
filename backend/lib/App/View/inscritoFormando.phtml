@@ -1,0 +1,107 @@
+<router base="formando/listar">
+
+<header class="page-header">
+    <h2>Formandos - <?php echo $view_cliente["cli_nome"] ?></h2>
+
+    <div class="right-wrapper text-right">
+        <a href="/backend/cliente/perfil/ref/<?php echo $view_cliente["cli_referencia"] ?>/tab/formacao" class="mb-1 mt-3 mr-1 ml-1 btn btn-xs btn-default"><strong>Voltar</strong></a>
+        <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-calendar"></i></a>
+    </div>
+</header>
+
+<!-- start: page -->
+
+<section class="card">
+    <div class="card-body">
+        <div class="invoice">
+            <header class="clearfix">
+                <div class="row">
+                    <div class="col-sm-12 mt-3">
+                        <h2 class="h2 mt-0 mb-4 text-dark font-weight-bold">Lista de Formandos - <?php echo $view_tipo["form_tipo_nome"]; ?></h2>
+                        <!-- <h4 class="h4 m-0 text-dark font-weight-bold">#76598345</h4> -->
+                    </div>
+                </div>
+            </header>
+            <div class="row">
+                <div class="col-lg-5">
+                    <section class="card">
+                        <header class="card-header">                            
+                            <h2 class="card-title">Formulário</h2>
+                            <p class="card-subtitle">
+                                Insira informações de um novo registo ou altere um registo existente.
+                            </p>
+                        </header>
+                        <form id="form_formandos" method="post">
+                            <div class="card-body pt-1">                            
+                                <div class="row form-group">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label class="col-form-label" for="form_nome">Nome Completo</label>
+                                            <input type="text" class="form-control" name="form_nome" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label class="col-form-label" for="form_email">Email</label>
+                                            <input type="text" class="form-control" name="form_email" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label class="col-form-label" for="form_nif">NIF / CPF</label>
+                                            <input type="text" class="form-control" name="form_nif" placeholder="">
+                                        </div>
+                                    </div>
+                                </div>                            
+                            </div>
+                            <footer class="card-footer text-right">
+                                <button name="bt_clear" class="btn btn-primary">Limpar</button>
+                                <button name="bt_gravar" class="btn btn-primary">Gravar</button>
+                            </footer>
+                            <input type="hidden" name="form_formacao" value="<?php echo $view_formacao["form_ref"]; ?>">
+                        </form>
+                    </section>
+                </div>
+            
+                <div class="col-lg-7">
+
+                    <section class="card" style="background-color: rgba(245,245,245,1);">
+                        <div class="card-body pl-0 pr-0 scrollable visible-slider colored-slider" data-plugin-scrollable style="height: 900px; background-color: rgba(200,200,200,0);">
+
+                            <div class="content scrollable-content p-1">
+                                        
+                                    <ul id="formando_list" class="simple-user-list row mr-1 ml-1 mt-1">
+                                                                    
+                                        <?php if (!empty( $view_formando )): ?>
+
+                                        <?php foreach ($view_formando as $formando): ?>
+
+                                        <li id="<?php echo $formando["form_id"]; ?>" name="item_formando" class="p-3 col-lg-12 col-md-12 col-sm-12 col-xs-12" style="background-color: rgba(255,255,255,1);" >
+
+                                            <span class="pull-right mt-0 pt-0" style="position: absolute; right: 15px; top: 5px;"> 
+                                                <a class="formUpdate" href="javascript:void(0);" data-id="<?php echo $formando["form_id"] ?>" data-name="<?php echo $formando["form_nome"] ?>" data-email="<?php echo $formando["form_email"] ?>"  data-nif="<?php echo $formando["form_nif"] ?>"><i class="fa fa-pencil fa-lg mr-1"></i></a>
+                                                <a class="formDel" href="#modalAnim" data-id="<?php echo $formando["form_id"] ?>" data-name="<?php echo $formando["form_nome"] ?>" data-formacao="<?php echo $view_formacao["form_ref"]; ?>"><i class="fa fa-remove fa-lg"></i></a>
+                                            </span>
+
+                                            <div class="">                                                
+                                                <h5 class="title fs-18"><strong><?php echo $formando["form_nome"]; ?></strong></h5>                                     
+                                                <span class="message truncate">
+                                                    <i class="fa fa-envelope-square fa-lg"></i> <a href="mailto:<?php echo $formando["form_email"] ?>" target="_blank"><?php echo $formando["form_email"] ?></a> | <i class="fa fa-address-card fa-lg"></i> <?php echo $formando["form_nif"] ?></span>
+                                            </div>										
+                                        </li>	
+                                                                    
+                                        <?php endforeach; ?>
+                                        <?php endif; ?>	
+                                        
+                                    </ul>
+                            </div>	
+                        </div>
+                    </section>
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- end: page -->

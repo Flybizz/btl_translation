@@ -1,0 +1,196 @@
+
+        <!--Content Wrapper Start-->
+        <div class="content-wrapper">
+          <div class="container">
+                
+                <div class="row section-wrapper">
+                  
+                    <!--Content Start-->
+                    <div class="col-md-8 content-section-body">
+                        <div class="box">
+                        
+                            <!--Archive Title Start-->
+                            <div class="archive-title">
+                                <span>Cifras</span>
+                                <h1><?php echo $site_artista[0]['D011_DescriCategoria'] ?></h1>
+                            </div>
+                            <!--Archive Title End-->
+                            
+                            <div class="post-list post-masonry">
+
+                                <div class="container nopadding">
+                                  <div class="row masonry-wrapper">
+
+                                      <?php if(!empty($site_cifra)): ?>
+                                    
+                                      <!--Post Entry 2 Start-->
+                                      <div class="masonry-item col-xs-12 col-sm-12">
+                                          <div class="box">
+                                              <div class="masonry-article-wrap">
+                                                    <article class="post-type-standard">
+
+                                                     
+                                                        
+                                                        <!--Post Entry-->
+                                                        <div class="post-entry col-sm-12">
+                                                            <!--Post Image-->
+                                                            <div class="col-sm-4">
+                                                              <div class="post-img">
+                                                                <figure>
+                                                                    <div class="overlay-hover"></div>
+                                                                     <?php if (!empty($site_artista[0]['D011_Imagem'])): ?>   
+                                                                      <img src="/images/artista/<?php echo $site_artista[0]['D011_Imagem']; ?>" alt="post image" height="125px" />
+                                                                     <?php else: ?>
+                                                                      <img src="/images/sem_imagem.jpg" alt="post image" height="125px" />                   
+                                                                    <?php endif; ?>
+                                                                </figure>
+                                                              </div>
+                                                            </div>                                                           
+                                                            <div class="col-sm-8">
+                                                               <p class="clearfix"></p>
+                                                              <h2><?php echo $site_cifra[0]['D011_Titulo']; ?></h2>
+                                                            </div>
+                                                            <div class="col-sm-12">
+                                                              <p class="clearfix"></p>
+                                                              <div class="post-description">
+
+                                                              <?php echo str_replace("|", "/", $site_cifra[0]['D011_Descricao']); ?>
+                                                
+                                                              </div>
+                                                            </div>
+
+                                                        </div>
+                                                        
+                                                        <!--Post Share-->
+                                                        
+                                                        
+                                                    </article>
+                                              </div>
+                                            </div>
+                                        </div>
+                                        <!--Post Entry 2 End-->
+                                        
+                                        <?php endif; ?>
+                                        
+                                    </div>
+                                </div>
+                                                     
+                            </div>                            
+                                   
+                        </div>
+                    </div>
+                    <!--Content End-->
+
+
+                    <!--Sidebar Start-->
+                    <div class="col-md-4 sidebar-section-body sidebar-sticky">
+                        <div class="box">
+
+
+                          <?php if(!empty($site_cifra[0]['D011_Video'])): ?>
+
+                            <!--Widget About Us Start-->
+                            <aside class="widget widget_about_us">
+                                <div class="widget-title">
+                                    <h3>Vídeo</h3>
+                                </div>
+                                <div class="widget-detail">
+                                    <div class="widget-about-img img-div-cover js-video [vimeo, widescreen]">
+
+                                      <?php 
+                                      if($site_cifra[0]['D011_Videostatus'] == 1 ): //YOUTUBE ?>
+                                        <iframe width="420" height="360" src="<?php echo str_replace("|", "/", $site_cifra[0]['D011_Video']);?>" frameborder="0" allowfullscreen></iframe>
+                                      
+                                      <?php elseif($site_cifra[0]['D011_Videostatus'] == 2 ): ?>
+
+                                        <iframe src="<?php echo str_replace("|", "/", $site_cifra[0]['D011_Video']);?>" width="1080" height="608" frameborder="0" title="<?php echo str_replace("|", "/", $site_cifra[0]['D011_Video']);?>" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+                                      <?php endif; ?>
+                                    </div>
+                                </div>
+                            </aside>
+                            <!--Widget About Us End-->
+
+                            <?php endif; ?>
+                            
+                           <!--Widget Categories Start-->
+                            <aside class="widget widget_categories">
+                                <div class="widget-title">
+                                    <h3>Categorias</h3>
+                                </div>
+                                <div class="widget-detail">
+                                  <ul>
+                                   <?php 
+                                      if(!empty($site_menu_lista)):
+
+                                          $arr_master = array();
+
+                                          //print_r($site_menu_count);
+
+                                          foreach ($site_menu_lista as $menu): 
+
+                                          if(array_key_exists($menu['D011_Uid'], $site_menu_count)):
+
+                                            $count = 1;
+
+                                          else:
+
+                                            $count = 0;
+
+                                          endif;
+
+                                          ?>                        
+
+                                          <?php if($count == 0): ?>
+
+                                          <li>
+                                            <a href="<?php echo str_replace('|', '/', $menu['D011_Link']); ?>"><?php echo utf8_decode($menu['D011_DescriCategoria']); ?></a>
+                                          </li>
+
+                                          <?php else: ?>
+
+                                            <li class="current-menu">
+                                              <a><?php echo utf8_decode($menu['D011_DescriCategoria']); ?></a>
+                                              <ul>
+                                         <?php  endif; ?>
+
+                                          <?php 
+                                          if(!empty($site_sub_master)):
+                                              foreach ($site_sub_master as $master): 
+
+                                                  if($menu['D011_Uid'] == $master['D011_PertenceCodigoMaster'] && $master['D011_PertenceCodigoSub1'] == 0  && $master['D011_PertenceCodigoSub2'] == 0 && $master['D011_PertenceCodigoSub3'] == 0  && $master['D011_PertenceCodigoSub4'] == 0 && $master['D011_PertenceCodigoSub5'] == 0 ):
+
+                                                  ?>
+
+                                                    <li>
+                                                      <a href="<?php echo str_replace('|', '/', $master['D011_Link']); ?>"><?php echo utf8_decode($master['D011_DescriCategoria']); ?></a>
+                                                    </li>
+
+
+                                               <?php  
+                                            endif;
+                                        endforeach;//submaster
+                                    endif; ?>
+
+                                  <?php if($count != 0): echo "</ul></li>"; endif; ?>
+
+                                <?php endforeach;//menu
+                                endif; ?>
+
+                                </ul>         
+
+                                </div>
+                            </aside>
+                            <!--Widget Categories End-->
+                            
+                        </div>
+                    </div>
+                    <!--Sidebar End-->
+                
+                </div>
+                
+                <div class="layout-divider"></div>
+                
+            </div>
+        </div>
+        <!--Content Wrapper End-->

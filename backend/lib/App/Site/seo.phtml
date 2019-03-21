@@ -1,0 +1,105 @@
+<?php 
+	$post_url = explode("/", $_SERVER['REQUEST_URI']); 	
+?>
+
+<?php 
+	
+	if($post_url[1] == "noticias"):	
+		if(isset($post_url[2])):
+		    $db = new App_Db;
+		    $noticia_cat = $db->query("SELECT * FROM d007noticia_cat WHERE D007_Chave = '".$post_url[2]."'");
+		    $cat = $noticia_cat->fetchAll();
+		    $sel_noticia = $db->query("SELECT D007_Uid,D007_Titulo,D007_Chave,D007_Chamada,D007_Data,D007_Foto,D007_Categoria,SEO_Titulo,SEO_Descricao FROM d007noticia WHERE D007_Categoria = ".$cat[0]["D007_Uid"]." AND  D007_Chave = '".$post_url[3]."'");
+		    $rs = $sel_noticia->fetchAll();
+		else:
+			$rs[0]["SEO_Titulo"] = "Notícias";
+		    $rs[0]["SEO_Descricao"] = "Aqui descrição sobre notícias.";
+		endif;
+	endif;
+
+	if($post_url[1] == "imovel"):	
+		if(isset($post_url[1])):
+		    $db = new App_Db;
+		    $sel_imovel = $db->query("SELECT D011_Uid,D011_Titulo,D011_Chave,D011_Imagem,SEO_Titulo,SEO_Descricao,SEO_Slug FROM d011imovel WHERE SEO_Slug = '".$post_url[2]."'");
+			$rs = $sel_imovel->fetchAll();
+		else:
+			$rs[0]["SEO_Titulo"] = "Imóveis";
+		    $rs[0]["SEO_Descricao"] = "Aqui descrição sobre imóveis.";
+		endif;
+	endif;
+
+	if($post_url[1] == "produtos"):	
+		if(isset($post_url[2])):
+		    // $db = new App_Db;
+		    // $produto_cat = $db->query("SELECT * FROM d011produto_cat WHERE D011_Chave = '".$post_url[2]."'");
+		    // $prod = $produto_cat->fetchAll();
+		    // $sel_produto = $db->query("SELECT D007_Uid,D011_Titulo,D011_Chave,D011_Chamada,D011_Data,D011_Imagem,D011_Categoria,SEO_Titulo,SEO_Descricao FROM d011produto WHERE D011_Categoria = ".$prod[0]["D011_Uid"]." AND  D011_Chave = '".$post_url[3]."'");
+		    // $rs = $sel_produto->fetchAll();
+		    $rs[0]["SEO_Titulo"] = "Produtos";
+		    $rs[0]["SEO_Descricao"] = "Aqui descrição sobre produtos.";
+		else:
+			$rs[0]["SEO_Titulo"] = "Produtos";
+		    $rs[0]["SEO_Descricao"] = "Aqui descrição sobre produtos.";
+		endif;
+	endif;
+
+	if($post_url[1] == "institucional"):	
+		if(isset($post_url[2])):
+		    // $db = new App_Db;
+		    // $produto_cat = $db->query("SELECT * FROM d011produto_cat WHERE D011_Chave = '".$post_url[2]."'");
+		    // $prod = $produto_cat->fetchAll();
+		    // $sel_produto = $db->query("SELECT D007_Uid,D011_Titulo,D011_Chave,D011_Chamada,D011_Data,D011_Imagem,D011_Categoria,SEO_Titulo,SEO_Descricao FROM d011produto WHERE D011_Categoria = ".$prod[0]["D011_Uid"]." AND  D011_Chave = '".$post_url[3]."'");
+		    // $rs = $sel_produto->fetchAll();
+		    $rs[0]["SEO_Titulo"] = "Sobre nós";
+		    $rs[0]["SEO_Descricao"] = "Aqui descrição sobre nós.";
+		else:
+			$rs[0]["SEO_Titulo"] = "Sobre nós";
+		    $rs[0]["SEO_Descricao"] = "Aqui descrição sobre nós.";
+		endif;
+	endif;
+
+	if($post_url[1] == "contato"):	
+		if(isset($post_url[2])):
+		    // $db = new App_Db;
+		    // $produto_cat = $db->query("SELECT * FROM d011produto_cat WHERE D011_Chave = '".$post_url[2]."'");
+		    // $prod = $produto_cat->fetchAll();
+		    // $sel_produto = $db->query("SELECT D007_Uid,D011_Titulo,D011_Chave,D011_Chamada,D011_Data,D011_Imagem,D011_Categoria,SEO_Titulo,SEO_Descricao FROM d011produto WHERE D011_Categoria = ".$prod[0]["D011_Uid"]." AND  D011_Chave = '".$post_url[3]."'");
+		    // $rs = $sel_produto->fetchAll();
+		    $rs[0]["SEO_Titulo"] = "Contactos";
+		    $rs[0]["SEO_Descricao"] = "Aqui descrição sobre contactos.";
+		else:
+			$rs[0]["SEO_Titulo"] = "Contactos";
+		    $rs[0]["SEO_Descricao"] = "Aqui descrição sobre contactos.";
+		endif;
+	endif;
+
+	if($post_url[1] == "orcamento"):	
+		if(isset($post_url[2])):
+		    // $db = new App_Db;
+		    // $produto_cat = $db->query("SELECT * FROM d011produto_cat WHERE D011_Chave = '".$post_url[2]."'");
+		    // $prod = $produto_cat->fetchAll();
+		    // $sel_produto = $db->query("SELECT D007_Uid,D011_Titulo,D011_Chave,D011_Chamada,D011_Data,D011_Imagem,D011_Categoria,SEO_Titulo,SEO_Descricao FROM d011produto WHERE D011_Categoria = ".$prod[0]["D011_Uid"]." AND  D011_Chave = '".$post_url[3]."'");
+		    // $rs = $sel_produto->fetchAll();
+		    $rs[0]["SEO_Titulo"] = "Orçamento";
+		    $rs[0]["SEO_Descricao"] = "Aqui descrição sobre orçamento.";
+		else:
+			$rs[0]["SEO_Titulo"] = "Orçamento";
+		    $rs[0]["SEO_Descricao"] = "Aqui descrição sobre orçamento.";
+		endif;
+	endif;
+
+	if($post_url[1] == "images"):
+		$rs[0]["SEO_Titulo"] = "";
+		$rs[0]["SEO_Descricao"] = "";
+	endif;
+
+	if(!isset($rs)):
+		$rs[0]['SEO_Titulo'] = "";
+		$rs[0]['SEO_Descricao'] = ""; 
+	endif;
+
+	$result["title"] = $rs[0]['SEO_Titulo'];
+	$result["description"] = $rs[0]['SEO_Descricao'];
+
+	return $result;
+?>

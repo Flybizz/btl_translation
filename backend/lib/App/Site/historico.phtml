@@ -1,0 +1,41 @@
+<?php $config = unserialize (CONFIG_DB); ?>
+
+<section id="cromaheader" style="">
+  <h1 class="cro_cust_font" style=" color: #ffffff; ">Histórico IBI</h1>
+</section>
+
+<!-- start tit hthe page layout -->
+<section id="pagelayout">
+  <div class="row">
+    <div id="main">
+      <div class="main singlemain cro_singleblogpage">        
+
+
+      <!-- render the page subject to the sidebar settings 1> sidebar left -->
+        <div class="large-12 column">
+          
+  <!-- Start the section -->
+          <article id="post-109" class="post-109 post type-post status-publish format-video has-post-thumbnail hentry category-annnouncements category-bible-study category-latest-news category-uncategorized tag-faith tag-hope tag-love">
+            <div>
+              <!-- category time handler -->
+
+              <!-- Post title -->
+              <header class="entry-title">
+                <h2 class="entry-title cro_cust_font">
+                  <?php echo utf8_decode($site_info[0]['D007_Titulo']); ?>
+                </h2>
+              </header>  
+          
+              <div class="entry-content">
+                <?php echo str_replace("|", "/", utf8_decode($site_info[0]['D007_Texto'])); ?>
+              </div><!-- .entry-content -->
+            </div>
+          </article>
+
+      </div>
+      <p class="clearfix"></p>
+
+    </div>
+  </div>
+</div>
+</section>

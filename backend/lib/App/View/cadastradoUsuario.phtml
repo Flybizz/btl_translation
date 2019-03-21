@@ -1,0 +1,82 @@
+<router base="usuario/listar">
+<?php 
+    $languageLIST = unserialize (LANGUAGE_LIST);
+    $languageDEFAULT = unserialize (LANGUAGE_DEFAULT);
+?>
+<header class="page-header">
+    <h2>Utilizadores</h2>
+
+    <div class="right-wrapper text-right">
+        <ol class="breadcrumbs">
+            <li>
+                <a href="/">
+                    <i class="fa fa-home"></i>
+                </a>
+            </li>
+            <li><span>Home</span></li>
+            <li><span>Utilizadores</span></li>
+        </ol>
+
+        <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-calendar"></i></a>
+    </div>
+</header>
+
+<!-- start: page -->
+
+<section class="card">
+    <div class="card-body">
+        <div class="invoice">
+            <header class="clearfix">
+                <div class="row">
+                    <div class="col-sm-6 mt-3">
+                        <h2 class="h2 mt-0 mb-4 text-dark font-weight-bold">Utilizadores Registados</h2>
+                        <!-- <h4 class="h4 m-0 text-dark font-weight-bold">#76598345</h4> -->
+                    </div>
+                    <div class="col-sm-6 mt-3">
+                        <div class="m-0 mb-4 pull-right">
+                            <a href="/backend/usuario/registar" id="notCad" class="mb-1 mt-1 mr-1 btn btn-primary"> <strong>Criar Utilizador</strong></a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <table class="table table-bordered table-striped mb-0" id="datatable-tabletools">
+                <thead>                    
+                    <tr>
+                        <th style="width: 10%">ID</th>
+                        <th style="width: 30%">NOME</th>
+                        <th style="width: 20%">LOGIN</th>
+                        <th style="width: 20%">NIVEL</th>
+                        <th style="width: 20%">AÇÕES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php
+                    if(!empty($view_usuario_lista)):
+                        
+                    foreach ($view_usuario_lista as $usuario): 
+                      if($usuario['usu_id'] != 1):
+                    ?>
+                    <tr id="<?php echo $usuario['usu_id'] ?>">
+                        
+                        <td class="v-align-middle"><?php echo $usuario['usu_id']; ?></td>
+                        <td class="v-align-middle"><a href="/backend/usuario/alterar/lang/<?php echo $languageDEFAULT[0];?>/ref/<?php echo $usuario["usu_id"]?>"><strong><?php echo $usuario['usu_nome']; ?></strong></a></td>
+                        <td class="v-align-middle"><?php echo $usuario['usu_login']; ?></td> 
+                        <td class="v-align-middle"><?php echo $usuario['niv_id']; ?></td>                                              
+                        <td class="actions">
+                            <a class="usuDel" href="#modalAnim" ref-id="<?php echo $usuario['usu_id'] ?>" ref-name="<?php echo $usuario['usu_nome'] ?>">
+                                <i class="fa fa-trash-o fa-lg"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <?php endif;
+                      endforeach;                      
+                    endif; ?>
+                </tbody>
+            </table>
+               
+        </div>
+    </div>
+</section>
+
+<!-- end: page -->

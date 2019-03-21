@@ -1,0 +1,93 @@
+<router base="cliente/listar">
+<?php $LANGUAGE_DEFAULT = unserialize(LANGUAGE_DEFAULT); ?>
+<input type="hidden" id="idioma" class="icon" value="<?php echo $LANGUAGE_DEFAULT[0]; ?>" />
+<header class="page-header">
+    <h2><?php echo translate(LABEL_CLIENTES) ?></h2>
+
+    <div class="right-wrapper text-right">
+        <ol class="breadcrumbs">
+            <li>
+                <a href="/backend/index/">
+                    <i class="fa fa-home"></i>
+                </a>
+            </li>
+            <li><span><?php echo translate(LABEL_HOME); ?></span></li>
+            <li><span><?php echo translate(LABEL_CLIENTES) ?></span></li>
+        </ol>
+
+        <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-calendar"></i></a>
+    </div>
+</header>
+
+<!-- start: page -->
+
+<section class="card">
+    <div class="card-body">
+        <div class="invoice">
+            <header class="clearfix">
+                <div class="row">
+                    <div class="col-sm-6 mt-3">
+                        <h2 class="h2 mt-0 mb-4 text-dark font-weight-bold"><?php echo translate(LABEL_CLIENTES_REGISTADOS); ?></h2>
+                    </div>
+                    <div class="col-sm-6 mt-3">
+                        <div class="m-0 mb-4 pull-right">
+                            <?php if($_SESSION['nivel_acesso'] == 1): ?>
+                            <a href="#modalAnim" id="uploadCsv" class="mb-1 mt-1 mr-1 btn btn-default"> <strong>Upload CSV</strong></a>
+                            <?php endif; ?>
+                            <a href="/backend/cliente/registar/lang/<?php echo $LANGUAGE_DEFAULT[0]; ?>" id="cliCad" class="mb-1 mt-1 mr-1 btn btn-primary"> <strong>Adicionar</strong></a>                            
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <table class="table table-bordered table-striped mb-0" id="datatable-tabletools">
+                <thead>
+                  <tr>
+                    <th width='8%'><?php echo translate(LABEL_REF); ?></th>
+                    <th width='40%'><?php echo translate(LABEL_NOME); ?></th>
+                    <th width='17%'><?php echo translate(LABEL_EMAIL); ?></th>
+                    <th width='12%'><?php echo translate(LABEL_TELEFONE); ?></th>
+                    <th width='9%'><?php echo translate(LABEL_TIPO); ?></th>
+                    <th width='14%'><?php echo translate(LABEL_ACOES); ?></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php                  
+                  if(!empty($view_dados)):
+                    $dados = json_decode($view_dados, true);
+                    foreach ($dados as $cliente):
+                  ?>
+                  <tr id="<?php echo $cliente['cli_id'] ?>">
+                      <td><?php echo $cliente['cli_referencia']; ?></td>
+                      <td><a class="text-default" href="/backend/cliente/perfil/ref/<?php echo $cliente['cli_referencia'];?>" title="Perfil"><?php echo $cliente['cli_nome']; ?></a></td>
+                      <td><?php echo $cliente['cli_email']; ?></td>
+                      <td><?php echo $cliente['cli_telefone']; ?></td>
+                      <td>
+                        <?php echo $cliente['cli_tipo']; ?>
+                      </td>
+                      <td class="actions">
+                        <a class="text-default" href="/backend/cliente/perfil/ref/<?php echo $cliente['cli_referencia'];?>" title="Perfil" >
+                          <i class="fa fa-user fa-lg"></i>
+                        </a>
+                        <a class="text-default" href="/backend/cliente/alterar/ref/<?php echo $cliente['cli_referencia'];?>" title="Alterar" >
+                          <i class="fa fa-pencil fa-lg"></i>
+                        </a>
+                        <?php if( $_SESSION['nivel_acesso'] == 1 || $_SESSION['nivel_acesso'] == 2 ): ?>
+                        <input type="hidden" class="icon" value="<?php echo $cliente['cli_id']?>" />
+                        <a  class="cliDel" data-name="<?php echo $cliente['cli_nome'];?>" href="#modalAnim" title="Apagar">
+                            <i class="fa fa-trash-o fa-lg"></i>
+                        </a>
+                        <?php endif; ?>
+                      </td>                         
+                  </tr>
+                  <?php endforeach;
+                  endif; ?>
+                </tbody>                
+            </table>
+
+        </div>
+        <div id="list_uploadcsv"></div>
+    </div>
+</section>
+
+<!-- end: page -->

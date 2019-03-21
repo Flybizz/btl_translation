@@ -1,0 +1,41 @@
+<?php 
+	$actual_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; 
+	$post_url = explode("/", $_SERVER['REQUEST_URI']); 
+
+    if ($post_url[1] == "noticias"):
+    
+	/*DB CONSTANT*/
+    $db = new App_Db;
+    $noticia_cat = $db->query("SELECT * FROM d007noticia_cat WHERE D007_Chave = '".$post_url[2]."'");
+    $cat = $noticia_cat->fetchAll();
+
+    $sel_noticia = $db->query("SELECT D007_Uid,D007_Titulo,D007_Chave,D007_Chamada,D007_Data,D007_Foto,D007_Categoria FROM d007noticia WHERE D007_Categoria = ".$cat[0]["D007_Uid"]." AND  D007_Chave = '".$post_url[3]."'");
+    $noticia = $sel_noticia->fetchAll();
+?>
+    <meta property="og:url"           content="<?php echo $actual_link; ?>" />
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="<?php echo $noticia[0]['D007_Titulo']; ?>" />
+    <meta property="og:description"   content="<?php echo $noticia[0]['D007_Chamada']; ?>" />
+    <meta property="og:image"         content="https://<?php echo $_SERVER[HTTP_HOST]; ?>/images/noticia/<?php echo trim($noticia[0]['D007_Foto']); ?>" />
+    <meta property="og:image:alt"     content="<?php echo $noticia[0]['D007_Titulo']; ?>" /> 
+
+    <?php elseif ($post_url[1] == "imovel"): 
+        /*DB CONSTANT*/
+        $db = new App_Db;
+        $sel_imovel = $db->query("SELECT D011_Uid,D011_Titulo,D011_Chave,D011_Chamada,D011_Data,D011_Imagem,SEO_Titulo,SEO_Descricao,SEO_Slug FROM d011imovel WHERE SEO_Slug = '".$post_url[2]."'");
+        $imovel = $sel_imovel->fetchAll();
+
+        $imovel_foto = $db->query("SELECT * FROM d011imovel_fotos WHERE D011_Uid = '".$imovel[0]['D011_Imagem']."'");
+        $img_imovel = $imovel_foto->fetchAll();
+        
+    ?>
+        <meta property="og:url"           content="<?php echo $actual_link; ?>" />
+        <meta property="og:type"          content="website" />
+        <meta property="og:title"         content="<?php echo $imovel[0]['D011_Titulo']; ?>" />
+        <meta property="og:description"   content="<?php echo $imovel[0]['D011_Chamada']; ?>" />
+        <meta property="og:image"         content="https://<?php echo $_SERVER[HTTP_HOST]; ?>/images/imovel/<?php echo $imovel[0]['D011_Uid']; ?>/fotos/<?php echo trim($img_imovel[0]['D011_Imagem']); ?>" />
+        <meta property="og:image:alt"     content="<?php echo $imovel[0]['D011_Titulo']; ?>" /> 
+    <?php endif; ?>
+
+<link rel="canonical" href="<?php echo $actual_link; ?>" />
+<script src="https://apis.google.com/js/platform.js" async defer></script> 

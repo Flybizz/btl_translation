@@ -1,0 +1,98 @@
+<router base="eventos/listar">
+<?php 
+    $languageLIST = unserialize (LANGUAGE_LIST);
+    $languageDEFAULT = unserialize (LANGUAGE_DEFAULT);
+
+    $icon_map = array(
+        1 => "fa-envelope",
+        2 => "fa-group",
+        3 => "fa-phone",
+        4 => "fa-list"
+    );
+
+    //tipos tarefas - TODO - passar para db ou helper?
+    $tipo_tarefa_label[1] = "Email";
+    $tipo_tarefa_label[2] = "Reunião";
+    $tipo_tarefa_label[3] = "Reunião de pré-agariação";
+    $tipo_tarefa_label[4] = "Telefonema";
+    $tipo_tarefa_label[5] = "Tarefa";
+    $tipo_tarefa_label[6] = "Qualificação Financeira";
+    $tipo_tarefa_label[7] = "Outro";
+?>
+<header class="page-header">
+    <h2>Eventos</h2>
+
+    <div class="right-wrapper text-right">
+        <ol class="breadcrumbs">
+            <li>
+                <a href="/">
+                    <i class="fa fa-home"></i>
+                </a>
+            </li>
+            <li><span>Home</span></li>
+            <li><span>Eventos</span></li>
+        </ol>
+
+        <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-calendar"></i></a>
+    </div>
+</header>
+
+<!-- start: page -->
+
+<section class="card">
+    <div class="card-body">
+        <div class="invoice">
+            <header class="clearfix">
+                <div class="row">
+                    <div class="col-sm-6 mt-3">
+                        <h2 class="h2 mt-0 mb-4 text-dark font-weight-bold">Eventos</h2>
+                        <!-- <h4 class="h4 m-0 text-dark font-weight-bold">#76598345</h4> -->
+                    </div>
+                    <div class="col-sm-6 mt-3">
+                        <div class="m-0 mb-4 pull-right">
+                            
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <table class="table table-bordered table-striped mb-0 table-eventos" id="datatable-tabletools">
+                <thead>                    
+                    <tr>
+                        <th style="width: 50px;"></th>
+                        <th style="">COMERCIAL</th>
+                        <th style="">EVENTO</th>
+                        <th style="">CLIENTE</th>
+                        <th style="">DATA</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php
+                    if(!empty($view_logs)):
+                        
+                    foreach ($view_logs as $task): 
+                      
+                    ?>
+                    <tr id="<?php echo $task['referencia'] ?>">
+                        <td class="v-align-middle" width="50px">
+                            <div class="icon">
+                                <span style="display:none;"><?php echo $tipo_tarefa_label[$task["tipo"]] ?></span>
+                                <i class="fa <?php echo !empty($icon_map[$task["tipo"]]) ? $icon_map[$task["tipo"]] : "fa-info-circle" ?>"></i>
+                            </div>
+                        </td>
+                        <td class="v-align-middle"><?php echo $task['usu_nome']; ?></td>
+                        <td class="v-align-middle"><?php echo $task['titulo'] ?></td>
+                        <td class="v-align-middle"><a href="/backend/cliente/perfil/ref/<?php echo $task["cli_referencia"] ?>"><?php echo $task['cli_nome']; ?></a></td> 
+                        <td class="v-align-middle"><?php echo $task['data']; ?></td>
+                    </tr>
+                    <?php
+                      endforeach;                      
+                    endif; ?>
+                </tbody>
+            </table>
+               
+        </div>
+    </div>
+</section>
+
+<!-- end: page -->

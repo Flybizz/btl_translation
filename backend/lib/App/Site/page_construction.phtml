@@ -1,0 +1,63 @@
+
+<div role="main" class="main">
+	<div class="container">
+		<div class="row mt-5">
+			<div class="col text-center">
+				<div class="logo">
+					<a href="/">
+						<img  height="75" src="/images/config/<?php echo $site_config[0]['D001_Logosite'] ?>" alt="Porto">
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<hr class="tall">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col text-center">
+				<h1 class="mb-2 small"><?php echo str_replace("|", "/", $site_config[0]['D001_PC_titulo']); ?></h1>
+				<p class="lead"><?php echo str_replace("|", "/", $site_config[0]['D001_PC_descricao']); ?></p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<hr class="tall">
+			</div>
+		</div>
+		<!-- <div class="container">	  
+	        <div class="mt-1 pt-2">
+	            <div class="row portfolio-list sort-destination" data-sort-id="portfolio">
+
+	                <?php if(!empty($site_produto)): ?>
+	                    <?php foreach ($site_produto as $produto): ?>
+	                        <div class="col-lg-3 col-sm-6 col-12 isotope-item brands">
+	                            <div class="portfolio-item">
+	                                <a href="javascript:;">
+	                                    <span class="thumb-info thumb-info-centered-info">
+	                                        <span class="thumb-info-wrapper">
+	                                            <img src="<?php echo $actual_link; ?>images/produto/<?php echo $produto['D011_Uid']?>/<?php echo $produto['D011_Imageminicio'] ?>" class="img-fluid" alt="">
+	                                            <span class="thumb-info-title">
+	                                                <span class="thumb-info-inner text-1"><?php echo $produto["D011_Titulo"]; ?></span>
+	                                            </span>
+	                                        </span>
+	                                    </span>
+	                                </a>
+	                            </div>
+	                        </div>
+
+	                    <?php endforeach; ?>
+	                <?php  endif; ?>
+	                    
+	            </div>
+	        </div>
+	       
+	    </div> -->
+        <div class="row">
+	        <div class="col">
+	            <hr class="tall mt-4">
+	        </div>
+	    </div>
+	</div>
+</div>

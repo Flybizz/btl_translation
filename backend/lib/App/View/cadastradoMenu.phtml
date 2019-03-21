@@ -1,0 +1,375 @@
+<router base="menu/listar">
+<?php $languageLIST = unserialize (LANGUAGE_LIST); ?>
+<header class="page-header">
+    <h2>Menu</h2>
+
+    <div class="right-wrapper text-right">
+        <ol class="breadcrumbs">
+            <li>
+                <a href="/">
+                    <i class="fa fa-home"></i>
+                </a>
+            </li>
+            <li><span>Home</span></li>
+            <li><span>Menu</span></li>
+        </ol>
+
+        <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-calendar"></i></a>
+    </div>
+</header>
+
+
+<!-- start: page -->
+<section class="content-with-menu content-with-menu-has-toolbar media-gallery">
+    <div class="content-with-menu-container">
+        <div class="inner-menu-toggle">
+            <a href="#" class="inner-menu-expand" data-open="inner-menu">
+                Show Bar <i class="fa fa-chevron-right"></i>
+            </a>
+        </div>
+        
+        <menu id="content-menu" class="inner-menu" role="menu">
+            <div class="nano">
+                <div class="nano-content">
+        
+                    <div class="inner-menu-toggle-inside">
+                        <a href="#" class="inner-menu-collapse">
+                            <i class="fa fa-chevron-up visible-xs-inline"></i><i class="fa fa-chevron-left hidden-xs-inline"></i> Hide Bar
+                        </a>
+                        <a href="#" class="inner-menu-expand" data-open="inner-menu">
+                            Show Bar <i class="fa fa-chevron-down"></i>
+                        </a>
+                    </div>
+        
+                    <div class="inner-menu-content">
+        
+                    <a class="btn btn-block btn-primary btn-md pt-2 pb-2 text-3" href="/backend/menu/registar">
+                            <i class="fa fa-list mr-1"></i>
+                            Criar menu
+                        </a>
+        
+                        <hr class="separator" />
+        
+                        <div class="sidebar-widget m-0">
+                            <div class="widget-header clearfix">
+                                <h6 class="title float-left mt-1">Idiomas</h6>
+                                <div class="float-right">
+                                    <a href="/backend/idioma/registar" class="btn btn-dark btn-sm btn-widget-act">Add Idioma</a>
+                                </div>
+                            </div>
+                            <div class="widget-content">
+                                <ul class="mg-folders">
+                                    <?php foreach ($languageLIST as $idioma): ?>  
+                                    <li>                                        
+                                        <a href="/backend/menu/listar/lang/<?php echo $idioma["D008_Sigla"]?>" class="menu-item"><i class="flag-icon flag-icon-<?php echo $idioma["D008_Icon"]?>"></i> <?php echo $idioma["D008_Nome"]?></a>
+                                    </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </div>
+                        </div>        
+                    </div>
+                </div>
+            </div>
+        </menu>
+        <div class="inner-body mg-main">
+        
+            <div class="inner-toolbar clearfix">
+                <ul>
+                    <li>
+                        <h3 class="mt-0 mb-0 text-light font-weight-bold">Menus Registados</h3>
+                    </li>
+                </ul>
+            </div>
+            <div class="row mg-files" data-sort-destination data-sort-id="media-gallery">
+                
+                <table class="table table-bordered table-striped mb-0" id="datatable-tabletools">
+                    <thead>                    
+                        <tr>
+                            <th width='50'>ID</th>
+                            <th width='180'>NOME</th>
+                            <th width='150'>LINK</th>
+                            <th width='80'>ORDEM</th>
+                            <th width='80'>STATUS</th>
+                            <th width='80'>IDIOMA</th>
+                            <th width='180'>AÇÕES</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php 
+                        if(!empty($view_menu_lista)):
+                            $arr_master = array();
+                            foreach ($view_menu_lista as $menu):
+                                $idioma = ($menu['D008_Idioma'] == "en" ? "gb" : $menu['D008_Idioma']);
+                            ?>
+                            <tr id="<?php echo $menu['D008_Uid'] ?>">
+                                <td><i style="font-size:20px; color: rgba(0,0,0,1);" class="fa fa-circle"></i></td>
+                                <td>
+                                <?php echo $menu['D008_DescriCategoria']; ?>
+                                </td>
+                                <td><?php echo str_replace("|", "/", $menu['D008_Link']); ?></td>
+                                <td><?php echo $menu['D008_Ordem']; ?></td>
+                                <td><?php 
+                                if($menu['D008_Tipo'] == "_self"):                                    
+                                    echo "ATIVO";
+                                else:
+                                    echo "INATIVO";
+                                endif;
+                                ?></td>
+                                <td><span class="flag-icon flag-icon-<?php echo $idioma; ?>"></span><?php echo " ".strtoupper($menu['D008_Idioma']); ?></td>
+                                <td class="actions">
+                                    <a id="smenuCad" class="" href="#" data-placement="top" title="Sub-Menu">
+                                        <i class="fa fa-list fa-lg"></i>
+                                    </a>
+                                    <input type="hidden" value="<?php echo $menu['D008_Uid'] ?>" />
+                                    <a id="menuAlt" class="" href="/backend/menu/alterar/lang/<?php echo $menu['D008_Idioma'];?>/ref/<?php echo $menu['D008_Uid'] ?>" data-placement="top" title="Alterar">
+                                        <i class="fa fa-pencil fa-lg"></i>
+                                    </a>
+                                    <input type="hidden" class="icon" value="<?php echo $menu['D008_Uid'] ?>" />
+                                    <a  class="menuDel" href="#modalAnim">
+                                        <i class="fa fa-trash-o fa-lg"></i>
+                                    </a>
+                                    
+                                </td>
+                            </tr>                            
+                            <?php 
+                            if(!empty($view_sub_master)):
+                                foreach ($view_sub_master as $master): 
+                                    if($menu['D008_Uid'] == $master['D008_PertenceCodigoMaster'] && $master['D008_PertenceCodigoSub1'] == 0  && $master['D008_PertenceCodigoSub2'] == 0 && $master['D008_PertenceCodigoSub3'] == 0  && $master['D008_PertenceCodigoSub4'] == 0 && $master['D008_PertenceCodigoSub5'] == 0 ):
+                                    ?>
+                                    <tr id="<?php echo $master['D008_Uid'] ?>" class="submenu1">
+                                        <td><i style="font-size:20px; color: rgba(150,150,150,1);" class="fa fa-circle-thin"></i></td>
+                                        <td>
+                                        <?php echo utf8_decode($master['D008_DescriCategoria']); ?>
+                                        </td>
+                                        <td><?php echo utf8_decode(str_replace("|", "/", $master['D008_Link'])); ?></td>
+                                        <td><?php echo utf8_decode($master['D008_Ordem']); ?></td>
+                                        <td><?php 
+                                        if($master['D008_Tipo'] == "_self"):                                    
+                                            echo "ATIVO";
+                                        else:
+                                            echo "INATIVO";
+                                        endif;
+                                        ?></td>
+                                        <td class="actions">
+                                            <a id="smenuCad" class="" href="#" data-placement="top" title="Sub-Menu">
+                                            <i class="fa fa-list fa-lg"></i>
+                                            </a>
+                                            <input type="hidden" value="<?php echo $master['D008_Uid'] ?>" />
+                                            <a id="smenuAlt" class="" href="#" data-placement="top" title="Alterar">
+                                            <i class="fa fa-pencil fa-lg"></i>
+                                            </a>
+                                            <input type="hidden" value="<?php echo $master['D008_Uid'] ?>" />
+                                            <a class="menuDel" href="#modalAnim">
+                                            <i class="fa fa-trash-o fa-lg"></i>
+                                            </a>
+                                            <input type="hidden" class="icon" value="<?php echo $master['D008_Uid'] ?>" />
+                                        </td>
+                                    </tr>
+                            <?php 
+                            if(!empty($view_sub_1)):
+                                foreach ($view_sub_1 as $sub1): 
+                                    if($master['D008_Uid'] == $sub1['D008_PertenceCodigoSub1'] && $sub1['D008_PertenceCodigoSub2'] == 0 && $sub1['D008_PertenceCodigoSub3'] == 0  && $sub1['D008_PertenceCodigoSub4'] == 0 && $sub1['D008_PertenceCodigoSub5'] == 0 ):
+                                        ?>
+                                        <tr id="<?php echo $sub1['D008_Uid'] ?>" class="submenu2">
+                                            <td><i style="font-size:20px; color: rgba(200,200,200,1);" class="icofont icofont-ui-press"></i></td>
+                                            <td>
+                                            <?php echo utf8_decode($sub1['D008_DescriCategoria']); ?>
+                                            </td>
+                                            <td><?php echo utf8_decode(str_replace("|", "/", $sub1['D008_Link'])); ?></td>
+                                            <td><?php echo utf8_decode($sub1['D008_Ordem']); ?></td>
+                                            <td><?php 
+                                            if($sub1['D008_Tipo'] == "_self"):                                    
+                                                echo "ATIVO";
+                                            else:
+                                                echo "INATIVO";
+                                            endif;
+                                            ?></td>
+                                            <td align="left">
+                                                <a id="smenuCad" class="btn btn-default" href="#" data-placement="top" title="Sub-Menu">
+                                                <i class="pg-menu_lv"></i>
+                                                </a>
+                                                <input type="hidden" value="<?php echo $sub1['D008_Uid'] ?>" />
+                                                <a id="smenuAlt" class="btn btn-info" href="#" data-placement="top" title="Alterar">
+                                                <i class="fa fa-pencil fa-lg"></i>
+                                                </a>
+                                                <input type="hidden" value="<?php echo $sub1['D008_Uid'] ?>" />
+                                                <a  id="menuDel" class="btn btn-danger" href="#" data-toggle="modal" data-target="#modalshow">
+                                                <i class="fa fa-remove fa-lg"></i>
+                                                </a>
+                                                <input type="hidden" class="icon" value="<?php echo $sub1['D008_Uid'] ?>" />
+                                            </td>
+                                        </tr>
+                            <?php 
+                            if(!empty($view_sub_2)):
+                                foreach ($view_sub_2 as $sub2): 
+                                    if($sub1['D008_Uid'] == $sub2['D008_PertenceCodigoSub2'] && $sub2['D008_PertenceCodigoSub3'] == 0  && $sub2['D008_PertenceCodigoSub4'] == 0 && $sub2['D008_PertenceCodigoSub5'] == 0 ):
+                                        ?>
+                                        <tr id="<?php echo $sub2['D008_Uid'] ?>" class="submenu3">
+                                            <td>S3</td>
+                                            <td>
+                                            <?php echo utf8_decode($sub2['D008_DescriCategoria']); ?>
+                                            </td>
+                                            <td><?php echo utf8_decode(str_replace("|", "/", $sub2['D008_Link'])); ?></td>
+                                            <td><?php echo utf8_decode($sub2['D008_Ordem']); ?></td>
+                                            <td><?php 
+                                            if($sub2['D008_Tipo'] == "_self"):                                    
+                                                echo "ATIVO";
+                                            else:
+                                                echo "INATIVO";
+                                            endif;
+                                            ?></td>
+                                            <td align="left">
+                                                <a id="smenuCad" class="btn btn-default" href="#" data-placement="top" title="Sub-Menu">
+                                                <i class="pg-menu_lv"></i>
+                                                </a>
+                                                <input type="hidden" value="<?php echo $sub2['D008_Uid'] ?>" />
+                                                <a id="smenuAlt" class="btn btn-info" href="#" data-placement="top" title="Alterar">
+                                                <i class="fa fa-pencil fa-lg"></i>
+                                                </a>
+                                                <input type="hidden" value="<?php echo $sub2['D008_Uid'] ?>" />
+                                                <a  id="menuDel" class="btn btn-danger" href="#" data-toggle="modal" data-target="#modalshow">
+                                                <i class="fa fa-remove fa-lg"></i>
+                                                </a>
+                                                <input type="hidden" class="icon" value="<?php echo $sub2['D008_Uid'] ?>" />
+                                            </td>
+                                        </tr>
+                            <?php 
+                            if(!empty($view_sub_3)):
+                                foreach ($view_sub_3 as $sub3): 
+                                    if($sub2['D008_Uid'] == $sub3['D008_PertenceCodigoSub3'] && $sub3['D008_PertenceCodigoSub4'] == 0 && $sub3['D008_PertenceCodigoSub5'] == 0 ):
+                                        ?>
+                                        <tr id="<?php echo $sub3['D008_Uid'] ?>" class="submenu4">
+                                            <td>S4</td>
+                                            <td>
+                                            <?php echo utf8_decode($sub3['D008_DescriCategoria']); ?>
+                                            </td>
+                                            <td><?php echo utf8_decode(str_replace("|", "/", $sub3['D008_Link'])); ?></td>
+                                            <td><?php echo utf8_decode($sub3['D008_Ordem']); ?></td>
+                                            <td><?php 
+                                            if($sub3['D008_Tipo'] == "_self"):                                    
+                                                echo "ATIVO";
+                                            else:
+                                                echo "INATIVO";
+                                            endif;
+                                            ?></td>
+                                            <td align="left">
+                                                <a id="smenuCad" class="btn btn-default" href="#" data-placement="top" title="Sub-Menu">
+                                                <i class="pg-menu_lv"></i>
+                                                </a>
+                                                <input type="hidden" value="<?php echo $sub3['D008_Uid'] ?>" />
+                                                <a id="smenuAlt" class="btn btn-info" href="#" data-placement="top" title="Alterar">
+                                                <i class="fa fa-pencil fa-lg"></i>
+                                                </a>
+                                                <input type="hidden" value="<?php echo $sub3['D008_Uid'] ?>" />
+                                                <a  id="menuDel" class="btn btn-danger" href="#" data-toggle="modal" data-target="#modalshow">
+                                                <i class="fa fa-remove fa-lg"></i>
+                                                </a>
+                                                <input type="hidden" class="icon" value="<?php echo $sub3['D008_Uid'] ?>" />
+                                            </td>
+                                        </tr>
+                            <?php 
+                            if(!empty($view_sub_4)):
+                                foreach ($view_sub_4 as $sub4): 
+                                    if($sub3['D008_Uid'] == $sub4['D008_PertenceCodigoSub4'] && $sub3['D008_PertenceCodigoSub5'] == 0 ):
+                                        ?>
+                                        <tr id="<?php echo $sub4['D008_Uid'] ?>" class="submenu5">
+                                            <td>S5</td>
+                                            <td>
+                                            <?php echo utf8_decode($sub4['D008_DescriCategoria']); ?>
+                                            </td>
+                                            <td><?php echo utf8_decode(str_replace("|", "/", $sub4['D008_Link'])); ?></td>
+                                            <td><?php echo utf8_decode($sub4['D008_Ordem']); ?></td>
+                                            <td><?php 
+                                            if($sub4['D008_Tipo'] == "_self"):                                    
+                                                echo "ATIVO";
+                                            else:
+                                                echo "INATIVO";
+                                            endif;
+                                            ?></td>
+                                            <td align="left">
+                                                <a id="smenuCad" class="btn btn-default" href="#" data-placement="top" title="Sub-Menu">
+                                                <i class="pg-menu_lv"></i>
+                                                </a>
+                                                <input type="hidden" value="<?php echo $sub4['D008_Uid'] ?>" />
+                                                <a id="smenuAlt" class="btn btn-info" href="#" data-placement="top" title="Alterar">
+                                                <i class="fa fa-pencil fa-lg"></i>
+                                                </a>
+                                                <input type="hidden" value="<?php echo $sub4['D008_Uid'] ?>" />
+                                                <a  id="menuDel" class="btn btn-danger" href="#" data-toggle="modal" data-target="#modalshow">
+                                                <i class="fa fa-remove fa-lg"></i>
+                                                </a>
+                                                <input type="hidden" class="icon" value="<?php echo $sub4['D008_Uid'] ?>" />
+                                            </td>
+                                        </tr>
+                                                                                                
+                            <?php 
+                            if(!empty($view_sub_5)):
+                                foreach ($view_sub_5 as $sub5): 
+                                    if($sub3['D008_Uid'] == $sub5['D008_PertenceCodigoSub5']):
+                                        ?>
+                                        <tr id="<?php echo $sub5['D008_Uid'] ?>" class="submenu6">
+                                            <td>S6</td>
+                                            <td>
+                                            <?php echo utf8_decode($sub5['D008_DescriCategoria']); ?>
+                                            </td>
+                                            <td><?php echo utf8_decode(str_replace("|", "/", $sub5['D008_Link'])); ?></td>
+                                            <td><?php echo utf8_decode($sub5['D008_Ordem']); ?></td>
+                                            <td><?php 
+                                            if($sub5['D008_Tipo'] == "_self"):                                    
+                                                echo "ATIVO";
+                                            else:
+                                                echo "INATIVO";
+                                            endif;
+                                            ?></td>
+                                            <td class="action">
+                                                <a id="smenuCad" class="" href="#" data-placement="top" title="Sub-Menu">
+                                                <i class="fa fa-list"></i>
+                                                </a>
+                                                <input type="hidden" value="<?php echo $sub5['D008_Uid'] ?>" />
+                                                <a id="smenuAlt" class="" href="#" data-placement="top" title="Alterar">
+                                                <i class="fa fa-pencil"></i>
+                                                </a>
+                                                <input type="hidden" value="<?php echo $sub5['D008_Uid'] ?>" />
+                                                <a  id="menuDel" class="btn btn-danger" href="#" data-toggle="modal" data-target="#modalshow">
+                                                <i class="fa fa-trash"></i>
+                                                </a>
+                                                <input type="hidden" class="icon" value="<?php echo $sub5['D008_Uid'] ?>" />
+                                            </td>
+                                        </tr>
+                                    <?php  
+                                endif;
+                            endforeach;//submenu5
+                            endif; ?>
+                                        <?php  
+                                    endif;
+                                endforeach;//submenu4
+                            endif; ?>
+                                        <?php  
+                                    endif;
+                                endforeach;//submenu3
+                            endif; ?>
+                                        <?php  
+                                    endif;
+                                endforeach;//submenu2
+                            endif; ?>
+                                        <?php  
+                                    endif;
+                                endforeach;//submenu1
+                            endif; ?>
+                                    <?php  
+                                    endif;
+                                endforeach;//submaster
+                            endif; ?>
+                            <?php endforeach;//menu
+                        endif; ?>
+                    </tbody>
+                </table>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end: page -->

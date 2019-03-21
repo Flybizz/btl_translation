@@ -1,0 +1,23 @@
+
+<!-- heading-banner start -->
+<div class="heading-banner">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="heading-banner-title">
+                    <h2><?php echo utf8_decode($site_destaque[0]['D007_Titulo']); ?></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- heading-banner end --> 
+<!-- about-us-area start -->
+<div class="about-us-area">
+    <div class="container">
+        <div class="row">
+           <?php echo str_replace("|", "/", $site_destaque[0]['D007_Texto']); ?> 
+        </div>
+    </div>
+</div>
+<!-- about-us-area end -->

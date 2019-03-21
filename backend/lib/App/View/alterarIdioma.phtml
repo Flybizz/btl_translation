@@ -1,0 +1,144 @@
+<router base="idioma/alterar">
+<input type="hidden" id="idioma_code" value="<?php echo $view_idioma_lista_alt[0]['D008_Uid'];?>">
+<header class="page-header">
+    <h2>Idioma</h2>
+
+    <div class="right-wrapper text-right">
+        <ol class="breadcrumbs">
+            <li>
+                <a href="/">
+                    <i class="fa fa-home"></i>
+                </a>
+            </li>
+            <li><span>Home</span></li>
+            <li><span>Idioma</span></li>
+        </ol>
+
+        <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-calendar"></i></a>
+    </div>
+</header>
+
+<!-- start: page -->
+
+<section class="card">
+    <div class="card-body">
+        <div class="invoice">
+            <header class="clearfix">
+                <div class="row">
+                    <div class="col-sm-6 mt-3">
+                        <h2 class="h2 mt-0 mb-4 text-dark font-weight-bold">Alterar Idioma</h2>
+                        <!-- <h4 class="h4 m-0 text-dark font-weight-bold">#76598345</h4> -->
+                    </div>
+                    <div class="col-sm-6 mt-3">
+                        <div class="m-0 mb-4 pull-right">
+                            <a href="/backend/idioma/listar" class="mb-1 mt-1 mr-1 btn btn-primary"><strong>Voltar</strong></a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="row">
+							<div class="col-md-8">
+                <section class="card mb-4">
+                  <header class="card-header">
+                    <h2 class="card-title">Principal</h2>
+                  </header>
+                  <div class="card-body">
+                    <form class="form-horizontal form-bordered" method="post">
+
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Título</label>
+                        <div class="col-lg-9">
+                          <input type="text" id="idioma_nome" class="form-control" required value="<?php echo $view_idioma_lista_alt[0]['D008_Nome'] ?>">
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Sigla</label>
+                        <div class="col-lg-9">
+                          <input type="text" id="idioma_sigla" class="form-control" value="<?php echo $view_idioma_lista_alt[0]['D008_Sigla'] ?>">
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Icon</label>
+                        <div class="col-lg-9">
+                          <input type="text" id="idioma_icon" class="form-control" value="<?php echo $view_idioma_lista_alt[0]['D008_Icon'] ?>">
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Ordem</label>
+                        <div class="col-lg-9">
+                          <input type="text" id="idioma_ordem" class="form-control" value="<?php echo $view_idioma_lista_alt[0]['D008_Ordem'] ?>">
+                        </div>
+                      </div>
+               
+                      <div class="form-group row">
+             
+                        <label class="col-sm-3 control-label text-sm-right pt-2">Destaque</label>
+                        <div class="btn-group col-sm-9 pull-right" data-toggle="buttons">
+                          <?php 
+                            if($view_idioma_lista_alt[0]['D008_Destaque'] == "sim"):
+                              $checked1 = "checked";
+                              $checked2 = "";
+                              $active1 = "active";
+                              $active2 = "";
+                            elseif($view_idioma_lista_alt[0]['D008_Destaque'] == "nao"):
+                              $checked1 = "";
+                              $checked2 = "checked";
+                              $active1 = "";
+                              $active2 = "active";
+                            endif;
+                          ?>
+                          <label class="btn btn-primary <?php echo $active1; ?>">
+                            <input type="radio" name="idioma_destaque" id="option1" autocomplete="off" value="sim" <?php echo $checked1; ?>> SIM
+                          </label>
+                          <label class="btn btn-primary <?php echo $active2; ?>">
+                            <input type="radio" name="idioma_destaque" id="option2" autocomplete="off"  value="nao"  <?php echo $checked2; ?>> NÃO
+                          </label>
+                        </div>
+
+                      </div>       
+                      
+                      <div class="form-group row">
+             
+                        <label class="col-sm-3 control-label text-sm-right pt-2">Status</label>
+                        <div class="btn-group col-sm-9 pull-right" data-toggle="buttons">
+                          <?php 
+                            if($view_idioma_lista_alt[0]['D008_Status'] == "sim"):
+                              $checked1 = "checked";
+                              $checked2 = "";
+                              $active1 = "active";
+                              $active2 = "";
+                            elseif($view_idioma_lista_alt[0]['D008_Status'] == "nao"):
+                              $checked1 = "";
+                              $checked2 = "checked";
+                              $active1 = "";
+                              $active2 = "active";
+                            endif;
+                          ?>
+                          <label class="btn btn-primary <?php echo $active1; ?>">
+                            <input type="radio" name="idioma_status" id="option1" autocomplete="off" value="sim" <?php echo $checked1; ?>> ATIVO
+                          </label>
+                          <label class="btn btn-primary <?php echo $active2; ?>">
+                            <input type="radio" name="idioma_status" id="option2" autocomplete="off"  value="nao"  <?php echo $checked2; ?>> INATIVO
+                          </label>
+                        </div>
+
+                      </div>   
+                
+                    </form>
+                  </div>
+                </section>						
+							</div>
+						</div>  
+            
+            <div id="ref" class='clearfix'></div>  
+            <span id="retorno" class="col-md-10"></span>            
+            <a name="bt_idioma_alterar" id="bt_idioma_alterar"  href="javascript:;" class="btn btn-primary col-md-2 pull-right">Alterar</a>
+               
+        </div>
+    </div>
+</section>
+<!-- end: page -->

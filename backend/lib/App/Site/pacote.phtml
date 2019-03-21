@@ -1,0 +1,119 @@
+ <div class="nk-header-title">
+    <div class="bg-image">
+        <div style="background-image: url('/images/config/bg/<?php echo trim($site_config[0]['D001_Imgfundo']); ?>');"></div>
+    </div>
+    <div class="nk-header-table">
+      <div class="nk-header-table-cell">
+        <div class="container">                                
+          <h1 class="nk-title">PACKS</h1>  
+          <!-- <h2 class="nk-sub-title">Optional Sub Title</h2> -->       
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="container">
+  <div class="nk-gap-4"></div>
+  <div class="nk-store-product">
+      <div class="row vertical-gap">
+          <div class="col-lg-6">
+            <img class="nk-img-fit-sm-down img-responsive" width="540" src="/images/pacote/<?php echo trim($site_pacote[0]["D011_Uid"])?>/<?php echo trim($site_foto[0]["D011_Imagem"]) ?>" alt="">             
+          </div>
+          <div class="col-lg-6">
+            <?php if( !empty($site_pacote[0]['D011_Level'] )): ?>
+              <div class="nk-progress nk-progress-xs nk-form-style-1">
+                <h3 style="text-align: center;">difficulty level</h3>
+                <ol class="progress2" data-steps="5">
+                  <!-- <li class="done"> -->
+                  <?php 
+                    $level = array('easy' => 'Easy','normal' => 'Normal','hard' => 'Hard','veryhard' => 'Very Hard','extreme' => 'Extreme');
+                      foreach($level as $chave => $lv): ?>
+                      <?php if( $site_pacote[0]['D011_Level'] == $chave ): ?>
+                        <li class="active">
+                          <span class="name"><?php echo $lv ?></span>
+                          <span class="step" data-dificult="<?php echo $chave ?>"><i class="icofont icofont-motor-bike"></i></span>
+                        </li>
+                      <?php elseif( $site_pacote[0]['D011_Level'] != $chave ): ?>
+                        <li>
+                          <span class="name"><?php echo $lv ?></span>
+                          <span class="step" data-dificult="<?php echo $chave ?>"><i class="icofont icofont-motor-bike"></i></span>
+                        </li>
+                      <?php endif; ?>
+                    <?php
+                      endforeach;
+                  ?>                
+                </ol>
+
+                <div class="nk-gap-5"></div>                
+              </div>              
+              <div>
+                <p style="font-size: 16px; margin-top: 5px; text-align: center;">
+                  We received all kind of levels experience and  beginners, and we prepared the tour, according to the experience of each one.  
+                </p>
+              </div>
+              <div class="nk-gap-4"></div>
+              <?php endif; ?>
+
+              <div class="nk-product-price nk-form-style-1 nk-product-addtocart" style="text-align: center!important; font-size: 48px; font-weight: 800; margin-top: 0!important; margin-bottom: 15px; "><?php echo number_format($site_pacote[0]['D011_Valor'],0,"",""); ?>€</div> 
+
+              <!-- START: Title + Rating -->
+              <div class="nk-product-category">
+                  <?php echo $site_config[0]["D001_Empresa"]; ?>
+              </div>
+              <h2 class="nk-product-title"><?php echo $site_pacote[0]["D011_Titulo"]; ?></h2>
+             <!--  <a class="nk-product-rating" data-rating="4.5" href="#tab-reviews"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-half-o"></i></a> <small>(3)</small> -->
+              <!-- END: Title + Rating -->
+
+              <div class="nk-product-description">
+                  <?php echo str_replace("|", "/", $site_pacote[0]["D011_Descricao"]); ?>
+              </div>
+
+              <!-- <a href="https://www.facebook.com/dialog/share?app_id=153696808687191&display=page&href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2F&redirect_uri=https%3A%2F%2F<?php echo 'https://'.$_SERVER[HTTP_HOST].$_SERVER[REQUEST_URI]; ?>"> Compartilhar facebook</a> -->
+                          
+          </div>
+      </div>
+      <div class="nk-gap-2"></div>
+      <div class="row vertical-gap">                  
+        <div class="col-md-12">
+          <!-- START: Reply -->
+          <div class="nk-box-2 bg-gray-2">
+            <h3 class="nk-title h4">Add a Review</h3>
+            <div class="nk-gap"></div>
+            <div class="nk-reply">
+              <form action="#" class="nk-form nk-form-style-1">
+                <div class="nk-gap"></div>
+                <div class="row vertical-gap">
+                    <div class="col-sm-12">
+                      <input type="text" class="form-control required" id="orc_nome" name="name" placeholder="Name *">
+                    </div>
+                    <div class="col-sm-6">
+                      <input type="email" class="form-control required" id="orc_email" name="email" placeholder="Email *">
+                      <input id="valida" type="hidden" class="required" >
+                    </div>
+                    <div class="col-sm-6">
+                      <input type="text" class="form-control required" id="orc_phone" name="phone" placeholder="Phone *">
+                    </div>
+                    <div class="col-sm-6">
+                      <input type="text" class="form-control required" id="orc_cidade" name="cidade" placeholder="City *">
+                    </div>
+                    <div class="col-sm-6">
+                      <input type="text" class="form-control required" id="orc_uf" name="uf" placeholder="Country *">
+                    </div>                    
+                </div>
+                <div class="nk-gap-1"></div>
+                <textarea class="form-control required" name="message" id="orc_descricao" rows="5" placeholder="Your message *" aria-required="true"></textarea>
+                <input id="orc_pacote" name="orc_pacote" value="<?php echo $site_pacote[0]["D011_Uid"]; ?>" type="hidden">
+                <div class="nk-gap-1"></div>
+                <button id="bt_orc_cadastrar2" name="bt_orc_cadastrar2" class="nk-btn nk-btn-color-dark-1">book</button>
+              </form>
+              <div id="ref" style="margin-top:20px; width:100%;"></div>
+              <div id="retorno" style="margin-top:20px; width:100%;"></div>
+            </div>
+          </div>
+          <!-- END: Reply -->
+        </div>
+      </div> 
+  </div>
+  <!-- END: Related Products -->
+  <div class="nk-gap-4"></div>
+</div>  

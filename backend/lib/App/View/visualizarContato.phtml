@@ -1,0 +1,73 @@
+<div class="col-md-12">
+  <div class=" titleIdent"> 
+      <h2  class="col-md-10">Visualizar Contato</h2><span class="closed_acao col-md-2"><i class="pg-close_line pull-right"></i></span>
+    <br>
+  </div>
+  <div class="panel panel-default"> 
+    <div class="panel-header">
+    <br>
+    </div>
+    <div class="panel-body">
+      
+        <p class="clearfix"></p>
+        <div class="row">
+          <div class="col-md-12 form-group form-group-default">
+            <label for="orc_nome">Nome</label>
+            <div class="form-row">
+              <span><?php echo $view_contato[0]['D005_Nome'] ?></span>
+            </div>
+          </div>
+        </div>        
+        <div class="row">
+          <div class="col-md-12 form-group form-group-default">  
+          <label for="orc_email">Email</label>
+          <div class="form-row">
+            <span><?php echo $view_contato[0]['D005_Email'] ?></span>
+          </div>
+          </div>
+        </div>
+        <div class="row">
+           <div class="col-md-6 form-group form-group-default">
+              <label for="orc_celular">Telefone</label>
+              <div class="form-row">
+                <span><?php echo $view_contato[0]['D005_Telefone'] ?></span>
+              </div>
+          </div>
+        </div>
+        <div class="row">
+           <div class="col-md-6 form-group form-group-default">
+              <label for="orc_cidade">Cidade</label>
+              <div class="form-row">
+                <span><?php echo $view_contato[0]['D005_Cidade'] ?></span>
+              </div>
+          </div>
+        </div>
+        <div class="row">
+           <div class="col-md-6 form-group form-group-default">
+              <label for="orc_estado">Estado</label>
+              <div class="form-row">
+                <span><?php echo $view_contato[0]['D005_Estado'] ?></span>
+              </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 form-group form-group-default">
+  
+            <label for="orc_pdescricao">Mensagem</label>
+            <div class="form-row">
+              <p><?php echo $view_contato[0]['D005_Mensagem'] ?> </p>
+            </div>
+          </div>
+        </div> 
+        <div class="row">
+          <div class="col-md-12 form-group form-group-default">  
+            <label for="orc_pdescricao">Data</label>
+            <?php echo date('d/m/Y H:i:s', strtotime($view_contato[0]['D005_Data_Cadastro'])); ?>
+          </div>
+        </div> 
+
+        
+      <p class='clearfix'></p>         
+    </div>
+  </div>
+</div>

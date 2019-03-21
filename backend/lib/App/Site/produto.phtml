@@ -1,0 +1,78 @@
+<section class="page-header-custom-background page-header page-header-center page-header-more-padding page-header-no-title-border" style="background-image: url('/images/config/bg/<?php echo trim($site_config[0]['D001_Imgfundo']); ?>')">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h1><strong>PROJETOS</strong></h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+
+	<div class="row">
+		<div class="col">
+
+			<div class="owl-carousel owl-theme show-nav-hover mt-0" data-plugin-options="{'items': 1, 'margin': 10, 'loop': true, 'nav': true, 'animateOut': 'fadeOut'}">
+				<?php if (!empty($site_foto)): ?>
+                <?php foreach ($site_foto as $foto): ?>
+                   <div>
+						<span class="img-thumbnail d-block">
+							<img src="/images/produto/<?php echo $site_produto[0]['D011_Uid'] ?>/<?php echo $foto['D011_Imagem']; ?>" class="img-fluid" alt="<?php echo $foto['D011_Titulo']; ?>">
+						</span>
+					</div>                  
+                <?php endforeach; ?>
+              	<?php endif; ?>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-7">
+			<h5 class="mt-3 mb-2"><?php echo str_replace("|", "/", $site_produto[0]['D011_Titulo']);?></h5>
+			<p class="mt-0 mb-4">
+				<?php echo str_replace("|", "/", $site_produto[0]['D011_Descricao']);?>
+			</p>
+		</div>
+		<div class="col-lg-5">
+
+			<ul class="portfolio-details mt-0 mb-4">
+				<li>
+					<h5 class="mt-4 mb-2">Pedido de informações</h5>
+				</li>
+			</ul>
+			<div class="single-sidebar-widget sroom-sidebar">         
+              
+              <!-- Booking Form style-->
+              <div class="book-r-form">
+                           
+                  <div class="book-form">
+                 
+                  	<div class="book-left-content input_form">
+			          <form id="contactBooking">         
+			           <div class="row form-row">   
+			           <div class="col-lg-12 col-md-12 col-sm-12 m0 col-xs-12 form-group"><input type="text" class="form-control" id="orc_nome" name="orc_nome" placeholder="Nome completo"></div>   
+			            <div class="col-lg-12 col-md-12 col-sm-12 m0 col-xs-12 form-group"><input type="email" class="form-control" id="orc_email" name="orc_email" placeholder="Email"></div>
+			            </div>  
+
+			            <div class="row form-row">
+			              <div class="col-lg-12 col-md-12 col-sm-12 m0 col-xs-12 form-group">
+			                <input type="tel" class="form-control" id="orc_celular" name="orc_celular" placeholder="Telefone">
+			              </div>			            
+			            </div>	   
+	                  	<div class="row form-row">
+	                    	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group">
+	                        	<textarea class="form-control" rows="6"  name="orc_descricao" id="orc_descricao"  placeholder="Deixe sua Mensagem aqui..."></textarea>
+	                        </div>
+	                    </div>
+	                    <div class="row form-row">
+	                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-group"><a href="javascript:;" id="bt_orc_cadastrar" name="bt_orc_cadastrar" class="btn btn-primary btn-icon"> Enviar </a></div>
+	                    </div>
+			          </form>
+			          </div>
+                  </div>              
+              </div>
+              <!-- Booking Form style-->              
+          </div>
+		</div>
+	</div>
+</div>

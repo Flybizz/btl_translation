@@ -1,0 +1,233 @@
+<!-- eventos calendário -->
+
+		<section class="card <?php echo !empty($view_cliente[0]["cli_referencia"]) ? "card-collapsed" : ""; ?>">
+
+			<header class="card-header">
+
+				<div class="card-actions">
+
+					<a href="#" class="card-action card-action-toggle" data-card-toggle=""></a>
+
+					<a href="#" class="card-action card-action-dismiss" data-card-dismiss=""></a>
+
+				</div>
+
+				<h2 class="card-title">
+
+					<span class="badge badge-info label-sm font-weight-normal va-middle mr-2 p-2"><i class="fa fa-check-square-o fa-lg" aria-hidden="true"></i></span>
+
+					<span class="va-middle">Tarefas / Lembretes</span>
+
+				</h2>
+
+			</header>
+
+			<div class="card-body">
+
+				<div class="content">
+
+					<form>
+
+						<label class="col-lg-12 control-label text-lg-left pt-2" for="inputDefault">Tipo de contacto</label>
+
+						<div class="col-lg-12">
+
+							<select id="cal_tipo" class="form-control">
+
+								<option value="0" selected="">Selecione</option>
+
+								<option value="1">Email</option>
+
+								<option value="2">Reunião</option>
+
+								<option value="3">Reunião de pré-agariação</option>
+
+								<option value="4">Telefonema</option>
+
+								<option value="5">Qualificação Financeira</option>
+
+								<option value="6">Outro</option>							
+
+							</select>
+
+						</div>
+
+                  
+
+                  <?php if(empty($view_cliente[0]["cli_referencia"])): ?>
+
+						<div class="form-group">
+
+							<label class="col-lg-12 control-label text-lg-left pt-2" for="tar_client_id">Cliente</label>
+
+							<div class="col-lg-12">								
+
+								<select id="tar_client_id" class="form-control select2-data-ajax"></select>
+
+							</div>
+
+						</div>
+
+                  <?php else: ?>
+
+                  <input type="hidden" id="tar_client_id" name="tar_client_id" value="<?php echo($view_cliente[0]["cli_id"]) ?>" />
+
+                  <?php endif; ?>
+
+						<div class="form-group">
+
+							<label class="col-lg-12 control-label text-lg-left pt-2" for="inputDefault">Título</label>
+
+							<div class="col-lg-12 mb-1">
+
+								<input id="cal_titulo" placeholder="" class="form-control">
+
+							</div>
+
+						</div>
+
+						
+
+						<div class="form-group">
+
+							<label class="col-lg-12 control-label text-lg-left pt-1" for="tar_dtstart">Data Inicial</label>
+
+							<div class="col-lg-12">
+
+								<div class="input-group">
+
+									<span class="input-group-addon" style="min-width: 40px;">
+
+										<i class="fa fa-calendar"></i>
+
+									</span>
+
+									<input id="tar_dtstart" type="text" data-plugin-datepicker="" data-date-format="dd/mm/yyyy" class="form-control" value="<?php echo date("d/m/Y"); ?>">
+
+								</div>
+
+							</div>
+
+						</div>
+
+						
+
+						<!-- time -->
+
+						<div class="form-group">
+
+							<div class="col-lg-12 mt-2">
+
+								<div class="input-group">
+
+									<span class="input-group-addon" style="min-width: 40px;">
+
+										<i class="fa fa-clock-o"></i>
+
+									</span>
+
+									<input id="tar_hrstart" type="text" data-plugin-timepicker="" class="form-control" data-plugin-options="{ &quot;showMeridian&quot;: false }">
+
+								</div>
+
+							</div>
+
+						</div>
+
+						<!-- /time -->
+
+						<div class="form-group">
+
+								<label class="col-lg-12 control-label text-lg-left pt-1" for="tar_dtend">Data Final</label>
+
+								<div class="col-lg-12">
+
+									<div class="input-group">
+
+											<span class="input-group-addon" style="min-width: 40px;">
+
+												<i class="fa fa-calendar"></i>
+
+											</span>
+
+											<input id="tar_dtend" type="text" data-plugin-datepicker="" data-date-format="dd/mm/yyyy" value="<?php echo date("d/m/Y"); ?>" class="form-control">
+
+									</div>
+
+								</div>
+
+							</div>
+
+						<!-- time -->
+
+						<div class="form-group">
+
+							<div class="col-lg-12 mt-2">
+
+								<div class="input-group">
+
+									<span class="input-group-addon" style="min-width: 40px;">
+
+										<i class="fa fa-clock-o"></i>
+
+									</span>
+
+									<input id="tar_hrend" type="text" data-plugin-timepicker="" class="form-control" data-plugin-options="{ &quot;showMeridian&quot;: false, &quot;defaultTime&quot;: &quot;<?php echo date("H") + 1 ?>:00&quot; }">
+
+								</div>
+
+							</div>
+
+						</div>
+
+						<!-- /time -->
+
+						<div class="form-group">
+
+							<label class="col-lg-12 control-label text-lg-left pt-1" for="inputDefault">Observação</label>
+
+							<div class="col-lg-12 mb-4">
+
+								<textarea id="cal_texto" rows="3" placeholder="Mensagem aqui ..." class="form-control"></textarea>
+
+							</div>
+
+						</div>
+
+						<div class="form-group mb-4">
+
+							<label class="col-lg-12 control-label text-lg-left pt-1" for="inputDefault">Prioridade</label>
+
+							<div class="col-lg-12">
+
+								<select id="tar_prioridade" class="form-control">
+
+										<option value="1" selected="">Baixa</option>
+
+										<option value="2">Média</option>
+
+										<option value="3">Alta</option>
+
+										<option value="4">Urgente</option>
+
+								</select>
+
+							</div>
+
+						</div>
+
+					</form>
+
+				</div>
+
+			</div>
+
+			<div class="card-footer">
+
+				<button type="button" id="cal_gravar" class="btn btn-primary pull-right">Gravar</button>
+
+			</div>
+
+		</section>
+
+		<!-- / eventos calendário -->

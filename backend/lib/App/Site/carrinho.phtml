@@ -1,0 +1,123 @@
+<!--Page Header -->
+<div class="page-header bg-dark">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <!-- Page Header Wrapper -->
+                <div class="page-header-wrapper">
+                    <!-- Title & Sub Title -->
+                    <h3 class="title">Meu Carrinho</h3>
+                    <!-- <h6 class="sub-title">All you want know</h6> -->
+                    <ol class="breadcrumb">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="active">Carrinho</li>
+                    </ol><!-- Breadcrumb -->
+                </div><!-- Page Header Wrapper -->
+            </div><!-- Coloumn -->
+        </div><!-- Row -->
+    </div><!-- Container -->
+</div><!-- Page Header -->
+
+    <!-- Page Main -->
+<div role="main" class="main">
+    <!-- Section -->
+    <section class="bg-lgrey">  
+        <div class="container">
+
+            
+            <div class="row shop-forms">
+                <div class="col-sm-12">
+                    <div class="content-box shadow bg-lgrey">
+                        <form method="post" action="#">
+                            <div class="form-group">
+                                <!-- <label for="add_cupom"><b>Cupom de Desconto</b></label> -->
+                                <div class="input-group">
+                                   <input type="text" class="form-control pull-left" id="add_cupom" placeholder="Digite aqui seu cupom de desconto." value="<?php echo $_SESSION['cupom-valido']; ?>" style="width: 300px!important;"> 
+                                    <?php if(!empty( $_SESSION['cupom-valido'] )): ?>
+                                    <div id="alert_cupom" style="float: left; margin-left: 15px; margin-top: 20px;"><h4><?php echo $_SESSION['cupom-valor']; ?>% de desconto</h4></div>
+                                    <?php else: ?>
+                                    <div id="alert_cupom" style="float: left; margin-left: 15px; margin-top: 20px;"></div> 
+                                    <?php endif; ?>
+                                        
+
+                                </div>
+                            </div>
+                            
+                            <table cellspacing="0" class="shop_table cart">
+                                <thead>
+                                    <tr>    
+                                        <th class="hidden-xs" >Código</th>
+                                        <th >Produto</th>
+                                        <th >Qtd</th>
+                                        <th >Valor</th>
+                                        <!-- <th >Mais</th>-->
+                                        <th >Desconto</th> 
+                                        <th  class='hidden-xs' >Total</th>
+                                        <th >Excluir</th>                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                      <?php                     
+                                        if(isset($site_total)):
+                                            if($site_total != 0):
+                                                $soma = array_sum($_SESSION['produto']);
+                                                                                   
+                                                if(isset($site_item)):
+                                                    //$qtd_item = 0;
+                                                    foreach ($site_item as $item):
+                                                        //$qtd_item += 1; 
+                                                        echo $item[0];
+                                                    endforeach;
+                                                    echo "<input type='hidden' name='ped_item' Value='".$soma."' />";
+                                                endif;
+                                            else:
+                                                echo $site_item;
+                                            endif; 
+                                        else:
+                                            echo $site_item;
+                                        endif;
+                                     ?>            
+                                 
+                                </tbody>
+                            </table>
+                            <div class="subtotal" style="margin-top:30px; text-align: right; margin-right: 30px;">  
+                            <?php 
+                                if(isset($site_total)):
+                              
+                                    echo "<h4>Total <i class='fa fa-arrow-right'></i><span> R$ ".number_format($site_total,2,",",".")."</span></h4>"; 
+                                  
+                                    echo "<input type='hidden' name='ped_subtotal' value='".$site_total."' />";
+                                    echo "<input type='hidden' name='ped_usuario' value='".$_SESSION['id_cliente']."' />";
+                                    echo "<input type='hidden' name='cupom_dados' value='".$_SESSION['cupom-valido']."' />";
+                                endif;
+                            ?> 
+                            </div>
+                            
+                        </form>
+                    </div>
+                    <p></p>
+                    <a id="btn_continuar" class="btn btn-default pull-left page-scroll"  href="/cursos/cat/all/p/0">
+                        <i class='fa fa-plus-square fa-1x'></i> COMPRAR MAIS
+                    </a>
+
+                    <a id="btn_fecharpedido" class="btn btn-default pull-right">
+                        <i class='fa fa-check-square fa-1x'></i> FECHAR PEDIDO                             
+                    </a>
+                </div>    
+
+            </div><!-- Row -->
+
+            <div id="div_carrinho_send" class="col-lg-8 col-lg-offset-2"> </div>  
+
+            <form id="comprar" action="https://sandbox.pagseguro.uol.com.br/v2/checkout/payment.html" method="post">
+
+                <input type="hidden" name="code" id="code" value="" />
+
+            </form> 
+            
+
+        </div><!-- Container -->    
+    </section><!-- Section -->  
+    
+  
+</div><!-- Page Main -->

@@ -1,0 +1,363 @@
+<!-- Page Header -->
+<div class="page-header bg-dark inner-banner">
+    <div class="opacity">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <!-- Page Header Wrapper -->
+                    <div class="page-header-wrapper">
+                        <!-- Title & Sub Title -->
+                        <h3 class="title" style="text-transform: uppercase;">Cursos</h3>
+                        <ol class="breadcrumb">
+                            <li><a href="/">Início</a></li>
+                            <li class="active">Cursos</li>
+                        </ol>
+                        <!-- Breadcrumb -->
+                    </div>
+                    <!-- Page Header Wrapper -->
+                </div>
+                <!-- Coloumn -->
+            </div>
+            <!-- Row -->
+        </div>
+        <!-- Container -->
+    </div>
+</div><!-- Page Header -->
+  
+
+<!-- Page Main -->
+<div role="main" class="main">
+    <div class="page-default bg-grey shop-single">
+        <!-- Container -->
+        <div class="container">
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="col-md-3">
+                    <!-- aside -->
+                    <aside class="sidebar">
+                        <!-- Widget -->
+                        <!-- <div class="widget no-box">
+                            <h5 class="widget-title">Search<span></span></h5>
+                            <div class="search">
+                                <form id="searchForm"
+                                      action="http://glorytheme.com/template/universh/demo/page-search-results.html"
+                                      method="get">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control search" name="q" id="q"
+                                               placeholder="Search..." required>
+                                        <span class="input-group-btn">
+                                          <button class="btn" type="submit"><i class="fa fa-search"></i></button>
+                                        </span>
+                                    </div>
+                                </form>
+                            </div>
+                        </div> -->
+                        <!-- Widget -->
+                        <!-- Widget -->
+                        <div class="widget">
+                            <h5 class="widget-title">Cursos<span></span></h5>
+                            <ul class="go-widget">
+                                <li><a href="/cursos/ref/all/p/0">Todos</a></li>
+                                <?php
+                                if (!empty($site_cat_cursos)) {
+                                    foreach ($site_cat_cursos as $cat) { ?>
+                                        <li><a href="/cursos/ref/<?php echo $cat['D016_Chave']; ?>/p/0"
+                                               style="text-transform: capitalize;"><?php echo $cat['D016_Nome']; ?></a>
+                                        </li>
+                                    <?php }
+                                } ?>
+                            </ul>
+                        </div>
+                        <!-- Widget -->
+                        <!-- Widget -->
+                        <!-- <div class="widget">
+                            <h5 class="widget-title">Browse by Teacher<span></span></h5>
+                            <ul class="thumbnail-widget thumb-circle">
+                                <li>
+                                    <div class="thumb-wrap">
+                                        <img width="66" height="66" alt="Thumb" class="img-responsive"
+                                             src="/frontend/images/default/thumb-01.jpg">
+                                    </div>
+                                    <div class="thumb-content"><h5><a href="#">Levine deo</a></h5><span>Principal</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="thumb-wrap">
+                                        <img width="66" height="66" alt="Thumb" class="img-responsive"
+                                             src="/frontend/images/default/thumb-02.jpg">
+                                    </div>
+                                    <div class="thumb-content"><h5><a href="#">Jacob deo</a></h5>
+                                        <span>Vice Principal</span></div>
+                                </li>
+                                <li>
+                                    <div class="thumb-wrap">
+                                        <img width="66" height="66" alt="Thumb" class="img-responsive"
+                                             src="/frontend/images/default/thumb-03.jpg">
+                                    </div>
+                                    <div class="thumb-content"><h5><a href="#">Brain lara</a></h5>
+                                        <span>Maths Teacher</span></div>
+                                </li>
+                            </ul>
+                        </div> -->
+                        <!-- Widget -->
+                        <!-- Widget -->
+                        <!-- <div class="widget">
+                            <h5 class="widget-title">Popular Courses<span></span></h5>
+                            <ul class="thumbnail-widget">
+                                <li>
+                                    <div class="thumb-wrap">
+                                        <img width="60" height="60" alt="Thumb" class="img-responsive"
+                                             src="/frontend/images/default/course-thumb-01.jpg">
+                                    </div>
+                                    <div class="thumb-content"><a href="#">About Geography</a><span>$300.00</span></div>
+                                </li>
+                                <li>
+                                    <div class="thumb-wrap">
+                                        <img width="60" height="60" alt="Thumb" class="img-responsive"
+                                             src="/frontend/images/default/course-thumb-02.jpg">
+                                    </div>
+                                    <div class="thumb-content"><a href="#">Computer Science</a><span>$450.00</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="thumb-wrap">
+                                        <img width="60" height="60" alt="Thumb" class="img-responsive"
+                                             src="/frontend/images/default/course-thumb-03.jpg">
+                                    </div>
+                                    <div class="thumb-content"><a href="#">Materials Science</a><span>$900.00</span>
+                                    </div>
+                                </li>
+                            </ul>
+                            
+                        </div> -->
+                        
+                    </aside>
+                </div>
+                <!-- Sidebar -->
+                <!-- Main Content -->
+                <div class="col-md-9">
+                    <?php if (isset($site_curso_detalhe)): ?> 
+
+                      <div class="row">                   
+
+                        <div class="title-container" style="margin-top: 0px !important;">
+                            <div class="title-wrap">
+                                <h3 class="title"><?php echo str_replace('|', '<br>', $site_curso_detalhe[0]["D016_Nome"]); ?></h3>
+                                <span class="separator line-separator"></span>
+                            </div>
+                            <p class="description size-md"><?php echo str_replace("|", "/", $site_curso_detalhe[0]["D016_Descricao"]); ?></p>
+                        </div>
+
+                      </div>                                
+
+                    <?php endif; ?>
+                    <div class="row">
+                        <?php foreach ($site_curso["dados"] as $curso) { ?>
+                            <!-- Item Begins -->
+                            <div class="col-sm-6">    
+
+                                <!-- Shop Grid Wrapper -->
+                                <div class="shop-wrap">
+                                    <!-- Shop Image Wrapper -->
+                                    <div class="shop-img-wrap">
+                                        <a href="/curso/link/<?php echo $curso['D016_Chave']; ?>">
+                                            <img width="500" height="400"
+                                                 src="/../qualidade.php?&lar=500&alt=400&imagem=images/curso/<?php echo $curso['D016_Foto']; ?>"
+                                                 class="img-responsive" alt="">
+                                        </a>
+                                    </div>
+                                    <!-- Shop Wraper -->
+                                    <!-- Shop Detail Wrapper -->
+                                    <div class="product-details">
+                                        <div class="shop-title-wrap">
+                                            <h6 class="product-cat">
+                                                <a href="/curso/link/<?php echo $curso['D016_Chave']; ?>">
+
+                                                <?php
+                                                  foreach($site_cat_cursos as $categoria){
+                                                      if($categoria['D016_Uid'] == $curso['D016_Categoria']){
+                                                          echo str_replace("|", "/", $categoria['D016_Nome']);
+                                                      }
+                                                  }
+                                                  ?>
+
+                                            </h6>
+                                            <?php 
+                                                 if (strlen($curso['D016_Titulo']) >= 75)
+
+                                                    $titulo = substr($curso['D016_Titulo'], 0, 72) . '...';
+
+                                                  if (strlen($curso['D016_Titulo']) < 75)
+
+                                                    $titulo = $curso['D016_Titulo'];
+                                             ?>
+                                            <h5 class="product-name">
+                                                <a href="/curso/link/<?php echo $curso['D016_Chave']; ?>"><?php echo $titulo; ?></a>
+                                            </h5>
+                                        </div>
+                                        <!-- Shop Detail Wrapper -->
+                                        <div class="shop-btns">
+                                            <a class="option-btn" href="/curso/link/<?php echo $curso['D016_Chave']; ?>"> &plus; </a>
+                                            <!-- <ul class="shop-meta">
+                                                <li><a href="#" title="Add to cart"><i class="fa fa-shopping-cart"
+                                                                                       aria-hidden="true"></i></a></li>
+                                                <li><a href="#" title="View More"><i class="fa fa-eye"
+                                                                                     aria-hidden="true"></i></a></li>
+                                                <li><a href="#" title="Added to wishlist"><i class="fa fa-heart"
+                                                                                             aria-hidden="true"></i></a>
+                                                </li>
+                                            </ul> -->
+                                            <!-- Blog Meta -->
+                                        </div>
+                                        <!-- Shop btns -->
+                                    </div>
+                                    <!-- Blog Detail Wrapper -->
+                                </div>
+                                <!-- Blog Wrapper -->
+                            </div>
+                        <?php } ?>
+
+                          <div class="cs-pagination">
+                          <?php 
+                            if(!empty($site_curso)):
+                               $info['pagination']['reg_final'] =  $site_curso['reg_final'];
+                               $info['pagination']['n_paginas'] =  $site_curso['n_paginas'];
+                               $info['pagination']['pg_atual'] =  $site_curso['pg_atual'];
+                               $info['pagination']['pg_anterior'] =  $site_curso['pg_anterior'];
+                               $info['pagination']['pg_proxima'] =  $site_curso['pg_proxima'];
+                               $info['pagination']['lnk_impressos'] =  $site_curso['lnk_impressos'];
+                               $info['pagination']['finalpag'] =  $site_curso['finalpag'];
+                               $info['pagination']['arquivo'] =  $site_curso['arquivo'];
+                               $info['pagination']['pag'] =  $site_curso['pag'];
+                               $info['pagination']['nlinks'] =  $site_curso['nlinks'];
+                               $info['pagination']['temp'] =  $site_curso['temp'];
+                               $info['pagination']['totreg'] =  $site_curso['totreg'];
+                            else:
+                               $info['pagination']['reg_final'] =  0;
+                               $info['pagination']['n_paginas'] =  0;
+                               $info['pagination']['pg_atual'] =  0;
+                               $info['pagination']['pg_anterior'] =  0;
+                               $info['pagination']['pg_proxima'] =  0;
+                               $info['pagination']['lnk_impressos'] =  0;
+                               $info['pagination']['finalpag'] =  0;
+                               $info['pagination']['arquivo'] =  0;
+                               $info['pagination']['pag'] =  0;
+                               $info['pagination']['nlinks'] =  0;
+                               $info['pagination']['temp'] =  0;
+                               $info['pagination']['totreg'] =  0;
+                            endif;
+                              navipages($home=1,$center=1,$info); 
+                             function navipages($home=0,$center=0, array $info)
+                            {
+                               $reg_final = $info['pagination']['reg_final'];
+                               $n_paginas =  $info['pagination']['n_paginas'];         
+                               $pg_atual =  $info['pagination']['pg_atual'];
+                               $pg_anterior =  $info['pagination']['pg_anterior'];
+                               $pg_proxima =  $info['pagination']['pg_proxima'];
+                               $lnk_impressos =  $info['pagination']['lnk_impressos'];
+                               $finalpag =  $info['pagination']['finalpag'];
+                               $arquivo =  $info['pagination']['arquivo'];
+                               $pag =  $info['pagination']['pag'];
+                               $nlinks =  $info['pagination']['nlinks'];
+                               $temp =  $info['pagination']['temp'];
+                               $totreg =  $info['pagination']['totreg'];
+                              // global $pg_atual, 
+                              // $pg_anterior,
+                              // $pg_proxima,  
+                              // $n_paginas, 
+                              // $reg_final, 
+                              // $totreg, 
+                              // $temp, 
+                              // $nlinks,       
+                              // $lnk_impressos,        
+                              // $arquivo, 
+                              // $pag,
+                              // $urlhomepage,
+                              // $finalpag,
+                              // $barborder;
+                              ?>
+                              <?php 
+                              if($n_paginas > 1){ ?>
+                              <ul class="pagination">
+                                <li><a href="<?php echo $arquivo; ?>/1"><i class="icofont icofont-double-left" aria-hidden="true"></i></a></li>
+                                <?php if (isset($pag) && $pag > 1){ ?>
+                                <li><a href="<?php echo $arquivo; ?>/<?php echo $pg_anterior; ?>"><i class="icofont icofont-simple-left" aria-hidden="true"></i></a></li>
+                                <?php } ?>
+                                <?php
+                                            if ($temp >= $nlinks)
+                                            {
+                                            if ($n_paginas > $nlinks) 
+                                            {
+                                            $n_maxlnk = $temp + 4;
+                                            $nlinks   = $n_maxlnk;
+                                            $n_start  = $temp - 6;
+                                            if($n_start==-1)
+                                            {
+                                            $n_start=0;
+                                            }
+                                            $lnk_impressos = $n_start;
+                                            }
+                                            }
+                                            while(($lnk_impressos < $n_paginas) and ($lnk_impressos < $nlinks))
+                                            { 
+                                            $lnk_impressos ++;
+                                            ?>
+                                <?php
+                                            if ($pg_atual != $lnk_impressos)
+                                            {
+                                            echo "<li><a href=\"$arquivo/$lnk_impressos\">";
+                                            }
+                                            if ($pg_atual == $lnk_impressos)
+                                            {
+                                            echo "<li class='active'><a href=\"javascript:;\">$lnk_impressos</a></li>";
+                                            } 
+                                            else 
+                                            {
+                                            echo "$lnk_impressos"."</li>";
+                                            }
+                                            ?>
+                                </a>
+                                <?php
+                                            }
+                                            ?>
+                                <?php
+                                            if ($reg_final < $totreg) 
+                                            {
+                                            ?>
+                                <li><a href="<?php echo $arquivo; ?>/<?php echo $pg_proxima; ?>"><i class="icofont icofont-simple-right" aria-hidden="true"></i></a></li>
+                                <?php
+                                            } 
+                                            ?>
+                                <li><a href="<?php echo $arquivo; ?>/<?php echo $finalpag; ?>"><i class="icofont icofont-double-right" aria-hidden="true"></i> </a></li>
+                              </ul>
+                              <?php }} ?> 
+                          </div> 
+
+
+                    </div>
+                    <!-- Container -->
+                </div>
+                <!-- Content Column -->
+            </div>
+            <!-- Main row -->
+        </div>
+        <!-- Page Default -->
+    </div>
+    <!-- Page Main -->
+</div>
+<section id="portfolio" class="group portfolio-section">
+    <div class="container-fluid">
+        <div class="row no-gutter">
+            <div class="filter">
+                <ul id="options">
+                </ul>
+            </div>
+            <!-- end filter -->
+            <div id="foliowrap">
+            </div>
+            <!-- folio-wrap -->
+        </div>
+        <!-- end row -->
+    </div>
+    <!-- end container -->
+</section><!-- cd-section

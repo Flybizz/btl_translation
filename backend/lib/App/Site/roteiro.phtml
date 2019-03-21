@@ -1,0 +1,151 @@
+
+
+  <div class="site-content">
+
+
+
+    <!-- Page Heading -->
+
+    <div class="page-head bg-four">
+
+      <div class="parallax-mask"></div>
+
+      <div class="container">
+
+        <h1>ROTEIRO</h1>
+
+      </div>
+
+    </div>
+
+    
+
+    <!-- Blog Page -->
+
+    <div class="blog-page-wrapper">
+
+      <div class="container">
+
+        <div class="row">
+
+          <div class="col-md-12 posts-list ">
+
+
+
+           <?php
+
+              if(!empty($site_roteiro)):
+
+                foreach ($site_roteiro as $roteiro):
+
+            
+
+                  $exp = explode(" ", $roteiro['D007_Data']);
+
+
+
+                  $dt = explode("-", $exp[0]);
+
+
+
+                  switch ($dt[1]):
+
+                    case 1: $mes = "JAN"; break;
+
+                    case 2: $mes = "FEV"; break;
+
+                    case 3: $mes = "MAR"; break;
+
+                    case 4: $mes = "ABR"; break;
+
+                    case 5: $mes = "MAI"; break;
+
+                    case 6: $mes = "JUN"; break;
+
+                    case 7: $mes = "JUL"; break;
+
+                    case 8: $mes = "AGO"; break;
+
+                    case 9: $mes = "SET"; break;
+
+                    case 10: $mes = "OUT"; break;
+
+                    case 11: $mes = "NOV"; break;
+
+                    case 12: $mes = "DEZ"; break;
+
+                  endswitch;                                
+
+            ?>   
+
+
+
+            <div class="blog-post list-style clearfix col-md-12 " style="vertical-align: middle; padding-top:20px; padding-bottom:20px; text-align:center;">
+
+              <div class="col-md-3" style="padding-top:20px;">
+
+                <div class="contact-detail2">
+
+                  <div class="icon">
+
+                    <i class="icofont icofont-map-pins"></i>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+              <div class="col-md-9" style="vertical-align: middle; padding-top:15px;">
+
+
+
+                <h1><?php echo  utf8_decode($roteiro['D007_Titulo']);?></h1> 
+
+                <h2 class="category"><?php echo $dt[2]." ".$mes." ".$dt[0]; ?></h2>                 
+
+                <h4>Chegada: <?php echo utf8_decode($roteiro['D007_Chamada']);?> | Saída:  <?php echo utf8_decode($roteiro['D007_Texto']);?></h4> 
+
+
+
+              </div>
+
+              
+
+            </div>
+
+
+
+            <?php                                      
+
+                endforeach;
+
+              endif; 
+
+            ?>
+
+
+
+        
+
+          </div>
+
+
+
+
+
+       </div>
+
+      </div>
+
+    </div>
+
+    
+
+
+
+  </div>
+
+  
+
+        

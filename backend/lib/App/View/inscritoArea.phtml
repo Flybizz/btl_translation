@@ -1,0 +1,173 @@
+<?php require_once("pagina.segura.php"); ?>
+
+
+
+<router base="area/listar">
+
+<?php $LANGUAGE_DEFAULT = unserialize(LANGUAGE_DEFAULT); ?>
+
+<input type="hidden" id="idioma" class="icon" value="<?php echo $LANGUAGE_DEFAULT[0]; ?>" />
+
+<header class="page-header">
+
+    <h2>Áreas</h2>
+
+
+
+    <div class="right-wrapper text-right">
+
+        <ol class="breadcrumbs">
+
+            <li>
+
+                <a href="/backend/index/">
+
+                    <i class="fa fa-home"></i>
+
+                </a>
+
+            </li>
+
+            <li><span>Home</span></li>
+
+            <li><span>Áreas</span></li>
+
+        </ol>
+
+
+
+        <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-calendar"></i></a>
+
+    </div>
+
+</header>
+
+
+
+<!-- start: page -->
+
+
+
+<section class="card">
+
+    <div class="card-body">
+
+        <div class="invoice">
+
+            <header class="clearfix">
+
+                <div class="row">
+
+                    <div class="col-sm-6 mt-3">
+
+                        <h2 class="h2 mt-0 mb-4 text-dark font-weight-bold">Áreas de Negócio</h2>
+
+                        <!-- <h4 class="h4 m-0 text-dark font-weight-bold">#76598345</h4> -->
+
+                    </div>
+
+                    <div class="col-sm-6 mt-3">
+
+                        <div class="m-0 mb-4 pull-right">
+
+                            <a href="/backend/area/registar/lang/<?php echo $LANGUAGE_DEFAULT[0]; ?>" id="cliCad" class="mb-1 mt-1 mr-1 btn btn-primary"> <strong>Adicionar</strong></a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+
+
+            <table class="table table-bordered table-striped mb-0" id="datatable-tabletools">
+
+                <thead>
+
+                    <tr>
+
+                        <th width='8%'>ID</th>
+
+                        <th width='62%'>NOME</th>
+
+                        <th width='15%'>STATUS</th>
+
+                        <th width='15%'>AÇÕES</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                  <?php
+
+                  if(!empty($view_area_lista)):
+
+                  foreach ($view_area_lista as $area):
+
+                  ?>
+
+                  <tr id="<?php echo $area['area_id'] ?>">
+
+                      <td><?php echo $area['area_id']; ?></td>
+
+                      <td><a class="text-default" href="/backend/area/alterar/ref/<?php echo $area['area_id'];?>" title="Alterar"><?php echo $area['area_nome']; ?></a></td>
+
+                      <td>
+
+                      <?php 
+
+                        if($area['area_status'] == "sim"): 
+
+                            echo "ATIVO"; 
+
+                        else: 
+
+                            echo "INATIVO";
+
+                        endif; 
+
+                        ?>  
+
+                      </td>
+
+                      <td class="actions">
+
+                        <?php //if( $_SESSION['nivel_acesso'] == 1 ): ?>
+
+                        <input type="hidden" class="icon" value="<?php echo $area['area_id']?>" />
+
+                        <a  class="areaDel" ref-id="<?php echo $area['area_id']?>" ref-name="<?php echo $area['area_nome'];?>" href="#modalAnim">
+
+                            <i class="fa fa-trash-o fa-lg text-danger"></i>
+
+                        </a>
+
+                        <?php //endif; ?>
+
+                      </td>
+
+                  </tr>
+
+                  <?php endforeach;
+
+                  endif; ?>
+
+                </tbody>
+
+            </table>
+
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- end: page -->

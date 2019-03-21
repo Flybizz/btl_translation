@@ -1,0 +1,71 @@
+<!-- Page Header -->
+<div class="page-header bg-dark">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <!-- Page Header Wrapper -->
+                <div class="page-header-wrapper">
+                    <!-- Title & Sub Title -->
+                    <h3 class="title">Meus Cursos</h3>
+                    <!-- <h6 class="sub-title">All you want know</h6> -->
+                    <ol class="breadcrumb">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="active">Meus Cursos</li>
+                    </ol><!-- Breadcrumb -->
+                </div><!-- Page Header Wrapper -->
+            </div><!-- Coloumn -->
+        </div><!-- Row -->
+    </div><!-- Container -->
+</div><!-- Page Header -->
+
+<div role="main" class="main shop">
+    <div class="page-default bg-grey typo-dark">
+        <!-- Container -->
+        <div class="container">
+        
+            <div class="row shop-forms">
+                <div class="col-sm-12">
+                    <div class="content-box shadow bg-white">
+                        <p>Lista de cursos adquiridos</p>
+                    </div>  
+                </div>
+            </div>
+            
+            <div class="row shop-forms margin-top-30">
+                <div class="col-md-12">
+                    <div class="panel-group accordion" id="accordion">
+                        
+                        <?php foreach ($site_listar_curso as $key_curso => $curso): ?>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                        <?php echo $curso['curso']; ?>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="accordion-body collapse">
+                                <div class="panel-body">                                      
+
+                                    <?php foreach ($curso['disciplina'] as $disciplina): ?>
+                                    
+                                    <h6><a href="/minhasaulas/token/<?php echo $disciplina["pedido"]; ?>/ref/<?php echo $disciplina["chave"]; ?>"><?php echo $disciplina["titulo"]; ?></a></h6>        
+
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <?php endforeach; ?>
+
+
+
+                    </div>
+                </div>
+                
+            </div><!-- Row -->
+        </div><!-- Container -->
+    </div><!-- Page Default -->
+</div><!-- Page Main -->

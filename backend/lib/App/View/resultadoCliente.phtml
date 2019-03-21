@@ -1,0 +1,32 @@
+
+<?php if (!empty( $view_cliente )): ?>
+    <?php foreach ($view_cliente as $cliente): ?>
+
+        <li id="<?php echo $cliente["cli_id"]; ?>" class="m-1 p-4" style="background-color: rgba(255,255,255,1);" >
+            <a href="/backend/cliente/perfil/ref/<?php echo $cliente["cli_referencia"] ?>" style="text-decoration:none;">
+            <figure class="image rounded">
+                <?php if(!empty( $cliente["cli_imagem"] )): ?>
+                <img src="/images/cliente/<?php echo $cliente["cli_imagem"]; ?>" alt="<?php echo $cliente["cli_nome"]; ?>" class="rounded-circle" height="40">
+                <?php else: ?>
+                <img src="/images/default_avatar.png" alt="<?php echo $cliente["cli_nome"]; ?>" class="rounded-circle" height="40">
+                <?php endif; ?>
+            </figure>
+            <div class="col-md-12">
+                <span class="title fs-16"><?php echo $cliente["cli_nome"]; ?></span>
+                <?php if(!empty( $cliente["cli_contato"] )): ?>
+                <span class="message truncate"><i class="fa fa-user"></i> <?php echo $cliente["cli_contato"]; ?> | <i class="fa fa-phone-square"></i> <?php echo $cliente["cli_telefone"] ?> | <i class="fa fa-envelope-square"></i> <?php echo $cliente["cli_email"] ?> | <i class="fa fa-map-marker"></i> <?php echo $cliente["cli_localidade"] ?></span>
+                <?php  else: ?>
+                <span class="message truncate"><i class="fa fa-user"></i> | <i class="fa fa-phone-square"></i> <?php echo $cliente["cli_telefone"] ?> | <i class="fa fa-envelope-square"></i> <?php echo $cliente["cli_email"] ?> | <i class="fa fa-map-marker"></i> <?php echo $cliente["cli_localidade"] ?></span>
+                <?php endif; ?>
+            </div>
+            </a>
+        </li>
+  
+    <?php endforeach; ?>
+<?php else: ?>
+    <li class="m-1 p-4 bg-warning" >        
+        <div class="col-md-12">
+            <h4 class="title fs-16 text-dark text-center">OPS! Nenhum resultado de pesquisa.</h4>
+        </div>        
+    </li>
+<?php endif; ?> 

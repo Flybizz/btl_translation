@@ -1,0 +1,128 @@
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/pagina.segura2.php'; ?>
+  <!-- Google Map js -->
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCnLCpfkI4SEDq5YrCOG-CK_uvs__b313E"></script>
+    <script>
+        function initialize() {
+          var mapOptions = {
+            zoom: 16,
+            scrollwheel: false,
+            center: new google.maps.LatLng(<?php echo $site_unidade[0]['D016_Latitude']; ?>, <?php echo $site_unidade[0]['D016_Longitude']; ?>)
+          };
+          var map = new google.maps.Map(document.getElementById('googlemaps'),
+              mapOptions);
+          var marker = new google.maps.Marker({
+            position: map.getCenter(),
+            animation:google.maps.Animation.BOUNCE,
+            icon: '/images/map-marker.png',
+            map: map
+          });
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+
+
+<section class="page-header-custom-background page-header page-header-center page-header-more-padding page-header-no-title-border" style="background-image: url('/images/config/bg/<?php echo trim($site_config[0]['D001_Imgfundo']); ?>')">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h1 style="padding-top: 10px; padding-bottom:10px; padding-right:10px; padding-left:10px; background-color:rgba(25,25,25,0.7);"><strong>CONTACTOS</strong></h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<div class="container">
+
+  <!-- Google Maps - Go to the bottom of the page to change settings and map location. -->
+  <div id="googlemaps" class="google-map" style="margin-top:30px; border: solid 1px #ccc"></div>
+
+  <div class="row">
+    <div class="col-lg-6">
+
+      <div class="alert alert-success d-none mt-4" id="contactSuccess">
+        <strong>Success!</strong> Your message has been sent to us.
+      </div>
+
+      <div class="alert alert-danger d-none mt-4" id="contactError">
+        <strong>Error!</strong> There was an error sending your message.
+        <span class="text-1 mt-2 d-block" id="mailErrorMessage"></span>
+      </div>
+
+      <h2 class="mb-3 mt-2"><strong>Contacto</strong></h2>
+
+      <form id="contactForm">
+        <div class="form-row">
+          <div class="form-group col-lg-6">
+            <label>Nome *</label>
+            <input type="text" value="" data-msg-required="Please enter your name." maxlength="100" class="form-control"  id="name" name="name"  required>
+          </div>
+          <div class="form-group col-lg-6">
+            <label>Email *</label>
+            <input type="email" value="" data-msg-required="Please enter your email address." data-msg-email="Please enter a valid email address." maxlength="100" class="form-control" name="email" id="email" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col">
+            <label>Telefone *</label>
+            <input type="text" value="" data-msg-required="Please enter the subject." maxlength="100" class="form-control" name="phone" id="phone" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col">
+            <label>Mensagem *</label>
+            <textarea maxlength="5000" data-msg-required="Please enter your message." rows="10" class="form-control" id="mensagem" name="message"  required></textarea>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col">
+            <a href="javascript:;" id="btn_contato" class="btn btn-primary btn-lg" >Enviar</a>
+          </div>
+        </div>
+        <small>Nós nunca compartilharemos seu email com ninguém.</small>
+        <div id="retorno" style="margin-top: 20px;"></div>
+        <div id="ref" style="margin-top:20px;"></div>
+      </form>
+    </div>
+    <div class="col-lg-6">
+
+      <h4 class="heading-primary"><strong>Informações</strong></h4>
+      <ul class="list list-icons list-icons-style-3 mt-4">
+        <li><i class="fa fa-map-marker"></i> <strong>Endereço:</strong> <?php echo $site_unidade[0]['D016_Endereco']."<br>".$site_unidade[0]['D016_Bairro']." "; ?>
+                                <?php echo $site_unidade[0]['D016_Cidade']; ?></li>
+        <li><i class="fa fa-phone"></i> <strong>Telefone:</strong> <a href="tel:<?php echo $site_unidade[0]['D016_Whatsapp']; ?>"><i><?php echo $site_unidade[0]['D016_Whatsapp']; ?></i></a><br><a href="tel:<?php echo $site_unidade[0]['D016_Telefone']; ?>"><i><?php echo $site_unidade[0]['D016_Telefone']; ?></i></a></li>
+        <li><i class="fa fa-envelope"></i> <strong>Email:</strong> <a href="mailto:<?php echo $site_unidade[0]['D016_Email']; ?>"><?php echo $site_unidade[0]['D016_Email']; ?></a></li>
+      </ul>
+      <hr>
+      <?php echo str_replace("|", "/", $site_unidade[0]['D016_Descricao']); ?>
+
+      <hr>
+
+      <h4 class="heading-primary">Redes <strong>Sociais</strong></h4>
+      <ul class="social-icons mt-4">
+          <?php
+          if(!empty($site_config[0]["D001_Google"])){
+              echo '<li class="social-icons-googleplus"><a title="googleplus" target="_blank" href="'.str_replace("|", "/", $site_config[0]["D001_Google"]).'"><i class="fa fa-google-plus"></i></a></li>';
+          }
+          if(!empty($site_config[0]["D001_Facebook"])){
+              echo '<li class="social-icons-facebook"><a href="'.str_replace("|", "/", $site_config[0]["D001_Facebook"]).'" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a></li>';
+          }
+          if(!empty($site_config[0]["D001_Twitter"])){
+              echo '<li class="social-icons-twitter"><a href="'.str_replace("|", "/", $site_config[0]["D001_Twitter"]).'" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></li>';
+          }
+          if(!empty($site_config[0]["D001_Youtube"])){
+              echo '<li class="social-icons-youtube"><a title="YouTube" target="_blank" href="'.str_replace("|", "/", $site_config[0]["D001_Youtube"]).'"><i class="fa fa-youtube"></i></a></li>';
+          }
+          if(!empty($site_config[0]["D001_Instagram"])){
+              echo '<li class="social-icons-instagram"><a title="Instagram" target="_blank" href="'.str_replace("|", "/", $site_config[0]["D001_Instagram"]).'"><i class="fa fa-instagram"></i></a></li>';
+          }
+          ?>
+      </ul>
+
+    </div>
+
+  </div>
+
+</div>

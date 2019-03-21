@@ -1,0 +1,228 @@
+<?php 
+$config = unserialize (CONFIG_DB);
+$permissao = unserialize(PERMISSAO_DB);
+$languageDEFAULT = unserialize(LANGUAGE_DEFAULT); 
+
+function impar($var)
+{
+    return($var & 1);
+}
+$arr = array_filter($permissao, "impar");
+$habilitados = array_keys($arr);
+
+?>
+<div class="sidebar-header">
+  <div class="sidebar-title">
+      <input type="text" name="nav_search" placeholder="<?php echo translate(PLACEHOLDER_BUSCAR); ?>" class="search-nav" >
+  </div>
+  <div class="sidebar-toggle hidden-xs" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="sidebar-left-toggle">
+      <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
+  </div>
+</div>
+<div class="nano">
+    <div class="nano-content">
+        <nav id="menu" class="nav-main" role="navigation">
+        
+            <ul class="nav nav-main">
+                <!--nav-expanded nav-active-->
+                <li data-search="<?php echo translate(MENU_DASHBOARD); ?>">
+                  <a href="/../backend/index/" class="nav-link">
+                    <i class="fa fa-home" aria-hidden="true"></i>
+                    <span><?php echo translate(MENU_DASHBOARD); ?></span>
+                  </a>
+                </li>
+                <?php if(in_array('per_cliente', $habilitados)) { ?>        
+                <li data-search="<?php echo translate(MENU_CALENDARIO); ?>">
+                  <a href="/../backend/calendario">
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                    <span><?php echo translate(MENU_CALENDARIO); ?></span>
+                  </a>
+                </li>
+                <?php } ?>
+                <?php if(in_array('per_cliente', $habilitados)) { ?>        
+                <li class="nav-parent" data-search="<?php echo translate(MENU_CLIENTES); ?>">
+                  <a href="javascript:void(0);">
+                    <i class="fa fa-user-plus" aria-hidden="true"></i>
+                    <span><?php echo translate(MENU_CLIENTES); ?></span>
+                  </a>
+                  <ul class="nav nav-children">
+                    <li data-search="<?php echo translate(MENU_VER_TODOS); ?>">
+                      <a class="nav-link" href="/../backend/cliente/listar/lang/<?php echo $languageDEFAULT[0]; ?>"><?php echo translate(MENU_VER_TODOS); ?></a>
+                    </li>
+                    <li data-search="<?php echo translate(MENU_ADICIONAR); ?>">
+                      <a class="nav-link" href="/../backend/cliente/registar/lang/<?php echo $languageDEFAULT[0]; ?>"><?php echo translate(MENU_ADICIONAR); ?></a>
+                    </li>
+                  </ul>
+                </li>
+                <?php } ?>
+                
+                
+                
+                <?php if(in_array('per_produtos', $habilitados)) { ?>
+                <li data-search="<?php echo translate(MENU_PRODUTOS); ?>">
+                  <a class="nav-link" href="/../backend/produto/listar/lang/<?php echo $languageDEFAULT[0]; ?>">
+                    <i class="fa fa-archive" aria-hidden="true"></i>
+                    <span><?php echo translate(MENU_PRODUTOS); ?></span>
+                  </a>
+                </li> 
+                <?php } ?>  
+
+                <?php if($_SESSION['nivel_acesso'] == 1 || $_SESSION['nivel_acesso'] == 2 ):  ?>
+                
+                <li class="nav-parent" data-search="<?php echo translate(MENU_REGISTROS); ?>">
+                  <a href="javascript:void(0);">
+                    <i class="fa fa-th-list" aria-hidden="true"></i>
+                    <span><?php echo translate(MENU_REGISTROS); ?></span>
+                  </a>
+                  <ul class="nav nav-children">
+                    <li data-search="<?php echo translate(MENU_AREA_NEGOCIOS); ?>">
+                      <a class="nav-link" href="/../backend/area/listar"><?php echo translate(MENU_AREA_NEGOCIOS); ?></a>
+                    </li>
+                    <li data-search="<?php echo translate(MENU_CARGOS); ?>">
+                      <a class="nav-link" href="/../backend/cargo/listar"><?php echo translate(MENU_CARGOS); ?></a>
+                    </li>
+                    <li data-search="<?php echo translate(MENU_ESPECIALIDADES); ?>">
+                      <a class="nav-link" href="/../backend/especialidade/listar"><?php echo translate(MENU_ESPECIALIDADES); ?></a>
+                    </li>
+                    <li data-search="<?php echo translate(MENU_TIPOS); ?>">
+                      <a class="nav-link" href="/../backend/tipo/listar"><?php echo translate(MENU_TIPOS); ?></a>
+                    </li>
+                    <!-- <li>
+                      <a class="nav-link" href="/../backend/vendedor/listar">Vendedor</a>
+                    </li> -->
+                  </ul>
+                </li>   
+
+                <?php endif; ?>               
+             
+                <?php if(in_array('per_configuracao', $habilitados)): ?>
+                <li class="nav-parent" data-search="<?php echo translate(MENU_UTILIZADORES); ?>">
+                  <a class="nav-link" href="javascript:void(0);">
+                    <i class="fa fa-group" aria-hidden="true"></i>
+                    <span><?php echo translate(MENU_UTILIZADORES); ?></span>
+                  </a>
+                  <ul class="nav nav-children">
+                    <li data-search="<?php echo translate(MENU_ADICIONAR); ?>">
+                      <a href="/../backend/usuario/registar"><?php echo translate(MENU_ADICIONAR); ?></a>
+                    </li>
+                    <li data-search="<?php echo translate(MENU_LISTAR_UTILIZADORES); ?>">
+                      <a href="/../backend/usuario/listar"><?php echo translate(MENU_LISTAR_UTILIZADORES); ?></a>
+                    </li>
+                    <?php if($_SESSION['nivel_acesso'] == 1 || $_SESSION['nivel_acesso'] == 2 ):  ?>
+                    <li data-search="<?php echo translate(MENU_NIVEIS_E_PERMISSOES); ?>">
+                      <a class="nav-link" href="/../backend/nivel/listar"><?php echo translate(MENU_NIVEIS_E_PERMISSOES); ?></a>
+                    </li>
+                    <?php endif; ?>
+                  </ul>
+                </li>
+                <?php endif; ?>
+                
+                <li class="nav-parent" data-search="<?php echo translate(MENU_LEADS_CONVERSION); ?>">
+                  <a class="nav-link" href="javascript:void(0);">
+                    <i class="fa fa-filter" aria-hidden="true"></i>
+                    <span><?php echo translate(MENU_LEADS_CONVERSION); ?></span>
+                  </a>
+                  <ul class="nav nav-children">                                    
+                    <li data-search="<?php echo translate(MENU_LEADS_SEM_CLASSIFICACAO); ?>">
+                      <a class="nav-link" href="/../backend/lead/list/ref/noclassification">
+                      <i class="fa fa-circle circle_sclassification" aria-hidden="true" ></i>
+                      <span><?php echo translate(MENU_LEADS_SEM_CLASSIFICACAO); ?></span>
+                      </a>
+                    </li>
+                    <li data-search="<?php echo translate(MENU_LEADS); ?>">
+                      <a class="nav-link" href="/../backend/lead/list/ref/leads">
+                      <i class="fa fa-circle circle_leads" aria-hidden="true"></i>
+                      <span><?php echo translate(MENU_LEADS); ?></span>
+                      </a>
+                    </li>
+                    <li data-search="<?php echo translate(MENU_LEADS_PROSPECTS); ?>">
+                      <a class="nav-link" href="/../backend/lead/list/ref/prospects">
+                      <i class="fa fa-circle circle_prospects" aria-hidden="true"></i>
+                      <span><?php echo translate(MENU_LEADS_PROSPECTS); ?></span>
+                      </a>
+                    </li>
+                    <li data-search="<?php echo translate(MENU_LEADS_CLIENTS); ?>">
+                      <a class="nav-link" href="/../backend/lead/list/ref/clients">
+                      <i class="fa fa-circle circle_clients" aria-hidden="true"></i>
+                      <span><?php echo translate(MENU_LEADS_CLIENTS); ?></span>
+                      </a>
+                    </li>                    
+                  </ul>
+                </li>
+
+                <?php if($_SESSION['nivel_acesso'] == 1 || $_SESSION['nivel_acesso'] == 2 ):  ?>
+                  <?php if(in_array('per_configuracao', $habilitados)): ?>
+                  <li class="nav-parent" data-search="<?php echo translate(MENU_LOGS); ?>">
+                    <a class="nav-link" href="javascript:void(0);">
+                      <i class="fa fa-clock-o" aria-hidden="true"></i>
+                      <span><?php echo translate(MENU_LOGS); ?></span>
+                    </a>
+                    <ul class="nav nav-children">                                    
+                      <li data-search="<?php echo translate(MENU_PESQUISAS_EXPORTADAS); ?>">
+                        <a class="nav-link" href="/../backend/log/dbgerados"><?php echo translate(MENU_PESQUISAS_EXPORTADAS); ?></a>
+                      </li>
+                      <li data-search="<?php echo translate(MENU_CONTROLO_ACESSO); ?>">
+                        <a class="nav-link" href="/../backend/log/logins"><?php echo translate(MENU_CONTROLO_ACESSO); ?></a>
+                      </li>
+                      <li data-search="<?php echo translate(MENU_ACOMPANHAMENTO); ?>">
+                        <a class="nav-link" href="/../backend/log/eventos"><?php echo translate(MENU_ACOMPANHAMENTO); ?></a>
+                      </li>
+                    </ul>
+                  </li>
+                  <?php endif; ?>
+                <?php endif; ?>
+
+                <?php if(in_array('per_configuracao', $habilitados)): ?>
+                <li class="nav-parent" data-search="<?php echo translate(MENU_CONFIGURACAO); ?>">
+                  <a class="nav-link" href="javascript:void(0);">
+                    <i class="fa fa-cogs" aria-hidden="true"></i>
+                    <span><?php echo translate(MENU_CONFIGURACAO); ?></span>
+                  </a>
+                  <ul class="nav nav-children">
+                    <li data-search="<?php echo translate(MENU_CONFIGURACAO_EMPRESA); ?>">
+                      <a class="nav-link" href="/../backend/configuracao/config_1"><?php echo translate(MENU_CONFIGURACAO_EMPRESA); ?></a>
+                    </li>
+                    <li data-search="<?php echo translate(MENU_CONFIGURACAO_AVANCADAS); ?>">
+                      <a class="nav-link" href="/../backend/configuracao/config_3"><?php echo translate(MENU_CONFIGURACAO_AVANCADAS); ?></a>
+                    </li>
+                    <li data-search="<?php echo translate(MENU_CONFIGURACAO_INTEGRACOES); ?>">
+                      <a class="nav-link" href="/../backend/configuracao/config_4"><?php echo translate(MENU_CONFIGURACAO_INTEGRACOES); ?></a>
+                    </li>
+                    <li data-search="<?php echo translate(MENU_CONFIGURACAO_CALENDARIO); ?>">
+                      <a class="nav-link" href="/../backend/configuracao/config_calendario"><?php echo translate(MENU_CONFIGURACAO_CALENDARIO); ?></a>
+                    </li>                                      
+                  </ul>
+                </li>
+                <?php endif; ?>
+
+                <li data-search="<?php echo translate(MENU_SAIR); ?>">
+                  <a class="nav-link" href="/../backend/logout">
+                    <i class="fa fa-power-off" aria-hidden="true"></i>
+                    <span><?php echo translate(MENU_SAIR); ?></span>
+                  </a>
+                </li>
+
+                <li data-search="<?php echo translate("Kálmir começa aqui"); ?>">
+                  <a class="nav-link" href="/../backend/logout">
+                    <i class="fa fa-power-off" aria-hidden="true"></i>
+                    <span><?php echo translate("Kálmir começa aqui"); ?></span>
+                  </a>
+                </li>
+            
+            </ul>
+
+        </nav>
+    </div>
+    <script>
+        // Maintain Scroll Position
+        if (typeof localStorage !== 'undefined') {
+            if (localStorage.getItem('sidebar-left-position') !== null) {
+                var initialPosition = localStorage.getItem('sidebar-left-position'),
+                    sidebarLeft = document.querySelector('#sidebar-left .nano-content');
+                
+                sidebarLeft.scrollTop = initialPosition;
+            }
+        }
+    </script>
+    
+</div>

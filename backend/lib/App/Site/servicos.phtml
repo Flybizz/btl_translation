@@ -1,0 +1,82 @@
+  
+ <!-- Header  Inner style-->
+ <section class="row final-inner-header">
+    <div class="container">
+        <h2 class="this-title">Nossos Serviços</h2>
+    </div>
+ </section>
+ <section class="row final-breadcrumb">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            <li class="active">Nossos Serviços</li>
+        </ol>
+    </div>
+ </section>
+<!-- Header  Slider style-->
+    
+
+<!-- Resort Activities style-->
+<section class="container clearfix common-pad activities-main">
+    <div class="sec-header3">
+        <h2>Nossos Serviços</h2>
+        <h3>Buscando a excelência nos serviços aos hóspedes</h3>
+    </div> 
+        
+    <p>Café da manhã com mais de 40 ítens diários, Café noturno (lanche ou jantar promocional) de segunda a sexta.</p>
+      
+    <div class="row">
+     
+        <div class="activities-wrapper">
+            
+            <?php if (!empty($site_servicos)): $num = 0; ?>
+            <?php foreach ($site_servicos as $servico): 
+
+
+
+                if($num % 2 == 0):
+                    $direct1 =  "col-md-push-4";
+                    $direct2 =  "col-md-pull-8";
+                else: 
+                    $direct1 =  "";
+                    $direct2 =  "";
+                endif;
+
+                $num++;
+
+            ?> 
+
+            <!-- One  -->
+            <div class="activities-outer">
+                <div class="col-md-8 <?php echo $direct1; ?>">
+                    <?php if(!empty($servico['D011_Imagem'])): ?>
+                        <img src="/images/servico/<?php echo $servico['D011_Uid']; ?>/<?php echo $servico['D011_Imagem']; ?>" class="img-responsive" alt="">                                
+                    <?php else: ?>
+                        <img src="/imagem/sem_imagem.jpg" class="img-responsive" alt="">
+                    <?php endif ?>
+                </div>
+                <div class="col-md-4 <?php echo $direct2; ?>">
+                    <div class="activities-content">
+                        <h2><?php echo $servico['D011_Titulo']; ?></h2>
+                        <p><?php echo str_replace("|", "/", $servico['D011_Tags']); ?></p>
+                        <a href="/servico/link/<?php echo $servico['D011_Chave']; ?>" class="res-btn">Saiba mais <i class="fa fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <!-- One  -->
+
+
+            <?php endforeach; ?>
+            <?php endif; ?>
+
+
+
+        </div> 
+         
+         
+      
+      </div>
+    
+</section> 
+    
+<!-- Resort Activities style-->

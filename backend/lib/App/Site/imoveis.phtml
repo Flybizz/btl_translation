@@ -1,0 +1,203 @@
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/pagina.segura2.php'; ?>
+<section class="page-header-custom-background page-header page-header-center page-header-more-padding page-header-no-title-border" style="background-image: url('/images/config/bg/<?php echo trim($site_config[0]['D001_Imgfundo']); ?>')">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h1 style="padding-top: 10px; padding-bottom:10px; padding-right:10px; padding-left:10px; background-color:rgba(25,25,25,0.7);"><strong>PROPRIEDADES</strong></h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-default section-default-scale-8 mt-0 pt-0">
+        <div class="container">
+            <div class="row align-items-center mt-0 pt-0">
+                <div class="col-lg-12 text-center">
+                    <h1 class="text-light"> <strong><?php echo $site_institucional[0]['D006_Titulo']; ?></strong> </h1>
+                    <h2 class="text-light">Insira os seus critérios de pesquisa:</h2>
+                </div>
+            </div>
+            <div class="row mt-0">
+                <div class="col">
+
+                    <form id="propertiesForm" method="POST">
+                        <div class="form-row">
+
+                            <div class="col-md-10">
+                                <div class="row">
+                                    <div class="form-group col-md-4 mb-0">
+                                        <div class="form-control-custom mb-3">
+                                            <input type="text" class="form-control text-uppercase text-2" id="bs_referencia" placeholder="Referência">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-4 mb-0">
+                                        <div class="form-control-custom mb-3">
+                                            <select class="form-control text-uppercase text-2" id="bs_tipo">
+                                                <option value="">Tipo de imóvel</option>
+                                                <?php if(!empty($site_tipo)): 
+                                                    foreach ($site_tipo as $tipo):
+                                                ?>
+                                                    <option value="<?php echo $tipo["D011_Chave"]; ?>"><?php echo $tipo["D011_Titulo"]; ?></option>
+                                                <?php 
+                                                    endforeach;    
+                                                endif; ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-4 mb-0">
+                                        <div class="form-control-custom mb-3">
+                                            <select class="form-control text-uppercase text-2" id="bs_localidade">
+                                                <option value="">Localidade</option>
+                                                <?php 
+                                                if(!empty($site_localidade)): 
+                                                    foreach ($site_localidade as $localidade):
+                                                ?>
+                                                    <option value="<?php echo $localidade["D011_localidade"]; ?>"><?php echo $localidade["D011_localidade"]; ?></option>
+                                                <?php 
+                                                    endforeach;    
+                                                endif; ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-md-4 mb-0">
+                                        <div class="form-control-custom mb-3">
+                                            <select class="form-control text-uppercase text-2" id="bs_categoria">                                             
+                                                <option value="">Categoria</option>
+                                                <?php if(!empty($site_tipocliente)): 
+                                                    foreach ($site_tipocliente as $tipocliente):
+                                                ?>
+                                                    <option value="<?php echo $tipocliente["D011_Chave"]; ?>"><?php echo $tipocliente["D011_Titulo"]; ?></option>
+                                                <?php 
+                                                    endforeach;    
+                                                endif; ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-4 mb-0">
+                                        <div class="form-control-custom mb-3">
+                                        <input type="text" class="form-control text-uppercase text-2" id="bs_preco_min" placeholder="Preço Min">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-4 mb-0">
+                                        <div class="form-control-custom mb-3">
+                                        <input type="text" class="form-control text-uppercase text-2" id="bs_preco_max" placeholder="Preço Max">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                
+                                
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group col-md-12 mb-0 text-center">
+                                    <input type="submit" id="imovel_buscar" value="Procurar" class="btn btn-primary btn-lg text-uppercase btn_buscar">
+                                </div>
+                            </div>                        
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+<div class="container">
+    <?php echo $site_error; 
+        if (!isset($site_categoria)):
+            $title_tipo = "Propriendades Listadas";
+        else:
+            $title_tipo = $site_categoria;
+        endif;        
+    ?>
+
+    <h2><strong><?php echo $title_tipo; ?></strong></h2>
+    <div class="row mt-0 pt-0">
+        <div class="col">
+            <hr class="tall mt-0 mb-0">
+        </div>
+    </div>
+
+    <?php if(empty($site_error)): 
+        if (count($site_imoveis) > 1):
+            $propriedade = "propriedades";
+        else:
+            $propriedade = "propriedade";
+        endif;    
+    ?>
+    <h4> <i class="icofont icofont-search"></i> <?php echo " Resultado da sua pesquisa <strong>".count($site_imoveis)."</strong> ".$propriedade; ?></h4>
+    <?php endif; ?>
+
+    <div class="row mb-4 properties-listing sort-destination p-0">
+
+        <?php 
+
+            if(!empty($site_imoveis)):
+                foreach ($site_imoveis as $imovel):
+        ?>
+                                
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 p-3 isotope-item">
+            <div class="listing-item">
+                <a href="/imovel/<?php echo $imovel["SEO_Slug"]; ?>" class="text-decoration-none">
+                    <div class="thumb-info thumb-info-lighten">
+                        <h6 class="custom-thumb-info-title font-weight-boldl text-uppercase p-3 pb-0 accomodation-title" style="margin-bottom:0; max-height:85px; min-height:85px;">
+                            <strong><?php echo $imovel["D011_Titulo"]; ?></strong>
+                        </h6>
+                        <div class="thumb-info-wrapper m-0 mt-0 pt-0">
+                            <img src="/images/imovel/<?php echo $imovel["D011_Uid"]; ?>/fotos/<?php echo $imovel["D011_Imagem"]; ?>" class="img-fluid" alt="">
+                            <div class="thumb-info-listing-type background-color-secondary text-uppercase text-color-light font-weight-semibold p-1 pl-3 pr-3">
+                            <?php echo $imovel["D011_Tipocliente"]; ?>
+                            </div>
+                        </div>
+                        <div class="thumb-info-price background-color-primary text-color-light text-5 p-2 pl-4 pr-4">
+                            <?php echo number_format($imovel["D011_Valor"], 0,".","."); ?>€
+                            <i class="fa fa-caret-right text-color-secondary float-right"></i>
+                        </div>
+                        <div class="custom-thumb-info-title b-normal p-2" style="color:rgba(25,25,25,0.9)!important;">                        
+                            <div class="thumb-info-inner text-3 pull-left"><?php echo $imovel["D011_Localidade"]; ?></div>
+                            <span class="text-center text-1 pull-right">
+                                Ref: <?php echo $imovel["D011_Codigo"]; ?>
+                            </span>
+                            <hr class="pt-0 pb-0 mt-1 mb-1 pull-left" style="width: 100%;">
+                            <ul class="accommodations text-uppercase font-weight-bold p-0 mb-0 text-2 text-center pull-right">
+                                <li>
+                                    <span class="accomodation-title">
+                                        <i class="icofont icofont-bed" style="font-size:18px!important"></i>
+                                    </span>
+                                    <span class="accomodation-value custom-color-1">
+                                    <?php echo $imovel["D011_Quarto"]; ?>
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="accomodation-title">
+                                        <i class="icofont icofont-bathtub" style="font-size:18px!important"></i>
+                                    </span>
+                                    <span class="accomodation-value custom-color-1">
+                                    <?php echo $imovel["D011_Casabanho"]; ?>
+                                    </span>
+                                </li>
+                                <li>
+                                    <span class="accomodation-title">
+                                        <i class="icofont icofont-ruler-alt-1"></i>
+                                    </span>
+                                    <span class="accomodation-value custom-color-1">
+                                    <?php echo $imovel["D011_Area_terreno"]." m²"; ?>
+                                    </span>
+                                </li>                            
+                            </ul>                        
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <?php 
+                endforeach;
+            endif; ?>
+    
+    </div>
+
+</div>

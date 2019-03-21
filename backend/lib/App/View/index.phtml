@@ -1,0 +1,520 @@
+<header class="page-header">
+	<h2><?php echo translate(TITULO_AMBIENTE_TRABALHO); ?></h2>
+	<div class="right-wrapper text-right">
+		<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-calendar-check-o text-light"></i></a>
+	</div>
+</header>
+<div class="row">
+	<div class="col-lg-12">
+		<div class="row">		
+			<div class="col-md-6 col-lg-3 col-xl-3">
+				<section class="card card-featured-left card-featured-primary mb-3">
+					<div class="card-body">
+						<div class="widget-summary">
+							<div class="widget-summary-col widget-summary-col-icon">
+								<div class="summary-icon bg-primary">
+									<i class="fa fa-users"></i>
+								</div>
+							</div>
+							<div class="widget-summary-col">
+								<div class="summary">
+									<h4 class="title"><?php echo translate(DASHBOARD_CLIENTES); ?></h4>
+									<div class="info">
+										<strong class="amount"><?php echo $view_cliente_total; ?></strong>
+									</div>
+								</div>
+								<div class="summary-footer"></div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+			<div class="col-md-6 col-lg-3 col-xl-3">
+				<section class="card card-featured-left card-featured-tertiary mb-3">
+					<div class="card-body">
+						<div class="widget-summary">
+							<div class="widget-summary-col widget-summary-col-icon">
+								<div class="summary-icon bg-tertiary">
+									<i class="fa fa-graduation-cap"></i>
+								</div>
+							</div>
+							<div class="widget-summary-col">
+								<div class="summary">
+									<h4 class="title"><?php echo translate(DASHBOARD_TREINAMENTOS); ?></h4>
+									<div class="info">
+										<strong class="amount"><?php echo $view_count_formacao; ?></strong>
+									</div>
+								</div>
+								<div class="summary-footer">
+									<!-- <a class="text-muted text-uppercase" href="#">(withdraw)</a> -->
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+			<div class="col-md-6 col-lg-3 col-xl-3">
+				<section class="card card-featured-left card-featured-success mb-3">
+					<div class="card-body">
+						<div class="widget-summary">
+							<div class="widget-summary-col widget-summary-col-icon">
+								<div class="summary-icon bg-success">
+									<i class="fa fa-list"></i>
+								</div>
+							</div>
+							<div class="widget-summary-col">
+								<div class="summary">
+									<h4 class="title"><?php echo translate(DASHBOARD_PROXIMAS_TAREFAS); ?></h4>
+									<div class="info">
+										<strong class="amount"><?php echo intval(sizeof($view_tarefas_dashboard_timeline["future"])) ?></strong>
+									</div>
+								</div>
+								<div class="summary-footer">
+									<a data-smooth-scroll class="text-muted text-uppercase" href="#upcoming-tasks"><?php echo translate(DASHBOARD_IR_PARA_TAREFAS); ?></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+			<div class="col-md-6 col-lg-3 col-xl-3">
+				<section class="card card-featured-left card-featured-danger mb-3">
+					<div class="card-body">
+						<div class="widget-summary">
+							<div class="widget-summary-col widget-summary-col-icon">
+								<div class="summary-icon bg-danger">
+									<i class="fa fa-warning"></i>
+								</div>
+							</div>
+							<div class="widget-summary-col">
+								<div class="summary">
+									<h4 class="title"><?php echo translate(DASHBOARD_TAREFAS_POR_FINALIZAR); ?></h4>
+									<div class="info">
+										<strong class="amount"><?php echo intval(sizeof($view_tarefas_dashboard_timeline["past"])) ?></strong>
+									</div>
+								</div>
+								<div class="summary-footer">
+									<a data-smooth-scroll class="text-muted text-uppercase" href="#upcoming-tasks"><?php echo translate(DASHBOARD_IR_PARA_TAREFAS); ?></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-12 col-md-12">
+		<section class="card">
+			<header class="card-header">
+				<div class="card-actions">	
+					<a href="#" class="card-action card-action-toggle" data-card-toggle></a>			
+				</div>
+				<h2 class="card-title"><?php echo translate(TITULO_FUNIL_VENDAS); ?></h2>			
+			</header>			
+			<div class="card-body">
+				<div class="row p-0 m-0">			
+					<div class="col-xs-12 col-md-6 col-lg-3 col-xl-3 p-1">
+						<section class="card mb-2">
+							<a href="/backend/lead/list/ref/noclassification" class="lead_a">
+								<div class="card-body bg-red">
+									<div class="widget-summary lead-conversion-red">
+										<h4 class="title"><?php echo translate(MENU_LEADS_SEM_CLASSIFICACAO); ?></h4>
+										<div class="info">
+											<strong><?php echo $view_funil_visitantes; ?></strong>
+										</div>									
+									</div>
+								</div>
+							</a>
+						</section>
+					</div>
+					<div class="col-xs-12 col-md-6 col-lg-3 col-xl-3 p-1">						
+						<section class="card mb-2">
+							<a href="/backend/lead/list/ref/leads" class="lead_a">
+								<div class="card-body bg-yellow">
+									<div class="widget-summary lead-conversion-yellow">
+										<h4 class="title"><?php echo translate(MENU_LEADS); ?></h4>
+										<div class="info">
+											<strong><?php echo $view_funil_leads; ?></strong>
+										</div>									
+									</div>
+								</div>
+							</a>
+						</section>
+					</div>
+					<div class="col-xs-12 col-md-6 col-lg-3 col-xl-3 p-1">						
+						<section class="card mb-2">
+							<a href="/backend/lead/list/ref/prospects" class="lead_a">
+								<div class="card-body bg-orange">
+									<div class="widget-summary lead-conversion-orange">
+										<h4 class="title"><?php echo translate(MENU_LEADS_PROSPECTS); ?></h4>
+										<div class="info">
+											<strong><?php echo $view_funil_conversao; ?></strong>
+										</div>									
+									</div>
+								</div>
+							</a>
+						</section>
+					</div>
+					<div class="col-xs-12 col-md-6 col-lg-3 col-xl-3 p-1">
+						<section class="card mb-2">
+							<a href="/backend/lead/list/ref/clients" class="lead_a">
+								<div class="card-body bg-green">
+									<div class="widget-summary lead-conversion-green">
+										<h4 class="title"><?php echo translate(MENU_LEADS_CLIENTS); ?></h4>
+										<div class="info">
+											<strong><?php echo $view_funil_clientes; ?></strong>
+										</div>									
+									</div>
+								</div>
+							</a>
+						</section>
+					</div>
+				</div>
+			</div>
+		</section>		
+	</div>
+</div>
+<!-- start: page -->
+<div class="row">
+	<div class="col-lg-4 col-md-12 mb-3">
+		<section class="card mb-4">
+			<header class="card-header p-4">
+				<div class="card-actions pb-4">					
+					<button id="addCliente" class="btn btn-default btn-cons mb-2" data-toggle="tooltip" data-original-title="<?php echo translate(DASHBOARD_REGISTAR_NOVO_CLIENTE) ?>" data-animation="false">
+						<span class="fa fa-user-plus" style="font-size: 16px;"></span>
+					</button>					
+				</div>
+				<h2 class="card-title"><?php echo translate(DASHBOARD_AREA_PESQUISA); ?></h2>			
+			</header>
+			<div class="card-body">
+				<div class="form-group pull-right">
+					<!-- <a id="cli_dbemail" class="btn btn-default btn-cons mb-2 modal-with-move-anim ws-normal btn btn-default" href="#modalAnim">
+						<span class="fa fa-list-ul font-montserrat" style="font-size: 16px;"></span>
+					</a> -->
+					<button data-view-animation="push-parrallax" class="btn btn-primary pull-right ml-1" id="clearForm" data-toggle="refresh" title="<?php translate(BTN_LIMPAR) ?>" >
+						<i class="fa fa-refresh"></i>
+					</button>	
+					<button type="button" id="buscar" class="btn btn-primary btn-cons mb-2" data-toggle="tooltip" data-original-title="<?php translate(BTN_PESQUISAR) ?>" data-animation="false">
+						<span class="fa fa-search font-montserrat semi-bold" style="font-size: 16px;"></span>
+					</button>
+					<button type="button" id="pdf" class="btn btn-danger btn-cons mb-2" data-toggle="tooltip" data-original-title="<?php translate(BTN_PDF) ?>" data-animation="false">
+						<span class="fa fa-file-pdf-o font-montserrat" style="font-size: 16px;"></span>
+					</button>
+					<button  type="submit" id="xls" class="btn btn-success btn-cons mb-2" data-toggle="tooltip" data-original-title="<?php translate(BTN_EXCEL) ?>" data-animation="false">
+						<span class="fa fa-file-excel-o font-montserrat" style="font-size: 16px;"></span>
+					</button>	
+					<a id="dlink" style="display:none;"></a>
+				</div>
+				<div class="clearfix"></div>
+				<div class="form-group">
+					<label><strong><?php echo translate(LABEL_PESQUISAR_POR); ?> <span class="help"> <?php echo translate(LABEL_NOME_CIDADE); ?></span></strong></label>
+					<div class="input-group">
+						<span class="input-group-addon primary"><i class="fa fa-search"></i></span>
+						<input type="text" id="cp_pesquisa" placeholder="pesquise aqui" class="form-control">
+					</div>
+				</div>
+				<div class="form-group">
+					<label><strong><?php echo translate(LABEL_DATA_INICIAL); ?></strong></label>
+					<span class="help d-md-none"> (<?php echo translate(LABEL_BUSCAR_POR_PERIODO); ?> - <?php echo translate(LABEL_DATA_INICIAL); ?>.)</span>
+					<div class="input-group date">
+						<span class="input-group-addon primary"><i class="fa fa-calendar"></i></span>	
+						<input type="text" id="datastart" class="form-control" data-plugin-datepicker>
+					</div>
+				</div>
+				<div class="form-group">
+					<label><strong><?php echo translate(LABEL_DATA_FINAL); ?></strong></label>
+					<span class="help d-md-none"> (<?php echo translate(LABEL_BUSCAR_POR_PERIODO); ?> - <?php echo translate(LABEL_DATA_FINAL); ?>.)</span>
+					<div class="input-group date">
+						<span class="input-group-addon primary"><i class="fa fa-calendar"></i></span>
+						<input type="text" id="dataend" class="form-control" data-plugin-datepicker>
+					</div>
+				</div>									
+				<div class="form-group">
+					<label><strong><?php echo translate(LABEL_VENDEDOR); ?></strong></label>										
+					<select id="vendedor" data-plugin-selectTwo class="form-control populate">						
+						<option value="0">Nenhum</option>
+						<?php if(!empty($view_vendedor)): ?>
+							<?php foreach ($view_vendedor as $vendedor): ?>
+								<!-- <option value="<?php //echo $vendedor['usu_id'] ?>"><?php //echo $vendedor["usu_nome"];?></option> -->
+								<?php if( $_SESSION['nivel_acesso'] < 3 ): ?>
+									<option value="<?php echo $vendedor['usu_id'] ?>"><?php echo $vendedor["usu_nome"];?></option>
+								<?php else: ?>
+									<?php if( $_SESSION['id_usuario'] == $vendedor['usu_id'] ): ?>
+									<option value="<?php echo $vendedor['usu_id'] ?>" selected><?php echo $vendedor["usu_nome"];?></option>
+									<?php endif; ?>
+								<?php endif; ?> 
+							
+							<?php endforeach; ?>
+						<?php endif; ?>				
+					</select>
+				</div>
+				
+				<div class="form-group">
+					<label><strong><?php echo translate(LABEL_QUALIFICACAO); ?></strong></label>	
+					<div class="input-group btn-group">					
+						<span class="input-group-addon">
+							<i class="fa fa-star"></i>
+						</span>
+						<select id="qualificacao" class="form-control" multiple="multiple" data-plugin-multiselect data-plugin-options='{ "maxHeight": 200 }'>
+							<?php if(!empty($view_score)): ?>
+								<?php foreach ($view_score as $star): ?>
+									<option value="<?php echo $star['score_id']; ?>"><?php echo $star["score_nome"]; ?></option>									
+								<?php endforeach; ?>
+							<?php endif; ?>
+						</select>
+					</div>					
+				</div>
+				<div class="form-group">
+					<label><strong><?php echo translate(LABEL_CAMPOS_EXCEL); ?></strong></label>					
+					<span class="help d-md-none">(<?php echo translate(LABEL_NOME_CIDADE_AREA); ?>...)</span>
+					<div class="input-group btn-group">					
+						<span class="input-group-addon">
+							<i class="fa fa-th-list"></i>
+						</span>
+						<select id="campo" class="form-control" multiple="multiple" data-plugin-multiselect data-plugin-options='{ "maxHeight": 200, "enableCaseInsensitiveFiltering": true }'>							
+							<option value="contato"><?php echo translate(LABEL_CONTATO); ?></option>
+							<?php if(!empty($view_colunas)): ?>
+								<?php foreach ($view_colunas as $coluna): 
+									$campo = $coluna["Field"];
+									if($campo != "cli_id" && $campo != "cli_chave" && $campo != "cli_data"):
+									if($campo == "cli_area_negocio"):
+								?>
+									<option value="<?php echo $campo; ?>"><?php echo translate(LABEL_AREA_NEGOCIO); ?></option>
+								<?php 
+									elseif($campo == "cli_descricao"):
+								?>
+									<option value="<?php echo $campo; ?>"><?php echo translate(LABEL_DESCRICAO); ?></option>
+								<?php 
+									elseif($campo == "cli_referencia"):
+								?>
+									<option value="<?php echo $campo; ?>"><?php echo translate(LABEL_REFERENCIA); ?></option>
+								<?php 
+									elseif($campo == "cli_rua"):
+								?>
+									<option value="<?php echo $campo; ?>"><?php echo translate(LABEL_MORADA); ?></option>
+								<?php 
+									elseif($campo == "vend_id"):
+								?>
+									<option value="<?php echo $campo; ?>"><?php echo translate(LABEL_VENDEDOR_VENDEDORA); ?></option>
+								<?php 
+									elseif($campo == "cli_url"):
+								?>
+									<option value="<?php echo $campo; ?>"><?php echo translate(LABEL_WEBSITE); ?></option>
+								<?php 
+									else: ?>
+										<option value="<?php echo $campo; ?>"><?php echo ucfirst( str_replace("cli_", "", $campo));?></option>
+								?>
+								<?php
+									endif;
+									endif;
+									endforeach; ?>
+							<?php endif; ?>
+						</select>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label><strong><?php echo translate(LABEL_AREA); ?></strong></label>
+					<span class="help d-md-none"> (<?php echo translate(LABEL_DERMATOLOGIA_CARDIOLOGIA_ESTETICA_ETC); ?>...)</span>
+					<div class="input-group btn-group">					
+						<span class="input-group-addon">
+							<i class="fa fa-th-list"></i>
+						</span>
+						<select id="area" class="form-control" multiple="multiple" data-plugin-multiselect data-plugin-options='{ "maxHeight": 200, "enableCaseInsensitiveFiltering": true }'>
+							<?php if(!empty($view_area)): ?>
+								<?php foreach ($view_area as $area): ?>
+									<option value="<?php echo $area['area_id'] ?>"><?php echo $area["area_nome"];?></option>
+								<?php endforeach ?>
+							<?php endif; ?>
+						</select>
+					</div>
+				</div>
+				<div class="form-group bg-checkbox">
+					<label><strong><?php echo translate(LABEL_PRODUTO); ?></strong></label>					
+					<span class="help d-md-none"> (Ex: Exilis Elite, Unison, Marquesas e etc..)</span>
+					<div class="input-group btn-group">					
+						<span class="input-group-addon">
+							<i class="fa fa-th-list"></i>
+						</span>
+						<select id="produto" class="form-control" multiple="multiple" data-plugin-multiselect data-plugin-options='{"maxHeight": 200, "enableCaseInsensitiveFiltering": true }'>							
+							<?php if(!empty($view_produto)): ?>
+								<?php foreach ($view_produto as $produto): ?>
+									<option value="<?php echo $produto['prod_id'] ?>"><?php echo $produto["prod_nome"];?></option>
+								<?php endforeach ?>
+							<?php endif; ?>
+						</select>
+					</div>
+				</div>
+				<div class="form-group bg-checkbox">
+					<label><strong><?php echo translate(LABEL_TIPO); ?></strong></label>					
+					<span class="help d-md-none"> (<?php echo translate(LABEL_CLINICA_HOSPITAL_CONSULTORIO_ETC); ?>...)</span>
+					<div class="input-group btn-group">					
+						<span class="input-group-addon">
+							<i class="fa fa-th-list"></i>
+						</span>
+						<select id="tipo" class="form-control" multiple="multiple" data-plugin-multiselect data-plugin-options='{ "maxHeight": 200, "enableCaseInsensitiveFiltering": true }'>							
+						<?php if(!empty($view_tipo)): ?>
+							<?php foreach ($view_tipo as $tipo): ?>
+								<option value="<?php echo $tipo['tipo_id'] ?>"><?php echo $tipo["tipo_nome"];?></option>
+							<?php endforeach ?>
+						<?php endif; ?>
+						</select>
+					</div>
+				</div>
+				<div class="form-group bg-checkbox">
+					<label><strong><?php echo translate(LABEL_UNIDADE_FEDERATIVA); ?></strong></label>					
+					<span class="help d-md-none"> (<?php echo translate(LABEL_SAO_PAULO_MINAS_RIO); ?>...)</span>
+					<div class="input-group btn-group">					
+						<span class="input-group-addon">
+							<i class="fa fa-map-marker"></i>
+						</span>
+						<select id="distrito" class="form-control" multiple="multiple" data-plugin-multiselect data-plugin-options='{ "maxHeight": 200, "enableCaseInsensitiveFiltering": true }'>							
+						<?php if(!empty($view_distrito)): ?>
+							<?php foreach ($view_distrito as $distrito): ?>
+								<option value="<?php echo $distrito['cod_distrito'] ?>"><?php echo $distrito["sigla_distrito"];?></option>
+							<?php endforeach ?>
+						<?php endif; ?>
+						</select>
+					</div>
+				</div>
+				
+			</div>
+		</section>
+		
+	</div>
+	<div class="col-lg-8 col-md-12 mb-3">
+		<section class="card">
+			<header class="card-header">
+				<div class="card-actions">
+					<a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+				</div>
+				<h2 class="card-title"> <strong><span id="pesq_total"></span></strong> - <?php echo translate(DASHBOARD_RESULTADO_PESQUISA); ?></h2>
+				<!-- <p class="card-subtitle">Customize the graphs as much as you want, there are so many options and features to display information using Porto Admin Template.</p> -->
+			</header>
+			<div class="card-body pt-1 pl-0 pr-0">
+			
+				<section class="card" style="background-color: rgba(245,245,245,1);">
+					<div class="card-body pl-0 pr-0 scrollable visible-slider colored-slider" data-plugin-scrollable style="height: 900px; background-color: rgba(200,200,200,0);">
+						<div class="content scrollable-content p-1">
+									
+								<ul id="list_cliente" class="simple-user-list">
+																
+									<?php if (!empty( $view_dados )): ?>
+									<?php foreach ($view_dados as $cliente): ?>
+									<li id="<?php echo $cliente["cli_id"]; ?>" class="m-1 p-4" style="background-color: rgba(255,255,255,1);" >
+										
+										<figure class="image rounded">
+											<?php if(!empty( $cliente["cli_imagem"] )): ?>
+											<img src="/images/cliente/<?php echo $cliente["cli_imagem"]; ?>" alt="<?php echo $cliente["cli_nome"]; ?>" class="rounded-circle" height="40">
+											<?php else: ?>
+											<img src="/images/default_avatar.png" alt="<?php echo $cliente["cli_nome"]; ?>" class="rounded-circle" height="40">
+											<?php endif; ?>
+										</figure>
+										<div class="col-md-12">
+											<a href="/backend/cliente/perfil/ref/<?php echo $cliente["cli_referencia"] ?>" style="text-decoration:none;">
+												<span class="title fs-16"><?php echo $cliente["cli_nome"]; ?></span>
+											</a>
+											<?php if(!empty( $cliente["cli_contato"] )): ?>
+											<span class="message truncate"><i class="fa fa-user"></i> <?php echo $cliente["cli_contato"]['cont_nome']; ?> | <i class="fa fa-phone-square"></i> <a href="tel:<?php echo $cliente["cli_telefone"] ?>" target="_blank"> <?php echo $cliente["cli_telefone"] ?> </a>| <i class="fa fa-envelope-square"></i> <a href="mailto:<?php echo $cliente["cli_email"] ?>" target="_blank"><?php echo $cliente["cli_email"] ?></a> | <i class="fa fa-map-marker"></i> <a href="https://www.google.com/maps/search/?api=1&query=<?php echo $cliente["cli_rua"] ?>, <?php echo $cliente["cli_numero"] ?>, <?php echo $cliente["cli_andar"] ?>, <?php echo $cliente["cli_cp"] ?>, <?php echo $cliente["cli_localidade"] ?> <?php echo $cliente["cli_distrito"] ?>" target="_blank" > <?php echo $cliente["cli_localidade"] ?></a></span>
+											<?php  else: ?>
+											<span class="message truncate"><i class="fa fa-user"></i> | <i class="fa fa-phone-square"></i>  <a href="tel:<?php echo $cliente["cli_telefone"] ?>" target="_blank"> <?php echo $cliente["cli_telefone"] ?> </a>| <i class="fa fa-envelope-square"></i> <a href="mailto:<?php echo $cliente["cli_email"] ?>" target="_blank"><?php echo $cliente["cli_email"] ?></a> | <i class="fa fa-map-marker"></i> <a href="https://www.google.com/maps/search/?api=1&query=<?php echo $cliente["cli_rua"] ?>, <?php echo $cliente["cli_numero"] ?>, <?php echo $cliente["cli_andar"] ?>, <?php echo $cliente["cli_cp"] ?>, <?php echo $cliente["cli_localidade"] ?> <?php echo $cliente["cli_distrito"] ?>" target="_blank" > <?php echo $cliente["cli_localidade"] ?></a></span>
+											<?php endif; ?>
+										</div>										
+									</li>																	
+									<?php endforeach; ?>
+									<?php endif; ?>										
+								</ul>
+						</div>	
+					</div>
+				</section>
+			</div>
+		</section>
+	</div>	
+</div>
+<div class="row">
+	<div class="col-lg-12">
+		<!-- calendar -->
+		<section id="upcoming-tasks" class="card upcoming-tasks">
+			<header class="card-header">
+				<div class="card-actions">
+					<a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+				</div>
+				<h2 class="card-title"> <strong><span></span></strong><?php echo translate(LABEL_EVENTOS_E_TAREFAS); ?></h2>
+			</header>
+			<?php if(!empty($view_tarefas_dashboard)): ?>
+			<div class="card-body p-1 pt-1 pl-0 pr-0">
+				<?php
+					$badges["Reunião"] = "success";
+					$badges["Formação"] = "info";
+					$badges["Lead"] = "primary";
+					$badges["Lembrete"] = "warning";
+					//tipos tarefas - TODO - passar para db ou helper?
+					$tipo_tarefa_label[1] = translate(LABEL_TAREFAS_EMAIL);
+					$tipo_tarefa_label[2] = translate(LABEL_TAREFAS_REUNIAO);
+					$tipo_tarefa_label[3] = translate(LABEL_TAREFAS_REUNIAO_PRE_ANGARIACAO);
+					$tipo_tarefa_label[4] = translate(LABEL_TAREFAS_TELEFONEMA);
+					$tipo_tarefa_label[5] = translate(LABEL_TAREFAS_TAREFA);
+					$tipo_tarefa_label[6] = translate(LABEL_TAREFAS_QUALIFICACAO_FINANCEIRA);
+					$tipo_tarefa_label[7] = translate(LABEL_TAREFAS_OUTRO);
+					$urgencia_labels = array(
+						1 => array("label" => translate(LABEL_PRIORIDADE_BAIXA), "color" => "#0088cc"),
+						2 => array("label" => translate(LABEL_PRIORIDADE_MEDIA), "color" => "#47a447"),
+						3 => array("label" => translate(LABEL_PRIORIDADE_ALTA), "color" => "#fd7e14"),
+						4 => array("label" => translate(LABEL_PRIORIDADE_URGENTE), "color" => "#dc3545")
+					)
+				?>				
+				
+				<!-- table -->
+				<table class="table table-responsive-md table-striped mb-0" id="datatable-tabletools">
+					<thead>
+						<tr>
+							<th></th>
+							<th><?php echo translate(LABEL_DESCRICAO); ?></th>
+							<th><?php echo translate(LABEL_PRIORIDADE); ?></th>
+							<th><?php echo translate(LABEL_DATA); ?></th>
+							<th><?php echo translate(LABEL_CLIENTE); ?></th>
+							<th><?php echo translate(LABEL_TIPO); ?></th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php foreach ($view_tarefas_dashboard as $task): ?>
+						<tr>
+							<td style="color:#ff5722;" class="text-center">
+								<?php if(time() >= strtotime($task["data"]) ): ?>
+								<i data-toggle="tooltip" data-placement="top" title="<?php echo translate(LABEL_SUPOSTA_CONCLUSAO) ?> <?php echo strftime("%d %b", strtotime($task["data"])); ?>" class="fa fa-warning"></i>	
+								<?php endif; ?>
+							</td>
+							<td>
+								<a href="/backend/cliente/perfil/ref/<?php echo $task["cli_referencia"] ?>"><?php echo $task["titulo"] ?></a>
+							</td>
+							<td>
+							<?php if(!empty($task["prioridade"])): ?>
+								<span style="color:#fff; background-color:<?php echo $urgencia_labels[$task["prioridade"]]["color"] ?>" class="badge"><?php echo $urgencia_labels[$task["prioridade"]]["label"] ?></span>
+							<?php endif; ?>
+							</td>
+							<td><?php echo $task["data"] ?></td>
+							<td><?php echo $task["cli_nome"] ?></td>
+							<?php if($task["tipo"] == "follow-up"): ?>
+							<td><span class="badge badge-primary"><?php echo translate(LABEL_ANOTACAO); ?></span></td>
+							<?php else: ?>
+							<td><span class="badge badge-success"><?php echo $tipo_tarefa_label[$task["tipo"]] ?></span></td>
+							<?php endif; ?>
+							
+						</tr>
+						<?php endforeach; ?>
+						
+					</tbody>
+				</table>
+				<!-- /table -->
+				 
+			</div>
+			<?php else: ?>
+			<div class="card-body">
+				<div class="alert alert-info"><?php echo translate(LABEL_SEM_TAREFAS); ?></div>
+			</div>
+			<?php endif; ?>
+		</section>
+		<!-- /calendar -->
+	</div>
+	
+</div>

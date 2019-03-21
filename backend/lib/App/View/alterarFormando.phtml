@@ -1,0 +1,81 @@
+<router base="formando/alterar">
+<header class="page-header">
+    <h2>Formando - <?php echo $view_cliente["cli_nome"] ?></h2>
+
+    <div class="right-wrapper text-right">
+        <a name="bt_gravar" href="javascript:void(0);" class="mb-1 mt-3 ml-2 mr-1 btn btn-xs btn-primary"><strong>Gravar</strong></a>
+        <a href="/backend/formando/listar/ref/<?php echo $view_formacao["form_ref"] ?>" class="mb-1 mt-3 mr-1 ml-1 btn btn-xs btn-default"><strong>Voltar</strong></a>
+        <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-calendar"></i></a>
+    </div>
+</header>
+
+<!-- start: file -->
+
+<section class="card">
+    <div class="card-body">
+        <div class="invoice">
+            <header class="clearfix">
+                <div class="row">
+                    <div class="col-sm-12 mt-3">
+                        <h2 class="h2 mt-0 mb-4 text-dark font-weight-bold">Alterar Formando</h2>                        
+                    </div>
+                </div>
+            </header>
+
+            <div class="row">
+              <div class="col-md-6">
+                <section class="card mb-4">
+                  <header class="card-header">
+                    <h2 class="card-title">Informações</h2>
+                  </header>
+                  <div class="card-body">
+                    <form class="form-horizontal form-bordered" method="post">
+                        <input type="hidden" name="form_id" value="<?php echo $view_formando["form_id"]; ?>" />
+                        <div class="form-group row">
+                            <label class="col-lg-3 control-label text-lg-right pt-2" for="form_nome">Nome Completo</label>
+                            <div class="col-lg-9">
+                                <input name="form_nome" id="form_nome" type="text" class="form-control" value="<?php echo $view_formando["form_nome"]; ?>">                           
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-lg-3 control-label text-lg-right pt-2" for="form_email">Email</label>
+                            <div class="col-lg-9">
+                            <div class="input-group">
+                                    <span class="input-group-addon">
+                                    <i class="fa fa-envelope"></i>
+                                    </span>
+                                    <input name="form_email" id="form_email" type="text" class="form-control" value="<?php echo $view_formando["form_email"]; ?>">
+                            </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-lg-3 control-label text-lg-right pt-2" for="form_email">NIF / CPF</label>
+                            <div class="col-lg-9">
+                            <div class="input-group">
+                                    <span class="input-group-addon">
+                                    <i class="fa fa-address-card"></i>
+                                    </span>
+                                    <input name="form_nif" id="form_nif" type="text" class="form-control" value="<?php echo $view_formando["form_nif"]; ?>">
+                            </div>
+                            </div>
+                        </div>
+                         
+                    </form>
+                  </div>
+
+                </section>
+
+              </div>
+            </div>  
+            
+            <div id="ref" class='clearfix'></div>  
+            <span id="retorno" class="col-md-10"></span>    
+            <div class="col-md-6">
+                <a name="bt_gravar" href="javascript:void(0);" class="btn btn-primary col-md-2 pull-right">Gravar</a>
+            </div>        
+               
+        </div>
+    </div>
+</section>

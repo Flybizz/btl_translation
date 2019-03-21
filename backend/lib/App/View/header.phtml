@@ -1,0 +1,132 @@
+  <?php
+    $config = unserialize (CONFIG_DB);
+    $tasks_model = new App_Model_tarefaModel();
+    $tasks = $tasks_model->lista_pendentes();  
+  ?>
+
+	<!-- start: header -->
+  <header class="header">
+    <div class="logo-container">
+      <a href="/backend/index/" class="logo">
+        <img src="/images/config/<?php echo $config[0]['D001_Logosite'];?>" height="35" alt="Porto Admin" />
+      </a>
+      <div class="d-md-none toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
+        <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
+      </div>
+    </div>
+  
+    <!-- start: search & user box -->
+    <div class="header-right">
+ 
+      
+      <?php if(!empty($tasks)): ?>
+      <ul class="notifications">        
+
+        <li>
+          
+          <a href="#" class="dropdown-toggle notification-icon" data-toggle="dropdown">
+            <i class="fa fa-bell"></i>
+            <span class="badge" data-tasks-total><?php echo sizeof($tasks) ?></span>
+          </a>
+  
+          <div class="dropdown-menu notification-menu">
+            <div class="notification-title">
+              <span class="float-right badge badge-default" data-tasks-total><?php echo sizeof($tasks) ?></span>
+              <?php echo translate(HEADER_LEMBRETES_NOTIFICACOES); ?>
+            </div>
+
+            <div class="scrollable visible-slider colored-slider" data-plugin-scrollable style="height: 350px;">
+										<div class="scrollable-content">
+
+
+                    <!-- lista tarefas -->
+
+                    
+  
+            <div class="content">
+
+<ul data-task-list>
+
+  <?php foreach($tasks as $task): ?>
+
+  <?php
+    $icon_map = array(
+      1 => "fa-envelope",
+      2 => "fa-group",
+      3 => "fa-phone",
+      4 => "fa-list"
+    );
+
+    $color_map = array(
+      1 => array("label" => translate(LABEL_PRIORIDADE_BAIXA), "color" => "#0088cc"),
+      2 => array("label" => translate(LABEL_PRIORIDADE_MEDIA), "color" => "#47a447"),
+      3 => array("label" => translate(LABEL_PRIORIDADE_ALTA), "color" => "#fd7e14"),
+      4 => array("label" => translate(LABEL_PRIORIDADE_URGENTE), "color" => "#dc3545")
+
+    )
+  ?>
+
+  <li data-task-ref="<?php echo $task->referencia?>">
+      <ul class="actions">
+        <li><button data-task-type="<?php echo $task->tipo == "follow-up" ? "followup" : "tarefa" ?>" data-task-type="" data-task-ref="<?php echo $task->referencia?>" type="button" class="btn-finish-task btn-seamless"><i class="fa fa-check"></i></button></li>
+        <!--li><i class="fa fa-times"></i ></li-->
+      </ul>
+      <div class="image">
+        <i style="<?php echo !empty($color_map[$task->prioridade]["color"]) ? "background-color:" . $color_map[$task->prioridade]["color"] . " !important;" : false ?>" class="fa <?php echo !empty($icon_map[$task->prioridade]) ? $icon_map[$task->prioridade] : "fa-list" ?> bg-primary text-light"></i>
+      </div>
+      <a target="_blank" href="/backend/cliente/perfil/ref/<?php echo $task->cli_referencia ?>"><span title="<?php echo $task->titulo ?>" class="title"><?php echo strlen($task->titulo) > 30 ? substr($task->titulo, 0, 30) . "..." : $task->titulo ?></span></a>
+      <span class="message"><?php echo $task->cli_nome ?> - <?php echo $task->usu_nome ?></span>                 
+      <span class="date <?php echo time() > strtotime($task->data) ? "date-past" : ""; ?>"><?php echo strftime("%e %b %H:%M", strtotime($task->data)) ?></span>
+  </li>
+  <?php endforeach; ?>
+
+</div>
+
+                    <!-- /lista tarefas -->
+
+
+										</div>
+									</div>
+
+
+            <!-- AQUI -->
+
+
+
+          </div>
+        </li>
+      </ul> 
+      <?php endif; ?>
+  
+      <span class="separator"></span>
+
+ 
+      <div id="userbox" class="userbox">
+        <a href="#" data-toggle="dropdown">
+          <figure class="profile-picture">
+            <img src="<?php echo !empty($_SESSION['usuario_foto']) ? "/images/usuario/" . $_SESSION['usuario_foto'] : '/images/default_avatar.png'; ?>" alt="<?php echo $_SESSION['usuario_nome']; ?>" class="rounded-circle" data-lock-picture="<?php echo !empty($_SESSION['usuario_foto']) ? "/images/usuario/" . $_SESSION['usuario_foto'] : '/images/default_avatar.png'; ?>" />
+          </figure>
+          <div class="profile-info" data-lock-name="<?php echo "/images/usuario/" . $_SESSION['usuario_nome']; ?>" data-lock-email="flybizz@flybizz.net">
+            <span class="name"><?php echo $_SESSION['usuario_nome']; ?></span>
+            <span class="role">Função</span>
+          </div>
+  
+          <i class="fa custom-caret"></i>
+        </a>
+  
+        <div class="dropdown-menu">
+          <ul class="list-unstyled mb-2">
+            <li class="divider"></li>
+            <li>
+              <a role="menuitem" tabindex="-1" href="/backend/configuracao/ajustar"><i class="fa fa-cog"></i> <?php echo translate(MENU_CONFIGURACAO) ?></a>
+            </li>
+            <li>
+              <a role="menuitem" tabindex="-1" href="/../backend/logout"><i class="fa fa-power-off"></i> <?php echo translate(MENU_SAIR) ?></a>
+            </li>        
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- end: search & user box -->
+  </header>
+  <!-- end: header -->

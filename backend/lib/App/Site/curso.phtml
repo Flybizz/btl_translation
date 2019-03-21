@@ -1,0 +1,276 @@
+        <!-- Page Header -->
+<div class="page-header bg-dark inner-banner">
+    <div class="opacity">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <!-- Page Header Wrapper -->
+                <div class="page-header-wrapper">
+                    <!-- Title & Sub Title -->
+                    <h3 class="title" style="text-transform: uppercase;">Cursos</h3>
+                    <?php 
+                       if (strlen($site_curso[0]['D016_Titulo']) >= 75)
+
+                          $titulo = substr($site_curso[0]['D016_Titulo'], 0, 72) . '...';
+
+                        if (strlen($site_curso[0]['D016_Titulo']) < 75)
+
+                          $titulo = $site_curso[0]['D016_Titulo'];
+                    ?>
+                    <ol class="breadcrumb">
+                        <li><a href="/">Início</a></li>
+                        <li><a href="/cursos/cat/all/p/0">Cursos</a></li>
+                        <li class="active"><?php echo str_replace("|", "/", $titulo);?></li>
+                    </ol><!-- Breadcrumb -->
+                </div><!-- Page Header Wrapper -->
+            </div><!-- Coloumn -->
+        </div><!-- Row -->
+    </div><!-- Container -->
+    </div>
+</div><!-- Page Header -->
+    <?php 
+    $dta = explode(" ", $site_curso[0]['D016_Data']);
+    $dt = explode("-", $dta[0]);
+    switch ($dt[1]):
+      case 1: $mes = "JAN"; break;
+      case 2: $mes = "FEV"; break;
+      case 3: $mes = "MAR"; break;
+      case 4: $mes = "ABR"; break;
+      case 5: $mes = "MAI"; break;
+      case 6: $mes = "JUN"; break;
+      case 7: $mes = "JUL"; break;
+      case 8: $mes = "AGO"; break;
+      case 9: $mes = "SET"; break;
+      case 10: $mes = "OUT"; break;
+      case 11: $mes = "NOV"; break;
+      case 12: $mes = "DEZ"; break;
+    endswitch;
+    $dta2 = explode(" ", $site_curso[0]['D016_Dataend']);
+    $dt2 = explode("-", $dta2[0]);
+    switch ($dt2[1]):
+      case 1: $mes2 = "JAN"; break;
+      case 2: $mes2 = "FEV"; break;
+      case 3: $mes2 = "MAR"; break;
+      case 4: $mes2 = "ABR"; break;
+      case 5: $mes2 = "MAI"; break;
+      case 6: $mes2 = "JUN"; break;
+      case 7: $mes2 = "JUL"; break;
+      case 8: $mes2 = "AGO"; break;
+      case 9: $mes2 = "SET"; break;
+      case 10: $mes2 = "OUT"; break;
+      case 11: $mes2 = "NOV"; break;
+      case 12: $mes2 = "DEZ"; break;
+    endswitch;
+    
+    if (!empty($site_curso[0]['D016_Periodo'])):
+
+      switch ($site_curso[0]['D016_Periodo']):
+        case 1: $periodo = "6 meses"; break;
+        case 2: $periodo = "1 ano"; break;
+        case 3: $periodo = "1 ano e 6 meses"; break;
+        case 4: $periodo = "2 anos"; break;
+        case 5: $periodo = "2 anos e 6 meses"; break;
+        case 6: $periodo = "3 anos"; break;
+        case 7: $periodo = "3 anos e 6 meses"; break;
+        case 8: $periodo = "4 anos"; break;
+      endswitch;
+
+    else:
+
+      $periodo = "";
+
+    endif;
+    ?>     
+
+<!-- Page Main -->
+<div role="main" class="main">
+    <div class="page-default bg-grey shop-single">
+        <!-- Container -->
+        <div class="container">
+            <div class="row">
+                <!-- Member Image Column -->
+                <div class="col-md-5">
+                    <div class="item"><img class="img-responsive" src="/../qualidade.php?&lar=600&alt=500&imagem=images/curso/<?php echo $site_curso[0]['D016_Foto']; ?>" alt="<?php echo $site_curso[0]['D016_Titulo']; ?>" width="600" height="500">
+                    </div>
+                </div><!-- Coloumn -->
+                <!-- Coloumn -->
+                <div class="col-md-7">
+                    <div class="course-detail">
+                        <!-- Course Content -->
+                        <div class="course-meta" style="padding-top: 15px!important; ">
+                            <span class="cat bg-yellow">
+                                <?php
+                                foreach($site_cat_cursos as $categoria){
+                                    if($categoria['D016_Uid'] == $site_curso[0]['D016_Categoria']){
+                                        echo str_replace("|", "/", $categoria['D016_Nome']);
+                                    }
+                                }
+                                ?>
+                            </span>
+                            <br>
+                            <br>
+                            <h4><?php echo $site_curso[0]['D016_Titulo']; ?></h4>
+                            <ul class="course-meta-icons" style="margin-bottom: 30px!important;">
+                                <li>
+
+                                  <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                    <i class="uni-money-2"></i>
+                                    <span>Investimento</span>
+                                    
+                                    <?php if ($site_curso[0]['D016_Valor2'] == "0.00"): ?>
+                                        <div class="col-md-12">
+                                        <h4 style="padding-top: 15px;">R$ <?php echo str_replace(".", ",", $site_curso[0]['D016_Valor']);?></h4>
+                                        </div>
+                                      <?php else: ?>
+                                        <div class="col-md-12">
+                                        <h5 style="padding-top: 15px; text-decoration: line-through;">De: R$ <?php echo str_replace(".", ",", $site_curso[0]['D016_Valor']);?></h5>
+                                        </div>
+                                        <div class="col-md-12">
+                                        <h4 style="padding-top: 7px;">Por: R$ <?php echo str_replace(".", ",", $site_curso[0]['D016_Valor2']);?></h4>
+                                        </div>
+                                      <?php endif; ?>
+                                      <div class="col-md-12">
+                                        <?php if(!isset($_SESSION['clienteLogado']) ): ?>
+                                          <a href="/clienteCadastrar">
+                                          <button id="btn_add1" class="btn btn-default pull-left" title="Cadastra-se">
+                                              <i class="fa fa-shopping-cart"></i>
+                                              <span> Cadastre-se</span>
+                                          </button>
+                                          <input type="hidden" value="<?php echo $site_curso[0]['D016_Uid']; ?>">
+                                          </a>
+                                        <?php endif; ?>
+                                        <?php if(isset($_SESSION['clienteLogado']) ): ?>
+                                        
+                                          <?php if (isset( $_SESSION['produto'] )): 
+                                                  $exp_prod = explode("_", key($_SESSION['produto']));
+                                                  $id_prod = $exp_prod[1];
+                                                  if ($id_prod == $site_curso[0]['D016_Uid']):
+                                            ?>
+                                                  <a href="/carrinho">
+                                                  <button class="btn btn-default pull-left" title="Veja o carrinho...">                
+                                                      <span id="btn_add_text"><i class="fa fa-shopping-cart"></i><span> Ir para o carrinho</span></span>
+                                                  </button>
+                                                  </a>
+                                                <?php else: ?>
+                                                  <input type="hidden" value="<?php echo $site_curso[0]['D016_Uid']; ?>"> 
+                                                  <button id="btn_add" class="btn btn-default pull-left" title="Comprar Agora">                
+                                                      <span id="btn_add_text"><i class="fa fa-shopping-cart"></i><span> Adquira Agora</span></span>
+                                                  </button>
+                                            
+                                                <?php endif; ?>
+                                                
+                                          <?php else: ?>
+                                            <input type="hidden" value="<?php echo $site_curso[0]['D016_Uid']; ?>"> 
+                                            <button id="btn_add" class="btn btn-default pull-left" title="Comprar Agora">                
+                                                <span id="btn_add_text"><i class="fa fa-shopping-cart"></i><span> Adquira Agora</span></span>
+                                            </button>
+                                          <?php endif; ?>
+                                     
+                                        <?php endif; ?> 
+                                          <input type="hidden" id="tam_acao" value="0"/>
+                                       
+                                          <input type="hidden" id="pf_nome" value="<?php echo strtoupper($site_curso[0]['D016_Titulo']); ?>"/>
+                                          <input type="hidden" id="pf_valor" value="<?php echo strtoupper($site_curso[0]['D016_Valor']); ?>"/>
+                                          <input type="hidden" id="pf_descricao" value="<?php echo strtoupper($site_curso[0]['D016_Codigo']); ?>"/>  
+                                      </div>
+
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                      <div class="col-md-12">
+                                        <i class="fa fa-calendar"></i><span>Período</span>
+                                        <h5><?php echo $periodo; ?></h5>
+                                      </div>
+                                      <div class="col-md-12">
+                                        <i class="fa fa-clock-o"></i>
+                                        <span>Início</span>
+                                        <h5> <?php echo " ".$dt[2]." ".$mes." ".$dt[0]; ?></h5>
+                                      </div>
+                                      <div class="col-md-12">
+                                        <i class="fa fa-clock-o"></i>
+                                        <span>Término</span>
+                                        <h5><?php echo " ".$dt2[2]." ".$mes2." ".$dt2[0]; ?></h5>
+                                      </div>
+
+                                    </div>
+                                   
+                                </li>
+                                
+                            </ul>
+
+
+                            <?php if (!empty($site_curso[0]["D016_Video"])): ?>
+                                                                    
+                            <div class="row">                                        
+                                <div class="embed-responsive embed-responsive-16by9">
+                                    <?php if($site_curso[0]['D016_Tipo'] == "youtube" ): //YOUTUBE ?>
+                                      <!-- <iframe width="1080" height="608" src="https://www.youtube.com/embed/<?php echo $site_curso[0]['D016_Video'];?>" frameborder="0" allowfullscreen></iframe>    -->
+                                      <iframe src="https://www.youtube.com/embed/<?php echo $site_curso[0]['D016_Video']; ?>?rel=0&amp;controls=0&amp;showinfo=0" allowfullscreen></iframe>           
+                                    <?php else: ?>
+                                      <iframe src="http://player.vimeo.com/video/<?php echo $site_curso[0]['D016_Video']; ?>" width="100%" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                            <?php endif ?>
+                        
+                           
+                        </div>
+                    </div><!-- Course Detail -->
+                </div><!-- Member Detail Column -->
+            </div><!-- Row -->
+            <!-- Product Features -->
+            <div class="row margin-top-60">
+                <div class="col-sm-12">
+                    <!-- Tab -->
+                    <div class="tab">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#descricao" aria-controls="descricao" role="tab" data-toggle="tab">Descrição</a></li>
+                        </ul>
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade in active table-responsive" id="descricao">
+
+                                <table width="100%" class="table table-hover">
+                                  <thead>
+                                    <tr height="35px">
+                                      <th width="15%" align="left">AULAS</th>
+                                      <th width="45%" align="left">PROGRAMA</th>
+                                      <th width="20%" align="left">DATA</th>
+                                      <th width="30%" align="left">AULA DISPONÍVEIS</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <?php foreach ($site_arquivos as $arquivo): 
+                                      $dt_exp = explode(" ", $arquivo['aula_data']);
+                                      $dt = implode("/", array_reverse(explode("-", $dt_exp[0])));
+
+                                    ?>
+
+                                      <tr height="40px">
+                                        <td>AULA <?php echo $arquivo['aula_ordem']; ?></td>
+                                        <td><?php echo $arquivo['aula_titulo']; ?></td>
+                                        <td><?php echo $dt; ?></td>
+                                        <td>
+                                        <?php if (!empty($arquivo['arq_file'])): ?>
+                                          <a href='/images/aula/<?php echo $arquivo['aula_disciplina']; ?>/<?php echo $arquivo['arq_file']; ?>' target="_blank">BAIXAR</a>
+                                        <?php else: ?>
+                                          -
+                                        <?php endif ?>
+                                        
+                                        </td>
+                                      </tr>
+                                    <?php endforeach; ?>
+                                  </tbody>
+                                </table>
+
+                            </div>
+                        </div><!-- Tab Content -->
+                    </div><!-- Tab -->
+                </div><!-- Product Features -->
+            </div><!-- Row -->
+        </div><!-- Container -->
+    </div><!-- Page Default -->
+</div><!-- Page Main -->
+    

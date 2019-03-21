@@ -1,0 +1,268 @@
+<router base="homepage/alterar">
+<input type="hidden" id="home_idioma_alt" value="<?php echo $view_homepage_lista_alt[0]['D007_Idioma'];?>">
+<header class="page-header">
+    <h2>Homepage</h2>
+
+    <div class="right-wrapper text-right">
+        <ol class="breadcrumbs">
+            <li>
+                <a href="/">
+                    <i class="fa fa-home"></i>
+                </a>
+            </li>
+            <li><span>Home</span></li>
+            <li><span>Homepage</span></li>
+        </ol>
+
+        <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-calendar"></i></a>
+    </div>
+</header>
+
+<!-- start: Homee -->
+
+<?php $icon = ($view_homepage_lista_alt[0]['D007_Idioma'] == "en" ? "gb" : $view_homepage_lista_alt[0]['D007_Idioma']); ?>
+
+<section class="card">
+    <div class="card-body">
+        <div class="invoice">
+            <header class="clearfix">
+              <div class="row">
+                  <div class="col-sm-6 mt-3">
+                      <h2 class="h2 mt-0 mb-4 text-dark font-weight-bold">Alterar Conteúdo</h2>
+                  </div>
+                  <div class="col-sm-6 mt-3">
+                      <div class="m-0 mb-4 pull-right">
+                          <a href="/backend/homepage/listar" class="mb-1 mt-1 mr-1 btn btn-primary"><strong>Voltar</strong></a>
+                      </div>
+                  </div>
+              </div>
+            </header>
+
+            <div class="row">
+              <div class="col-md-8">
+                <section class="card mb-4">
+                  <header class="card-header">
+                    <h2 class="card-title pull-left"><?php echo $view_homepage_lista_alt[0]['D007_Titulo'] ?></h2>
+                    <h4 class="pull-right"><?php echo strtoupper($view_homepage_lista_alt[0]['D007_Idioma'])."-".$view_homepage_lista_alt[0]['D007_Referencia']; ?> <i class="flag-icon flag-icon-<?php echo $icon; ?>"></i></h4>
+                  </header>
+                  <div class="card-body">
+                    <form class="form-horizontal form-bordered" method="post">
+
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Título</label>
+                        <div class="col-lg-9">
+                          <input type="text" id="home_titulo_alt" class="form-control" value="<?php echo $view_homepage_lista_alt[0]['D007_Titulo'] ?>">
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="textareaDefault">Breve descrição</label>
+                        <div class="col-lg-9">
+                          <textarea class="form-control" id="home_chamada_alt" rows="3" data-plugin-maxlength maxlength="140"><?php echo $view_homepage_lista_alt[0]['D007_Chamada'] ?></textarea>
+                          <p>
+                            <!-- <code>max-length</code> set to 140. -->
+                          </p>
+                        </div>
+                      </div>
+            
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Descrição detalhada</label>
+                        <div class="col-lg-9">                        
+                          <!-- <textarea class="form-control" name="Home_texto" id="Home_texto"></textarea> -->
+                          <?php
+                            require_once $_SERVER['DOCUMENT_ROOT']."/backend/public/vendor/ckeditor/ckeditor.php";
+                            require_once $_SERVER['DOCUMENT_ROOT']."/backend/public/vendor/ckfinder/ckfinder.php";
+                            
+                            $initialValue = str_replace("|", "/", $view_homepage_lista_alt[0]['D007_Texto']);
+                            $CKEditor = new CKEditor();
+                            $CKEditor->basePath = '/backend/public/vendor/ckeditor/';
+                            CKFinder::SetupCKEditor($CKEditor, '/backend/vendor/plugins/ckfinder/');
+                            $CKEditor->editor("home_texto_alt", $initialValue);
+                          ?>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Link</label>
+                        <div class="col-lg-9">
+                          <input type="text" id="home_link_alt" class="form-control" value="<?php echo $view_homepage_lista_alt[0]['D007_Link'] ?>">
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Ordem</label>
+                        <div class="col-lg-9">
+                          <input type="text" id="home_ordem_alt" class="form-control" value="<?php echo $view_homepage_lista_alt[0]['D007_Ordem'] ?>">
+                        </div>
+                      </div>
+                      
+                      <div class="form-group row">
+             
+                        <label class="col-sm-3 control-label text-sm-right pt-2">Status</label>
+                        <div class="btn-group col-sm-9 pull-right" data-toggle="buttons">
+                          <?php 
+                            if($view_homepage_lista_alt[0]['D007_Destaque'] == "Sim"):
+                              $checked1 = "checked";
+                              $checked2 = "";
+                              $active1 = "active";
+                              $active2 = "";
+                            elseif($view_homepage_lista_alt[0]['D007_Destaque'] == "Nao"):
+                              $checked1 = "";
+                              $checked2 = "checked";
+                              $active1 = "";
+                              $active2 = "active";
+                            endif;
+                          ?>
+                          <label class="btn btn-primary <?php echo $active1; ?>">
+                            <input type="radio" name="home_destaque_alt" id="option1" autocomplete="off" value="Sim" <?php echo $checked1; ?>> Sim
+                          </label>
+                          <label class="btn btn-primary <?php echo $active2; ?>">
+                            <input type="radio" name="home_destaque_alt" id="option2" autocomplete="off"  value="Nao"  <?php echo $checked2; ?>> Não
+                          </label>
+                        </div>
+
+                      </div>
+
+                      <div class="form-group row">
+    
+                        <label class="col-sm-3 control-label text-sm-right pt-2">Imagem</label>
+                        <div class="col-sm-9 media-gallery">
+                          <div id="queue" class="mt-3 mb-3"></div>
+                          <input id="home_img" name="home_img_alt" type="file" multiple>
+                          <input type="hidden" id="timestamp" value="<?php echo $timestamp = time();?>">
+                          <input type="hidden" id="unique_salt" value="<?php echo md5('unique_salt' . $timestamp);?>"> 
+                          <input type="hidden" id="home_code_alt" value="<?php echo $view_homepage_lista_alt[0]['D007_Uid'];?>">
+                          <!-- <span class="pull-right">tam: 880px x 480px</span> -->
+                          <hr class="mt-3 mb-3">
+                          <?php if(!empty($view_homepage_lista_alt[0]['D007_Foto'] )): ?>
+
+                          <div class="row mg-files" data-sort-destination="" data-sort-id="media-gallery" style="position: relative; height:400px;">
+
+                            <div class="isotope-item document col-xs-12 col-sm-5 col-md-5 col-lg-5" style="position: absolute; left: 0px; top: 5px;">
+                              <div class="thumbnail">
+                                <div class="thumb-preview">
+                                  <a class="thumb-image" href="/images/homepage/<?php echo $view_homepage_lista_alt[0]['D007_Foto'] ?>">
+                                    <img src="/images/homepage/<?php echo $view_homepage_lista_alt[0]['D007_Foto'] ?>" class="img-fluid" alt="Project">
+                                  </a>
+                                  <div class="mg-thumb-options" style="overflow: visible;">
+                                    <div class="mg-zoom"><i class="fa fa-search"></i></div>
+                                    <div class="mg-toolbar">
+                                      <div class="mg-group float-right show">                                        
+                                        <button class="dropdown-toggle mg-toggle" data-toggle="dropdown" aria-expanded="true"><span class="caret"></span></button>
+                                        <div class="dropdown-menu mg-dropdown show" role="menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(271px, 28px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                          <a class="dropdown-item text-1" href="/images/homepage/<?php echo $view_homepage_lista_alt[0]['D007_Foto'] ?>" download="Imagem_homepage"><i class="fa fa-download"></i> Download</a>
+                                          <a class="dropdown-item text-1" id="img_Del" href="#"><i class="fa fa-trash-o"></i> Apagar</a>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- <div class="mg-description">
+                                  <small class="float-left text-muted">Design, Websites</small>
+                                  <small class="float-right text-muted">07/10/2017</small>
+                                </div> -->
+                              </div>
+                            </div>
+                          </div>
+
+                          <?php endif; ?>
+
+                        </div> 
+
+                      </div> 
+
+
+
+
+                
+                    </form>
+                  </div>
+                </section>            
+              </div>
+              <div class="col-md-4">
+                <section class="card mb-4">
+                    <header class="card-header">
+                      <h2 class="card-title">Otimização para Motores de Pesquisa – SEO</h2>
+                    </header>
+                    <div class="card-body">
+
+                      <div class="form-group row">
+                          <label class="col-lg-12 control-label text-lg-left pt-2">Título</label>
+                          <div class="col-lg-12">
+                            <input type="text" id="home_titulo_seo" class="form-control" value="<?php echo $view_homepage_lista_alt[0]['SEO_Titulo']; ?>">
+                          </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-lg-12 control-label text-lg-left pt-2">Descrição</label>  
+                        <div  class="col-lg-12">     
+                            <textarea class="form-control" id="home_descricao_seo" rows="7"><?php echo $view_homepage_lista_alt[0]['SEO_Descricao']; ?></textarea>
+                        </div> 
+                      </div>
+
+                      <div class="form-group row">
+                          <label class="col-lg-12 control-label text-lg-left pt-2">Slug</label>
+                          <div class="col-lg-12">
+                            <input type="text" id="home_slug_seo" class="form-control" value="<?php echo $view_homepage_lista_alt[0]['SEO_Slug']; ?>">
+                          </div>
+                      </div>
+
+                      <div class="form-group row">
+                          <label class="col-lg-12 control-label text-lg-left pt-2"><i class="icofont icofont-key"></i> Palavra-chave principal</label>
+                          <div class="col-lg-12">
+                            <input type="text" id="home_key_seo" class="form-control" value="<?php echo $view_homepage_lista_alt[0]['SEO_Key']; ?>">
+                          </div>
+                      </div>
+
+                      <hr>
+
+                      <div class="col-md-12 checklis_seo">
+                        <h5>Análise - SEO</h5>
+                        <ul>
+                          <li id="seo_title" style="color: #FF0000;"><i class='icofont icofont-close-circled'></i> - A meta título não está em bom tamanho.</li>
+                          <li id="seo_description" style="color: #FF0000;"><i class='icofont icofont-close-circled'></i> - A meta descrição não está em bom tamanho.</li>
+                          <li id="seo_slug" style="color: #FF0000;"><i class='icofont icofont-close-circled'></i> - A meta slug não está em bom tamanho.</li>
+                          <li id="seo_key" style="color: #ee7c1b;"><i class='icofont icofont-exclamation-circle'></i> - Não há palavra-chave principal definida para esta página. Se não definir uma, não pode ser calculado nenhuma classificação.</li>
+
+                          <li id="seo_key_title" style="color: #ee7c1b;"><i class='icofont icofont-exclamation-circle'></i> - A palavra-chave principal não aparece no TÍTULO desta página.</li>
+                          <li id="seo_key_description" style="color: #ee7c1b;"><i class='icofont icofont-exclamation-circle'></i> - A palavra-chave principal não aparece na DESCRIÇÃO desta página.</li>
+                          <li id="seo_key_slug" style="color: #ee7c1b;"><i class='icofont icofont-exclamation-circle'></i> - A palavra-chave principal não aparece no SLUG desta página.</li>
+                        </ul>
+                      </div>
+
+                      <div class="form-group row">
+                        <h5 class="control-label text-sm-right pt-2">Tipo de Página</h5>
+                        <select id="home_controller_alt" class="form-control" required disabled>
+                        <option value=""></option> 
+                        <?php
+                        $controller = array("institucional" => "Quem Somos","noticias" => "Blog","servicos" => "Serviços","index" => "Homepage","portfolios" => "Portfolio","contato" => "Contacto");
+                        if(isset($controller)):
+                            foreach ($controller as $ctrl => $tipo): 
+                              if($view_homepage_lista_alt[0]['D007_Controle'] == $ctrl ){
+                                $selected = "selected"; 
+                                echo  '<option value="'.$ctrl.'" '.$selected.'>'.$tipo.'</option>';
+                              }elseif($view_homepage_lista_alt[0]['D007_Controle'] != $ctrl){
+                                echo  '<option value="'.$ctrl.'" >'.$tipo.'</option>';
+                              }
+                            endforeach;
+                        endif; ?>
+                        </select>
+                      </div>
+
+
+
+
+                    </div>
+                  </section>
+                </div>
+            </div>  
+            
+            <div id="ref" class='clearfix'></div>  
+            <span id="retorno" class="col-md-10"></span>            
+            <a name="bt_home_alterar" id="bt_home_alterar"  href="javascript:$('#home_img').uploadifive('upload')" class="btn btn-primary col-md-2 pull-right">Alterar</a>
+               
+        </div>
+    </div>
+</section>
+
+<!-- end: Homee -->

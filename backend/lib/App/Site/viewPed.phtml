@@ -1,0 +1,118 @@
+<?php require_once("pagina.segura1.php"); ?>
+<!--div id="box_contato" class="row-fluid effect6" >	
+    <!--div class="row-fluid">        
+        <div class="span12">
+            <div class="titlehome">
+                <span>VISUALIZAR PEDIDO</span>
+            </div>
+        </div>
+    </div>
+    <div class="painel_ped_print">
+    	<a id="ped_imprimir">Imprimir</a>
+    </div-->
+    <div class="row-fluid" style="font-family: arial, helvetica, serif; background-color:rgba(253,253,253,1);">
+	
+		<div class="contentPrint">
+			<div style="width:98%; margin-top:10px; padding:1%;">
+				<div style="width:34%; float:left; font-size:0.8em; text-align:left; padding-left:1%;">
+					<div>
+						<span>PDP CONFECÇÕES EIRELI ME <br/>CNPJ: 04.389.183/0001-30 <br/>Av. Industrial, 1636-A - Distrito Industrial <br/>Governador Valadares/MG - CEP: 35040-610 <br/>TEL: (33)3278-2992 <br/></span>
+					</div>
+				</div>
+				<div style="width:30%; float:left; margin:0; padding:0;  background-color:rgba(253,253,253,1);">
+					<img src="/../img/lojas/logos.png" width="250px" style="margin:0; padding:0;"/>
+				</div>
+				<div  style="width:35%; float:right;">
+					<table width="150px" class="" style="float:right;  background-color:rgba(253,253,253,1);">
+						<tbody>
+						<?php foreach($view_pedido as $ped): ?>			
+				            <tr>
+				                <td><b>Pedido: </b><?php echo $ped['ped_numero'];?></td>
+				            </tr>    
+				            <tr>            
+				                <td><b>Data: </b><?php echo implode("/",array_reverse(explode("-",$ped['ped_data'])));?></td>
+				            </tr>
+						<?php endforeach; ?>
+						</tbody>		
+					</table>
+				</div>
+			</div>
+			<div style="width:98%; clear:both; float:left; margin-top:20px; padding:1%; font-size:0.9em;  background-color:rgba(253,253,253,1);">
+				<table class="table" style="width:100%;">
+					<caption style="font-size:1em; background-color:rgba(115,115,115,1); color:rgba(248,248,248,1);"><b>DADOS CLIENTE</b></caption>
+					<tbody>
+					<?php foreach ($view_cliente as $cli): ?>
+						<tr>
+			                <td><b>Razão Social: </b><?php echo $cli['cli_razao'];?></td>
+			                <td><b>Fantasia: </b><?php echo $cli['cli_fantasia'];?></td>
+			            </tr>
+			            <tr>
+			                <td><b>CNPJ: </b><?php echo $cli['cli_cnpj'];?></td>           
+			                <td><b>Insc. Est.: </b><?php echo $cli['cli_insc'];?></td>
+			            </tr>
+			            <tr>
+			                <td><b>Contato: </b><?php echo $cli['cli_contato'];?></td>            
+			                <td><b>Email: </b><?php echo $cli['cli_email'];?></td>
+			            </tr>
+			            <tr>
+			                <td><b>Telefone: </b> <?php echo $cli['cli_telefone']." / ".$cli['cli_telefone2'];?></td>            
+			                <td><b>Celular: </b><?php echo $cli['cli_celular'];?></td>
+			            </tr>                 
+					<?php endforeach; ?>
+					</tbody>		
+				</table>
+				<table class="table" style="width:100%;">
+					<caption style="font-size:1em; background-color:rgba(115,115,115,1); color:rgba(248,248,248,1);"><b>DADOS ENTREGA</b></caption>
+					<thead></thead>
+					<tbody>
+					<?php foreach ($view_cliente as $cli): ?>			
+			            <tr>
+			                <td><b>Endereço: </b><?php echo $cli['cli_endereco'];?></td>
+			                <td><b>Bairro: </b><?php echo $cli['cli_bairro'];?></td>
+			            </tr>
+			            <tr>
+			                <td><b>Cidade: </b><?php echo $cli['cli_cidade']." - ".$cli['cli_uf'];?></td>
+			                <td><b>CEP: </b><?php echo $cli['cli_cep'];?></td>
+			            </tr>     
+					<?php endforeach; ?>
+					</tbody>		
+				</table>
+			</div>
+			<div style="width:98%; clear:both; float:left; margin-top:20px; padding:1%; background-color:rgba(253,253,253,1);">	
+				<table class="table" style="width:100%;">
+					<caption style="font-size:1em; background-color:rgba(115,115,115,1); color:rgba(248,248,248,1);"><b>DADOS PEDIDO</b></caption>
+					<thead>
+			            <th>Código</th>
+			            <th>Produto</th>
+			            <th>Qtd</th>
+			            <th>Valor</th>
+			            <th>Total</th>
+					</thead>
+					<tbody>
+					<?php foreach ($view_item as $item): ?>
+						<tr style="border-top:1px solid rgba(190,190,190,1); border-bottom:1px solid rgba(190,190,190,1);">
+							<td><?php echo $item['item_codigo']; ?></td>
+							<td><?php echo $item['item_produto']." - ".$item['item_loja']."<br/> <i>tamanho: </i>".$item['item_tamanho']; ?></td>
+							<td><?php echo $item['item_qtd']; ?></td>
+							<td><?php echo "R$ ".number_format($item['item_valor'],2,",","."); ?></td>
+							<td><?php echo "R$ ".number_format($item['item_total'],2,",","."); ?></td>
+						</tr>
+					<?php endforeach; ?>		
+					</tbody>
+					<tfoot>
+						<?php foreach($view_pedido as $ped): ?>			
+			            <tr>
+			            	<td></td>
+			            	<td><b>Quantidade Total: </b></td>
+			                <td ><b><?php echo $ped['ped_item'];?></b></td>           
+			                <td><b>Total: </b></td>
+			                <td><b><?php echo "R$ ".number_format($ped['ped_subtotal'],2,",",".");?></b></td>
+			            </tr>
+						<?php endforeach; ?>
+					</tfoot>		
+				</table>	
+			</div>
+		</div>
+
+    <!--/div>                  
+</div-->

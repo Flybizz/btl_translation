@@ -1,0 +1,181 @@
+    <div class="nk-header-title nk-header-title-parallax nk-header-title-parallax-opacity">
+        <div class="bg-image">
+            <div style="background-image: url('/images/config/bg/<?php echo trim($site_config[0]['D001_Imgfundo']); ?>');"></div>
+        </div>
+        <div class="nk-header-table">
+          <div class="nk-header-table-cell">
+            <div class="container">                                
+              <h1 class="nk-title">VIDEOS</h1>  
+              <!-- <h2 class="nk-sub-title">Optional Sub Title</h2> -->       
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div class="nk-gap-4"></div>
+
+    <div class="container">
+      <div class="nk-isotope nk-isotope-gap nk-isotope-2-cols nk-popup-gallery">
+
+        <?php 
+          if(!empty($site_videos)):
+            foreach ($site_videos['dados'] as $video): 
+              $exp = explode(" ", $video['D014_Data']);
+              $dt = explode("-", $exp[0]);
+              switch ($dt[1]):
+                case 1: $mes = "JAN"; break;
+                case 2: $mes = "FEV"; break;
+                case 3: $mes = "MAR"; break;
+                case 4: $mes = "ABR"; break;
+                case 5: $mes = "MAI"; break;
+                case 6: $mes = "JUN"; break;
+                case 7: $mes = "JUL"; break;
+                case 8: $mes = "AGO"; break;
+                case 9: $mes = "SET"; break;
+                case 10: $mes = "OUT"; break;
+                case 11: $mes = "NOV"; break;
+                case 12: $mes = "DEZ"; break;
+              endswitch;    
+        ?>
+
+        <div class="nk-isotope-item">
+          <h5><?php echo $video['D014_Titulo'];?></h5>
+          <div class="nk-video-box-1">
+            <div class="embed-responsive embed-responsive-16by9 nk-gallery-item" data-size="1920x1280" >
+              <?php if($video['D014_Categoria'] == 1 ): //YOUTUBE ?>                
+                <iframe width="1080" height="1080" src="https://www.youtube.com/embed/<?php echo str_replace("|", "/", $video['D014_Arquivourl']);?>?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>           
+              <?php else: ?>
+                <iframe src="<?php echo str_replace("|", "/", $video['D014_Arquivourl']);?>" width="1080" height="608" frameborder="0" title="<?php echo str_replace("|", "/", $video['D014_Titulo']);?>" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+              <?php endif; ?>
+            </div>
+          </div>
+        </div>
+
+        <!-- single-latest-blog end -->
+        <?php                                      
+            endforeach;
+          endif; 
+        ?>
+        <!-- single-latest-blog end -->           
+        <div class="shop-pagination">
+          <div class="pagination">
+               <?php 
+            if(!empty($site_videos)):
+               $info['pagination']['reg_final'] =  $site_videos['reg_final'];
+               $info['pagination']['n_paginas'] =  $site_videos['n_paginas'];
+               $info['pagination']['pg_atual'] =  $site_videos['pg_atual'];
+               $info['pagination']['pg_anterior'] =  $site_videos['pg_anterior'];
+               $info['pagination']['pg_proxima'] =  $site_videos['pg_proxima'];
+               $info['pagination']['lnk_impressos'] =  $site_videos['lnk_impressos'];
+               $info['pagination']['finalpag'] =  $site_videos['finalpag'];
+               $info['pagination']['arquivo'] =  $site_videos['arquivo'];
+               $info['pagination']['pag'] =  $site_videos['pag'];
+               $info['pagination']['nlinks'] =  $site_videos['nlinks'];
+               $info['pagination']['temp'] =  $site_videos['temp'];
+               $info['pagination']['totreg'] =  $site_videos['totreg'];
+            else:
+               $info['pagination']['reg_final'] =  0;
+               $info['pagination']['n_paginas'] =  0;
+               $info['pagination']['pg_atual'] =  0;
+               $info['pagination']['pg_anterior'] =  0;
+               $info['pagination']['pg_proxima'] =  0;
+               $info['pagination']['lnk_impressos'] =  0;
+               $info['pagination']['finalpag'] =  0;
+               $info['pagination']['arquivo'] =  0;
+               $info['pagination']['pag'] =  0;
+               $info['pagination']['nlinks'] =  0;
+               $info['pagination']['temp'] =  0;
+               $info['pagination']['totreg'] =  0;
+            endif;
+              navipages($home=1,$center=1,$info); 
+             function navipages($home=0,$center=0, array $info)
+            {
+               $reg_final = $info['pagination']['reg_final'];
+               $n_paginas =  $info['pagination']['n_paginas'];         
+               $pg_atual =  $info['pagination']['pg_atual'];
+               $pg_anterior =  $info['pagination']['pg_anterior'];
+               $pg_proxima =  $info['pagination']['pg_proxima'];
+               $lnk_impressos =  $info['pagination']['lnk_impressos'];
+               $finalpag =  $info['pagination']['finalpag'];
+               $arquivo =  $info['pagination']['arquivo'];
+               $pag =  $info['pagination']['pag'];
+               $nlinks =  $info['pagination']['nlinks'];
+               $temp =  $info['pagination']['temp'];
+               $totreg =  $info['pagination']['totreg'];
+              // global $pg_atual, 
+              // $pg_anterior,
+              // $pg_proxima,  
+              // $n_paginas, 
+              // $reg_final, 
+              // $totreg, 
+              // $temp, 
+              // $nlinks,       
+              // $lnk_impressos,        
+              // $arquivo, 
+              // $pag,
+              // $urlhomepage,
+              // $finalpag,
+              // $barborder;
+              ?>
+              <?php 
+              if($n_paginas > 1){ ?>
+              <ul>
+                <li><a href="<?php echo $arquivo; ?>/1"><i class="fa fa-fast-backward" aria-hidden="true"></i></a></li>
+                <?php if (isset($pag) && $pag > 1){ ?>
+                <li><a href="<?php echo $arquivo; ?>/<?php echo $pg_anterior; ?>"><i class="fa fa-step-backward" aria-hidden="true"></i></a></li>
+                <?php } ?>
+                <?php
+                            if ($temp >= $nlinks)
+                            {
+                            if ($n_paginas > $nlinks) 
+                            {
+                            $n_maxlnk = $temp + 4;
+                            $nlinks   = $n_maxlnk;
+                            $n_start  = $temp - 6;
+                            if($n_start==-1)
+                            {
+                            $n_start=0;
+                            }
+                            $lnk_impressos = $n_start;
+                            }
+                            }
+                            while(($lnk_impressos < $n_paginas) and ($lnk_impressos < $nlinks))
+                            { 
+                            $lnk_impressos ++;
+                            ?>
+                <?php
+                            if ($pg_atual != $lnk_impressos)
+                            {
+                            echo "<li><a href=\"$arquivo/$lnk_impressos\">";
+                            }
+                            if ($pg_atual == $lnk_impressos)
+                            {
+                            echo "<li class=\"active\"><a href=\"javascript:;\">$lnk_impressos</a></li>";
+                            } 
+                            else 
+                            {
+                            echo "$lnk_impressos"."</li>";
+                            }
+                            ?>
+                </a>
+                <?php
+                            }
+                            ?>
+                <?php
+                            if ($reg_final < $totreg) 
+                            {
+                            ?>
+                <li><a href="<?php echo $arquivo; ?>/<?php echo $pg_proxima; ?>"><i class="fa fa-step-forward" aria-hidden="true"></i></a></li>
+                <?php
+                            } 
+                            ?>
+                <li><a href="<?php echo $arquivo; ?>/<?php echo $finalpag; ?>"><i class="fa fa-fast-forward" aria-hidden="true"></i> </a></li>
+              </ul>
+              <?php }} ?> 
+          </div>          
+        </div>    
+    
+      </div>
+    </div>
+
+    <div class="nk-gap-4"></div>

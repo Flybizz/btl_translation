@@ -1,0 +1,90 @@
+<table width="87%" border="0" align="center"> 
+    <tr> 
+        <td width="19%">
+            <div align="right">
+                <span class="texto">Nome</span>
+            </div>
+        </td> 
+        <td width="81%">
+            <input name="nome_para" type="text" id="nome_para" size="102" value="<?php echo $view_cliente_lista_alt[0]['cli_fantasia']?>">
+        </td> 
+    </tr> 
+    <tr> 
+        <td>
+            <div align="right" class="texto">Email de destino</div>
+        </td> 
+        <td>
+            <input name="email" type="text" class="email" size="102" value="<?php echo $view_cliente_lista_alt[0]['cli_email'] ?>"> 
+        </td>    
+    </tr> 
+    <tr> 
+        <td>
+            <div align="right" class="texto">Assunto</div>
+        </td> 
+        <td>
+            <input name="assunto" type="text" id="assunto" size="102" value="Layouts para serem aprovados - RABISCO EMBALAGENS ">
+        </td> 
+    </tr> 
+    <tr> 
+        <td valign="top">
+            <div align="right" class="texto">Mensagem</div>
+        </td> 
+        <td>
+            <?php
+                $horario = date("H");		
+                if($horario > 5 && $horario < 12)
+                {
+                    $HoraDay = 'Bom dia';							 
+                }
+                else if($horario >= 12 && $horario < 18) 
+                {
+                    $HoraDay = 'Boa tarde';																				
+                }else{
+                    $HoraDay = 'Boa noite';
+                }
+            ?>
+            <textarea name="mensagem" cols="80" rows="17" id="mensagem">
+<?php $mens = $HoraDay.", ".$view_cliente_lista_alt[0]['cli_contato']." (".$view_cliente_lista_alt[0]['cli_fantasia'].")."."\n\nSegue em anexo arte para sua avaliação. Por favor, analise e dê sua opinião.
+Não deixe de ler as observações, elas são fundamentais para que todo o processo seja um sucesso.
+Caso tenha alguma dúvida, não deixe de entrar em contato.
+
+Agradeço sua atenção, e aguardo seu retorno.
+Com votos de bons negócios;
+ 
+Roberto Maxwell - VENDAS
+Rabisco Embalagens
+Tel.: (33) 3271-7031
+ 
+OBSERVAÇÕES:
+Embalagem de papel é um produto personalizado, não permite alteração após sua aprovação final nem sua devolução.
+ 
+É necessário conferir informações como:
+ 
+&bull;  Endereço (rua, telefone, site.....) e sua localização (na lateral, frente ou parte interna da sacola). Tamanho, arte e proporções (medidas da sacola/caixa; proporção da logomarca; detalhes de fundo...)
+
+&bull;  Acabamentos contratados (plastificação - fosca ou brilho; tipo do cordão e sua cor; hot-stamping e furos para presente).
+ 
+&bull;  A quantidade comprada poderá sofrer uma variação em sua quantidade de no máximo 10% (dez por cento) a maior ou menor. Será cobrado a exata quantidade das mercadorias entregues.  
+ 
+&bull;  O prazo de envio é de 25 dias após o recebimento do modelo de arte aprovado.";
+                    echo $mens;
+                ?>
+            </textarea>
+        </td> 
+    </tr> 
+    <tr> 
+        <td>
+            <div align="right" class="texto">Anexo(s)</div>
+        </td> 
+        <td>
+            <form enctype="multipart/form/data" method="post" action="upload.php" >
+                <input name="arquivo" id="arquivo" type="file" multiple/>
+                <input type="button" name="bt_upload" value="Enviar email"/>
+                <input type="hidden" value="0"/>
+            </form>            
+            <ul id="list_arquivos"></ul>
+            <span id="resposta"></span>
+        </td> 
+    </tr>    
+</table>
+

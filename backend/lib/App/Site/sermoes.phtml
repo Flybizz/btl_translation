@@ -1,0 +1,69 @@
+<?php $config = unserialize (CONFIG_DB); ?>
+
+<section id="cromaheader" style="">
+  <h1 class="cro_cust_font" style=" color: #ffffff; ">SERMÃO IBI</h1>
+</section>
+
+<!-- start tit hthe page layout -->
+<section id="pagelayout">
+  <div class="row">
+    <div id="main">
+      <div class="main singlemain cro_singleblogpage">        
+
+
+      <!-- render the page subject to the sidebar settings 1> sidebar left -->
+        <div class="large-12 column">
+          
+  <!-- Start the section -->
+          <article id="post-109" class="post-109 post type-post status-publish format-video has-post-thumbnail hentry category-annnouncements category-bible-study category-latest-news category-uncategorized tag-faith tag-hope tag-love">
+            <div>
+              <!-- category time handler -->
+
+              <!-- Post title -->
+              <header class="entry-title">
+                <h2 class="entry-title cro_cust_font">
+                  <?php echo utf8_decode($site_sermoes[0]['D007_Titulo']); ?>
+                </h2>
+              </header>  
+          
+              <div class="entry-content">
+                <iframe width="100%" height="120" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/<?php echo $site_sermoes[0]['D007_Chamada']; ?>&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+                <p class="clearfix"></p>
+                <?php echo str_replace("|", "/", utf8_decode($site_sermoes[0]['D007_Texto'])); ?>
+              </div><!-- .entry-content -->
+            </div>
+          </article>
+
+
+          <div id="disqus_thread"></div>
+          <script>
+              /**
+               *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+               *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+               */
+              
+              var disqus_config = function () {
+                  this.page.url = <?php echo $config[0]['D001_Site']."/page/blogs/link/".$site_sermoes[0]['D007_Chave']; ?>;  // Replace PAGE_URL with your page's canonical URL variable
+                  this.page.identifier = <?php echo $site_sermoes[0]['D007_Chave']; ?>; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+              };
+              
+              (function() {  // DON'T EDIT BELOW THIS LINE
+                  var d = document, s = d.createElement('script');
+                  
+                  s.src = '//igrejabatistailha.disqus.com/embed.js';
+                  
+                  s.setAttribute('data-timestamp', +new Date());
+                  (d.head || d.body).appendChild(s);
+              })();
+          </script>
+          <!-- <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript> -->
+
+      </div>
+      <p class="clearfix"></p>
+      <a href="/../page/sermao/p/1" class="btn">Voltar para lista Sermões</a>
+      <p class="clearfix"></p>
+
+    </div>
+  </div>
+</div>
+</section>

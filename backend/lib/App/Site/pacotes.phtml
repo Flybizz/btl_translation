@@ -1,0 +1,55 @@
+ <div class="nk-header-title nk-header-title-parallax nk-header-title-parallax-opacity">
+    <div class="bg-image">
+        <div style="background-image: url('/images/config/bg/<?php echo trim($site_config[0]['D001_Imgfundo']); ?>');"></div>
+    </div>
+    <div class="nk-header-table">
+      <div class="nk-header-table-cell">
+        <div class="container">                                
+          <h1 class="nk-title">PACKS</h1>  
+          <!-- <h2 class="nk-sub-title">Optional Sub Title</h2> -->       
+        </div>
+      </div>
+    </div>
+</div>
+
+<!-- START: Pricing Tables 2 -->
+<div class="nk-box">
+    <div class="container">
+        <div class="nk-gap-4"></div>
+        <div class="row vertical-gap">
+
+            <?php if(!empty($site_dados2)): ?>
+            <?php foreach ($site_dados2 as $pacote): ?>
+             
+            <div class="col-md-6 col-lg-4">
+                <div class="nk-pricing-2">
+                    <div class="nk-pricing-header">
+                        <div class="bg-image op-6" style="background-image: url('/images/pacote/<?php echo $pacote['D011_Uid']; ?>/<?php echo trim($pacote['D011_Imageminicio']); ?>');"></div>
+                        <div class="nk-pricing-price">
+                            <?php echo number_format($pacote["D011_Valor"],0,"","") ?><span class="nk-pricing-currency">€</span>
+                            <!-- <span class="nk-pricing-period">/ mo</span> -->
+                        </div>
+                        <h3 class="nk-pricing-title"><?php echo $pacote["D011_Titulo"] ?></h3>
+                    </div>
+
+                    <div class="nk-pricing-body">
+                        <div class="nk-pricing-features" style="min-height: 70px!important; padding-left:10px; padding-right: 10px;">
+                            <h3><?php echo $pacote["D011_Titulo"] ?></h3>
+                                <?php echo str_replace("|", "/", $pacote["D011_Chamada"]); ?>
+                        </div>
+
+                        <div class="nk-pricing-button">
+                            <a href="/pacote/ref/<?php echo $pacote["D011_Chave"] ?>" class="nk-btn nk-btn-block nk-btn-circle nk-btn-x2 nk-btn-effect-5-left nk-btn-color-dark-4">BOOK NOW</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <?php endforeach; ?>
+            <?php endif; ?>
+        
+        </div>
+        <div class="nk-gap-4"></div>
+    </div>
+</div>
+<!-- END: Pricing Tables 2 -->

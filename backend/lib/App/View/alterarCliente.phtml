@@ -1,0 +1,635 @@
+<router base="cliente/alterar">
+<?php 
+require_once $_SERVER['DOCUMENT_ROOT']."/backend/public/vendor/ckeditor/ckeditor.php";
+require_once $_SERVER['DOCUMENT_ROOT']."/backend/public/vendor/ckfinder/ckfinder.php";
+$CKEditor = new CKEditor();
+$CKEditor->basePath = '/backend/public/vendor/ckeditor/';
+CKFinder::SetupCKEditor($CKEditor, '/backend/public/vendor/ckfinder/');
+?>
+
+<?php $LANGUAGE_DEFAULT = unserialize(LANGUAGE_DEFAULT); ?>
+<input id="idioma" type="hidden" value="<?php echo $LANGUAGE_DEFAULT[0]; ?>">
+
+<header class="page-header">
+  <h2>Clientes</h2>
+  <div class="right-wrapper text-right">
+  <?php $LANGUAGE_DEFAULT = unserialize(LANGUAGE_DEFAULT); ?>
+      
+      <!-- <a href="/backend/produto/galeria/lang/<?php //echo $view_cliente[0]['prod_idioma']; ?>/ref/<?php //echo $view_cliente[0]['prod_referencia']; ?>" class="mb-1 mt-3 mr-1 ml-1 btn btn-xs btn-primary"><strong>Galeria de Imagens</strong></a> -->
+      <a name="bt_cliente_alterar" id="bt_cliente_alterar" href="javascript:$('#img').uploadifive('upload')" class="mb-1 mt-3 mr-1 btn btn-xs btn-primary"><strong>Gravar</strong></a>
+      <a href="/backend/cliente/perfil/lang/<?php echo $LANGUAGE_DEFAULT[0]; ?>/ref/<?php echo $view_cliente[0]['cli_referencia']; ?>" class="mb-1 mt-3 mr-1 ml-1 btn btn-xs btn-default"><strong>Voltar</strong></a>
+      <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-calendar"></i></a>
+  </div>
+</header>
+
+<!-- start: page -->
+
+<section class="card">
+  <div class="card-body">
+    <div class="invoice">
+      <header class="clearfix">
+          <div class="row">
+              <div class="col-sm-6 mt-3">
+                  <h2 class="h2 mt-0 mb-4 text-dark font-weight-bold">Alterar Cliente</h2>
+              </div>
+          </div>
+      </header>
+
+      <div class="row">
+        <div class="col-xl-7 col-md-12">
+          <section class="card mb-4">
+            <header class="card-header">
+              <h2 class="card-title">Dados Pessoais</h2>
+            </header>
+            <div class="card-body">
+              <form class="form-horizontal form-bordered" method="post">
+       
+                <div class="form-group row">
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Referência</label>
+                  <div class="col-lg-9">
+                    <input type="text" id="cli_referencia" class="form-control" value="<?php echo $view_cliente[0]['cli_referencia'];?>" disabled>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Saudação</label>
+                  <div class="col-lg-9">
+                    <select id="cli_saudacao" class="form-control">
+                      <?php
+                        $arr_referencia = Array(0 => "Nenhum", 1 => "Sr.", 2 => "Sra.", 3 => "Srta.", 4 => "Dr.", 5 => "Dra." );
+                        foreach ($arr_referencia as $chave => $saudacao): 
+                          if($view_cliente[0]['cli_saudacao'] == $chave ):
+                            $selected = "selected"; 
+                            echo  '<option value="'.$chave.'" '.$selected.'>'.$saudacao.'</option>';
+                          elseif($view_cliente[0]['cli_saudacao'] != $chave):
+                            echo  '<option value="'.$chave.'" >'.$saudacao.'</option>';
+                          endif;
+                        endforeach;
+                      ?>                    
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Nome Completo</label>
+                  <div class="col-lg-9">
+                    <input type="text" id="cli_nome" class="form-control" value="<?php echo $view_cliente[0]['cli_nome'];?>" required>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Telefone</label>
+                  <div class="col-lg-9">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="fa fa-phone"></i>
+                      </span>
+                      <input id="cli_telefone" type="text" class="form-control" value="<?php echo str_replace("|", " / ", $view_cliente[0]['cli_telefone']);?>" required>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Email</label>
+                  <div class="col-lg-9">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="fa fa-envelope"></i>
+                      </span>
+                      <input id="cli_email" type="text" class="form-control" value="<?php echo $view_cliente[0]['cli_email'];?>" required>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Website</label>
+                  <div class="col-lg-9">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="fa fa-globe"></i>
+                      </span>
+                      <input id="cli_url" type="text" class="form-control" value="<?php echo $view_cliente[0]['cli_url'];?>" required>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">NIF / NIPC</label>
+                  <div class="col-lg-9">
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="fa fa-id-card-o"></i>
+                      </span>
+                      <input id="cli_nif" type="text" class="form-control" value="<?php echo $view_cliente[0]['cli_nif'];?>" required>
+                    </div>
+                  </div>
+                </div>
+
+              </form>
+            </div>  
+
+            <header class="card-header">
+              <h2 class="card-title">Endereço</h2>
+            </header>
+            <div class="card-body">
+              <form class="form-horizontal form-bordered">
+                
+                <div class="form-group row">
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Morada</label>
+                  <div class="col-lg-9">
+                    <input type="text" id="cli_rua" class="form-control" value="<?php echo $view_cliente[0]['cli_rua'];?>" required>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Número</label>
+                  <div class="col-lg-9">
+                    <input type="text" id="cli_numero" class="form-control" value="<?php echo $view_cliente[0]['cli_numero'];?>" required>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Andar</label>
+                  <div class="col-lg-9">
+                    <input type="text" id="cli_andar" class="form-control" value="<?php echo $view_cliente[0]['cli_andar'];?>" required>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">CP</label>
+                  <div class="col-lg-9">
+                    <input type="text" id="cli_cp" class="form-control" value="<?php echo $view_cliente[0]['cli_cp'];?>" required>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Localidade</label>
+                  <div class="col-lg-9">
+                    <input type="text" id="cli_localidade" class="form-control" value="<?php echo $view_cliente[0]['cli_localidade'];?>" required>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Distrito</label>
+                  <div class="col-lg-9">
+                    <select class="form-control" id="cli_distrito">
+                        <option value="0"></option>
+                        <?php
+                        if(!empty($view_distrito)):                 
+                            foreach ($view_distrito as $distrito): 
+                              if($view_cliente[0]['cli_distrito'] == $distrito['cod_distrito'] ){
+                                $selected = "selected"; 
+                                echo  '<option value="'.$distrito['cod_distrito'].'" '.$selected.'>'.$distrito['nome_distrito'].'</option>';
+                              }elseif($view_cliente[0]['cli_distrito'] != $distrito['cod_distrito']){
+                                echo  '<option value="'.$distrito['cod_distrito'].'" >'.$distrito['nome_distrito'].'</option>';
+                              }
+                            endforeach;
+                        endif; 
+                        ?>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Descrição</label>
+                  <div class="col-lg-9">
+                    <?php
+                      $initialValue = str_replace("|", "/", $view_cliente[0]['cli_descricao']);
+                      $CKEditor->editor("cli_descricao", $initialValue);
+                    ?>
+                  </div>
+                </div>
+
+
+                <div class="form-group row">
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Google Maps</label>
+                  <div class="col-lg-9">
+                    <input type="text" id="cli_google_map" class="form-control" value="<?php echo $view_cliente[0]['cli_google_map'];?>" required>
+                  </div>
+                </div>
+
+              </form>
+            </div>  
+          </section>            
+        </div>
+
+        <div class="col-xl-5 col-md-12">
+          <section class="card mb-4">
+              <header class="card-header">
+              <h2 class="card-title">Informações Gerais </h2>
+            </header>
+            <div class="card-body">
+              <form class="form-horizontal form-bordered" method="post">
+
+                <div class="form-group row">
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Tipo de cliente</label>
+                  <div class="col-lg-6">
+                    <select id="cli_tipo" class="form-control">
+                        <option value="0"></option>
+                        <?php
+                        if(!empty($view_tipo)):                 
+                            foreach ($view_tipo as $tipo): 
+                              if($view_cliente[0]['cli_tipo'] == $tipo['tipo_id'] ){
+                                $selected = "selected"; 
+                                echo  '<option value="'.$tipo['tipo_id'].'" '.$selected.'>'.str_replace("|", "/", $tipo['tipo_nome']).'</option>';
+                              }elseif($view_cliente[0]['cli_tipo'] != $tipo['tipo_id']){
+                                echo  '<option value="'.$tipo['tipo_id'].'" >'. str_replace("|", "/", $tipo['tipo_nome']).'</option>';
+                              }
+                            endforeach;
+                        endif; 
+                        ?>
+                    </select>
+                  </div>
+                </div>       
+
+                <div class="form-group row">
+                  <label class="col-lg-3 control-label text-lg-right pt-2">Área de negócio</label>
+                  <div class="col-lg-6">
+                    <div class="input-group btn-group">
+                      <span class="input-group-addon">
+                        <i class="fa fa-th-list"></i>
+                      </span>
+                      <select class="form-control" multiple="multiple" data-plugin-multiselect data-plugin-options='{ "maxHeight": 300 }' id="cli_area">
+                      <?php
+                      if(!empty($view_area)):
+                          $arr_area_1 = explode(",", $view_cliente[0]['cli_area_negocio'] );
+                          foreach ($view_area as $area): 
+                            if(in_array($area['area_id'], $arr_area_1)){
+                              $selected = "selected"; 
+                              echo  '<option value="'.$area['area_id'].'" '.$selected.'>'.$area['area_nome'].'</option>';
+                            }elseif(!in_array($area['area_id'], $arr_area_1)){
+                              echo  '<option value="'.$area['area_id'].'" >'.$area['area_nome'].'</option>';
+                            }
+                          endforeach;
+                      endif; 
+                      ?>
+                      </select>
+                    </div>
+                  </div>
+                </div>         
+
+                <div class="form-group row">
+                  <label class="col-lg-3 control-label text-lg-right pt-2">Produtos</label>
+                  <div class="col-lg-6">
+                    <div class="input-group btn-group">
+                      <span class="input-group-addon">
+                        <i class="fa fa-th-list"></i>
+                      </span>
+                      <select class="form-control" multiple="multiple" data-plugin-multiselect data-plugin-options='{ "maxHeight": 200 }' id="cli_produto">
+                      <?php
+                      if(!empty($view_produto)):
+                          $arr_produto_1 = explode(",", $view_cliente[0]['cli_produto'] );
+                          foreach ($view_produto as $produto): 
+                            if(in_array($produto['prod_id'], $arr_produto_1)){
+                              $selected = "selected"; 
+                              echo  '<option value="'.$produto['prod_id'].'" '.$selected.'>'.$produto['prod_nome'].'</option>';
+                            }elseif(!in_array($produto['prod_id'], $arr_produto_1)){
+                              echo  '<option value="'.$produto['prod_id'].'" >'.$produto['prod_nome'].'</option>';
+                            }
+                          endforeach;
+                      endif; 
+                      ?>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-lg-3 control-label text-lg-right pt-2">Vend. Associados</label>
+                  <div class="col-lg-6">
+                    <div class="input-group btn-group">
+                      <span class="input-group-addon">
+                        <i class="fa fa-th-list"></i>
+                      </span>
+                      <select class="form-control" multiple="multiple" data-plugin-multiselect data-plugin-options='{ "maxHeight": 200 }' id="cli_associado">
+                      <?php
+                      if(!empty($view_vendedor)):
+                          $arr_associado_1 = explode(",", $view_cliente[0]['cli_associado'] );
+                          foreach ($view_vendedor as $vendedor): 
+                            if(in_array($vendedor['usu_id'], $arr_associado_1)){
+                              $selected = "selected"; 
+                              echo  '<option value="'.$vendedor['usu_id'].'" '.$selected.'>'.$vendedor['usu_nome'].'</option>';
+                            }elseif(!in_array($vendedor['usu_id'], $arr_associado_1) && $view_cliente[0]['usu_id'] != $vendedor['usu_id']){
+                              echo  '<option value="'.$vendedor['usu_id'].'" >'.$vendedor['usu_nome'].'</option>';
+                            }
+                          endforeach;
+                      endif; 
+                      ?>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                            
+                <div class="form-group row" style="display: <?php echo $_SESSION["nivel_acesso"] < 3 ? "flex" : "none"; ?>">
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Vendedor</label>
+                  <div class="col-lg-6">
+                    <select id="cli_vendedor" class="form-control">
+                        <option value="0"></option>
+                        <?php
+                        if(!empty($view_vendedor)):                 
+                            foreach ($view_vendedor as $vendedor): 
+                              if($view_cliente[0]['usu_id'] == $vendedor['usu_id'] ){
+                                $selected = "selected"; 
+                                echo  '<option value="'.$vendedor['usu_id'].'" '.$selected.'>'.$vendedor['usu_nome'].'</option>';
+                              }elseif($view_cliente[0]['usu_id'] != $vendedor['usu_id']){
+                                echo  '<option value="'.$vendedor['usu_id'].'" >'.$vendedor['usu_nome'].'</option>';
+                              }
+                            endforeach;
+                        endif; 
+                        ?>
+                    </select>
+                  </div>
+                </div> 
+
+                <div class="form-group row">
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Status</label>
+                  <div class="col-lg-6">
+
+                    <div class="btn-group" data-toggle="buttons">
+                      <?php 
+                        if($view_cliente[0]['cli_status'] == "sim"):
+                          $checked1 = "checked";
+                          $checked2 = "";
+                          $active1 = "active";
+                          $active2 = "";
+                        elseif($view_cliente[0]['cli_status'] == "nao"):
+                          $checked1 = "";
+                          $checked2 = "checked";
+                          $active1 = "";
+                          $active2 = "active";
+                        endif;
+                      ?>
+                      <label class="btn btn-primary <?php echo $active1; ?>" aria-pressed="true">
+                        <input type="radio" name="cli_status" id="option1" value="sim" <?php echo $checked1; ?>> Ativo
+                      </label>
+                      <label class="btn btn-primary <?php echo $active2; ?>" aria-pressed="true">
+                        <input type="radio" name="cli_status" id="option2" value="nao"  <?php echo $checked2; ?>> Inativo
+                      </label>
+
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="form-group row" style="display: none;">
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">RGPD</label>
+                  <div class="col-lg-6">
+                      <div class="btn-group" data-toggle="buttons">
+
+                        <?php 
+                          if($view_cliente[0]['cli_rgpd'] == ""):
+                            $rgpd_checked1 = "checked";
+                            $rgpd_checked2 = "";
+                            $rgpd_checked3 = "";
+                            $rgpd_active1 = "active";
+                            $rgpd_active2 = "";
+                            $rgpd_active3 = "";
+                            elseif($view_cliente[0]['cli_rgpd'] == "true"):
+                            $rgpd_checked1 = "";
+                            $rgpd_checked2 = "checked";
+                            $rgpd_checked3 = "";
+                            $rgpd_active1 = "";
+                            $rgpd_active2 = "active";
+                            $rgpd_active3 = "";
+                          elseif($view_cliente[0]['cli_rgpd'] == "false"):
+                            $rgpd_checked1 = "";
+                            $rgpd_checked2 = "";
+                            $rgpd_checked3 = "checked";
+                            $rgpd_active1 = "";
+                            $rgpd_active2 = "";
+                            $rgpd_active3 = "active";                            
+                          endif;
+                        ?>
+                        <label class="btn btn-primary <?php echo $rgpd_active1; ?>" aria-pressed="true">
+                          <input type="radio" name="cli_rgpd" id="option1" value="" <?php echo $rgpd_checked1; ?>> ?
+                        </label>
+                        <label class="btn btn-primary <?php echo $rgpd_active2; ?>" aria-pressed="true">
+                          <input type="radio" name="cli_rgpd" id="option2" value="true"  <?php echo $rgpd_checked2; ?>> Concordo
+                        </label>
+                        <label class="btn btn-primary <?php echo $rgpd_active3; ?>" aria-pressed="true">
+                          <input type="radio" name="cli_rgpd" id="option3" value="false"  <?php echo $rgpd_checked3; ?>> Não concordo
+                        </label>
+                      </div>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-sm-3 control-label text-sm-right pt-2">
+                    <p class="p-0 m-0">Logótipo</p>
+                    <span class="pull-right"> 250 x 250 (px)</span>
+                  </label>
+                  
+                  <div class="col-sm-6 media-gallery">
+                    <div id="queue" class="mt-3 mb-3"></div>
+                    <input id="img" name="img" type="file" multiple>
+                    <input type="hidden" id="timestamp" value="<?php echo $timestamp = time();?>">
+                    <input type="hidden" id="unique_salt" value="<?php echo md5('unique_salt' . $timestamp);?>">
+                    <input type="hidden" id="referecia" value="<?php echo $view_cliente[0]['cli_referencia'];?>">
+                    <input type="hidden" id="cli_imagem" value="<?php echo $view_cliente[0]['cli_imagem'];?>">
+                    <!-- <span class="pull-right">tam: 880px x 480px</span> -->
+                    <hr class="mt-3 mb-3">
+                    <?php if(!empty($view_cliente[0]['cli_imagem'] )): ?>
+                    <div class="row mg-files" data-sort-destination="" data-sort-id="media-gallery" style="position: relative; height:auto; padding-bottom: 20px;">
+                      <div class="isotope-item document col-xs-12 col-sm-12 col-md-12 col-lg-9" style="position: relative; left: 0px; top: 5px;">
+                        <div class="thumbnail">
+                          <div class="thumb-preview">
+                            <a class="thumb-image" href="/images/cliente/<?php echo $view_cliente[0]['cli_imagem'] ?>">
+                              <img src="/images/cliente/<?php echo $view_cliente[0]['cli_imagem'] ?>" class="img-fluid" alt="<?php echo $view_cliente[0]['cli_nome'] ?>">
+                            </a>
+                            <div class="mg-thumb-options" style="overflow: visible;">
+                              <div class="mg-zoom"><i class="fa fa-search"></i></div>
+                              <div class="mg-toolbar">
+                                <div class="mg-group float-right show">
+                                  <button class="dropdown-toggle mg-toggle" data-toggle="dropdown" aria-expanded="true"><span class="caret"></span></button>
+                                  <div class="dropdown-menu mg-dropdown show" role="menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(271px, 28px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                    <a class="dropdown-item text-1" href="/images/cliente/<?php echo $view_cliente[0]['cli_imagem'] ?>" download="<?php echo str_replace(" ","_", $view_cliente[0]['cli_nome']); ?>"><i class="fa fa-download"></i> Download</a>
+                                    <a class="dropdown-item text-1" id="img_Del" data-del-img="<?php echo $view_cliente[0]['cli_id'] ?>" href="javascript:void(0);"><i class="fa fa-trash-o"></i> Apagar</a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- <div class="mg-description">
+                            <small class="float-left text-muted">Design, Websites</small>
+                            <small class="float-right text-muted">07/10/2017</small>
+                          </div> -->
+                        </div>
+                      </div>
+                    </div>
+                    <?php endif; ?>
+                  </div>
+                  </div>
+
+              </form>
+            </div>
+
+            <header class="card-header">
+              <h2 class="card-title">Contactos</h2>
+            </header>
+            <div class="card-body">
+              <form class="form-horizontal form-bordered">
+
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div id="new_contato" >
+
+                        <?php 
+                        $row = 0;
+                        foreach ($view_contato as $contato):
+                          $row++; 
+                          $info = '
+                          <div id="row'.$row.'" class="form-group row">  
+                              <label class="col-lg-12 control-label text-lg-right pt-2" for="inputDefault">
+                                  <h4 class="pull-left"> <strong>Contacto '.$row.'</strong></h4>                
+                                  <a href="#modalAnim" data-remove="remove" data-id="'.$row.'" data-name="'.$contato["cont_nome"].'" data-db="'.$contato["cont_id"].'" class="btn btn-primary" style="position: absolute; top:10px; right:15px;"> <i class="fa fa-trash-o fa-lg"></i> </a>
+                              </label>
+                              <input type="hidden" id="cont_id_'.$row.'" data-tipo="id" class="form-control" value="'.$contato["cont_id"].'"> 
+                              
+
+                                <div class="col-lg-12" data-tipo="contato">
+                                  <div class="form-group row" style="position:relative;">                                  
+                                      <label class="col-lg-3 control-label text-lg-right pt-2">Nome</label>
+                                      <div class="col-lg-6">
+                                        <input type="text" id="cont_nome_'.$row.'" data-tipo="nome" class="form-control" value="'.$contato["cont_nome"].'">
+                                      </div>
+                                  </div>
+                                  <div class="form-group row" style="position:relative;">
+                                      <label class="col-lg-3 control-label text-lg-right pt-2">Cargo</label>   
+                                      <div class="col-lg-6">                 
+                                        <select id="cont_cargo_'.$row.'" data-tipo="cargo" class="form-control">
+                                          <option value=""></option> ';
+
+                                          if(!empty($view_cargo)):
+
+                                            foreach ($view_cargo as $cargo): 
+
+                                            if($contato["cont_cargo"] == $cargo['cargo_id'] ){
+
+                                              $selected = "selected"; 
+
+                                              $info .= '<option value="'.$cargo['cargo_id'].'" '.$selected.'>'.$cargo['cargo_nome'].'</option>';
+
+                                            }elseif($contato["cont_cargo"] != $cargo['cargo_id']){
+
+                                              $info .= '<option value="'.$cargo['cargo_id'].'" >'.$cargo['cargo_nome'].'</option>';
+
+                                            }
+
+                                            endforeach; 
+
+                                          endif;                             
+                                    
+                                    $info .= '   
+                                        </select>
+                                      </div>  
+                                  </div>  
+                                  <div class="form-group row" style="position:relative;">
+                                      <label class="col-lg-3 control-label text-lg-right pt-2">Especialidade</label>   
+                                      <div class="col-lg-6">                  
+                                        <select id="cont_especialidade_'.$row.'" data-tipo="especialidade" class="form-control">
+                                          <option value=""></option> ';
+
+                                          if(!empty($view_especialidade)):
+
+                                            foreach ($view_especialidade as $especialidade): 
+
+                                            if($contato["cont_especialidade"] == $especialidade['esp_id'] ){
+
+                                              $selected = "selected"; 
+
+                                              $info .= '<option value="'.$especialidade['esp_id'].'" '.$selected.'>'.$especialidade['esp_nome'].'</option>';
+
+                                            }elseif($contato["cont_especialidade"] != $especialidade['esp_id']){
+
+                                              $info .= '<option value="'.$especialidade['esp_id'].'" >'.$especialidade['esp_nome'].'</option>';
+
+                                            }
+
+                                            endforeach; 
+
+                                          endif;                             
+                                    
+                                    $info .= '   
+                                        </select>
+                                      </div>    
+                                  </div>                        
+                                  <div class="form-group row" style="position:relative;">
+                                      <label class="col-lg-3 control-label text-lg-right pt-2">Email</label>
+                                      <div class="col-lg-6">
+                                        <input type="text" id="cont_email_'.$row.'" data-tipo="email" class="form-control" value="'.$contato["cont_email"].'">
+                                      </div>
+                                  </div>
+                                  <div class="form-group row" style="position:relative;">
+                                      <label class="col-lg-3 control-label text-lg-right pt-2">Telemóvel</label>
+                                      <div class="col-lg-6">
+                                        <input type="text" id="cont_telemovel_'.$row.'" data-tipo="telemovel" class="form-control" value="'.$contato["cont_telemovel"].'">
+                                      </div>
+                                  </div>
+
+
+                                  <div class="form-group row" style="position:relative;">
+                                      <label class="col-lg-3 control-label text-lg-right pt-2">Tipo de lead</label>   
+                                      <div class="col-lg-6">
+                                        <select id="cont_lead_status_'.$row.'" data-tipo="lead" class="form-control">
+                                          <option value=""></option> ';
+
+                                          if(!empty($view_leads)):                                            
+
+                                            foreach ($view_leads as $lead):
+
+                                              $selected = ($contato["cont_lead_status"] == $lead['lead_id'] ) ? 'selected' : '';
+                                              $info .= '<option value="'.$lead['lead_id'].'" '. $selected .'>'.utf8_encode($lead['lead_nome']).'</option>';
+
+                                            endforeach; 
+
+                                          endif;                             
+                                    
+                                    $info .= '   
+                                        </select>
+                                      </div>    
+                                  </div>
+
+                                  
+                              </div>                
+                          </div>';
+
+                          echo $info;
+
+                          endforeach;
+
+                      ?>  
+
+                      <input type="hidden" value="<?php echo $row; ?>" id="qtd_contato">     
+
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mt-4">
+                  <div class="col-md-12 ml-0 pl-0">
+                    <div class="col-md-2">
+                      <button class="btn btn-primary" id='add_contato'><i class="fa fa-plus fa-lg"></i> Adicionar Contato</button>
+                    </div>           
+                  </div>        
+                </div>
+
+                <br>
+                <br>
+
+              </form>
+            </div> 
+          </section>
+        </div>
+      </div>  
+      
+      <div id="ref" class='clearfix'></div>  
+      <span id="retorno" class="col-md-10"></span>            
+      <a name="bt_cliente_alterar" id="bt_cliente_alterar"  href="javascript:void(0);" class="btn btn-primary col-md-2 pull-right">Alterar</a>
+
+      <input type="hidden" id="cli_code" value="<?php echo $view_cliente[0]['cli_id'] ?>">
+         
+    </div>
+  </div>
+</section>
+
+<!-- end: page -->

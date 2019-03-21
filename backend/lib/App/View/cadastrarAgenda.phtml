@@ -1,0 +1,79 @@
+
+<div class="col-md-12">
+  <div class=" titleIdent"> 
+      <p class="clearfix"></p>
+      <h2  class="col-md-10">Cadastrar Evento</h2><span class="closed_acao col-md-2"><i class="pg-close_line pull-right" ></i></span>
+    <br>
+  </div>
+  <div class="panel panel-default"> 
+    <div class="panel-header">
+    <br>
+    </div>
+    <div class="panel-body">
+      <div class="form-group form-group-default required">
+        <label>Título</label>
+        <input type="text" id="age_titulo" class="form-control" required>
+      </div>
+      <div class="form-group form-group-default">
+        <label>Chamada</label>
+        <textarea class="form-control" id="age_chamada"></textarea>
+      </div>
+      <div class="form-group form-group-default">
+        <label>Conteúdo</label>
+        <!-- <textarea class="form-control" name="age_texto" id="age_texto"></textarea> -->
+
+        <?php
+
+          require_once($_SERVER['DOCUMENT_ROOT']."/backend/public/plugins/ckeditor/ckeditor.php");
+          require_once($_SERVER['DOCUMENT_ROOT']."/backend/public/plugins/ckfinder/ckfinder.php");
+
+          $initialValue = '';
+          $CKEditor = new CKEditor();
+          $CKEditor->basePath = '/backend/public/plugins/ckeditor/';
+          CKFinder::SetupCKEditor($CKEditor, '/backend/public/plugins/ckfinder/');
+          $CKEditor->editor("age_texto", $initialValue);
+        ?>
+
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group form-group-default">
+            <div class="input-group date">
+              <label>Data / Horas</label>
+              <input type="text" id="age_data" class="form-control"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group form-group-default styleradio">
+            <label class="col-sm-3 pull-left">Destaque</label>
+            <div class="btn-group col-sm-9 pull-right" data-toggle="buttons">
+              <label class="btn btn-primary ">
+                <input type="radio" name="age_destaque" id="option1" autocomplete="off" value="Sim"> Sim
+              </label>
+              <label class="btn btn-primary active">
+                <input type="radio" name="age_destaque" id="option2" autocomplete="off"  value="Nao" checked> Não
+              </label>
+            </div>
+          </div>
+        </div>     
+      </div>
+
+      <div class="form-group  form-group-default">
+      <label>Imagem</label>
+        <form>
+          <div id="queue"></div>
+          <input id="age_img" name="age_img" type="file" multiple>
+        </form>
+        <span>tam: 900px x 550px</span>
+        <input type="hidden" id="timestamp" value="<?php echo $timestamp = time();?>">
+        <input type="hidden" id="unique_salt" value="<?php echo md5('unique_salt' . $timestamp);?>"> 
+      </div> 
+    </div>
+  </div>
+  <div class=" titleIdent"> 
+      <span id="retorno" class="col-md-10"></span><a name="bt_age_cadastrar" id="bt_age_cadastrar"  href="javascript:$('#age_img').uploadifive('upload')" class="btn btn-primary col-md-2">Cadastrar</a>'
+    <br>
+  </div>
+</div>
+<div id="ref" class='clearfix'></div>

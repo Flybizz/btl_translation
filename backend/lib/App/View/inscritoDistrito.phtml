@@ -1,0 +1,178 @@
+<div class="jumbotron" data-pages="parallax">
+  <div class=" container-fluid container-fixed-lg sm-p-l-0 sm-p-r-0">
+    <div class="inner" style="transform: translateY(0px); opacity: 1;">
+
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/backend/">Home</a></li>
+        <li class="breadcrumb-item"><a href="javascript:;">Inscrições</a></li>
+        <li class="breadcrumb-item active">Distritos</li>
+      </ol>
+
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid container-fixed-lg">
+    <div class="row">
+        <div id="editor_acao" class="col-md-12"></div>
+    </div>
+    <div  id="editor_lista"  class="row ">
+        <div class="col-md-12">
+            <div class="titleIdent col-md-12">
+               <h2 class="col-md-4">Distritos Inscritos</h2>
+            </div>
+            <div class="panel-body col-md-12">
+                <div class="table-responsive" ng-controller="customersCtrl">
+                    <table class="table table-hover table-condensed" id="condensedTable">
+                        <thead>
+                            <tr>
+                                <th width='15%'>CODIGO</th>
+                                <th width="60%">NOME</th>
+                                <th width="25%">STATUS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php 
+                            if(!empty($view_distrito_lista["dados"])):
+                            foreach ($view_distrito_lista["dados"] as $distrito): ?>
+                            <tr id="<?php echo $distrito['cod_distrito'] ?>">
+                                <td><?php echo $distrito['cod_distrito']; ?></td>
+                                <td><?php echo utf8_encode($distrito['nome_distrito']); ?></td>
+                                <td>
+                                  <input type="hidden" class="icon" value="<?php echo $distrito['cod_distrito'] ?>" />
+                                  
+                                  <?php if($distrito['status_distrito'] == 'true'): ?>
+                                  <input type="checkbox" id="dist_status" class="switchery view<?php echo $distrito['cod_distrito'] ?>" data-init-plugin="switchery" data-size="small" data-switchery="<?php echo $distrito['status_distrito']; ?>" style="display: none;" checked>
+                                  <?php else: ?>
+                                  <input type="checkbox" id="dist_status" class="switchery view<?php echo $distrito['cod_distrito'] ?>" data-init-plugin="switchery" data-size="small" data-switchery="<?php echo $distrito['status_distrito']; ?>" style="display: none;">
+                                  <?php endif; ?>
+                                    
+                                    
+                                </td>
+                            </tr>
+                            <?php endforeach; 
+                            endif; ?>
+                        </tbody>
+                    </table>
+                </div>
+                <center>
+                  <nav>
+                      <?php 
+                        if(!empty($view_distrito_lista)):
+                           $info['pagination']['reg_final'] =  $view_distrito_lista['reg_final'];
+                           $info['pagination']['n_paginas'] =  $view_distrito_lista['n_paginas'];
+                           $info['pagination']['pg_atual'] =  $view_distrito_lista['pg_atual'];
+                           $info['pagination']['pg_anterior'] =  $view_distrito_lista['pg_anterior'];
+                           $info['pagination']['pg_proxima'] =  $view_distrito_lista['pg_proxima'];
+                           $info['pagination']['lnk_impressos'] =  $view_distrito_lista['lnk_impressos'];
+                           $info['pagination']['finalpag'] =  $view_distrito_lista['finalpag'];
+                           $info['pagination']['arquivo'] =  $view_distrito_lista['arquivo'];
+                           $info['pagination']['pag'] =  $view_distrito_lista['pag'];
+                           $info['pagination']['nlinks'] =  $view_distrito_lista['nlinks'];
+                           $info['pagination']['temp'] =  $view_distrito_lista['temp'];
+                           $info['pagination']['totreg'] =  $view_distrito_lista['totreg'];
+                        else:
+                           $info['pagination']['reg_final'] =  0;
+                           $info['pagination']['n_paginas'] =  0;
+                           $info['pagination']['pg_atual'] =  0;
+                           $info['pagination']['pg_anterior'] =  0;
+                           $info['pagination']['pg_proxima'] =  0;
+                           $info['pagination']['lnk_impressos'] =  0;
+                           $info['pagination']['finalpag'] =  0;
+                           $info['pagination']['arquivo'] =  0;
+                           $info['pagination']['pag'] =  0;
+                           $info['pagination']['nlinks'] =  0;
+                           $info['pagination']['temp'] =  0;
+                           $info['pagination']['totreg'] =  0;
+                        endif;
+                          navipages($home=1,$center=1,$info); 
+                         function navipages($home=0,$center=0, array $info)
+                        {
+                           $reg_final = $info['pagination']['reg_final'];
+                           $n_paginas =  $info['pagination']['n_paginas'];         
+                           $pg_atual =  $info['pagination']['pg_atual'];
+                           $pg_anterior =  $info['pagination']['pg_anterior'];
+                           $pg_proxima =  $info['pagination']['pg_proxima'];
+                           $lnk_impressos =  $info['pagination']['lnk_impressos'];
+                           $finalpag =  $info['pagination']['finalpag'];
+                           $arquivo =  $info['pagination']['arquivo'];
+                           $pag =  $info['pagination']['pag'];
+                           $nlinks =  $info['pagination']['nlinks'];
+                           $temp =  $info['pagination']['temp'];
+                           $totreg =  $info['pagination']['totreg'];
+                          // global $pg_atual, 
+                          // $pg_anterior,
+                          // $pg_proxima,  
+                          // $n_paginas, 
+                          // $reg_final, 
+                          // $totreg, 
+                          // $temp, 
+                          // $nlinks,       
+                          // $lnk_impressos,        
+                          // $arquivo, 
+                          // $pag,
+                          // $urlhomepage,
+                          // $finalpag,
+                          // $barborder;
+                          ?>
+                          <?php 
+                          if($n_paginas > 1){ ?>
+                          <ul class="pagination">
+                            <li><a href="<?php echo $arquivo; ?>/1">Primeira Página</a></li>
+                            <?php if (isset($pag) && $pag > 1){ ?>
+                            <li><a href="<?php echo $arquivo; ?>/<?php echo $pg_anterior; ?>"><i class="fa fa-angle-double-left"></i></a></li>
+                            <?php } ?>
+                            <?php
+                                        if ($temp >= $nlinks)
+                                        {
+                                        if ($n_paginas > $nlinks) 
+                                        {
+                                        $n_maxlnk = $temp + 4;
+                                        $nlinks   = $n_maxlnk;
+                                        $n_start  = $temp - 6;
+                                        if($n_start==-1)
+                                        {
+                                        $n_start=0;
+                                        }
+                                        $lnk_impressos = $n_start;
+                                        }
+                                        }
+                                        while(($lnk_impressos < $n_paginas) and ($lnk_impressos < $nlinks))
+                                        { 
+                                        $lnk_impressos ++;
+                                        ?>
+                            <?php
+                                        if ($pg_atual != $lnk_impressos)
+                                        {
+                                        echo "<li><a href=\"$arquivo/$lnk_impressos\">";
+                                        }
+                                        if ($pg_atual == $lnk_impressos)
+                                        {
+                                        echo "<li class=\"active\"><a href=\"javascript:void(0);\">$lnk_impressos</a></li>";
+                                        } 
+                                        else 
+                                        {
+                                        echo "$lnk_impressos"."</li>";
+                                        }
+                                        ?>
+                            </a>
+                            <?php
+                                        }
+                                        ?>
+                            <?php
+                                        if ($reg_final < $totreg) 
+                                        {
+                                        ?>
+                            <li><a href="<?php echo $arquivo; ?>/<?php echo $pg_proxima; ?>"><i class="fa fa-angle-double-right"></i></a></li>
+                            <?php
+                                        } 
+                                        ?>
+                            <li><a href="<?php echo $arquivo; ?>/<?php echo $finalpag; ?>">Última Página </a></li>
+                          </ul>
+                          <?php }} ?> 
+                  </nav>
+                </center>
+            </div>
+        </div>
+    </div>
+</div>

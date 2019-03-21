@@ -1,0 +1,203 @@
+        <!--Content Wrapper Start-->
+        <div class="content-wrapper">
+          <div class="container">
+            <div class="row section-wrapper">
+              
+              <div class="col-xs-12 nopadding">
+                <div class="box">
+
+                  <!--Archive Title Start-->
+                  <div class="archive-title">
+                    <h1>PESQUISA NO SITE</h1>
+                  </div>
+                  <!--Archive Title End-->
+          
+                  <div class="content-body">                            
+                                                                
+                    <!--Content Details Body Start-->
+                    <div class="content-details-body">
+
+                      <?php if(!empty($site_dados)):?>
+
+                      <?php 
+
+                        foreach ($site_dados as $value):
+
+                          if($value['tipo'] == 'noticia'){ $url = '/page/noticia/link/'.$value['chave']; $icon = '<i class="fa fa-newspaper-o fa-3x"></i>'; }
+                          if($value['tipo'] == 'artigo'){ $url = '/page/artigo/link/'.$value['chave']; $icon = '<i class="fa fa-pencil fa-3x"></i>'; }
+                          if($value['tipo'] == 'conteudo'){ $url = '/page/ver/link/'.$value['chave']; $icon = '<i class="fa fa-book fa-3x"></i>'; }
+                          if($value['tipo'] == 'produto'){ $url = '/page/produto/link/'.$value['chave']; $icon = '<i class="fa fa-box fa-3x"></i>'; }
+                          if($value['tipo'] == 'cifra'){ $url = $value['link']; $icon = '<i class="fa fa-music fa-3x" aria-hidden="true"></i>'; }
+                          if($value['tipo'] == 'galeria'){ $url = '/page/galeria/link/'.$value['chave']; ; $icon = '<i class="fa fa-camera fa-3x"></i>'; }
+                      ?>
+
+                      <div id="busca_div" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">                        
+                        <div class="col-md-3">
+                          <label ><?php echo $icon; ?></label>
+                        </div>
+                        <div class="col-md-9">
+                          <a href="<?php echo $url; ?>">
+                            
+                            <?php 
+                            if (strlen($value["titulo"]) >= 60)
+                              $titulo = substr($value["titulo"], 0, 57) . '...';
+                            if (strlen($value["titulo"]) < 60)
+                              $titulo = $value["titulo"];
+                             ?>
+
+                            <h3><?php echo $titulo; ?></h3>
+
+                          </a>
+                        </div>                        
+                      </div>
+                      <hr>
+
+                      <?php 
+
+                        endforeach;
+
+                      else: ?>
+                      <center> 
+                        <h3>NÃO FOI POSSÍVEL BUSCAR A SUA INFORMAÇÃO... </h3>
+                      </center>
+                      <?php endif; ?>
+                                  
+                    </div>
+                    <!--Content Details Body End-->
+
+                  </div>
+
+                     <!--Pagination Start-->
+                    <nav class="pagination pagination-fullwidth">
+                      <?php 
+                          if(!empty($site_busca)):
+
+                             $info['pagination']['reg_final'] =  $site_busca['reg_final'];
+                             $info['pagination']['n_paginas'] =  $site_busca['n_paginas'];
+                             $info['pagination']['pg_atual'] =  $site_busca['pg_atual'];
+                             $info['pagination']['pg_anterior'] =  $site_busca['pg_anterior'];
+                             $info['pagination']['pg_proxima'] =  $site_busca['pg_proxima'];
+                             $info['pagination']['lnk_impressos'] =  $site_busca['lnk_impressos'];
+                             $info['pagination']['finalpag'] =  $site_busca['finalpag'];
+                             $info['pagination']['arquivo'] =  $site_busca['arquivo'];
+                             $info['pagination']['pag'] =  $site_busca['pag'];
+                             $info['pagination']['nlinks'] =  $site_busca['nlinks'];
+                             $info['pagination']['temp'] =  $site_busca['temp'];
+                             $info['pagination']['totreg'] =  $site_busca['totreg'];
+
+                          else:
+
+                             $info['pagination']['reg_final'] =  0;
+                             $info['pagination']['n_paginas'] =  0;
+                             $info['pagination']['pg_atual'] =  0;
+                             $info['pagination']['pg_anterior'] =  0;
+                             $info['pagination']['pg_proxima'] =  0;
+                             $info['pagination']['lnk_impressos'] =  0;
+                             $info['pagination']['finalpag'] =  0;
+                             $info['pagination']['arquivo'] =  0;
+                             $info['pagination']['pag'] =  0;
+                             $info['pagination']['nlinks'] =  0;
+                             $info['pagination']['temp'] =  0;
+                             $info['pagination']['totreg'] =  0;
+
+                          endif;
+
+                            navipages($home=1,$center=1,$info); 
+
+
+                           function navipages($home=0,$center=0, array $info)
+                          {
+
+                             $reg_final = $info['pagination']['reg_final'];
+                             $n_paginas =  $info['pagination']['n_paginas'];         
+                             $pg_atual =  $info['pagination']['pg_atual'];
+                             $pg_anterior =  $info['pagination']['pg_anterior'];
+                             $pg_proxima =  $info['pagination']['pg_proxima'];
+                             $lnk_impressos =  $info['pagination']['lnk_impressos'];
+                             $finalpag =  $info['pagination']['finalpag'];
+                             $arquivo =  $info['pagination']['arquivo'];
+                             $pag =  $info['pagination']['pag'];
+                             $nlinks =  $info['pagination']['nlinks'];
+                             $temp =  $info['pagination']['temp'];
+                             $totreg =  $info['pagination']['totreg'];
+
+                            // global $pg_atual, 
+                            // $pg_anterior,
+                            // $pg_proxima,  
+                            // $n_paginas, 
+                            // $reg_final, 
+                            // $totreg, 
+                            // $temp, 
+                            // $nlinks,       
+                            // $lnk_impressos,        
+                            // $arquivo, 
+                            // $pag,
+                            // $urlhomepage,
+                            // $finalpag,
+                            // $barborder;
+                            ?>
+                            <?php 
+                            if($n_paginas > 1){ ?>
+                            <ul>
+                              <li><a href="<?php echo $arquivo; ?>/1"><i class="fa fa-fast-backward" aria-hidden="true"></i></a></li>
+                              <?php if (isset($pag) && $pag > 1){ ?>
+                              <li><a href="<?php echo $arquivo; ?>/<?php echo $pg_anterior; ?>"><i class="fa fa-step-backward" aria-hidden="true"></i></a></li>
+                              <?php } ?>
+                              <?php
+                                          if ($temp >= $nlinks)
+                                          {
+                                          if ($n_paginas > $nlinks) 
+                                          {
+                                          $n_maxlnk = $temp + 4;
+                                          $nlinks   = $n_maxlnk;
+                                          $n_start  = $temp - 6;
+                                          if($n_start==-1)
+                                          {
+                                          $n_start=0;
+                                          }
+                                          $lnk_impressos = $n_start;
+                                          }
+                                          }
+                                          while(($lnk_impressos < $n_paginas) and ($lnk_impressos < $nlinks))
+                                          { 
+                                          $lnk_impressos ++;
+                                          ?>
+                              <?php
+                                          if ($pg_atual != $lnk_impressos)
+                                          {
+                                          echo "<li><a href=\"$arquivo/$lnk_impressos\">";
+                                          }
+                                          if ($pg_atual == $lnk_impressos)
+                                          {
+                                          echo "<li class=\"pagination-active\"><a href=\"javascript:void(0);\">$lnk_impressos</a></li>";
+                                          } 
+                                          else 
+                                          {
+                                          echo "$lnk_impressos"."</li>";
+                                          }
+                                          ?>
+                              </a>
+                              <?php
+                                          }
+                                          ?>
+                              <?php
+                                          if ($reg_final < $totreg) 
+                                          {
+                                          ?>
+                              <li><a href="<?php echo $arquivo; ?>/<?php echo $pg_proxima; ?>"><i class="fa fa-step-forward" aria-hidden="true"></i></a></li>
+                              <?php
+                                          } 
+                                          ?>
+                              <li><a href="<?php echo $arquivo; ?>/<?php echo $finalpag; ?>"><i class="fa fa-fast-forward" aria-hidden="true"></i> </a></li>
+                            </ul>
+                            <?php }} ?> 
+                            </nav>
+                            <!--Pagination End-->
+                    
+                </div>
+              </div>
+            </div>
+            <div class="layout-divider"></div>
+          </div>
+        </div>
+        <!--Content Wrapper End-->

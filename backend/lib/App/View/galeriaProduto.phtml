@@ -1,0 +1,134 @@
+<router base="produto/galeria">
+<input type="hidden" id="idioma" value="<?php echo $view_produto[0]['prod_idioma'];?>">
+<header class="page-header">
+	<h2>Galeria de Imagens - Produtos</h2>
+
+	<div class="right-wrapper text-right">
+		<ol class="breadcrumbs">
+			<li>
+				<a href="/backend/index/">
+					<i class="fa fa-home"></i>
+				</a>
+			</li>
+			<li><span>Página</span></li>
+			<li><span>Produtos</span></li>
+			<li><span>Galeria</span></li>
+		</ol>
+
+		<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-calendar"></i></a>
+	</div>
+</header>
+
+<!-- start: page -->
+<section class="content-with-menu content-with-menu-has-toolbar media-gallery">
+	<div class="content-with-menu-container">
+		<div class="inner-menu-toggle">
+			<a href="#" class="inner-menu-expand" data-open="inner-menu">
+				Show Bar <i class="fa fa-chevron-right"></i>
+			</a>
+		</div>
+
+		<menu id="content-menu" class="inner-menu" role="menu">
+			<div class="nano">
+				<div class="nano-content">
+
+					<div class="inner-menu-toggle-inside">
+						<a href="#" class="inner-menu-collapse">
+							<i class="fa fa-chevron-up visible-xs-inline"></i><i class="fa fa-chevron-left hidden-xs-inline"></i> Hide Bar
+						</a>
+						<a href="#" class="inner-menu-expand" data-open="inner-menu">
+							Show Bar <i class="fa fa-chevron-down"></i>
+						</a>
+					</div>
+
+					<div class="inner-menu-content">
+
+                      	<input id="img_galeria" name="img_galeria" class="btn btn-block btn-primary btn-md pt-2 pb-2 text-3" type="file" multiple>
+                      	<input type="hidden" id="timestamp" value="<?php echo $timestamp = time();?>">
+                      	<input type="hidden" id="unique_salt" value="<?php echo md5('unique_salt' . $timestamp);?>">
+                      	<input type="hidden" id="referencia" value="<?php echo $view_produto[0]['prod_referencia'];?>">
+                      	<input type="hidden" id="controller" value="<?php echo $view_produto[0]['prod_controle'];?>">
+
+						<hr class="separator" />
+
+						<div id="box-edit-galeria" class="sidebar-widget m-0"></div>
+					</div>
+				</div>
+			</div>
+		</menu>
+		<div class="inner-body mg-main">
+
+			<div class="inner-toolbar clearfix">
+
+				<ul>
+					<li class="text-light">
+						<?php echo $view_produto[0]['prod_nome']; ?>
+					</li>
+					<li class="right">
+						<a class="btn btn-block btn-primary btn-md pt-2 pb-2 pr-3 pl-3 text-3 text-light" href="/backend/produto/alterar/lang/<?php echo $view_produto[0]['prod_idioma']; ?>/ref/<?php echo $view_produto[0]['prod_referencia']; ?>">
+							Fechar
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="row mg-files" id="galf_galeria" style="position:relative;">
+
+
+				<div id="queue" class="isotope-item col-sm-12 col-md-12 col-lg-12 mt-3 mb-3"></div>
+
+				<?php if(!empty($view_produto_galeria)): ?>
+				<?php foreach ($view_produto_galeria as $galeria):
+					if($galeria['prod_status'] == "true"):
+		              $dest = "Destaque <i style='color: rgba(66,190,20,1);' class='fa fa-circle fa-lg ml-1'></i>";
+		            elseif($galeria['prod_status'] == "false"):
+		              $dest = "<i style='color: rgba(0,0,0,1);' class='fa fa-circle-o fa-lg'></i>";
+		            endif;
+				?>
+
+				<div id="<?php echo $galeria['prod_id'] ?>" class="isotope-item col-sm-6 col-md-4 col-lg-3 order">
+					<div id="img-<?php echo $galeria['prod_id'] ?>" class="thumbnail">
+						<div class="thumb-preview">
+							<?php
+							$img = explode(".",$galeria['prod_foto']);
+
+							if($img[1] == "pdf"):
+							?>
+							<a class="thumb-image" href="/images/tumbnailpdf.jpg">
+								<img src="/images/tumbnailpdf.jpg" class="img-fluid" alt="<?php echo $galeria['prod_titulo'] ?>">
+							</a>
+							<?php else: ?>
+								<a class="thumb-image" href="/images/produto/galeria/<?php echo $galeria['prod_foto'] ?>">
+									<img src="/images/produto/galeria/<?php echo $galeria['prod_foto'] ?>" class="img-fluid" alt="<?php echo $galeria['prod_titulo'] ?>">
+								</a>
+						<?php endif; ?>
+							<div class="mg-thumb-options">
+								<div class="mg-zoom"><i class="fa fa-search"></i></div>
+								<div class="pull-left m-2 text-light order_arrows"><i class="fa fa-arrows fa-lg" aria-hidden="true"></i></div>
+								<div class="mg-toolbar">
+									<div class="mg-option checkbox-custom checkbox-inline">
+										<input type="checkbox" id="<?php echo $galeria['prod_id'] ?>" value="<?php echo $galeria['prod_id'] ?>">
+										<label for="<?php echo $galeria['prod_id'] ?>">EDITAR</label>
+									</div>
+									<div class="mg-group float-right">
+										<a id="img_Del_galeria" code-id="<?php echo $galeria['prod_id'];?>" href="javascript:void(0);"><i class="fa fa-trash-o fa-lg"></i></a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<h5 class="mg-title font-weight-semibold"><?php echo $galeria['prod_foto'] ?></h5>
+						<div class="mg-description">
+							<small class="float-right text-muted"><?php echo $dest; ?></small>
+						</div>
+					</div>
+				</div>
+
+				<?php endforeach; ?>
+				<?php endif; ?>
+
+
+
+			</div>
+		</div>
+	</div>
+</section>
+<!-- end: page -->

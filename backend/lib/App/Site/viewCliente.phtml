@@ -1,0 +1,178 @@
+        <!--Page Header -->
+        <div class="page-header bg-dark">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <!-- Page Header Wrapper -->
+                        <div class="page-header-wrapper">
+                            <!-- Title & Sub Title -->
+                            <h3 class="title">Meus Dados</h3>
+                            <!-- <h6 class="sub-title">All you want know</h6> -->
+                            <ol class="breadcrumb">
+                                <li><a href="index.html">Home</a></li>
+                                <li class="active">Meus Dados</li>
+                            </ol><!-- Breadcrumb -->
+                        </div><!-- Page Header Wrapper -->
+                    </div><!-- Coloumn -->
+                </div><!-- Row -->
+            </div><!-- Container -->
+        </div><!-- Page Header -->
+
+          <!-- Page Main -->
+        <div role="main" class="main">
+            <!-- Section -->
+            <section class="bg-lgrey">  
+                <div class="container">
+
+
+        <div class="row">
+            <div class="col-lg-12">
+                
+                <p>                           
+                    <a id="btn_altacesso" class="btn btn-default" href="javascript:;">ALTERAR DADOS ACESSO</a>  
+            		<a id="btn_altcliente" class="btn btn-default page-scroll" href="javascript:;">ALTERAR DADOS CLIENTE</a>
+                </p>
+        		<!--input type="hidden" value="<?php //echo $_SESSION['id_usuario'] ?>" /--> 
+               
+                <div class="form_cliente"  style="padding-top: 20px;">    
+                    <!-- DADOS ACESSO -->
+                    <table cellpadding="2" cellspacing="0" width="100%" id="box_alt_acesso"> 
+                         
+                        <thead>
+                            <tr>
+                                <th colspan="2" align="left">
+                                    <h4><i class="fa fa-arrow-right"></i> ALTERAR DADOS ACESSO</h4>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td align="left" >
+                                    <div class="form-group">
+                                        <label for="usuario_login">Login</label>
+                                        <div class="input-group">  
+                                            <input type="text" class="form-control" id="usuario_login" placeholder="Login">
+                                            <div class="input-group-addon"></div>
+                                        </div>
+                                    </div>                       
+                                </td>   
+                            </tr>
+                            <tr>   
+                                <td align="left">
+                                    <div class="form-group">
+                                        <label for="usuario_senha">Senha</label>
+                                        <div class="input-group">  
+                                            <input type="password" class="form-control" id="usuario_senha" placeholder="Senha">
+                                            <div class="input-group-addon"></div>
+                                            <input id="validasenha" type="hidden" value="1">
+                                        </div>
+                                    </div> 
+                                </td>                      
+                            </tr>
+                            <tr>
+                                <td align="left">
+                                    <div class="form-group">
+                                        <label for="usuario_confsenha">Confirmar Senha</label>
+                                        <div class="input-group">  
+                                            <input type="password" class="form-control" id="usuario_confsenha" placeholder="Confirmar Senha">
+                                            <div class="input-group-addon"></div>
+                                        </div>
+                                    </div> 
+                                </td>                                                        
+                            </tr>  
+                        </tbody> 
+                        <tfoot>
+                            <tr>
+                                <td align="center">
+                                    <p> 
+                                        <input type="hidden" value="<?php echo $_SESSION['id_cliente'] ?>" />
+                                        <button id="btn_altacesso_ok" class="btn btn-default">ALTERAR</button>
+                                    </p>
+                                    <p>
+                                        <span id="retorno_cli"></span>
+                                        <span id="retorno"></span>
+                                    </p>
+                                </td>
+                            </tr>
+                        </tfoot>         
+                    </table>  
+
+                    <div id="pgacao"></div>                      
+                    
+                    <table class="table" id="dt_empresa">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <h4><i class="fa fa-arrow-right"></i>  DADOS CLIENTE</h4>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if(isset($site_cliente_lista)): ?>
+                                <?php foreach ($site_cliente_lista as $cli): ?>
+                                    <tr>
+                                        <td><b>Nome: </b><?php echo $cli['cli_nome'];?></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>CPF: </b><?php echo $cli['cli_cpf'];?></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Email: </b><?php echo $cli['cli_email'];?></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Telefone: </b> <?php echo $cli['cli_telefone'];?></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Telefone2: </b><?php echo $cli['cli_telefone2'];?></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Celular: </b><?php echo $cli['cli_celular'];?></td>
+                                    </tr>                            
+                                <?php endforeach ?>
+                            <?php endif; ?>                  
+                        </tbody>
+                        <tfoot> 
+
+                        </tfoot>
+                    </table>
+                    <table class="table" id="dt_entrega">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <h4><i class="fa fa-arrow-right"></i>  DADOS ENTREGA</h4>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if(isset($site_cliente_lista)): ?>
+                                <?php foreach ($site_cliente_lista as $cli): ?>
+                                    <tr>
+                                        <td><b>Endereço: </b><?php echo $cli['cli_endereco'];?>, <?php echo $cli['cli_numero'];?></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Bairro: </b><?php echo $cli['cli_bairro'];?></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Cidade: </b><?php echo $cli['cli_cidade']." - ".$cli['cli_uf'];?></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>CEP: </b><?php echo $cli['cli_cep'];?></td>
+                                    </tr>                            
+                                <?php endforeach ?>
+                            <?php endif; ?>                  
+                        </tbody>
+                        <tfoot>                  
+                        </tfoot>
+                    </table>
+                   
+                </div> 
+            </div>   
+        </div>
+
+
+
+        </div><!-- Container -->    
+    </section><!-- Section -->  
+    
+  
+</div><!-- Page Main -->

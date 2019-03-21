@@ -1,0 +1,147 @@
+<div class="bg-login-video">
+
+    <iframe width="100%" style="height: 120vh; transform: translateY(-10vh)" src="https://www.youtube.com/embed/36v8f7kHfm8?start=13&autoplay=1&rel=0&mute=1&loop=1&playlist=36v8f7kHfm8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+</div>
+
+
+
+<?php $config = unserialize (CONFIG_DB); ?>
+
+<section class="body-sign">
+
+
+
+    <div class="center-sign">
+
+        <a href="/" class="logo float-left">
+
+            <img src="/images/config/<?php echo $config[0]['D001_Logosite']; ?>" height="75" alt="<?php echo $config[0]['D001_Empresa']; ?>" />
+
+        </a>
+
+        <div class="panel card-sign">
+
+            <div class="card-title-sign mt-3 text-right">
+
+                <h2 class="title text-uppercase font-weight-bold m-0"><i class="fa fa-user mr-1"></i> <?php echo translate(INSIRA_CREDENCIAIS) ?>.</h2>
+
+            </div>
+
+            <div class="card-body">
+
+                <form method="post" action="/backend/logando.php">
+
+                    <div class="form-group mb-3">
+
+                        <label><?php echo translate(USERNAME) ?></label>
+
+                        <div class="input-group input-group-icon">
+
+                            <input name="username" id="acessar_input" type="text" class="form-control form-control-lg" />
+
+                            <span class="input-group-addon">
+
+                                <span class="icon icon-lg">
+
+                                    <i class="fa fa-user"></i>
+
+                                </span>
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="form-group mb-3">
+
+                        <div class="clearfix">
+
+                            <label class="float-left"><?php echo translate(PASSWORD); ?></label>                            
+
+                        </div>
+
+                        <div class="input-group input-group-icon">
+
+                            <input name="pwd" id="acessar_input2" type="password" class="form-control form-control-lg" />
+
+                            <span class="input-group-addon">
+
+                                <span class="icon icon-lg">
+
+                                    <i class="fa fa-lock"></i>
+
+                                </span>
+
+                            </span>
+
+                        </div>
+
+                        <a href="recuperar" class="float-right"><?php echo translate(ESQUECEU_PASSWORD); ?>?</a>
+
+                    </div>
+
+
+
+                    <div class="row">
+
+                        <div class="col-sm-8">
+
+                            <div class="checkbox-custom checkbox-default">
+
+                                <input id="RememberMe" name="rememberme" type="checkbox" value="1" id="checkbox1"/>
+
+                                <label for="RememberMe"><?php echo translate(MANTENHA_CONECTADO); ?></label>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-sm-4 text-right">
+
+                            <button type="submit" id="logar_acessar" class="btn btn-primary mt-2"><?php echo translate(INICIAR_SESSAO); ?></button>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <span class="mt-3 mb-3 line-thru text-center text-uppercase">
+
+                        <!-- <span>or</span> -->
+
+                    </span>
+
+
+
+                     <!--<div class="mb-1 text-center">
+
+                        <a class="btn btn-facebook mb-3 ml-1 mr-1" href="#">Connect with <i class="fa fa-facebook"></i></a>
+
+                        <a class="btn btn-twitter mb-3 ml-1 mr-1" href="#">Connect with <i class="fa fa-twitter"></i></a>
+
+                    </div>
+
+
+
+                    <p class="text-center">Don't have an account yet? <a href="pages-signup.html">Sign Up!</a></p> -->
+
+
+
+                </form>
+
+            </div>
+
+        </div>
+
+
+
+        <p class="text-center text-muted mt-3 mb-3">&copy; Copyright <?php echo date("Y"); ?>. <?php echo translate(TODOS_DIREITOS_RESERVADOS); ?>.</p>
+
+    </div>
+
+    </section>

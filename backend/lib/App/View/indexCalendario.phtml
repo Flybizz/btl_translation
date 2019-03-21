@@ -1,0 +1,123 @@
+<?php function is_admin(){
+	return $_SESSION["nivel_acesso"] > 2 ? false : true;
+} ?>
+
+<!-- start: page -->
+<header class="page-header">
+    <h2><?php echo translate(TITULO_CALENDARIO); ?></h2>
+    <div class="right-wrapper text-right">
+        <ol class="breadcrumbs">
+            <li>
+                <a href="/">
+                    <i class="fa fa-home"></i>
+                </a>
+            </li>
+            <li><span><?php echo translate(LABEL_HOME); ?></span></li>
+            <li><span><?php echo translate(TITULO_CALENDARIO); ?></span></li>
+        </ol>
+        <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-calendar"></i></a>
+    </div>
+</header>
+<div class="row">
+	<div class="<?php echo $_SESSION["nivel_acesso"] > 2 ? "col-lg-9" : "col-lg-12" ?> mb-4">
+		<section class="card">
+			<div class="card-body">
+					<!-- modal box -->
+					<div id="event-modal-edit" class="modal-block modal-header-color modal-block-primary mfp-hide">
+						<form>
+						<section class="card">
+							<header class="card-header">
+								<h2 class="card-title"><?php echo translate(LABEL_A_EDITAR_EVENTO); ?></h2>
+							</header>
+							<div class="card-body">
+								<div class="modal-wrapper">
+									<div class="modal-icon">
+										<i class="fa fa-calendar"></i>
+									</div>
+									<div class="modal-text">
+										<h4><?php echo translate(LABEL_EVENTO); ?></h4>
+										<div class="row">
+											<div class="col-md-12">
+												<input type="hidden" name="event_id" />
+												<div class="form-group">
+													<input <?php echo is_admin() ? "disabled" : "" ?> class="form-control" type="text" name="event_title" />
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>Início (data)</label>
+													<input <?php echo is_admin() ? "disabled" : "" ?> class="form-control" type="text" name="event_date_start" data-plugin-datepicker="" data-date-format="yyyy/mm/dd" />
+													<label>Início (hora)</label>
+													<input <?php echo is_admin() ? "disabled" : "" ?> name="event_time_start" type="text" data-plugin-timepicker="" class="form-control" data-plugin-options="{ &quot;showMeridian&quot;: false }">
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>Fim</label>
+													<input <?php echo is_admin() ? "disabled" : "" ?> class="form-control" type="text" name="event_date_end" data-plugin-datepicker="" data-date-format="yyyy/mm/dd" />
+													<label>Fim (hora)</label>
+													<input <?php echo is_admin() ? "disabled" : "" ?> name="event_time_end" type="text" data-plugin-timepicker="" class="form-control" data-plugin-options="{ &quot;showMeridian&quot;: false }">
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<label>Descrição</label>
+													<textarea <?php echo is_admin() ? "disabled" : "" ?> class="form-control" name="event_description" id="" rows="3"></textarea>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<footer class="card-footer">
+								<div class="row">
+									<div class="col-md-6 text-left">
+										<?php if(!is_admin()): ?>
+										<button type="button" data-action="event-delete" class="btn btn-danger"><i class="fa fa-trash"></i> Apagar</button>
+										<?php endif; ?>
+									</div>
+									<div class="col-md-6 text-right">
+										<?php if(!is_admin()): ?>
+										<button type="button" data-action="event-save" class="btn btn-primary modal-confirm">Guardar</button>
+										<?php endif; ?>
+										<button type="button" class="btn btn-default modal-dismiss">Cancelar</button>
+									</div>
+								</div>
+							</footer>
+						</section>
+						</form>
+					</div>
+					<!-- /modal box -->
+
+				<?php if(!empty($view_calendars)): ?>
+				<script>
+					var calendars = JSON.parse('<?php echo json_encode($view_calendars) ?>');
+					var users_info = JSON.parse('<?php echo json_encode($view_data) ?>');
+				</script>
+				<div id="calendar">
+					<div class="loader loader--style7">
+						<img src="/images/loading.svg">
+					</div>
+				</div>
+				<?php else: ?>
+				<div class="alert alert-info"><?php echo translate(LABEL_NAO_EXISTEM_CALENDARIOS_PARA_APRESENTAR); ?></div>
+				<?php endif; ?>
+
+				<div class="calendar-users-labels-wrapper">
+					<ul class="calendar-users-labels"></ul>
+				</div>
+
+				
+
+			</div>		
+		</section>
+	</div>
+
+	<?php if($_SESSION["nivel_acesso"] > 2): ?>
+
+	<div class="col-lg-3">
+		<?php require_once("partials/calendar-tasks.phtml") ?>
+	</div>
+
+	<?php endif; ?>
+</div>

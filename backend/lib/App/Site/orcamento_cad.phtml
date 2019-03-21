@@ -1,0 +1,151 @@
+<div class=" wow fadeInUp <?php echo "orc_cad_".$site_ramo[0]['D008_Ordem']; ?>" data-wow-delay="0.5s" data-wow-offset="75">
+    <span class=" wow fadeInUp text-center" data-wow-delay="0.5s" data-wow-offset="75"><?php echo utf8_decode($site_ramo[0]['D008_DescriCategoria']); ?> <span class="fa fa-arrow-right"></span> <span class="pg-arrow_lright_line_alt"></span> <?php echo utf8_decode(strtoupper($site_sub[0]['D008_DescriCategoria'])); ?></span>
+</div>
+<img class="orc_img" src="/images/orcamento.jpg" alt="">
+<p class="clearfix"></p>
+<h2 class=" wow fadeInUp text-center" data-wow-delay="0.5s" data-wow-offset="75"><span>Orçamento</span></h2> 
+<section>
+  <div class="container">
+    <div class="row">
+      
+        <p class="clearfix"></p>
+
+        <div class="row">
+
+          <div class="col-md-12">
+            <label for="orc_nome">Nome</label>
+            <div class="form-row">
+              <input type="text" class="form-control" id="orc_nome" placeholder="Nome Completo" minlength="8" required>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-12">
+  
+          <label for="orc_email">Email</label>
+
+          <div class="form-row">
+
+            <input type="email" class="form-control" id="orc_email" placeholder="Email" maxlength="100" required>
+
+          </div>
+
+          <span id="msnEmail"></span>
+
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-4">
+
+              <label for="orc_cep">CEP</label>
+
+              <div class="form-row">
+
+                <input type="text" class="form-control" id="orc_cep" maxlength="9" placeholder="CEP" onKeyPress="mascara(this,icep);return Teclanum(event);">
+
+              </div>
+
+          </div>
+
+          <div class="col-md-5">
+
+              <label for="orc_endereco">Endereço</label>
+
+              <div class="form-row">
+
+                <input type="text" class="form-control" id="orc_endereco" placeholder="Endereço" maxlength="150">
+
+              </div>
+
+          </div>
+
+          <div class="col-md-3">
+
+              <label for="orc_bairro">Bairro</label>
+
+              <div class="form-row">
+
+                <input type="text" class="form-control" id="orc_bairro" placeholder="Bairro" maxlength="80">
+
+              </div>
+
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-8">
+
+              <label for="orc_cidade">Cidade</label>
+
+              <div class="form-row">
+
+                <input type="text" class="form-control" id="orc_cidade" placeholder="Cidade">
+
+              </div>
+
+          </div>
+
+          <div class="col-md-4">
+
+              <label for="orc_uf">UF</label>
+
+              <div class="form-row">
+
+                <input type="text" class="form-control" id="orc_uf" placeholder="UF">
+
+              </div>
+
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-12">
+
+              <label for="orc_celular">Celular</label>
+
+              <div class="form-row">
+
+                <input type="text" class="form-control" id="orc_celular" placeholder="Celular" maxlength="15" onKeyPress="mascara(this,itelefone);return Teclanum(event);">
+
+              </div>
+
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-md-12">
+  
+          <label for="orc_descricao">Descreva aqui todas as suas solicitações</label>
+
+          <div class="form-row">
+
+            <textarea class="form-control" id="orc_descricao" placeholder="Descreva aqui todas as suas solicitações.." maxlength="100" required> </textarea>
+
+          </div>
+
+          </div>
+
+        </div>
+
+        <button name="bt_orc_cadastrar" id="bt_orc_cadastrar" class="btn pull-right <?php echo "orc_link_".$site_ramo[0]['D008_Ordem']; ?>">Solicitar</button>
+        <input type="hidden" id="orc_servico" value="<?php echo $site_sub[0]['D008_Uid']; ?>">
+
+         <p class="clearfix"></p>
+         <span id="retorno"></span> <span id="ref"></span>
+
+    </div>
+  </div>
+</section>

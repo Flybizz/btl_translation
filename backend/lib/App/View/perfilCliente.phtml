@@ -1,0 +1,499 @@
+<router base="cliente/perfil">
+<?php 
+	$permissao = unserialize(PERMISSAO_DB);	
+	function perm($var)
+	{
+		return($var & 1);
+	}
+	$arr = array_filter($permissao, "perm");
+	$habilitados = array_keys($arr);
+?>
+<input type="hidden" id="cli_code" value="<?php echo $view_cliente[0]['cli_id'] ?>">
+<input type="hidden" id="cli_ref" value="<?php echo $view_cliente[0]['cli_referencia']; ?>">
+<header class="page-header">
+	<h2>Perfil do Cliente</h2>
+	<div class="right-wrapper text-right">
+		<ol class="breadcrumbs">
+			<li>
+				<a href="index.html">
+					<i class="fa fa-home"></i>
+				</a>
+			</li>
+			<li><span>Cliente</span></li>
+			<li><span>Perfil</span></li>
+		</ol>
+		<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-calendar"></i></a>
+	</div>
+</header>
+<!-- start: page -->
+<div class="row">
+	<div class="col-md-12 col-lg-8 col-xl-8 mb-4 mb-xl-0">
+		<section class="card mb-4">
+			<div class="card-body">
+				<header class="card-header bg-primary">
+					
+					<div class="widget-profile-info">
+						<div class="profile-picture">
+							<?php if(!empty( $view_cliente[0]["cli_imagem"] )): ?>
+							<img src="/images/cliente/<?php echo $view_cliente[0]["cli_imagem"]; ?>">
+							<?php else: ?>
+							<img src="/images/default_avatar.png">
+							<?php endif; ?>
+						</div>
+						<div class="profile-info">
+							<h4 class="name font-weight-semibold"><?php echo $view_cliente[0]["cli_saudacao"]." ".$view_cliente[0]["cli_nome"]; ?></h4>
+							<h5 class="role"><?php echo $view_cliente[0]["cli_tipo"]; ?></h5>
+							<div class="profile-footer">
+								Ref: <?php echo $view_cliente[0]["cli_referencia"] ?>
+							</div>
+						</div>
+					</div>
+				</header>	
+			</div>
+		</section>
+		<?php 
+			if(isset($view_tab)): 
+				switch ($view_tab) {
+					case 'followup':
+						$tab_follow = 'active';
+						$tab_view = '';
+						$tab_formacao = '';
+						break;
+					case 'view':
+						$tab_follow = '';
+						$tab_view = 'active';
+						$tab_formacao = '';
+						break;
+					case 'formacao':
+						$tab_follow = '';
+						$tab_view = '';
+						$tab_formacao = 'active';
+						break;
+					
+					default:
+						$tab_follow = 'active';
+						$tab_view = '';
+						$tab_formacao = '';
+						break;
+				}
+			else:
+				if(empty($view_timeline)):
+					$tab_follow = '';
+					$tab_view = 'active';
+					$tab_formacao = '';
+				else:
+					$tab_follow = 'active';
+					$tab_view = '';
+					$tab_formacao = '';					
+				endif;
+			endif;
+		?>
+		<div class="tabs">
+			<ul class="nav nav-tabs tabs-primary">
+				<?php if (!empty( $view_timeline )): ?>
+				<li class="nav-item <?php echo $tab_follow; ?>">
+					<a class="nav-link" href="#overview" data-toggle="tab">Follow up</a>
+				</li>
+				<?php endif; ?>
+				<li class="nav-item <?php echo $tab_view; ?>">
+					<a class="nav-link" href="#view" data-toggle="tab">Informações</a>
+				</li>
+				<li class="nav-item <?php echo $tab_formacao; ?>">
+					<a class="nav-link" href="#formacao" data-toggle="tab">Formações</a>
+				</li>
+			</ul>
+			<div class="tab-content">
+				<?php if (!empty( $view_timeline )): ?>
+				<div id="overview" class="tab-pane <?php echo $tab_follow; ?>">
+					<div class="p-3">						
+						<h4 class="mb-3 pt-0">Timeline</h4>
+						<div class="timeline timeline-simple mt-3 mb-3">
+							<div data-timeline class="tm-body">
+								<?php foreach ($view_timeline as $mes => $data): ?>
+								<div class="tm-title">
+									<h5 class="m-0 pt-2 pb-2 text-uppercase" style="font-weight: 600;"><?php echo utf8_encode($mes); ?></h5>
+								</div>
+								<?php if( !empty($data) ): ?>
+								<ol class="tm-items">
+									<?php foreach ($data as $timeline):
+										if($timeline["modulo"] == "followup"):
+											$timeline["modulo"] = "anotação";
+											$bk = "#0088cc";
+											$prioridade = '';
+										endif;
+										if($timeline["modulo"] == "tarefa"):
+											$bk = "#47a447";
+											$prioridade = '<p><span>Prioridade: </span> <span style="color:'.$timeline["color"].';">'.$timeline["prioridade"].'</span></p>';
+										endif;
+									?>
+									<li>
+										<div class="tm-box">
+											<p class="text-muted mb-0"><strong><?php echo utf8_encode($timeline["date"]); ?></strong> <span class="highlight" style="background-color:<?php echo $bk; ?>"><?php echo $timeline["modulo"]; ?></span> <span class="text-primary"> - <?php echo $timeline["tipo"]; ?></span>
+											</p>
+											<h4><strong><?php echo $timeline["titulo"]; ?></strong></h4>
+											<p>
+												<?php echo str_replace("|", "/", $timeline["msg"]); ?>
+											</p>
+											<?php echo $prioridade;?>
+										</div>
+									</li>
+									<?php endforeach; ?>
+								</ol>
+								<?php endif; ?>
+								<?php endforeach; ?>
+							</div>
+						</div>						
+					</div>
+				</div>
+				<?php endif; ?>
+				<div id="view" class="tab-pane <?php echo $tab_view; ?>">
+					<div class="form-row pull-right">
+					<?php if(in_array('per_cliente', $habilitados)): ?>
+						<div class="col-md-12 text-right mt-3">
+							<a href="/backend/cliente/alterar/ref/<?php echo $view_cliente[0]["cli_referencia"]; ?>" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Editar dados"><i class="fa fa-pencil fa-lg"></i></a>
+						</div>
+					<?php endif; ?>
+					</div>
+					<div class="p-3">
+						<h4 class="mb-3"><strong>Informações do Cliente</strong></h4>
+						<div class="form-group">
+							<label for="inputAddress"><strong>Nome Completo</strong></label>
+							<span class="form-control"><?php echo $view_cliente[0]["cli_nome"]; ?></span>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="inputAddress"><strong>Tipo de cliente</strong></label>
+								<span class="form-control"><?php echo (empty($view_cliente[0]["cli_tipo"])) ? "" : $view_cliente[0]["cli_tipo"]; ?></span>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="inputAddress"><strong>Área de negócio</strong></label>
+								<span class="form-control"><?php echo (empty($view_cliente[0]["cli_area_negocio"])) ? "" : $view_cliente[0]["cli_area_negocio"]; ?></span>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="inputAddress"><strong>CPF / CNPJ</strong></label>
+								<span class="form-control"><?php echo $view_cliente[0]["cli_nif"]; ?></span>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="inputAddress"><strong>Vendedor</strong></label>
+								<span class="form-control"><?php echo $view_cliente[0]["vendedor"]; ?></span>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="inputAddress"><strong>Produtos</strong></label>
+								<span class="form-control"><?php echo $view_cliente[0]["cli_produto"]; ?></span>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="inputAddress"><strong>Vendedores associados</strong></label>
+								<span class="form-control"><?php echo $view_cliente[0]["associado"]; ?></span>
+							</div>
+						</div>
+						<hr class="dotted tall">
+						<h4 class="mb-3"><strong>Informações de contatos</strong></h4>
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label><strong>Email</strong></label>
+								<span class="form-control"><?php echo $view_cliente[0]["cli_email"]; ?></span>
+							</div>
+							<div class="form-group col-md-6">
+								<label><strong>Telefone</strong></label>
+								<span class="form-control"><?php echo str_replace("|"," / ",$view_cliente[0]["cli_telefone"]); ?></span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputAddress"><strong>Endereço</strong></label>
+							<span class="form-control"><?php echo $view_cliente[0]["cli_rua"]; ?></span>
+						</div>
+						<?php if(!empty($view_cliente[0]["cli_google_map"])): ?>
+						<div class="form-group">
+								<label for=""><strong>Google Map</strong></label>
+								<?php
+								$str = $view_cliente[0]["cli_google_map"];
+								$matches = [];
+								preg_match("/@(.*?),(.*?),/",$str,$matches);
+								
+								$place = $matches[1];
+								
+								preg_match("/@(.*?),(.*?),/",$str,$matches);
+								
+								$lat = $matches[1];
+								$long = $matches[2];							
+								?>
+								<input type="hidden" name="lat" value="<?php echo $lat; ?>" />
+								<input type="hidden" name="long" value="<?php echo $long; ?>" />
+								<input type="hidden" name="place" value="<?php echo $view_cliente[0]["cli_nome"] ?>" />
+								
+								<div class="map"></div>
+						</div>
+						<?php endif; ?>
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="inputAddress2"><strong>Número</strong></label>
+								<span class="form-control"><?php echo $view_cliente[0]["cli_numero"]; ?></span>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="inputAddress2"><strong>Andar</strong></label>
+								<span class="form-control"><?php echo $view_cliente[0]["cli_andar"]; ?></span>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="inputCity"><strong>Cidade</strong></label>
+								<span class="form-control"><?php echo $view_cliente[0]["cli_localidade"]; ?></span>
+							</div>
+							<div class="form-group col-md-4">
+								<label for="inputState"><strong>UF</strong></label>
+								<span class="form-control"><?php echo $view_cliente[0]["cli_distrito"]; ?></span>
+							</div>
+							<div class="form-group col-md-2">
+								<label for="inputZip"><strong>CP</strong></label>
+								<span class="form-control"><?php echo $view_cliente[0]["cli_cp"]; ?></span>
+							</div>
+						</div>
+						<hr class="dotted tall mb-2 mt-2">
+						<div class="form-row">
+				        	<div class="col-md-12">
+				        		<?php if (!empty($view_contato)): ?>
+					      		<?php foreach ($view_contato as $contato): ?>
+				      				<div class="row form-group">
+						          		<label class="col-lg-12 btn-primary"><strong>Contato <?php echo $contato["cont_contato"]; ?></strong></label>
+						        		<?php if(!empty($contato["cont_nome"])): ?>
+						        			<label class="col-lg-3"><strong>Nome: </strong></label>
+						        			<p class="form-control col-lg-9" style="margin-bottom: 3px;"><?php echo trim(str_replace("|", " / ", $contato["cont_nome"]));?></p>
+						        		<?php endif;?>
+						        		<?php if(!empty($contato["cont_cargo"])): ?>
+						        			<label class="col-lg-3"><strong>Cargo: </strong></label>
+						        			<p class="form-control col-lg-9" style="margin-bottom: 3px;"><?php echo trim($contato["cont_cargo"]);?></p>
+						        		<?php endif;?>
+						        		<?php if(!empty($contato["cont_email"])): ?>
+						        			<label class="col-lg-3"><strong>Email: </strong></label>
+						        			<p class="form-control col-lg-9" style="margin-bottom: 3px;"><?php echo trim($contato["cont_email"]); ?></p>
+						        		<?php endif;?>
+						        		<?php if(!empty($contato["cont_telemovel"])): ?>
+						        			<label class="col-lg-3"><strong>Telefone: </strong></label>
+						        			<p class="form-control col-lg-9" style="margin-bottom: 3px;"><?php echo trim($contato["cont_telemovel"]); ?></p>
+						        		<?php endif;?>
+						        	</div>
+						        	<hr class="dotted tall mb-2 mt-2">
+					      		<?php endforeach; ?>
+					      		<?php endif; ?>
+				        	</div>
+				      	</div>
+						<h4 class="mb-3"><strong>Observação</strong></h4>
+						<div class="form-row mb-3">
+							<div class="form-group col-md-12">
+								<span class="form-control"><?php echo str_replace("|", "/", $view_cliente[0]["cli_descricao"]); ?></span>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="inputCity"><strong>Status</strong></label>
+								<span class="form-control"><?php echo ($view_cliente[0]["cli_status"] == "sim") ? "ATIVO" : "INATIVO"; ?></span>
+							</div>
+							<div class="form-group col-md-6">
+								<label for="inputCity"><strong>RGPD</strong></label>
+								<span class="form-control">
+									<?php
+									if(empty($view_cliente[0]["cli_rgpd"])):
+										echo "";
+									else:
+										echo ($view_cliente[0]["cli_rgpd"] == true) ? "CONCORDO" : "NÃO CONCORDO";
+									endif;
+									?>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="formacao" class="tab-pane <?php echo $tab_formacao; ?>">
+					<?php if(in_array('per_treinamento', $habilitados)): ?>
+					<div class="form-row pull-right">
+						<div class="col-md-12 text-right mt-3">
+							<a href="/backend/formacao/registar/ref/<?php echo $view_cliente[0]["cli_referencia"]; ?>" id="formacaoCad" class="btn btn-primary pull-right">Criar formação</a>
+						</div>
+					</div>
+					<?php endif; ?>
+					<div class="p-3">
+						<h4 class="mb-3"><strong>Formações</strong></h4>
+						<?php $code = rand(5000, 1000000);?>
+						
+						<router base="formacao/listar">
+						<table class="table dataTable table-bordered table-striped mb-0" id="">
+		                    <thead>
+		                        <tr>
+									<th>DATA</th>
+									<th>TIPO</th>
+									<th>FORMADOR</th>
+									<th>FORMANDOS</th>
+									<th>EVOLUÇÃO</th>
+									<th>AÇÕES</th>
+		                        </tr>
+		                    </thead>
+		                    <tbody>
+		                 	<?php
+								if(isset($view_formacoes["lista"])):
+									foreach ($view_formacoes["lista"] as $formacao): ?>
+									<tr id="<?php echo $formacao['form_id'] ?>">
+										<td>
+											<?php if(in_array('per_treinamento', $habilitados)): ?>	
+											<a id="formacaoAlt" class="text-default" href="/backend/formacao/alterar/ref/<?php echo $formacao['form_ref'] ?>">
+												<?php echo date("d/m/Y", strtotime($formacao['form_data_formacao'])); ?>
+											</a>
+											<?php else: ?>											
+												<?php echo date("d/m/Y", strtotime($formacao['form_data_formacao'])); ?>											
+											<?php endif; ?>
+										</td>
+										<td>
+											<?php echo utf8_encode($view_formacoes["tipos_formacao"][$formacao["form_tipo"]]["form_tipo_nome"]) ?>
+										</td>
+										<td>
+											<strong><?php echo utf8_encode($view_formacoes["formadores"][$formacao["form_formador_id"]]["usu_nome"]); ?></strong>
+										</td>
+										<td class="text-center">
+											<?php 
+												if(!empty($formacao["form_formandos"])):
+													echo count(explode(",", $formacao["form_formandos"])); 
+												else:
+													echo 0;
+												endif;
+											?>
+										</td>
+										<td>
+											<?php $progress = ceil(($formacao["form_tipo"] / $view_formacoes["total_etapas"]) * 100) ?>
+											<div class="progress progress-sm progress-half-rounded m-2 light">
+												<div class="progress-bar progress-bar-<?php echo $progress == 100 ? "success" : "info" ?>" role="progressbar" aria-valuenow="<?php echo $progress ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $progress; ?>%;">
+													<?php echo $progress ?>%
+												</div>
+											</div>
+										</td>
+										<td class="actions" align="left">											
+											<a href="javascript:void(0);" class="btn-list-formando" data-id="<?php echo $formacao['form_ref'];?>" title="Visualizar"> <i class="fa fa-search fa-lg"></i> </a>
+											<?php if(in_array('per_treinamento', $habilitados)): ?>											
+											<input type="hidden" value="<?php echo $formacao['form_id'] ?>" />
+											<a href="/backend/formando/listar/ref/<?php echo $formacao['form_ref'];?>" class="btn-list-formando" data-id="<?php echo $formacao['form_id'];?>" title="Formandos"> <i class="fa fa-users fa-lg"></i> </a>
+											<a href="#modalAnim" class="btn-list-delete" data-id="<?php echo $formacao['form_id'];?>" data-name="<?php echo $formacao['form_id'];?>" title="Apagar"> <i class="fa fa-trash-o fa-lg"></i> </a>
+											<input type="hidden" class="icon" value="<?php echo $formacao['form_id'] ?>" />
+											<?php endif; ?>
+										</td>
+									</tr>
+									<?php endforeach;
+								endif;
+							?>
+		                    </tbody>
+		                </table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-12 col-lg-4 col-xl-4 mb-4 mb-xl-4">
+		<?php 
+			if($_SESSION["nivel_acesso"] != 2): 
+				require_once("partials/calendar-tasks.phtml"); 		
+				$remove_top = 3;
+			else:
+				$remove_top = 0;
+			endif; 
+		?>
+		<section class="card mt-<?php echo $remove_top; ?>">
+			<!-- leads -->
+			<div class="card-body client-main-lead">
+				<?php if($view_perfil_complete['porcentagem'] != 100): ?>
+				<div class="widget-toggle-expand mb-3 widget-collapsed">
+					<div class="widget-header">
+						<?php
+							$title_perfil_porc = ($view_perfil_complete['porcentagem'] != 100) ? "Perfil Incompleto" : "Perfil Completo" ;
+						?>
+						<h5 class="mb-2"><?php echo $title_perfil_porc; ?></h5>
+						<div class="widget-toggle">+</div>
+					</div>
+					<div class="widget-content-collapsed">
+						<div class="progress progress-xs light">
+							<div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $view_perfil_complete['porcentagem'] ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $view_perfil_complete['porcentagem'] ?>%;">
+								<?php echo $view_perfil_complete['porcentagem'] ?>%
+							</div>
+						</div>
+					</div>
+					<div class="widget-content-expanded">
+						<ul class="simple-todo-list mt-3">
+							<?php if(!empty($view_perfil_complete['title'])): ?>
+								<?php foreach ($view_perfil_complete['title'] as $title): ?>
+									<li><?php echo $title; ?></li>
+								<?php endforeach; ?>
+							<?php endif; ?>
+						</ul>
+					</div>
+				</div>
+				<?php endif; ?>
+				<hr class="dotted short">
+				<h5 class="mb-2 mt-3">Informações</h5>
+				<ul class="simple-bullet-list mb-3">
+					<?php if(!empty($view_cliente[0]["cli_telefone"])): ?>
+						<li class="blue">
+							<span class="title">Telefone</span>
+							<span class="description truncate">(+351) <?php echo $view_cliente[0]["cli_telefone"]; ?></span>
+						</li>
+					<?php endif; ?>
+					<?php if(!empty($view_cliente[0]["cli_email"])): ?>
+						<li class="blue">
+							<span class="title">Email</span>
+							<span class="description truncate"><?php echo $view_cliente[0]["cli_email"]; ?></span>
+						</li>
+					<?php endif; ?>
+					<?php if(!empty($view_cliente[0]["cli_tipo"])): ?>
+						<li class="blue">
+							<span class="title">Tipo</span>
+							<span class="description truncate"><?php echo $view_cliente[0]["cli_tipo"]; ?></span>
+						</li>
+					<?php endif; ?>
+					<?php if(!empty($view_cliente[0]["cli_status"])): ?>
+						<li class="blue">
+							<span class="title">Status</span>
+							<span class="description truncate"><?php echo ($view_cliente[0]["cli_status"] == "sim") ? "ATIVO" : "INATIVO"; ?></span>
+						</li>
+					<?php endif; ?>
+				</ul>
+				<hr class="dotted short">
+			<!-- 	<div class="form-row pull-right mb-4">
+					<div class="col-md-12 text-right mt-3">
+						<a href="/backend/cliente/alterar/ref/<?php //echo $view_cliente[0]["cli_referencia"]; ?> " class="btn btn-primary">Editar Dados</a>
+					</div>
+				</div> -->
+				<?php if(!empty($view_contactos_lead)): ?>
+				<h5 class="mb-2 mt-4">Pessoa de contacto</h5>
+				<header class="card-header">
+					
+					<div class="widget-profile-info">
+						<div class="profile-picture">
+							<img src="/images/default_avatar.png">
+						</div>
+						<div class="profile-info">
+							<h4 class="name font-weight-semibold"><?php echo $view_contactos_lead["cont_nome"] ?></h4>
+							<h5 class="role"><a href="mailto:<?php echo $view_contactos_lead["cont_email"]; ?>"><?php echo $view_contactos_lead["cont_email"]; ?></a></h5>
+							<div class="profile-footer">
+								<?php if(!empty($view_contactos_lead["cont_telemovel"])): ?>
+								(<?php echo $view_contactos_lead["cont_telemovel"] ?>)
+								<?php endif; ?>
+							</div>
+						</div>
+					</div>
+				</header>
+				<hr class="dotted short">
+				<h5 class="mb-2 mt-3">Situação</h5>
+				<strong><?php echo utf8_encode($view_lista_leads[$view_contactos_lead["cont_lead_status"]]["lead_nome"]) ?></strong>
+				<?php $progresso = ceil((($view_contactos_lead["cont_lead_status"]) / count($view_lista_leads) ) * 100); ?>
+				<div class="progress progress-xl light">					
+					<div class="progress-bar <?php echo "progress-bar-".strtolower($view_lista_leads[$view_contactos_lead["cont_lead_status"]]["lead_nome"]); ?>" role="progressbar" aria-valuenow="<?php echo $progresso ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $progresso ?>%;">
+						<span class="sr-only"><?php echo $progresso ?>%</span>
+					</div>
+				</div>
+				<!-- /leads -->
+				<?php endif; ?>
+			</div>
+			
+		</section>
+		
+	</div>
+</div>

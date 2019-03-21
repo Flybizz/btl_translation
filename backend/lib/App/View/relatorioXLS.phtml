@@ -1,0 +1,58 @@
+<?php 
+    
+    require_once 'backend/lib/App/PHPExcel.php';
+
+    $objPHPExcel = new PHPExcel();
+
+    $objPHPExcel->setActiveSheetIndex(0)->setCellValue('A1', 'Nome');
+    $objPHPExcel->setActiveSheetIndex(0)->setCellValue('B1', 'Idade');
+
+    $objPHPExcel->setActiveSheetIndex(0)->setCellValue('A2','nome1');
+    $objPHPExcel->setActiveSheetIndex(0)->setCellValue('B2','idade1');
+
+    $objPHPExcel->setActiveSheetIndex(0)->setCellValue('A3','nome2');
+    $objPHPExcel->setActiveSheetIndex(0)->setCellValue('B3','idade2');
+
+    $objPHPExcel->setActiveSheetIndex(0)->setCellValue('A4','nome2');
+    $objPHPExcel->setActiveSheetIndex(0)->setCellValue('B4','idade2');
+
+    // $linha=2;
+    // foreach ($dadosDoBanco as $item){
+    //     $objPHPExcel->setActiveSheetIndex(0)->setCellValue('A'.$linha, $item['nome']);
+    //     $objPHPExcel->setActiveSheetIndex(0)->setCellValue('B'.$linha, $item['idade']);
+    //     $linha++;
+    // }
+
+    // Rename worksheet
+    $objPHPExcel->getActiveSheet()->setTitle('Excel');
+
+
+    // Set active sheet index to the first sheet, so Excel opens this as the first sheet
+    $objPHPExcel->setActiveSheetIndex(0);
+
+
+    // Redirect output to a client’s web browser (Excel5)
+    header('Content-Type: application/vnd.ms-excel');
+    header('Content-Disposition: attachment;filename="Export_Excel_'.date('Y-m-d').'.xls"');
+    //readfile("Export_Excel_".date('Y-m-d').".xls");
+    header('Cache-Control: max-age=0');
+    // If you're serving to IE 9, then the following may be needed
+    header('Cache-Control: max-age=1');
+
+    // If you're serving to IE over SSL, then the following may be needed
+    header ('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
+    header ('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT'); // always modified
+    header ('Cache-Control: cache, must-revalidate'); // HTTP/1.1
+    header ('Pragma: public'); // HTTP/1.0
+
+
+    $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+    $objWriter->save('php://output');
+    exit;
+
+    // $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+    // ob_end_clean();
+    // $objWriter->save('php://output');
+
+
+?>

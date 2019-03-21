@@ -1,0 +1,87 @@
+<div class="form-group">
+  <label class="control-label" for="cli_repres">Vendedor</label>
+  <select name="cli_repres" id="cli_repres" class="form-control">
+    <option value="0">-</option>
+    <?php
+      if(isset($view_representante)):
+          foreach ($view_representante as $rep): ?>
+              <option value="<?php echo $rep['usuario_id'] ?>"><?php echo utf8_encode($rep['usuario_nome']) ?></option>
+      <?php 
+          endforeach;
+      endif;
+    ?>
+  </select>
+</div>
+<div class="form-group">
+  <label class="control-label" for="cli_razao">Razão Social</label>
+  <input type="text" class="form-control" name="cli_razao" id="cli_razao">
+</div>
+<div class="form-group">
+  <label class="control-label" for="cli_fantasia">Fantasia</label>
+  <input type="text" class="form-control" name="cli_fantasia" id="cli_fantasia">
+</div>
+<div class="form-group">
+  <label class="control-label" for="cli_razao">CNPJ</label>
+  <input type="text" class="form-control" name="cli_cnpj" id="cli_cnpj" maxlength="18" required pattern="\d{2}.?\d{3}.?\d{3}/?\d{4}-?\d{2}">
+  <span id="msn2"></span>
+  <span id="msn3" class="span4"></span>
+  <input type="hidden" id="valida" value="1">      
+</div>
+<div class="form-group">
+  <label class="control-label" for="cli_insc">Insc. Estadual</label>
+  <input type="text" class="form-control" name="cli_insc" id="cli_insc">
+</div>
+<div class="form-group">
+  <label class="control-label" for="cli_contato">Contato</label>
+  <input type="text" class="form-control" name="cli_contato" id="cli_contato">
+</div>
+<div class="form-group">
+  <label class="control-label" for="cli_email">Email</label>
+  <input type="text" class="form-control" name="cli_email" id="cli_email">
+  <span name="msnEmail" id="msnEmail" style="background-color:#FFFBF0; font-size:10px; font-family:Verdana, Geneva, sans-serif; text-shadow:1px 1px 1px #888;"></span>
+</div>
+<div class="form-group">
+  <label class="control-label" for="cli_cep">CEP</label>
+  <input type="text" class="form-control" name="cli_cep" id="cli_cep">
+</div>
+<div class="form-group">
+  <label class="control-label" for="cli_endereco">Endereço</label>
+  <input type="text" class="form-control" name="cli_endereco" id="cli_endereco">
+</div>
+<div class="form-group">
+  <label class="control-label" for="cli_bairro">Bairro</label>
+  <input type="text" class="form-control" name="cli_bairro" id="cli_bairro">
+</div>
+<div class="form-group">
+  <label class="control-label" for="cli_cidade">Cidade</label>
+  <input type="text" class="form-control" name="cli_cidade" id="cli_cidade">
+</div>
+<div class="form-group">
+  <label class="control-label" for="cli_uf">UF</label>
+  <input type="text" class="form-control" name="cli_uf" id="cli_uf">
+</div>
+<div class="form-group">
+  <label class="control-label" for="cli_telefone">Telefone1</label>
+  <input type="text" class="form-control" name="cli_telefone" id="cli_telefone" placeholder='(XX)XXXX-XXXX'>
+</div>
+<div class="form-group">
+  <label class="control-label" for="cli_telefone2">Telefone2</label>
+  <input type="text" class="form-control" name="cli_telefone2" id="cli_telefone2" placeholder='(XX)XXXX-XXXX'>
+</div>
+<div class="form-group">
+  <label class="control-label" for="cli_celular">Celular</label>
+  <input type="text" class="form-control" name="cli_celular" id="cli_celular" placeholder='(XX)XXXX-XXXX'>
+</div>
+<div class="form-group">
+  <label class="control-label" for="cli_fax">Fax</label>
+  <input type="text" class="form-control" name="cli_fax" id="cli_fax" placeholder='(XX)XXXX-XXXX'>
+</div>
+<div class="form-group">
+  <label class="control-label" for="cli_frete">Frete</label>
+  <input type="text" class="form-control" name="cli_frete" id="cli_frete" placeholder=''>
+</div>
+<div class="form-group">
+  <label class="control-label" for="cli_obs">Obs</label>
+  <textarea  cols="43" rows="5" class="form-control" name="cli_obs" id="cli_obs" placeholder=''></textarea>
+</div>
+<div id="ref"></div>

@@ -1,0 +1,125 @@
+<router base="configuracao/pageconstrucao">
+<?php $languageLIST = unserialize (LANGUAGE_LIST); ?>
+
+<header class="page-header">
+    <h2>Manutenção</h2>
+
+    <div class="right-wrapper text-right">
+        <ol class="breadcrumbs">
+            <li>
+                <a href="/">
+                    <i class="fa fa-home"></i>
+                </a>
+            </li>
+            <li><span>Home</span></li>
+            <li><span>Manutenção</span></li>
+        </ol>
+
+        <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-calendar"></i></a>
+    </div>
+</header>
+
+
+<!-- start: page -->
+<section class="content-with-menu content-with-menu-has-toolbar media-gallery">
+    <div class="content-with-menu-container">
+        <div class="inner-menu-toggle">
+            <a href="#" class="inner-menu-expand" data-open="inner-menu">
+                Show Bar <i class="fa fa-chevron-right"></i>
+            </a>
+        </div>
+        
+        <menu id="content-menu" class="inner-menu" role="menu">
+            <div class="nano">
+                <div class="nano-content">
+        
+                    <div class="inner-menu-toggle-inside">
+                        <a href="#" class="inner-menu-collapse">
+                            <i class="fa fa-chevron-up visible-xs-inline"></i><i class="fa fa-chevron-left hidden-xs-inline"></i> Hide Bar
+                        </a>
+                        <a href="#" class="inner-menu-expand" data-open="inner-menu">
+                            Show Bar <i class="fa fa-chevron-down"></i>
+                        </a>
+                    </div>
+        
+                    <div class="inner-menu-content">
+          
+                        <div class="sidebar-widget m-0">
+                            <div class="widget-header clearfix">
+                                <h6 class="title float-left mt-1">MENU</h6>
+                         <!--        <div class="float-right">
+                                    <a href="/backend/idioma/registar" class="btn btn-dark btn-sm btn-widget-act">TESTE</a>
+                                </div> -->
+                            </div>
+
+                            <!-- config navigation menu -->
+                            <?php include_once("partials/nav-config-menu.phtml") ?>
+                            <!-- /config navigation menu -->
+                            
+                        </div>        
+                    </div>
+                </div>
+            </div>
+        </menu>
+        <div class="inner-body mg-main">
+        
+            <div class="inner-toolbar clearfix">
+                <ul>
+                    <li class="col-md-12 pb-3">
+                        <h3 class="mt-0 mb-0 text-light font-weight-bold pull-left">Manutenção</h3>
+                        <a name="bt_cfg" id="bt_cfg" href="javascript:;" class="btn text-light btn-primary btn-sm btn-widget-act pull-right mt-0 mb-4" style="margin-top: -5px!important;">Guardar</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="invoice" style="padding-bottom: 150px;">     
+              <div class="row">
+                <div class="col-md-9">
+                  <section class="card mb-4">
+                    <header class="card-header">
+                      <h2 class="card-title">Informações</h2>
+                    </header>
+                    <div class="card-body">
+                      <form class="form-horizontal form-bordered" method="post">
+
+                          <div class="form-group row">
+                            <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Título</label>
+                            <div class="col-lg-9">
+                                <input type="text" id="cfg_pc_titulo" class="form-control" value="<?php echo str_replace('|', '/', $view_config_lista[0]['D001_PC_titulo']); ?>">
+                            </div>
+                          </div>
+
+                          <div class="form-group row">
+                            <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Descrição</label>
+                            <div class="col-lg-9">
+                                <textarea class="form-control" id="cfg_pc_descricao"><?php echo str_replace('|', '/', $view_config_lista[0]['D001_PC_descricao']); ?></textarea>
+                            </div>
+                          </div>
+
+                          <div class="form-group row">
+                            <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Status</label>
+                            <div class="col-lg-9">
+                                <?php
+                                if ($view_config_lista[0]['D001_PC_status'] == "true"):
+                                    $checked = "checked";
+                                else:
+                                    $checked = "";
+                                endif;
+                                ?>
+
+                                <div class="switch switch-sm switch-primary">
+                                  <input type="checkbox" id="cfg_pc_status" <?php echo $checked; ?> name="switch" data-plugin-ios-switch />
+                                </div>
+                                
+                            </div>
+                          </div>
+                         
+                      </form>
+                    </div>
+                  </section>            
+                </div>
+              </div>  
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end: page -->
