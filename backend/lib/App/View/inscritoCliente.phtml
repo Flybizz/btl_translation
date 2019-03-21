@@ -32,9 +32,9 @@
                     <div class="col-sm-6 mt-3">
                         <div class="m-0 mb-4 pull-right">
                             <?php if($_SESSION['nivel_acesso'] == 1): ?>
-                            <a href="#modalAnim" id="uploadCsv" class="mb-1 mt-1 mr-1 btn btn-default"> <strong>Upload CSV</strong></a>
+                            <a href="#modalAnim" id="uploadCsv" class="mb-1 mt-1 mr-1 btn btn-default"> <strong><?php echo translate("Upload CSV"); ?></strong></a>
                             <?php endif; ?>
-                            <a href="/backend/cliente/registar/lang/<?php echo $LANGUAGE_DEFAULT[0]; ?>" id="cliCad" class="mb-1 mt-1 mr-1 btn btn-primary"> <strong>Adicionar</strong></a>                            
+                            <a href="/backend/cliente/registar/lang/<?php echo $LANGUAGE_DEFAULT[0]; ?>" id="cliCad" class="mb-1 mt-1 mr-1 btn btn-primary"> <strong><?php echo translate("Adicionar"); ?></strong></a>                            
                         </div>
                     </div>
                 </div>
@@ -59,22 +59,22 @@
                   ?>
                   <tr id="<?php echo $cliente['cli_id'] ?>">
                       <td><?php echo $cliente['cli_referencia']; ?></td>
-                      <td><a class="text-default" href="/backend/cliente/perfil/ref/<?php echo $cliente['cli_referencia'];?>" title="Perfil"><?php echo $cliente['cli_nome']; ?></a></td>
+                      <td><a class="text-default" href="/backend/cliente/perfil/ref/<?php echo $cliente['cli_referencia'];?>" title="<?php echo translate("Perfil") ?>"><?php echo $cliente['cli_nome']; ?></a></td>
                       <td><?php echo $cliente['cli_email']; ?></td>
                       <td><?php echo $cliente['cli_telefone']; ?></td>
                       <td>
                         <?php echo $cliente['cli_tipo']; ?>
                       </td>
                       <td class="actions">
-                        <a class="text-default" href="/backend/cliente/perfil/ref/<?php echo $cliente['cli_referencia'];?>" title="Perfil" >
+                        <a class="text-default" href="/backend/cliente/perfil/ref/<?php echo $cliente['cli_referencia'];?>" title="<?php echo translate("Perfil") ?>" >
                           <i class="fa fa-user fa-lg"></i>
                         </a>
-                        <a class="text-default" href="/backend/cliente/alterar/ref/<?php echo $cliente['cli_referencia'];?>" title="Alterar" >
+                        <a class="text-default" href="/backend/cliente/alterar/ref/<?php echo $cliente['cli_referencia'];?>" title="<?php echo translate("Alterar") ?>" >
                           <i class="fa fa-pencil fa-lg"></i>
                         </a>
                         <?php if( $_SESSION['nivel_acesso'] == 1 || $_SESSION['nivel_acesso'] == 2 ): ?>
                         <input type="hidden" class="icon" value="<?php echo $cliente['cli_id']?>" />
-                        <a  class="cliDel" data-name="<?php echo $cliente['cli_nome'];?>" href="#modalAnim" title="Apagar">
+                        <a  class="cliDel" data-name="<?php echo $cliente['cli_nome'];?>" href="#modalAnim" title="<?php echo translate("Apagar") ?>">
                             <i class="fa fa-trash-o fa-lg"></i>
                         </a>
                         <?php endif; ?>

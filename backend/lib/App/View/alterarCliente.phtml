@@ -11,7 +11,7 @@ CKFinder::SetupCKEditor($CKEditor, '/backend/public/vendor/ckfinder/');
 <input id="idioma" type="hidden" value="<?php echo $LANGUAGE_DEFAULT[0]; ?>">
 
 <header class="page-header">
-  <h2>Clientes</h2>
+  <h2><?php echo translate("Clientes"); ?></h2>
   <div class="right-wrapper text-right">
   <?php $LANGUAGE_DEFAULT = unserialize(LANGUAGE_DEFAULT); ?>
       
@@ -30,7 +30,7 @@ CKFinder::SetupCKEditor($CKEditor, '/backend/public/vendor/ckfinder/');
       <header class="clearfix">
           <div class="row">
               <div class="col-sm-6 mt-3">
-                  <h2 class="h2 mt-0 mb-4 text-dark font-weight-bold">Alterar Cliente</h2>
+                  <h2 class="h2 mt-0 mb-4 text-dark font-weight-bold"><?php echo translate("Alterar Cliente"); ?></h2>
               </div>
           </div>
       </header>
@@ -39,20 +39,20 @@ CKFinder::SetupCKEditor($CKEditor, '/backend/public/vendor/ckfinder/');
         <div class="col-xl-7 col-md-12">
           <section class="card mb-4">
             <header class="card-header">
-              <h2 class="card-title">Dados Pessoais</h2>
+              <h2 class="card-title"><?php echo translate("Dados Pessoais"); ?></h2>
             </header>
             <div class="card-body">
               <form class="form-horizontal form-bordered" method="post">
        
                 <div class="form-group row">
-                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Referência</label>
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Referência"); ?></label>
                   <div class="col-lg-9">
                     <input type="text" id="cli_referencia" class="form-control" value="<?php echo $view_cliente[0]['cli_referencia'];?>" disabled>
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Saudação</label>
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Saudação"); ?></label>
                   <div class="col-lg-9">
                     <select id="cli_saudacao" class="form-control">
                       <?php
@@ -71,14 +71,14 @@ CKFinder::SetupCKEditor($CKEditor, '/backend/public/vendor/ckfinder/');
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Nome Completo</label>
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Nome Completo"); ?></label>
                   <div class="col-lg-9">
                     <input type="text" id="cli_nome" class="form-control" value="<?php echo $view_cliente[0]['cli_nome'];?>" required>
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Telefone</label>
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Nome Completo"); ?></label>
                   <div class="col-lg-9">
                     <div class="input-group">
                       <span class="input-group-addon">
@@ -90,7 +90,7 @@ CKFinder::SetupCKEditor($CKEditor, '/backend/public/vendor/ckfinder/');
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Email</label>
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Email"); ?></label>
                   <div class="col-lg-9">
                     <div class="input-group">
                       <span class="input-group-addon">
@@ -102,7 +102,7 @@ CKFinder::SetupCKEditor($CKEditor, '/backend/public/vendor/ckfinder/');
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Website</label>
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Website"); ?></label>
                   <div class="col-lg-9">
                     <div class="input-group">
                       <span class="input-group-addon">
@@ -114,7 +114,7 @@ CKFinder::SetupCKEditor($CKEditor, '/backend/public/vendor/ckfinder/');
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">NIF / NIPC</label>
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("NIF / NIPC"); ?></label>
                   <div class="col-lg-9">
                     <div class="input-group">
                       <span class="input-group-addon">
@@ -129,48 +129,48 @@ CKFinder::SetupCKEditor($CKEditor, '/backend/public/vendor/ckfinder/');
             </div>  
 
             <header class="card-header">
-              <h2 class="card-title">Endereço</h2>
+              <h2 class="card-title"><?php echo translate("Endereço"); ?></h2>
             </header>
             <div class="card-body">
               <form class="form-horizontal form-bordered">
                 
                 <div class="form-group row">
-                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Morada</label>
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Morada"); ?></label>
                   <div class="col-lg-9">
                     <input type="text" id="cli_rua" class="form-control" value="<?php echo $view_cliente[0]['cli_rua'];?>" required>
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Número</label>
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Número"); ?></label>
                   <div class="col-lg-9">
                     <input type="text" id="cli_numero" class="form-control" value="<?php echo $view_cliente[0]['cli_numero'];?>" required>
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Andar</label>
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Andar"); ?></label>
                   <div class="col-lg-9">
                     <input type="text" id="cli_andar" class="form-control" value="<?php echo $view_cliente[0]['cli_andar'];?>" required>
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">CP</label>
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("CP"); ?></label>
                   <div class="col-lg-9">
                     <input type="text" id="cli_cp" class="form-control" value="<?php echo $view_cliente[0]['cli_cp'];?>" required>
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Localidade</label>
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Localidade"); ?></label>
                   <div class="col-lg-9">
                     <input type="text" id="cli_localidade" class="form-control" value="<?php echo $view_cliente[0]['cli_localidade'];?>" required>
                   </div>
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Distrito</label>
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Distrito"); ?></label>
                   <div class="col-lg-9">
                     <select class="form-control" id="cli_distrito">
                         <option value="0"></option>
@@ -191,7 +191,7 @@ CKFinder::SetupCKEditor($CKEditor, '/backend/public/vendor/ckfinder/');
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Descrição</label>
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Descrição"); ?></label>
                   <div class="col-lg-9">
                     <?php
                       $initialValue = str_replace("|", "/", $view_cliente[0]['cli_descricao']);
@@ -202,7 +202,7 @@ CKFinder::SetupCKEditor($CKEditor, '/backend/public/vendor/ckfinder/');
 
 
                 <div class="form-group row">
-                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Google Maps</label>
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Google Maps"); ?></label>
                   <div class="col-lg-9">
                     <input type="text" id="cli_google_map" class="form-control" value="<?php echo $view_cliente[0]['cli_google_map'];?>" required>
                   </div>
@@ -216,13 +216,13 @@ CKFinder::SetupCKEditor($CKEditor, '/backend/public/vendor/ckfinder/');
         <div class="col-xl-5 col-md-12">
           <section class="card mb-4">
               <header class="card-header">
-              <h2 class="card-title">Informações Gerais </h2>
+              <h2 class="card-title"><?php echo translate("Informações Gerais"); ?></h2>
             </header>
             <div class="card-body">
               <form class="form-horizontal form-bordered" method="post">
 
                 <div class="form-group row">
-                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Tipo de cliente</label>
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Tipo de cliente"); ?></label>
                   <div class="col-lg-6">
                     <select id="cli_tipo" class="form-control">
                         <option value="0"></option>
@@ -243,7 +243,7 @@ CKFinder::SetupCKEditor($CKEditor, '/backend/public/vendor/ckfinder/');
                 </div>       
 
                 <div class="form-group row">
-                  <label class="col-lg-3 control-label text-lg-right pt-2">Área de negócio</label>
+                  <label class="col-lg-3 control-label text-lg-right pt-2"><?php echo translate("Área de negócio"); ?></label>
                   <div class="col-lg-6">
                     <div class="input-group btn-group">
                       <span class="input-group-addon">
@@ -269,7 +269,7 @@ CKFinder::SetupCKEditor($CKEditor, '/backend/public/vendor/ckfinder/');
                 </div>         
 
                 <div class="form-group row">
-                  <label class="col-lg-3 control-label text-lg-right pt-2">Produtos</label>
+                  <label class="col-lg-3 control-label text-lg-right pt-2"><?php echo translate("Produtos"); ?></label>
                   <div class="col-lg-6">
                     <div class="input-group btn-group">
                       <span class="input-group-addon">
@@ -295,7 +295,7 @@ CKFinder::SetupCKEditor($CKEditor, '/backend/public/vendor/ckfinder/');
                 </div>
 
                 <div class="form-group row">
-                  <label class="col-lg-3 control-label text-lg-right pt-2">Vend. Associados</label>
+                  <label class="col-lg-3 control-label text-lg-right pt-2"><?php echo translate("Vend. Associados"); ?></label>
                   <div class="col-lg-6">
                     <div class="input-group btn-group">
                       <span class="input-group-addon">
@@ -321,7 +321,7 @@ CKFinder::SetupCKEditor($CKEditor, '/backend/public/vendor/ckfinder/');
                 </div>
                             
                 <div class="form-group row" style="display: <?php echo $_SESSION["nivel_acesso"] < 3 ? "flex" : "none"; ?>">
-                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Vendedor</label>
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Vendedor"); ?></label>
                   <div class="col-lg-6">
                     <select id="cli_vendedor" class="form-control">
                         <option value="0"></option>
@@ -342,7 +342,7 @@ CKFinder::SetupCKEditor($CKEditor, '/backend/public/vendor/ckfinder/');
                 </div> 
 
                 <div class="form-group row">
-                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Status</label>
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Status"); ?></label>
                   <div class="col-lg-6">
 
                     <div class="btn-group" data-toggle="buttons">
@@ -360,10 +360,10 @@ CKFinder::SetupCKEditor($CKEditor, '/backend/public/vendor/ckfinder/');
                         endif;
                       ?>
                       <label class="btn btn-primary <?php echo $active1; ?>" aria-pressed="true">
-                        <input type="radio" name="cli_status" id="option1" value="sim" <?php echo $checked1; ?>> Ativo
+                        <input type="radio" name="cli_status" id="option1" value="sim" <?php echo $checked1; ?>> <?php echo translate("Ativo"); ?>
                       </label>
                       <label class="btn btn-primary <?php echo $active2; ?>" aria-pressed="true">
-                        <input type="radio" name="cli_status" id="option2" value="nao"  <?php echo $checked2; ?>> Inativo
+                        <input type="radio" name="cli_status" id="option2" value="nao"  <?php echo $checked2; ?>> <?php echo translate("Inativo"); ?>
                       </label>
 
                     </div>
@@ -372,7 +372,7 @@ CKFinder::SetupCKEditor($CKEditor, '/backend/public/vendor/ckfinder/');
 
 
                 <div class="form-group row" style="display: none;">
-                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">RGPD</label>
+                  <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("RGPD"); ?></label>
                   <div class="col-lg-6">
                       <div class="btn-group" data-toggle="buttons">
 
@@ -404,10 +404,10 @@ CKFinder::SetupCKEditor($CKEditor, '/backend/public/vendor/ckfinder/');
                           <input type="radio" name="cli_rgpd" id="option1" value="" <?php echo $rgpd_checked1; ?>> ?
                         </label>
                         <label class="btn btn-primary <?php echo $rgpd_active2; ?>" aria-pressed="true">
-                          <input type="radio" name="cli_rgpd" id="option2" value="true"  <?php echo $rgpd_checked2; ?>> Concordo
+                          <input type="radio" name="cli_rgpd" id="option2" value="true"  <?php echo $rgpd_checked2; ?>> <?php echo translate("Concordo"); ?>
                         </label>
                         <label class="btn btn-primary <?php echo $rgpd_active3; ?>" aria-pressed="true">
-                          <input type="radio" name="cli_rgpd" id="option3" value="false"  <?php echo $rgpd_checked3; ?>> Não concordo
+                          <input type="radio" name="cli_rgpd" id="option3" value="false"  <?php echo $rgpd_checked3; ?>> <?php echo translate("Não concordo"); ?>
                         </label>
                       </div>
                   </div>
@@ -415,7 +415,7 @@ CKFinder::SetupCKEditor($CKEditor, '/backend/public/vendor/ckfinder/');
 
                 <div class="form-group row">
                   <label class="col-sm-3 control-label text-sm-right pt-2">
-                    <p class="p-0 m-0">Logótipo</p>
+                    <p class="p-0 m-0"><?php echo translate("Logótipo"); ?></p>
                     <span class="pull-right"> 250 x 250 (px)</span>
                   </label>
                   
@@ -464,7 +464,7 @@ CKFinder::SetupCKEditor($CKEditor, '/backend/public/vendor/ckfinder/');
             </div>
 
             <header class="card-header">
-              <h2 class="card-title">Contactos</h2>
+              <h2 class="card-title"><?php echo translate("Contactos"); ?></h2>
             </header>
             <div class="card-body">
               <form class="form-horizontal form-bordered">
@@ -480,7 +480,7 @@ CKFinder::SetupCKEditor($CKEditor, '/backend/public/vendor/ckfinder/');
                           $info = '
                           <div id="row'.$row.'" class="form-group row">  
                               <label class="col-lg-12 control-label text-lg-right pt-2" for="inputDefault">
-                                  <h4 class="pull-left"> <strong>Contacto '.$row.'</strong></h4>                
+                                  <h4 class="pull-left"> <strong>' . translate("Contacto") . ' ' .$row.'</strong></h4>                
                                   <a href="#modalAnim" data-remove="remove" data-id="'.$row.'" data-name="'.$contato["cont_nome"].'" data-db="'.$contato["cont_id"].'" class="btn btn-primary" style="position: absolute; top:10px; right:15px;"> <i class="fa fa-trash-o fa-lg"></i> </a>
                               </label>
                               <input type="hidden" id="cont_id_'.$row.'" data-tipo="id" class="form-control" value="'.$contato["cont_id"].'"> 
@@ -488,13 +488,13 @@ CKFinder::SetupCKEditor($CKEditor, '/backend/public/vendor/ckfinder/');
 
                                 <div class="col-lg-12" data-tipo="contato">
                                   <div class="form-group row" style="position:relative;">                                  
-                                      <label class="col-lg-3 control-label text-lg-right pt-2">Nome</label>
+                                      <label class="col-lg-3 control-label text-lg-right pt-2">'.translate("Nome").'</label>
                                       <div class="col-lg-6">
                                         <input type="text" id="cont_nome_'.$row.'" data-tipo="nome" class="form-control" value="'.$contato["cont_nome"].'">
                                       </div>
                                   </div>
                                   <div class="form-group row" style="position:relative;">
-                                      <label class="col-lg-3 control-label text-lg-right pt-2">Cargo</label>   
+                                      <label class="col-lg-3 control-label text-lg-right pt-2">'.translate("Cargo").'</label>   
                                       <div class="col-lg-6">                 
                                         <select id="cont_cargo_'.$row.'" data-tipo="cargo" class="form-control">
                                           <option value=""></option> ';
@@ -524,7 +524,7 @@ CKFinder::SetupCKEditor($CKEditor, '/backend/public/vendor/ckfinder/');
                                       </div>  
                                   </div>  
                                   <div class="form-group row" style="position:relative;">
-                                      <label class="col-lg-3 control-label text-lg-right pt-2">Especialidade</label>   
+                                      <label class="col-lg-3 control-label text-lg-right pt-2">'.translate("Especialidade").'</label>   
                                       <div class="col-lg-6">                  
                                         <select id="cont_especialidade_'.$row.'" data-tipo="especialidade" class="form-control">
                                           <option value=""></option> ';
@@ -560,7 +560,7 @@ CKFinder::SetupCKEditor($CKEditor, '/backend/public/vendor/ckfinder/');
                                       </div>
                                   </div>
                                   <div class="form-group row" style="position:relative;">
-                                      <label class="col-lg-3 control-label text-lg-right pt-2">Telemóvel</label>
+                                      <label class="col-lg-3 control-label text-lg-right pt-2">'.translate("Telemóvel").'</label>
                                       <div class="col-lg-6">
                                         <input type="text" id="cont_telemovel_'.$row.'" data-tipo="telemovel" class="form-control" value="'.$contato["cont_telemovel"].'">
                                       </div>
@@ -568,7 +568,7 @@ CKFinder::SetupCKEditor($CKEditor, '/backend/public/vendor/ckfinder/');
 
 
                                   <div class="form-group row" style="position:relative;">
-                                      <label class="col-lg-3 control-label text-lg-right pt-2">Tipo de lead</label>   
+                                      <label class="col-lg-3 control-label text-lg-right pt-2">'.translate("Tipo de lead").'</label>   
                                       <div class="col-lg-6">
                                         <select id="cont_lead_status_'.$row.'" data-tipo="lead" class="form-control">
                                           <option value=""></option> ';
@@ -608,7 +608,7 @@ CKFinder::SetupCKEditor($CKEditor, '/backend/public/vendor/ckfinder/');
                 <div class="row mt-4">
                   <div class="col-md-12 ml-0 pl-0">
                     <div class="col-md-2">
-                      <button class="btn btn-primary" id='add_contato'><i class="fa fa-plus fa-lg"></i> Adicionar Contato</button>
+                      <button class="btn btn-primary" id='add_contato'><i class="fa fa-plus fa-lg"></i> <?php echo translate("Adicionar Contato"); ?></button>
                     </div>           
                   </div>        
                 </div>
@@ -624,7 +624,7 @@ CKFinder::SetupCKEditor($CKEditor, '/backend/public/vendor/ckfinder/');
       
       <div id="ref" class='clearfix'></div>  
       <span id="retorno" class="col-md-10"></span>            
-      <a name="bt_cliente_alterar" id="bt_cliente_alterar"  href="javascript:void(0);" class="btn btn-primary col-md-2 pull-right">Alterar</a>
+      <a name="bt_cliente_alterar" id="bt_cliente_alterar"  href="javascript:void(0);" class="btn btn-primary col-md-2 pull-right"><?php echo translate("Alterar"); ?></a>
 
       <input type="hidden" id="cli_code" value="<?php echo $view_cliente[0]['cli_id'] ?>">
          
