@@ -490,18 +490,18 @@ h4{
 <br />
 
 <!-- real content -->
-<h1>Olá <?php echo $dados["content"]->usu_nome ?></h1>
+<h1><?php echo translate("Olá"); ?> <?php echo $dados["content"]->usu_nome ?></h1>
 <br />
-<p>Está a receber este email como lembrete de um evento na plataforma <strong><?php echo $dados["config"]["D001_Empresa"] ?></strong>:</p>
+<p><?php echo translate("Está a receber este email como lembrete de um evento na plataforma"); ?> <strong><?php echo $dados["config"]["D001_Empresa"] ?></strong>:</p>
 
 <br />
 
 <table width="100%">
 
    <tr>
-      <th style="text-align: left;">Lembrete</th>
-      <th style="text-align: left;">Cliente</th>
-      <th style="text-align: left;">Data</th>
+      <th style="text-align: left;"><?php echo translate("Lembrete"); ?></th>
+      <th style="text-align: left;"><?php echo translate("Cliente"); ?></th>
+      <th style="text-align: left;"><?php echo translate("Data"); ?></th>
    </tr>
 
    <tr>
@@ -509,9 +509,9 @@ h4{
       <td><?php echo $dados["content"]->cli_nome ?></td>
       <td>
          <p>
-            Dia <strong> <?php echo date("d/m", strtotime($dados["content"]->data)) ?></strong>, pelas <?php echo date("H:i", strtotime($dados["content"]->data))  ?>
+            <?php echo translate("Dia"); ?> <strong> <?php echo date("d/m", strtotime($dados["content"]->data)) ?></strong>, <?php echo translate("pelas"); ?> <?php echo date("H:i", strtotime($dados["content"]->data))  ?>
             <?php if(!empty($dados["content"]->dtend) && !empty($dados["content"]->hrend)): ?>
-            até às <?php echo substr($dados["content"]->hrend, 0, 5) ?>
+            <?php echo translate("até às"); ?> <?php echo substr($dados["content"]->hrend, 0, 5) ?>
             <?php endif; ?>
          </p>
       </td>
@@ -521,12 +521,12 @@ h4{
 
 
 <br />
-<p style="text-align: center;">Importância: <strong><?php echo $dados["content"]->prioridade ?></strong></p>
+<p style="text-align: center;"><?php echo translate("Importância"); ?>: <strong><?php echo $dados["content"]->prioridade ?></strong></p>
 <br />
 
 <!-- /real content -->
 
-<a target="_blank" href="http://<?php echo $dados["config"]['D001_Site'] ?>/backend/cliente/perfil/ref/<?php echo $dados["content"]->cli_referencia ?>">Ver mais info</a>
+<a target="_blank" href="http://<?php echo $dados["config"]['D001_Site'] ?>/backend/cliente/perfil/ref/<?php echo $dados["content"]->cli_referencia ?>"><?php echo translate("Ver mais info"); ?></a>
 
 </td>
 </tr>
@@ -703,7 +703,7 @@ h4{
 
 <td class="mcnTextContent" valign="top" style="padding: 0px 18px 9px; text-align: center; color: rgb(255, 255, 255); line-height: 150%; font-family: Helvetica; font-size: 12px; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; mso-line-height-rule: exactly;">
 
-<em>Copyright © <?php echo $dados["config"]["D001_Empresa"]; ?>, Todos direitos reservados.</em>
+<em>Copyright © <?php echo $dados["config"]["D001_Empresa"]; ?>, <?php echo translate("Todos direitos reservados"); ?>.</em>
 
 
 </td>
