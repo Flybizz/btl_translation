@@ -204,8 +204,8 @@
       }else{
 
         new PNotify({
-          title: 'Alert',
-          text: 'Data final anterior a data inicial.',
+          title: translate('Alerta'),
+          text: translate('Data final anterior a data inicial.'),
           type: 'danger',
           hide: true
         })        
@@ -310,7 +310,7 @@
       $("ul[id='list_cliente']").html(`
         <li class="m-1 p-4 bg-warning" >        
             <div class="col-md-12">
-                <h4 class="title fs-16 text-dark text-center">OPS! Nenhum resultado de pesquisa.</h4>
+                <h4 class="title fs-16 text-dark text-center">{translate("Nenhum resultado de pesquisa")}.</h4>
             </div>        
         </li>
       `);
@@ -419,13 +419,13 @@
         $("#modal-body").html('<img src="/images/loading.gif" />');
         $("#modal-footer").html('');       
 
-        $("#modal-title").text("GERAR BANCO DE DADOS - EMAIL");
+        $("#modal-title").text(translate("GERAR BANCO DE DADOS - EMAIL"));
         $("#modal-body").html("");
         $("#modal-footer").html(`
           <div class="row">
             <div class="col-md-12 text-right">
-              <button name="bdclient_conf" class="btn btn-primary">Confirmar</button>
-              <button class="btn btn-default modal-dismiss">Cancelar</button>
+              <button name="bdclient_conf" class="btn btn-primary">{translate("Confirmar")}</button>
+              <button class="btn btn-default modal-dismiss">{translate("Cancelar")}</button>
             </div>
           </div>
         `);
@@ -478,7 +478,7 @@
                      $("#retorno").html(info);
                      $("#modal-body").html(info);
                                          
-                     $("#modal-footer").html(`<div class="row"><div class="col-md-12 text-right"> <button id="copy_email" class="btn btn-primary">Copiar</button> <button class="btn btn-default modal-dismiss">Cancelar</button></div></div>`)
+                     $("#modal-footer").html(`<div class="row"><div class="col-md-12 text-right"> <button id="copy_email" class="btn btn-primary">Copiar</button> <button class="btn btn-default modal-dismiss">{translate("Cancelar")}</button></div></div>`)
 
                      $("#copy_email").click(function(){
                           $("#result_email").select();
@@ -579,7 +579,7 @@
   
           if(count != 0){
   
-              $("#ref").html("<div class='alert alert-danger' style='font-size:12px;'><button type='button' class='close' data-dismiss='alert'>×</button><h4 style='font-size:12px;'>Falta dados Obrigatórios:</h4>"+ref+"</div> <div class='clearfix'></div>");
+              $("#ref").html("<div class='alert alert-danger' style='font-size:12px;'><button type='button' class='close' data-dismiss='alert'>×</button><h4 style='font-size:12px;'>"+translate("Falta dados Obrigatórios")+":</h4>"+ref+"</div> <div class='clearfix'></div>");
   
           }else{
               $("#ref").html("");
@@ -616,12 +616,11 @@
               });
   
           }else if(validasenha == 1){
-              valida = "SENHA INCORRETA.";
+              valida = translate("SENHA INCORRETA.");
           }
   
           if(valida != ""){
               $("#retorno").html("<div class='alert alert-danger'><button type='button' class='close' data-dismiss='alert'>×</button><h6 style='font-size:11px;'>"+valida+"</h6></div>");
-  
           }
   
   

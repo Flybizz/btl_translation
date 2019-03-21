@@ -39,15 +39,7 @@ $(document).ready(function(){
       
       function ajax_enviar_dados(){
          if(false){
-            new PNotify({
-               title: 'OPS!',
-               text: '<h5>Dados Obrigatórios:</h5>'+ref,
-               type: 'danger',
-               hide: true,
-               buttons: {
-                  sticker: false
-               }
-            });  
+
          }else{
             $("#ref").html("");
             var form_texto = CKEDITOR.instances['form_observacao'].getData().replace( /[\/]/g, "|" );
@@ -61,10 +53,10 @@ $(document).ready(function(){
                   'form_data' : $("form").serialize() + form_texto
                },
                success: function(response){
-                  console.log(response); 
+                  console.log(response);
                   new PNotify({
-                     title: 'Sucesso!',
-                     text: "Dados gravados com sucesso.",
+                     title: translate('Sucesso!'),
+                     text: translate("Dados gravados com sucesso."),
                      type: 'success'
                   });
                   
@@ -92,16 +84,7 @@ $(document).ready(function(){
       
       function ajax_enviar_dados(){
          var form_texto = CKEDITOR.instances['form_observacao'].getData().replace( /[\/]/g, "|" );
-         if(false){
-            new PNotify({
-               title: 'OPS!',
-               text: '<h5>Dados Obrigatórios:</h5>'+ref,
-               type: 'danger',
-               hide: true,
-               buttons: {
-                  sticker: false
-               }
-            });  
+         if(false){ 
          }else{
             $("#ref").html("");
             $.ajax({
@@ -116,8 +99,8 @@ $(document).ready(function(){
                },
                success: function(response){
                   new PNotify({
-                     title: 'Success!',
-                     text: "Dados gravados com sucesso.",
+                     title: translate('Success!'),
+                     text: translate("Dados gravados com sucesso."),
                      type: 'success'
                   });
                }

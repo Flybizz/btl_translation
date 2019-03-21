@@ -62,7 +62,7 @@ $(document).ready(function(){
         'queueSizeLimit'   : 1,
         'UploadLimit'      : 1,
         'buttonClass'  : 'btn btn-primary',
-        'buttonText'   : 'Anexar',
+        'buttonText'   : translate('Anexar'),
         'uploadScript'     : '/backend/public/vendor/uploadfive/uploadifive_cliente.php',
           'onProgress'   : function(file, e) {
               if (e.lengthComputable) {
@@ -149,7 +149,7 @@ $(document).ready(function(){
             if(ref != 0){
                 new PNotify({
                 title: 'OPS!',
-                text: '<h5>Dados Obrigatórios:</h5>'+ref,
+                text: '<h5>'+translate("Dados Obrigatórios")+':</h5>'+ref,
                 type: 'danger'
             });
             }else{
@@ -165,7 +165,7 @@ $(document).ready(function(){
                     console.log(ok);
                     
                      new PNotify({
-                      title: 'Success!',
+                      title: translate('Success!'),
                       text: ok,
                       type: 'success'
                     });        
@@ -210,8 +210,8 @@ $(document).ready(function(){
               
               var id = $(this).attr("data-db");
               var name = $(this).attr("data-name");
-              $("#modal-title").text("Apagar Contacto");
-              $("#modal-body").html('<h5>Deseja realmente apagar o CONTACTO: '+name+' ?</h5><span id="retorno"></span>');
+              $("#modal-title").text(translate("Apagar Contacto"));
+              $("#modal-body").html('<h5>'+translate("Deseja realmente apagar o CONTACTO")+': '+name+' ?</h5><span id="retorno"></span>');
               $("#modal-footer").html('<div class="row"><div class="col-md-12 text-right"> <button name="del_conf" id="del_conf" class="btn btn-primary modal-confirm">Confirmar</button> <button class="btn btn-default modal-dismiss">Cancelar</button></div></div>');
                  var id = $(this).attr("data-db");
                  $("button[name='del_conf']").click(function(){
@@ -221,7 +221,7 @@ $(document).ready(function(){
                         data: {'url':'contato/deletar/id/'+id+'/'},
                         success: function(info){
                             // $("#retorno").html(info);
-                            $(".footerBox").html('<button class="btn" data-dismiss="modal" aria-hidden="true">Fechar</button>');
+                            $(".footerBox").html('<button class="btn" data-dismiss="modal" aria-hidden="true">'+translate("Fechar")+'</button>');
                             // var ident = $('input[name="id_retorno"]').val();
                             // $("#"+ident).hide('slow');
                             $(".modal-body").html("<p>"+info+"</p>")
@@ -286,7 +286,7 @@ $(document).ready(function(){
               'queueSizeLimit'   : 1,
               'UploadLimit'      : 1,
               'buttonClass'  : 'btn btn-primary',
-              'buttonText'   : 'Selecionar',
+              'buttonText'   : translate('Selecionar'),
               'uploadScript'     : '/backend/public/vendor/uploadfive/uploadifive_cliente.php',
               'onProgress'   : function(file, e) {
                 if (e.lengthComputable) {
@@ -372,8 +372,8 @@ $(document).ready(function(){
                 if(nome == ""){ref += "<li>Nome</li>"; count += 1;}
                 if(ref != 0){
                     new PNotify({
-                        title: 'OPS!',
-                        text: '<h5>Dados Obrigatórios:</h5>'+ref,
+                        title: translate('OPS!'),
+                        text: '<h5>'+translate("Dados Obrigatórios")+':</h5>'+ref,
                         type: 'danger'
                     });
                 }else{
@@ -388,15 +388,15 @@ $(document).ready(function(){
                             console.log(alterar);
                             if(alterar == "1"){
                               new PNotify({
-                                title: 'Success!',
-                                text: "Dados alterados com sucesso!",
+                                title: translate('Success!'),
+                                text: translate("Dados alterados com sucesso!"),
                                 type: 'success'
                               });
                             }
                             else{
                               new PNotify({
-                                title: 'Erro',
-                                text: "Ocorreu um erro na actualização dos dados",
+                                title: translate('Erro'),
+                                text: translate("Ocorreu um erro na actualização dos dados"),
                                 type: 'success'
                               });
                             }
@@ -416,7 +416,7 @@ $(document).ready(function(){
                       success: function(info){
                             console.log(info)
                             new PNotify({
-                              title: 'Sucesso!',
+                              title: translate('Sucesso!'),
                               text: info,
                               type: 'success'
                             });
@@ -439,9 +439,9 @@ $(document).ready(function(){
         var id = $(this).prev("input").val();
         var name = $(this).attr("data-name");
         console.log(name)
-        $("#modal-title").text("Apagar Cliente");
-        $("#modal-body").html('<h5>Deseja realmente apagar o cliente: <strong>'+name+'</strong> ?</h5><span id="retorno"></span>');
-        $("#modal-footer").html('<div class="row"><div class="col-md-12 text-right"> <button name="del_conf" id="del_conf" class="btn btn-primary modal-confirm">Confirmar</button> <button class="btn btn-default modal-dismiss">Cancelar</button></div></div>');
+        $("#modal-title").text(translate("Apagar Cliente"));
+        $("#modal-body").html('<h5>'+translate("Deseja realmente apagar o cliente")+': <strong>'+name+'</strong> ?</h5><span id="retorno"></span>');
+        $("#modal-footer").html('<div class="row"><div class="col-md-12 text-right"> <button name="del_conf" id="del_conf" class="btn btn-primary modal-confirm">Confirmar</button> <button class="btn btn-default modal-dismiss">'+translate("Cancelar")+'</button></div></div>');
          //apresentar o popup
          $.magnificPopup.open({
           items: {
@@ -467,7 +467,7 @@ $(document).ready(function(){
               $("#retorno").html(info);
               var ident = $('input[name="id_retorno"]').val();
               $("#"+ident).hide('slow');
-              $("#modal-footer").html('<div class="row"><div class="col-md-12 text-right"> <button class="btn btn-default modal-dismiss">Fechar</button></div></div>')
+              $("#modal-footer").html('<div class="row"><div class="col-md-12 text-right"> <button class="btn btn-default modal-dismiss">'+translate("Fechar")+'</button></div></div>')
             }
           });
         });
@@ -515,13 +515,13 @@ $(document).ready(function(){
           var foll_texto = $("textarea[id='foll_texto']").val().replace( /[\/]/g, "|" );     
           var ref = "";
           var count = 0;
-          if(foll_titulo == ""){ref += "<li>Título</li>"; count += 1; console.log(foll_titulo)}
-          if(foll_texto == ""){ref += "<li>Mensagem</li>"; count += 1; console.log(foll_texto)}
+          if(foll_titulo == ""){ref += "<li>"+translate("Título")+"</li>"; count += 1; console.log(foll_titulo)}
+          if(foll_texto == ""){ref += "<li>"+translate("Mensagem")+"</li>"; count += 1; console.log(foll_texto)}
           //if(foll_tipo == 0){ref += "<li>Tipo de contacto</li>"; count += 1;}
           if(ref != 0){
             new PNotify({
-              title: 'OPS!',
-              text: '<h5>Dados Obrigatórios:</h5>'+ref,
+              title: translate('OPS!'),
+              text: '<h5>'+translate("Dados Obrigatórios")+':</h5>'+ref,
               type: 'danger'
             });
           }else{
@@ -532,7 +532,7 @@ $(document).ready(function(){
                   data: {'url':'followup/registar/id/'+cli_id+'/tipo/'+foll_tipo+'/titulo/'+foll_titulo+'/texto/'+foll_texto+'/'},
                   success: function(ok){
                     new PNotify({
-                      title: 'Success!',
+                      title: translate('Success!'),
                       text: ok,
                       type: 'success'
                     });        
@@ -558,15 +558,15 @@ $(document).ready(function(){
           var tar_prioridade = $("select[id='tar_prioridade'] option:selected").val();
           var ref = "";
           var count = 0;
-          if(tar_titulo == ""){ref += "<li>Título</li>"; count += 1;}
-          if(tar_dtstart == ""){ref += "<li>Data inicial</li>"; count += 1;}
-          if(tar_dtend == ""){ref += "<li>Data final</li>"; count += 1;}
-          if(tar_texto == ""){ref += "<li>Mensagem</li>"; count += 1;}
-          if(tar_tipo == 0){ref += "<li>Segmento</li>"; count += 1;}
+          if(tar_titulo == ""){ref += "<li>"+translate("Título")+"</li>"; count += 1;}
+          if(tar_dtstart == ""){ref += "<li>"+translate("Data inicial")+"</li>"; count += 1;}
+          if(tar_dtend == ""){ref += "<li>"+translate("Data final")+"</li>"; count += 1;}
+          if(tar_texto == ""){ref += "<li>"+translate("Mensagem")+"</li>"; count += 1;}
+          if(tar_tipo == 0){ref += "<li>"+translate("Segmento")+"</li>"; count += 1;}
           if(ref != 0){
             new PNotify({
-              title: 'OPS!',
-              text: '<h5>Dados Obrigatórios:</h5>'+ref,
+              title: translate('OPS!'),
+              text: '<h5>'+translate("Dados Obrigatórios")+':</h5>'+ref,
               type: 'danger'
             });
           }else{
@@ -577,7 +577,7 @@ $(document).ready(function(){
                   data: {'url':'tarefa/registar/id/'+cli_id+'/tipo/'+tar_tipo+'/titulo/'+tar_titulo+'/dtstart/'+tar_dtstart+'/hrstart/'+tar_hrstart+'/dtend/'+tar_dtend+'/hrend/'+tar_hrend+'/texto/'+tar_texto+'/prioridade/'+tar_prioridade+'/'},
                   success: function(ok){
                      new PNotify({
-                      title: 'Sucesso!',
+                      title: translate('Sucesso!'),
                       text: ok,
                       type: 'success'
                     });     
@@ -627,9 +627,9 @@ $(document).ready(function(){
         var id = $(this).attr("data-id");
         var name = $(this).attr("data-name");
         
-        $("#modal-title").text("Apagar formação");
-        $("#modal-body").html('<h5>Deseja realmente apagar a formação(a) <strong>'+name+'</strong> ?</h5><span id="retorno"></span>');
-        $("#modal-footer").html('<div class="row"><div class="col-md-12 text-right"> <button name="del_conf" id="del_conf" class="btn btn-primary modal-confirm">Confirmar</button> <button class="btn btn-default modal-dismiss">Cancelar</button></div></div>');
+        $("#modal-title").text(translate("Apagar formação"));
+        $("#modal-body").html('<h5>'+translate("Deseja realmente apagar a formação(a)")+' <strong>'+name+'</strong> ?</h5><span id="retorno"></span>');
+        $("#modal-footer").html('<div class="row"><div class="col-md-12 text-right"> <button name="del_conf" id="del_conf" class="btn btn-primary modal-confirm">Confirmar</button> <button class="btn btn-default modal-dismiss">'+translate("Cancelar")+'</button></div></div>');
         
         //apresentar o popup
         $.magnificPopup.open({
@@ -649,7 +649,7 @@ $(document).ready(function(){
                  $("#retorno").html(info);
                  var ident = $('input[name="id_retorno"]').val();
                  $("#"+ident).hide('slow');
-                 $("#modal-footer").html('<div class="row"><div class="col-md-12 text-right"> <button class="btn btn-default modal-dismiss">Fechar</button></div></div>')
+                 $("#modal-footer").html('<div class="row"><div class="col-md-12 text-right"> <button class="btn btn-default modal-dismiss">'+translate("Fechar")+'</button></div></div>')
               }
            });
         });

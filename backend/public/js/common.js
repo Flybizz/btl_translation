@@ -71,8 +71,8 @@ var notifications = {
                }
                else{
                   new PNotify({
-                     title: 'Erro',
-                     text: "Ocorreu um erro ao actualizar a base de dados",
+                     title: translate('Erro'),
+                     text: translate("Ocorreu um erro ao actualizar a base de dados"),
                      type: 'success',
                      delay: 1500
                   });
@@ -89,4 +89,11 @@ var notifications = {
       
    }
 
+}
+
+
+function translate(string) {
+
+   if(!LOCALE[string]) console.log(string + " => not set");
+   return LOCALE[string] ? "||" + LOCALE[string] + "||" : string;
 }

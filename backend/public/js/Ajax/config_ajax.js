@@ -32,7 +32,7 @@ $(document).ready(function () {
         'queueSizeLimit'   : 1,
         'UploadLimit'      : 1,
         'buttonClass'  : 'btn btn-primary',
-        'buttonText'   : 'Anexar',
+        'buttonText'   : translate('Anexar'),
         'uploadScript'     : '/backend/public/vendor/uploadfive/uploadifive_config.php',
           'onProgress'   : function(file, e) {
               if (e.lengthComputable) {
@@ -58,7 +58,7 @@ $(document).ready(function () {
             'queueSizeLimit'   : 1,
             'UploadLimit'      : 1,
             'buttonClass'  : 'btn btn-primary',
-            'buttonText'   : 'Anexar',
+            'buttonText'   : translate('Anexar'),
             'uploadScript'     : '/backend/public/vendor/uploadfive/uploadifive_config.php',
             'onProgress'   : function(file, e) {
               if (e.lengthComputable) {
@@ -85,7 +85,7 @@ $(document).ready(function () {
         'queueSizeLimit'   : 1,
         'UploadLimit'      : 1,
         'buttonClass'  : 'btn btn-primary',
-        'buttonText'   : 'Anexar',
+        'buttonText'   : translate('Anexar'),
         'uploadScript'     : '/backend/public/vendor/uploadfive/uploadifive_config.php',
           'onProgress'   : function(file, e) {
               if (e.lengthComputable) {
@@ -111,7 +111,7 @@ $(document).ready(function () {
         'queueSizeLimit'   : 1,
         'UploadLimit'      : 1,
         'buttonClass'  : 'btn btn-primary',
-        'buttonText'   : 'Anexar',
+        'buttonText'   : translate('Anexar'),
         'uploadScript'     : '/backend/public/vendor/uploadfive/uploadifive_config.php',
           'onProgress'   : function(file, e) {
               if (e.lengthComputable) {
@@ -137,7 +137,7 @@ $(document).ready(function () {
         'queueSizeLimit'   : 1,
         'UploadLimit'      : 1,
         'buttonClass'  : 'btn btn-primary',
-        'buttonText'   : 'Anexar',
+        'buttonText'   : translate('Anexar'),
         'uploadScript'     : '/backend/public/vendor/uploadfive/uploadifive_config.php',
           'onProgress'   : function(file, e) {
               if (e.lengthComputable) {
@@ -184,7 +184,7 @@ $(document).ready(function () {
                 data: {'url': 'configuracao/alteracao/id/1/status/1/favicon/' + favicon + '/logo/' + logo + '/logoalt/' + logoalt + '/logosocial/' + logosocial + '/pino/' + pino + '/empresa/' + empresa + '/cp/' + cp + '/morada/' + morada + '/localidade/' + localidade + '/distrito/' + distrito + '/telefone/' + telefone + '/email/' + email + '/site/' + site + '/obs/' + obs + '/'},
                 success: function (alterar) {
                     new PNotify({
-                        title: 'Sucesso!',
+                        title: translate('Sucesso!'),
                         text: alterar,
                         type: 'success'
                     }); 
@@ -203,7 +203,7 @@ $(document).ready(function () {
                 success: function(info){
                       console.log(info)  
                       new PNotify({
-                        title: 'Sucesso!',
+                        title: translate('Sucesso!'),
                         text: info,
                         type: 'success'
                       }); 
@@ -261,7 +261,7 @@ $(document).ready(function () {
                 success: function (alterar) {
                     console.log(alterar)  
                     new PNotify({
-                        title: 'Sucesso!',
+                        title: translate('Sucesso!'),
                         text: alterar,
                         type: 'success'
                     }); 
@@ -293,7 +293,7 @@ $(document).ready(function () {
                 success: function (alterar) {
                     console.log(alterar)  
                     new PNotify({
-                        title: 'Sucesso!',
+                        title: translate('Sucesso!'),
                         text: alterar,
                         type: 'success'
                     }); 
@@ -335,7 +335,7 @@ $(document).ready(function () {
                 success: function (alterar) {
                     console.log(alterar)  
                     new PNotify({
-                        title: 'Sucesso!',
+                        title: translate('Sucesso!'),
                         text: alterar,
                         type: 'success'
                     }); 
@@ -362,7 +362,7 @@ $(document).ready(function () {
                 success: function (alterar) {
                     console.log(alterar)  
                     new PNotify({
-                        title: 'Sucesso!',
+                        title: translate('Sucesso!'),
                         text: alterar,
                         type: 'success'
                     }); 

@@ -44,7 +44,7 @@ $("span[id='agendaCad']").click(function(){
           'queueSizeLimit'   : 1,
           'UploadLimit'      : 1,
           'buttonClass'  : 'btn btn-primary',
-          'buttonText'   : 'Anexar',
+          'buttonText'   : translate('Anexar'),
           'uploadScript'     : '/backend/public/plugins/uploadfive/uploadifive_agenda.php',
           'onUploadComplete' : function(file, data) { 
             //console.log(data); 
@@ -137,7 +137,7 @@ $("span[id='agendaCad']").click(function(){
               'queueSizeLimit'   : 1,
               'UploadLimit'      : 1,
               'buttonClass'  : 'btn btn-primary',
-              'buttonText'   : 'Anexar',
+              'buttonText'   : translate('Anexar'),
               'uploadScript'     : '/backend/public/plugins/uploadfive/uploadifive_agenda.php',
               'onUploadComplete' : function(file, data) { 
                 //console.log(data); 

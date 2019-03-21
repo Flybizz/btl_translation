@@ -193,7 +193,7 @@ $(document).ready(function(){
         'queueSizeLimit'   : 1,
         'UploadLimit'      : 1,
         'buttonClass'  : 'btn btn-primary',
-        'buttonText'   : 'Anexar',
+        'buttonText'   : translate('Anexar'),
         'uploadScript'     : '/backend/public/vendor/uploadfive/uploadifive_pagina.php',
           'onProgress'   : function(file, e) {
               if (e.lengthComputable) {
@@ -241,8 +241,8 @@ $(document).ready(function(){
           if(titulo == ""){ref += "<li>Titulo</li>"; count += 1;}
           if(ref != 0){
             new PNotify({
-              title: 'OPS!',
-              text: '<h5>Dados Obrigatórios:</h5>'+ref,
+              title: translate('OPS!'),
+              text: '<h5>'+translate("Dados Obrigatórios")+':</h5>'+ref,
               type: 'danger',
               hide: true,
               buttons: {
@@ -259,7 +259,7 @@ $(document).ready(function(){
                   success: function(ok){
                     console.log(ok); 
                     new PNotify({
-                      title: 'Success!',
+                      title: translate('Success!'),
                       text: ok,
                       type: 'success'
                     });      
@@ -456,7 +456,7 @@ $(document).ready(function(){
               'queueSizeLimit'   : 1,
               'UploadLimit'      : 1,
               'buttonClass'  : 'btn btn-primary',
-              'buttonText'   : 'Selecionar',
+              'buttonText'   :  translate('Selecionar'),
               'uploadScript'     : '/backend/public/vendor/uploadfive/uploadifive_pagina.php',
               'onProgress'   : function(file, e) {
                 if (e.lengthComputable) {
@@ -508,8 +508,8 @@ $(document).ready(function(){
               if(titulo == ""){ref += "<li>Titulo</li>"; count += 1;}
               if(ref != 0){
                 new PNotify({
-                  title: 'OPS!',
-                  text: '<h5>Dados Obrigatórios:</h5>'+ref,
+                  title: translate('OPS!'),
+                  text: '<h5>'+translate("Dados Obrigatórios")+':</h5>'+ref,
                   type: 'danger',
                   hide: true,
                   buttons: {
@@ -527,7 +527,7 @@ $(document).ready(function(){
                     success: function(alterar){
                       console.log(alterar);
                       new PNotify({
-                        title: 'Sucesso!',
+                        title: translate('Sucesso!'),
                         text: alterar,
                         type: 'success',
                         hide: false,
@@ -582,9 +582,9 @@ $(document).ready(function(){
         $("#modal-footer").html('');
         var id = $(this).attr("ref-id");
 
-        $("#modal-title").text("Apagar Página");
-        $("#modal-body").html('<h5>Deseja realmente apagar o página número '+id+' ?</h5><span id="retorno"></span>');
-        $("#modal-footer").html('<div class="row"><div class="col-md-12 text-right"> <button name="del_conf" id="del_conf" class="btn btn-primary modal-confirm">Confirmar</button> <button class="btn btn-default modal-dismiss">Cancelar</button></div></div>');
+        $("#modal-title").text(translate("Apagar Página"));
+        $("#modal-body").html('<h5>'+translate("Deseja realmente apagar o página número")+' '+id+' ?</h5><span id="retorno"></span>');
+        $("#modal-footer").html('<div class="row"><div class="col-md-12 text-right"> <button name="del_conf" id="del_conf" class="btn btn-primary modal-confirm">Confirmar</button> <button class="btn btn-default modal-dismiss">'+translate("Cancelar")+'</button></div></div>');
 
         console.log(id);
                 
@@ -598,7 +598,7 @@ $(document).ready(function(){
                 $("#retorno").html(info);
                 var ident = $('input[name="id_retorno"]').val();
                 $("#"+ident).hide('slow');
-                $("#modal-footer").html('<div class="row"><div class="col-md-12 text-right"> <button class="btn btn-default modal-dismiss">Fechar</button></div></div>')
+                $("#modal-footer").html('<div class="row"><div class="col-md-12 text-right"> <button class="btn btn-default modal-dismiss">'+translate("Fechar")+'</button></div></div>')
               }
             });
         });

@@ -237,8 +237,9 @@
 
 		</section>
 
+		<!-- language -->
+		<script src="/../backend/lib/App/Config/lang/pt.js"></script>
 		
-
 		<!-- /../backend/public/vendor -->
 		<script src="/../backend/public/vendor/jquery/jquery.js"></script>
 		<script src="/../backend/public/js/jquery.pstrength-min.1.2.js"></script>
@@ -252,6 +253,7 @@
 		<script src="/../backend/public/vendor/nanoscroller/nanoscroller.js"></script>
 		<script src="/../backend/public/vendor/magnific-popup/jquery.magnific-popup.js"></script>
 		<script src="/../backend/public/vendor/jquery-placeholder/jquery-placeholder.js"></script>
+		<script src="/../backend/public/vendor/common/common.js"></script>
 		
 		<script src="/../backend/public/vendor/bootstrap-timepicker/bootstrap-timepicker.js"></script>
 		

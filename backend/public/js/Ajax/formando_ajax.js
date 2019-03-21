@@ -35,8 +35,8 @@ $(document).ready(function(){
     
                         $("ul[id='formando_list']").html(response);
                         new PNotify({
-                            title: 'Success!',
-                            text: "Dados gravados com sucesso.",
+                            title: translate('Success!'),
+                            text: translate("Dados gravados com sucesso."),
                             type: 'success'
                         });
                         //location.reload();
@@ -102,9 +102,9 @@ $(document).ready(function(){
                 let itemName = $(this).attr("data-name"); 
                 let itemFormacao = $(this).attr("data-formacao"); 
     
-                $("#modal-title").text("Apagar Formando");
-                $("#modal-body").html('<h5>Deseja realmente apagar o formando <strong> '+itemName+' </strong>?</h5><span id="retorno"></span>');
-                $("#modal-footer").html('<div class="row"><div class="col-md-12 text-right"> <button name="del_confirm" id="del_conf" class="btn btn-primary modal-confirm">Confirmar</button> <button class="btn btn-default modal-dismiss">Cancelar</button></div></div>');
+                $("#modal-title").text(translate("Apagar Formando"));
+                $("#modal-body").html('<h5>'+translate("Deseja realmente apagar o formando")+' <strong> '+itemName+' </strong>?</h5><span id="retorno"></span>');
+                $("#modal-footer").html('<div class="row"><div class="col-md-12 text-right"> <button name="del_confirm" id="del_conf" class="btn btn-primary modal-confirm">Confirmar</button> <button class="btn btn-default modal-dismiss">'+translate("Cancelar")+'</button></div></div>');
     
                 $("button[name='del_confirm']").click(function(){
     
@@ -125,8 +125,8 @@ $(document).ready(function(){
     
                             $("ul[id='formando_list']").html(response);
                             new PNotify({
-                                title: 'Success!',
-                                text: "Dado(s) removido(s) com sucesso.",
+                                title: translate('Success!'),
+                                text: translate("Dado(s) removido(s) com sucesso."),
                                 type: 'success'
                             });
 

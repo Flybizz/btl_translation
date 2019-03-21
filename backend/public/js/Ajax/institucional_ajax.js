@@ -193,7 +193,7 @@ $(document).ready(function(){
         'queueSizeLimit'   : 1,
         'UploadLimit'      : 1,
         'buttonClass'  : 'btn btn-primary',
-        'buttonText'   : 'Anexar',
+        'buttonText'   : translate('Anexar'),
         'uploadScript'     : '/backend/public/vendor/uploadfive/uploadifive_institucional.php',
           'onProgress'   : function(file, e) {
               if (e.lengthComputable) {
@@ -525,7 +525,7 @@ $(document).ready(function(){
                     success: function(alterar){
                       console.log(alterar);
                       new PNotify({
-                        title: 'Sucesso!',
+                        title: translate('Sucesso!'),
                         text: alterar,
                         type: 'success',
                         hide: false,

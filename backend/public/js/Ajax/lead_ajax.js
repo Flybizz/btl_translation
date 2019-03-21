@@ -71,9 +71,9 @@ $(document).ready(function(){
             $("#modal-body").html('<img src="/images/loading.gif" />');
             $("#modal-footer").html('');            
 
-            $("#modal-title").text("Action Leads Conversion");
-            $("#modal-body").html('<h5>Deseja realmente mover o(s) contato(s)?</h5><span id="retorno"></span>');
-            $("#modal-footer").html('<div class="row"><div class="col-md-12 text-right"> <button name="del_conf_lead" id="del_conf_lead" class="btn btn-primary modal-confirm-lead">Confirmar</button> <button class="btn btn-default modal-dismiss">Cancelar</button></div></div>');
+            $("#modal-title").text(translate("Action Leads Conversion"));
+            $("#modal-body").html('<h5>'+translate("Deseja realmente mover o(s) contato(s)")+'?</h5><span id="retorno"></span>');
+            $("#modal-footer").html('<div class="row"><div class="col-md-12 text-right"> <button name="del_conf_lead" id="del_conf_lead" class="btn btn-primary modal-confirm-lead">Confirmar</button> <button class="btn btn-default modal-dismiss">'+translate("Cancelar")+'</button></div></div>');
 
             $("button[name='del_conf_lead']").click(function(){
                 $.magnificPopup.close();
@@ -87,14 +87,14 @@ $(document).ready(function(){
                         
                         if(rs.code == 1){
                             new PNotify({
-                                title: 'Success!',
+                                title: translate('Success!'),
                                 text: rs.text,
                                 type: 'success'
                             }); 
                             setTimeout('location.reload()', 3000);
                         }else if(rs.code == 0){
                             new PNotify({
-                                title: 'Erro!',
+                                title: translate('Erro!'),
                                 text: rs.text,
                                 type: 'danger'
                             }); 

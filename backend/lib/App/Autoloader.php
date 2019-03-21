@@ -121,14 +121,29 @@
         define($key, $value);
     }
 
+    //com defines php
+    include_once($_SERVER['DOCUMENT_ROOT'] . "/backend/lib/App/Config/lang/{$lang}.php");
+    
+
     //function translate
     function translate($slug){
 
-        $handle = fopen("translation.txt", "w");
-        $write = fwrite($handle, $slug);
-        $close = fclose($handle);
+        $defined = defined($slug);
 
-        return "++" . $slug . "++";
+        //o define não existe no idioma actual
+        if(!$defined){
+
+            $string = "define(\"{$slug}\", \"_____\");\n";
+            $handle = fopen("translation.txt", "a+");
+            $write = fwrite($handle, $string);
+            $close = fclose($handle);
+
+            return "++" . $slug . "++";
+            //caso não exista, pode retornar no idioma default
+            //include_once(.../pt.php"));
+        }
+
+        return "||" . constant($slug) . "||";
         
     }
 ?>

@@ -73,7 +73,7 @@ $(document).ready(function(){
         'queueSizeLimit'   : 2,
         'UploadLimit'      : 2,
         'buttonClass'  : 'btn btn-primary',
-        'buttonText'   : 'Anexar',
+        'buttonText'   : translate('Anexar'),
         'uploadScript'     : '/backend/public/vendor/uploadfive/uploadifive_produto.php',
           'onProgress'   : function(file, e) {
               if (e.lengthComputable) {
@@ -121,13 +121,9 @@ $(document).ready(function(){
           if(titulo == ""){ref += "<li>Titulo</li>"; count += 1;}
           if(ref != 0){
             new PNotify({
-              title: 'OPS!',
-              text: '<h5>Dados Obrigatórios:</h5>'+ref,
-              type: 'danger',
-              hide: true,
-              buttons: {
-                sticker: false
-              }
+              title: translate('OPS!'),
+              text: translate('<h5>Dados Obrigatórios:</h5>')+ref,
+              type: 'danger'
             });
           }else{
             $("#ref").html("");
@@ -140,13 +136,9 @@ $(document).ready(function(){
                   success: function(ok){
                     //console.log(ok);
                     new PNotify({
-                      title: 'Success!',
+                      title: translate('Success!'),
                       text: ok,
-                      type: 'success',
-                      hide: false,
-                      buttons: {
-                        sticker: false
-                      }
+                      type: 'success'
                     });
                     document.location.href = '/backend/produto/listar/lang/'+idioma;
                   }
@@ -223,7 +215,7 @@ $(document).ready(function(){
               'queueSizeLimit'   : 1,
               'UploadLimit'      : 1,
               'buttonClass'  : 'btn btn-primary',
-              'buttonText'   : 'Selecionar',
+              'buttonText'   :  translate('Selecionar'),
               'uploadScript'     : '/backend/public/vendor/uploadfive/uploadifive_produto.php',
               'onProgress'   : function(file, e) {
                 if (e.lengthComputable) {
@@ -273,13 +265,9 @@ $(document).ready(function(){
 
               if(ref != 0){
                 new PNotify({
-                  title: 'OPS!',
-                  text: '<h5>Dados Obrigatórios:</h5>'+ref,
-                  type: 'danger',
-                  hide: true,
-                  buttons: {
-                    sticker: false
-                  }
+                  title: translate('OPS!'),
+                  text: '<h5>'+translate("Dados Obrigatórios")+':</h5>'+ref,
+                  type: 'danger'
                 });
 
               }else{
@@ -295,13 +283,9 @@ $(document).ready(function(){
                     success: function(alterar){
                       console.log(alterar);
                       new PNotify({
-                        title: 'Sucesso!',
+                        title: translate('Sucesso!'),
                         text: alterar,
-                        type: 'success',
-                        hide: false,
-                        buttons: {
-                          sticker: false
-                        }
+                        type: 'success'
                       });
                       setTimeout('location.reload()', 0);
                     }
@@ -319,13 +303,9 @@ $(document).ready(function(){
                     success: function(info){
                           console.log(info)
                           new PNotify({
-                            title: 'Sucesso!',
+                            title: translate('Sucesso!'),
                             text: info,
-                            type: 'success',
-                            hide: false,
-                            buttons: {
-                              sticker: false
-                            }
+                            type: 'success'
                           });
                           setTimeout('location.reload()', 0);
                     }
@@ -434,13 +414,10 @@ $(document).ready(function(){
                       console.log(rtn2);
                       $("#box-edit-galeria").hide("slow");
                       new PNotify({
-                        title: 'Sucesso!',
+                        title: translate('Sucesso!'),
                         text: rtn2,
                         type: 'success',
-                        hide: "4000",
-                        buttons: {
-                          sticker: false
-                        }
+                        hide: "4000"
                       });
                       setTimeout('location.reload()', 0);
                     }
@@ -564,8 +541,8 @@ $(document).ready(function(){
         /* if(titulo == ""){ref += "<li>Titulo</li>"; count += 1;}*/
         if(count != 0){
           new PNotify({
-            title: 'OPS!',
-            text: '<h5>Dados Obrigatórios:</h5>'+ref,
+            title: translate('OPS!'),
+            text: '<h5>'+translate("Dados Obrigatórios")+':</h5>'+ref,
             type: 'danger',
             hide: true,
             buttons: {
@@ -585,13 +562,9 @@ $(document).ready(function(){
 
                 setTimeout(function(){
                   new PNotify({
-                    title: 'Sucesso!',
+                    title: translate('Sucesso!'),
                     text: rtn,
-                    type: 'success',
-                    hide: false,
-                    buttons: {
-                      sticker: false
-                    }
+                    type: 'success'
                   });
                 }, 2000);
                 setTimeout(function(){
@@ -612,13 +585,9 @@ $(document).ready(function(){
               success: function(info){
                     console.log(info)
                     new PNotify({
-                      title: 'Sucesso!',
+                      title: translate('Sucesso!'),
                       text: info,
-                      type: 'success',
-                      hide: false,
-                      buttons: {
-                        sticker: false
-                      }
+                      type: 'success'
                     });
                     setTimeout('location.reload()', 0);
               }

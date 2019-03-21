@@ -95,7 +95,7 @@ $(document).ready(function(){
                 console.log(alterar);      
 
                 new PNotify({
-                  title: 'Sucesso!',
+                  title: translate('Sucesso!'),
                   text: alterar,
                   type: 'success',
                   hide: false,

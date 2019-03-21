@@ -68,8 +68,8 @@ if(router == "nivel/registar"){
   
     if(nome == 0){
       new PNotify({
-        title: 'OPS!',
-        text: '<h5>Dados Obrigatórios:</h5>'+nome,
+        title: translate('OPS!'),
+        text: '<h5>'+translate("Dados Obrigatórios")+':</h5>'+nome,
         type: 'danger'
       });  
     }else{
@@ -84,8 +84,8 @@ if(router == "nivel/registar"){
           success: function(alterar){
             console.log(alterar);
             new PNotify({
-              title: 'Sucesso!',
-              text: "Informação actualizada com sucesso",
+              title: translate('Sucesso!'),
+              text: translate("Informação actualizada com sucesso"),
               type: 'success'
             }); 
             setTimeout(function(){
@@ -127,8 +127,8 @@ if(router == "nivel/registar"){
       
         if(nome == 0){
           new PNotify({
-            title: 'OPS!',
-            text: '<h5>Dados Obrigatórios:</h5>'+nome,
+            title: translate('OPS!'),
+            text: '<h5>'+translate("Dados Obrigatórios")+':</h5>'+nome,
             type: 'danger',
             delay: 3500
           });  
@@ -144,7 +144,7 @@ if(router == "nivel/registar"){
               success: function(alterar){
                 console.log(alterar);
                 new PNotify({
-                  title: 'Sucesso!',
+                  title: translate('Sucesso!'),
                   text: alterar,
                   type: 'success',
                   delay: 2000
@@ -174,9 +174,9 @@ if(router == "nivel/registar"){
        var $this = $(this);
        
        var id = $this.prev("input").val();
-       $("#modal-title").text("Apagar Nível");
-       $("#modal-body").html('<h5>Deseja realmente apagar o grupo '+the_a_button.attr("ref-name")+' ?</h5><span id="retorno"></span>');
-       $("#modal-footer").html('<span id="retorno"></span><button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button><button name="del_conf" id="del_conf" class="btn btn-primary">Confirmar</button>');
+       $("#modal-title").text(translate("Apagar Nível"));
+       $("#modal-body").html('<h5>'+translate("Deseja realmente apagar o grupo")+' '+the_a_button.attr("ref-name")+' ?</h5><span id="retorno"></span>');
+       $("#modal-footer").html('<span id="retorno"></span><button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button><button name="del_conf" id="del_conf" class="btn btn-primary">'+translate("Confirmar")+'</button>');
        
        console.log($(".modal-body").html());
        //confirmar
@@ -202,7 +202,7 @@ if(router == "nivel/registar"){
                   //get result
                   if(info.error == true){
                     new PNotify({
-                      title: 'Erro',
+                      title: translate('Erro'),
                       text: info.message,
                       type: 'error',
                       delay: 2500
@@ -212,8 +212,8 @@ if(router == "nivel/registar"){
                   }
                   else{
                     new PNotify({
-                      title: 'Success!',
-                      text: "Apagado com sucesso",
+                      title: translate('Success!'),
+                      text: translate("Apagado com sucesso"),
                       type: 'success',
                       delay: 2500
                     });                    

@@ -23,15 +23,7 @@ $(document).ready(function(){
         var status = $('input[name=especialidade_status]:checked').val();
 
         if(false){
-          new PNotify({
-            title: 'OPS!',
-            text: '<h5>Dados Obrigatórios:</h5>'+ref,
-            type: 'danger',
-            hide: true,
-            buttons: {
-              sticker: false
-            }
-          });  
+          
         }else{
           
           $.ajax({
@@ -39,9 +31,9 @@ $(document).ready(function(){
               type: "POST",
               data: {'url':'especialidade/inserir/nome/'+nome+'/status/'+status+'/'},
               success: function(alterar){
-                console.log(alterar);
+
                 new PNotify({
-                  title: 'Sucesso!',
+                  title: translate('Sucesso!'),
                   text: alterar,
                   type: 'success',
                   hide: false,
@@ -74,15 +66,7 @@ $(document).ready(function(){
         var status = $('input[name=especialidade_status]:checked').val();
 
         if(false){
-          new PNotify({
-            title: 'OPS!',
-            text: '<h5>Dados Obrigatórios:</h5>'+ref,
-            type: 'danger',
-            hide: true,
-            buttons: {
-              sticker: false
-            }
-          });  
+
         }else{
           $("#ref").html("");
           var nome = nome.replace(/'/g, "\\'");
@@ -92,15 +76,11 @@ $(document).ready(function(){
               type: "POST",
               data: {'url':'especialidade/alteracao/id/'+id_inst+'/nome/'+nome+'/status/'+status+'/'},
               success: function(alterar){
-                console.log(alterar);
+
                 new PNotify({
-                  title: 'Sucesso!',
+                  title: translate('Sucesso!'),
                   text: alterar,
-                  type: 'success',
-                  hide: false,
-                  buttons: {
-                    sticker: false
-                  }
+                  type: 'success'
                 }); 
                 setTimeout('location.reload()', 0);
               }
@@ -126,9 +106,9 @@ $(document).ready(function(){
         var id = $(this).attr("ref-id");
         var name = $(this).attr("ref-name");
         
-        $("#modal-title").text("Apagar Utilizador(a)");
-        $("#modal-body").html('<h5>Deseja realmente apagar o registo(a) <strong>'+name+'</strong> ?</h5><span id="retorno"></span>');
-        $("#modal-footer").html('<div class="row"><div class="col-md-12 text-right"> <button name="del_conf" id="del_conf" class="btn btn-primary modal-confirm">Confirmar</button> <button class="btn btn-default modal-dismiss">Cancelar</button></div></div>');
+        $("#modal-title").text(translate("Apagar Utilizador(a)"));
+        $("#modal-body").html('<h5>'+translate("Deseja realmente apagar o registo(a)")+' <strong>'+name+'</strong> ?</h5><span id="retorno"></span>');
+        $("#modal-footer").html('<div class="row"><div class="col-md-12 text-right"> <button name="del_conf" id="del_conf" class="btn btn-primary modal-confirm">Confirmar</button> <button class="btn btn-default modal-dismiss">'+translate("Cancelar")+'</button></div></div>');
 
         //apresentar o popup
         $.magnificPopup.open({

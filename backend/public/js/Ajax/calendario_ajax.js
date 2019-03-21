@@ -243,7 +243,7 @@ function updateSigninStatus(auth) {
       if($(".google-calendar-signed-in-info").length > 0){
         var js_html = `
         <div class="google-signed-in-user">
-          <p>O calendário está sincronizado com a sua conta Google <i class="fa fa-check"></i></p>
+          <p>{translate("O calendário está sincronizado com a sua conta Google")} <i class="fa fa-check"></i></p>
           <span> <strong>${ga_info.name}</strong><br />(${ga_info.email})</span>
           <img src="${ga_info.image}" />
         </div>
@@ -260,7 +260,7 @@ function updateSigninStatus(auth) {
     } else {
 
       if($("#calendar").length > 0){
-        $("#calendar").html("Por favor, reveja a configuração do seu calendário na <a href='configuracao/config_calendario'>configuração da plataforma</a>.");
+        $("#calendar").html(translate("Por favor, reveja a configuração do seu calendário na <a href='configuracao/config_calendario'>configuração da plataforma</a>."));
       }
 
       authorizeButton.style.display = 'block';
@@ -285,13 +285,13 @@ function handleAuthClick(event) {
     var notification = {};
 
     if(signed_in){
-      notification = {"message" : "Calendário associado com sucesso", "type" : "success"}
+      notification = {"message" : translate("Calendário associado com sucesso"), "type" : "success"}
     }
     else
-      notification = {"message" : "Ocorreu um erro na autenticação", "type" : "error"}
+      notification = {"message" : translate("Ocorreu um erro na autenticação"), "type" : "error"}
 
     new PNotify({
-      title: "Autenticação",
+      title: translate("Autenticação"),
       text: notification.message,
       type: notification.type,
       delay: 1800
@@ -502,8 +502,8 @@ $(document).ready(function(){
     ){
       
       new PNotify({
-        title: "Campos em falta",
-        text: "Por favor verifique os campos",
+        title: translate("Campos em falta"),
+        text: translate("Por favor verifique os campos"),
         type: "warning",
         delay: 2500
       });
@@ -551,13 +551,13 @@ var btl_google_calendar = {
 
     //validate?
     if(!event_data.summary)
-      errors.message = "Verifique o client_id";
+      errors.message = translate("Verifique o client_id");
 
     //report messages
     if(errors.message){
       
       new PNotify({
-        title: "Erro",
+        title: translate("Erro"),
         text: errors.message,
         type: "warning",
         delay: 2500
@@ -610,8 +610,8 @@ var btl_google_calendar = {
 
           //notification
           new PNotify({
-            title: "Sucesso",
-            text: "Evento criado com sucesso",
+            title: translate("Sucesso"),
+            text: translate("Evento criado com sucesso"),
             type: "success",
             delay: 2500
           });
@@ -637,33 +637,13 @@ var btl_google_calendar = {
     });
 
     request.execute(function(the_event) {
-
-      console.log("HERE IS THE EVENT ID:");
-      console.log(google_event_id);
       
       //errors
       if(the_event.code > 0){
         console.log("Ocorreu um erro durante a operação");
       }
       else{
-
-        console.log(the_event);
-        //btl_google_calendar.events = false;
-        //console.log(btl_google_calendar.events);
-
-        // for(i in btl_google_calendar.events){
-
-        //   if(google_event_id == btl_google_calendar.events[i].id){
-        //     console.log("ENCONTREI O EVENTO");
-        //     console.log([i])
-        //     console.log("VOU DELETAR");
-
-        //   }
-
-        // }
-
         console.log("Operação concluída com sucesso");
-
       }
    
     });
@@ -800,7 +780,6 @@ var btl_google_calendar = {
       setTimeout(function(){
         initCalendar(btl_google_calendar.events);
         btl_google_calendar.element.find(".loader").fadeOut();
-        console.log("FUNCTION RAN");
       }, 1000)
       
 

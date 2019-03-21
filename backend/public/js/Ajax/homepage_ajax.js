@@ -193,7 +193,7 @@ $(document).ready(function(){
         'queueSizeLimit'   : 1,
         'UploadLimit'      : 1,
         'buttonClass'  : 'btn btn-primary',
-        'buttonText'   : 'Anexar',
+        'buttonText'   : translate('Anexar'),
         'uploadScript'     : '/backend/public/vendor/uploadfive/uploadifive_homepage.php',
           'onProgress'   : function(file, e) {
               if (e.lengthComputable) {
@@ -240,13 +240,9 @@ $(document).ready(function(){
           if(titulo == ""){ref += "<li>Titulo</li>"; count += 1;}
           if(ref != 0){
             new PNotify({
-              title: 'OPS!',
-              text: '<h5>Dados Obrigatórios:</h5>'+ref,
-              type: 'danger',
-              hide: true,
-              buttons: {
-                sticker: false
-              }
+              title: translate('OPS!'),
+              text: '<h5>'+translate("Dados Obrigatórios")+':</h5>'+ref,
+              type: 'danger'
             });  
           }else{
             $("#ref").html("");
@@ -256,15 +252,10 @@ $(document).ready(function(){
                   type: "POST",
                   data: {'url':'homepage/inserir/img/'+img+'/controller/'+control+'/titulo/'+titulo+'/texto/'+texto+'/chamada/'+chamada+'/destaque/'+destaque+'/link/'+link+'/ordem/'+ordem+'/seo_titulo/'+seo_titulo+'/seo_descricao/'+seo_descricao+'/seo_slug/'+seo_slug+'/seo_key/'+seo_key+'/'},
                   success: function(ok){
-                    console.log(ok); 
                     new PNotify({
-                      title: 'Success!',
+                      title: translate('Success!'),
                       text: ok,
-                      type: 'success',
-                      hide: false,
-                      buttons: {
-                        sticker: false
-                      }
+                      type: 'success'
                     });      
                     document.location.href = '/backend/homepage/listar';
                   }
@@ -459,7 +450,7 @@ $(document).ready(function(){
               'queueSizeLimit'   : 1,
               'UploadLimit'      : 1,
               'buttonClass'  : 'btn btn-primary',
-              'buttonText'   : 'Selecionar',
+              'buttonText'   :  translate('Selecionar'),
               'uploadScript'     : '/backend/public/vendor/uploadfive/uploadifive_homepage.php',
               'onProgress'   : function(file, e) {
                 if (e.lengthComputable) {
@@ -507,16 +498,12 @@ $(document).ready(function(){
 
               var ref = "";
               var count = 0;
-              if(titulo == ""){ref += "<li>Titulo</li>"; count += 1;}
+              if(titulo == ""){ref += "<li>"+translate("Titulo")+"</li>"; count += 1;}
               if(ref != 0){
                 new PNotify({
-                  title: 'OPS!',
-                  text: '<h5>Dados Obrigatórios:</h5>'+ref,
-                  type: 'danger',
-                  hide: true,
-                  buttons: {
-                    sticker: false
-                  }
+                  title: translate('OPS!'),
+                  text: '<h5>'+translate("Dados Obrigatórios")+':</h5>'+ref,
+                  type: 'danger'
                 });  
               }else{
                 $("#ref").html("");
@@ -529,13 +516,9 @@ $(document).ready(function(){
                     success: function(alterar){
                       console.log(alterar);
                       new PNotify({
-                        title: 'Sucesso!',
+                        title: translate('Sucesso!'),
                         text: alterar,
-                        type: 'success',
-                        hide: false,
-                        buttons: {
-                          sticker: false
-                        }
+                        type: 'success'
                       }); 
                       setTimeout('location.reload()', 0);
                     }
