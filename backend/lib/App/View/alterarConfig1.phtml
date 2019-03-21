@@ -2,7 +2,7 @@
 <?php $languageLIST = unserialize (LANGUAGE_LIST); ?>
 
 <header class="page-header">
-    <h2>Configuração</h2>
+    <h2><?php echo translate("Configuração"); ?></h2>
 
     <div class="right-wrapper text-right">
         <ol class="breadcrumbs">
@@ -11,8 +11,8 @@
                     <i class="fa fa-home"></i>
                 </a>
             </li>
-            <li><span>Home</span></li>
-            <li><span>Configuração</span></li>
+            <li><span><?php echo translate("Home"); ?></span></li>
+            <li><span><?php echo translate("Configuração"); ?></span></li>
         </ol>
 
         <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-calendar"></i></a>
@@ -46,7 +46,7 @@
           
                         <div class="sidebar-widget m-0">
                             <div class="widget-header clearfix">
-                                <h6 class="title float-left mt-1">MENU</h6>
+                                <h6 class="title float-left mt-1"><?php echo translate("MENU"); ?></h6>
                          <!--        <div class="float-right">
                                     <a href="/backend/idioma/registar" class="btn btn-dark btn-sm btn-widget-act">TESTE</a>
                                 </div> -->
@@ -66,8 +66,8 @@
             <div class="inner-toolbar clearfix">
                 <ul>
                     <li class="col-md-12 pb-3">
-                        <h3 class="mt-0 mb-0 text-light font-weight-bold pull-left">Dados da Empresa</h3>
-                        <a name="bt_cfg" id="bt_cfg" href="javascript:;" class="btn text-light btn-primary btn-sm btn-widget-act pull-right mt-0 mb-4" style="margin-top: -5px!important;">Guardar</a>
+                        <h3 class="mt-0 mb-0 text-light font-weight-bold pull-left"><?php echo translate("Dados da Empresa"); ?></h3>
+                        <a name="bt_cfg" id="bt_cfg" href="javascript:;" class="btn text-light btn-primary btn-sm btn-widget-act pull-right mt-0 mb-4" style="margin-top: -5px!important;"><?php echo translate("Guardar"); ?></a>
                     </li>
                 </ul>
             </div>
@@ -79,39 +79,39 @@
                           <div class="col-md-8">
                             <section class="card mb-4">
                               <header class="card-header">
-                                <h2 class="card-title">Informações</h2>
+                                <h2 class="card-title"><?php echo translate("Informações"); ?></h2>
                               </header>
                               <div class="card-body">
                                 <form class="form-horizontal form-bordered" method="post">
 
                                   <div class="form-group row">
-                                    <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Empresa</label>
+                                    <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Empresa"); ?></label>
                                     <div class="col-lg-9">
                                       <input type="text" id="cfg_empresa" class="form-control" value="<?php echo $view_config_lista[0]['D001_Empresa']; ?>">
                                     </div>
                                   </div>
 
                                   <div class="form-group row">
-                                    <label class="col-lg-3 control-label text-lg-right pt-2" for="cfg_cp">CP</label>
+                                    <label class="col-lg-3 control-label text-lg-right pt-2" for="cfg_cp"><?php echo translate("CP"); ?></label>
                                     <div class="col-lg-9">
                                       <input type="text" id="cfg_cp" class="form-control" value="<?php echo utf8_decode($view_config_lista[0]['D001_Cp']) ?>">
                                     </div>
                                   </div>
                                   <div class="form-group row">
-                                    <label class="col-lg-3 control-label text-lg-right pt-2" for="cfg_morada">Morada</label>
+                                    <label class="col-lg-3 control-label text-lg-right pt-2" for="cfg_morada"><?php echo translate("Morada"); ?></label>
                                     <div class="col-lg-9">
                                       <input type="text" id="cfg_morada" class="form-control" value="<?php echo $view_config_lista[0]['D001_Morada']; ?>">
                                     </div>
                                   </div>
                                   
                                   <div class="form-group row">
-                                    <label class="col-lg-3 control-label text-lg-right pt-2" for="cfg_localidade">Localidade</label>
+                                    <label class="col-lg-3 control-label text-lg-right pt-2" for="cfg_localidade"><?php echo translate("Localidade"); ?></label>
                                     <div class="col-lg-9">
                                       <input type="text" id="cfg_localidade" class="form-control" value="<?php echo $view_config_lista[0]['D001_Cidade']; ?>">
                                     </div>
                                   </div>                 
                                   <div class="form-group row">
-                                    <label class="col-lg-3 control-label text-lg-right pt-2" for="cfg_distrito">Estado</label>
+                                    <label class="col-lg-3 control-label text-lg-right pt-2" for="cfg_distrito"><?php echo translate("Estado"); ?></label>
                                     <div class="col-lg-9">
                                       <input type="text" id="cfg_distrito" class="form-control" value="<?php echo $view_config_lista[0]['D001_Distrito']; ?>">
                                     </div>
@@ -119,7 +119,7 @@
 
 
                                   <div class="form-group row">
-                                    <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Telefone</label>
+                                    <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Telefone"); ?></label>
                                     <div class="col-lg-9">
                                       <div class="input-group">
                                         <span class="input-group-addon">
@@ -131,7 +131,7 @@
                                   </div>  
 
                                   <div class="form-group row">
-                                    <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Email</label>
+                                    <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Email"); ?></label>
                                     <div class="col-lg-9">
                                       <div class="input-group">
                                         <span class="input-group-addon">
@@ -143,7 +143,7 @@
                                   </div>
 
                                   <div class="form-group row">
-                                    <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Website</label>
+                                    <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Website"); ?></label>
                                     <div class="col-lg-9">
                                       <div class="input-group">
                                         <span class="input-group-addon">
@@ -155,7 +155,7 @@
                                   </div>
 
                                   <div class="form-group row">
-                                    <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">MAIS INFORMAÇÕES</label>
+                                    <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("MAIS INFORMAÇÕES"); ?></label>
                                     <div class="col-lg-9">
                                       <?php
                                       require_once $_SERVER['DOCUMENT_ROOT']."/backend/public/vendor/ckeditor/ckeditor.php";
@@ -177,19 +177,19 @@
                           <div class="col-md-4">
                             <section class="card mb-4">
                                 <header class="card-header">
-                                  <h2 class="card-title">Imagens</h2>
+                                  <h2 class="card-title"><?php echo translate("Imagens"); ?></h2>
                                 </header>
                                 <div class="card-body">
                    
                                   <div class="form-group row">
-                                    <label class="col-sm-12 control-label text-sm-left pt-2"><strong>Favicon</strong></label>
+                                    <label class="col-sm-12 control-label text-sm-left pt-2"><strong><?php echo translate("Favicon"); ?></strong></label>
                                     <div class="col-sm-12 media-gallery">
                                       <div id="queue" class="mt-3 mb-3"></div>
                                       <input id="cfg_favicon" name="cfg_favicon" type="file" multiple>
                                       <input type="hidden" id="timestamp" value="<?php echo $timestamp = time();?>">
                                       <input type="hidden" id="unique_salt" value="<?php echo md5('unique_salt' . $timestamp);?>"> 
                                       <input type="hidden" id="config_favicon" value="<?php echo $view_config_lista[0]['D001_Favicon'];?>"> 
-                                      <span class="pull-right">tam: 256px x 256px</span>
+                                      <span class="pull-right"><?php echo translate("tamanho"); ?>: 256px x 256px</span>
                                       <hr class="mt-3 mb-3">
                                       <?php if(!empty($view_config_lista[0]['D001_Favicon'] )): ?>
 
@@ -207,8 +207,8 @@
                                                   <div class="mg-group float-right show">                                        
                                                     <button class="dropdown-toggle mg-toggle" data-toggle="dropdown" aria-expanded="true"><span class="caret"></span></button>
                                                     <div class="dropdown-menu mg-dropdown show" role="menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(271px, 28px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                                      <a class="dropdown-item text-1" href="/images/config/<?php echo $view_config_lista[0]['D001_Favicon'] ?>" download="Imagem_favicon"><i class="fa fa-download"></i> Download</a>
-                                                      <a class="dropdown-item text-1" name="img_Del" href="javascript:;" ref="D001_Favicon" ><i class="fa fa-trash-o"></i> Apagar</a>
+                                                      <a class="dropdown-item text-1" href="/images/config/<?php echo $view_config_lista[0]['D001_Favicon'] ?>" download="Imagem_favicon"><i class="fa fa-download"></i> <?php echo translate("Download"); ?></a>
+                                                      <a class="dropdown-item text-1" name="img_Del" href="javascript:;" ref="D001_Favicon" ><i class="fa fa-trash-o"></i> <?php echo translate("Apagar"); ?></a>
                                                     </div>
                                                   </div>
                                                 </div>
@@ -229,14 +229,14 @@
                                   </div> 
 
                                   <div class="form-group row">
-                                    <label class="col-sm-12 control-label text-sm-left pt-2"><strong>Logo</strong></label>
+                                    <label class="col-sm-12 control-label text-sm-left pt-2"><strong><?php echo translate("Logo"); ?></strong></label>
                                     <div class="col-sm-12 media-gallery">
                                       <div id="queue2" class="mt-3 mb-3"></div>
                                       <input id="cfg_logo" name="cfg_logo" type="file" multiple>
                                       <input type="hidden" id="timestamp" value="<?php echo $timestamp = time();?>">
                                       <input type="hidden" id="unique_salt" value="<?php echo md5('unique_salt' . $timestamp);?>"> 
                                       <input type="hidden" id="config_logo" value="<?php echo $view_config_lista[0]['D001_Logosite'];?>">
-                                      <span class="pull-right">tam: 350px x 200px</span>
+                                      <span class="pull-right"><?php echo translate("tamanho"); ?>: 350px x 200px</span>
                                       <hr class="mt-3 mb-3">
                                       <?php if(!empty($view_config_lista[0]['D001_Logosite'] )): ?>
 
@@ -246,7 +246,7 @@
                                           <div class="thumbnail">
                                             <div class="thumb-preview">
                                               <a class="thumb-image" href="/images/config/<?php echo $view_config_lista[0]['D001_Logosite'] ?>">
-                                                <img src="/images/config/<?php echo $view_config_lista[0]['D001_Logosite'] ?>" class="img-fluid" height="50" alt="logo">
+                                                <img src="/images/config/<?php echo $view_config_lista[0]['D001_Logosite'] ?>" class="img-fluid" height="50" alt='<?php echo translate("logo"); ?>'>
                                               </a>
                                               <div class="mg-thumb-options" style="overflow: visible;">
                                                 <!-- <div class="mg-zoom"><i class="fa fa-search"></i></div> -->
@@ -254,8 +254,8 @@
                                                   <div class="mg-group float-right show">                                        
                                                     <button class="dropdown-toggle mg-toggle" data-toggle="dropdown" aria-expanded="true"><span class="caret"></span></button>
                                                     <div class="dropdown-menu mg-dropdown show" role="menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(271px, 28px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                                      <a class="dropdown-item text-1" href="/images/config/<?php echo $view_config_lista[0]['D001_Logosite'] ?>" download="logo"><i class="fa fa-download"></i> Download</a>
-                                                      <a class="dropdown-item text-1" name="img_Del" href="javascript:;" ref="D001_Logosite" ><i class="fa fa-trash-o"></i> Apagar</a>
+                                                      <a class="dropdown-item text-1" href="/images/config/<?php echo $view_config_lista[0]['D001_Logosite'] ?>" download="logo"><i class="fa fa-download"></i> <?php echo translate("Download"); ?></a>
+                                                      <a class="dropdown-item text-1" name="img_Del" href="javascript:;" ref="D001_Logosite" ><i class="fa fa-trash-o"></i> <?php echo translate("Apagar"); ?></a>
                                                     </div>
                                                   </div>
                                                 </div>
@@ -276,14 +276,14 @@
                                   </div> 
 
                                   <div class="form-group row">
-                                    <label class="col-sm-12 control-label text-sm-left pt-2"><strong>Logo Alternativo</strong></label>
+                                    <label class="col-sm-12 control-label text-sm-left pt-2"><strong><?php echo translate("Logo Alternativo"); ?></strong></label>
                                     <div class="col-sm-12 media-gallery">
                                       <div id="queue3" class="mt-3 mb-3"></div>
                                       <input id="cfg_logo2" name="cfg_logo2" type="file" multiple>
                                       <input type="hidden" id="timestamp2" value="<?php echo $timestamp2 = time();?>">
                                       <input type="hidden" id="unique_salt2" value="<?php echo md5('unique_salt' . $timestamp2);?>"> 
                                       <input type="hidden" id="config_logoalt" value="<?php echo $view_config_lista[0]['D001_Logosite2'];?>">
-                                      <span class="pull-right">tam: 350px x 200px</span>
+                                      <span class="pull-right"><?php echo translate("tamanho"); ?>: 350px x 200px</span>
                                       <hr class="mt-3 mb-3">
                                       <?php if(!empty($view_config_lista[0]['D001_Logosite2'] )): ?>
 
@@ -293,7 +293,7 @@
                                           <div class="thumbnail">
                                             <div class="thumb-preview">
                                               <a class="thumb-image" href="/images/config/<?php echo $view_config_lista[0]['D001_Logosite2'] ?>">
-                                                <img src="/images/config/<?php echo $view_config_lista[0]['D001_Logosite2'] ?>" class="img-fluid" height="50" alt="logo_alt">
+                                                <img src="/images/config/<?php echo $view_config_lista[0]['D001_Logosite2'] ?>" class="img-fluid" height="50" alt="<?php echo translate("logo alternativo"); ?>">
                                               </a>
                                               <div class="mg-thumb-options" style="overflow: visible;">
                                                 <!-- <div class="mg-zoom"><i class="fa fa-search"></i></div> -->
@@ -301,8 +301,8 @@
                                                   <div class="mg-group float-right show">                                        
                                                     <button class="dropdown-toggle mg-toggle" data-toggle="dropdown" aria-expanded="true"><span class="caret"></span></button>
                                                     <div class="dropdown-menu mg-dropdown show" role="menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(271px, 28px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                                      <a class="dropdown-item text-1" href="/images/config/<?php echo $view_config_lista[0]['D001_Logosite2'] ?>" download="logo_alt"><i class="fa fa-download"></i> Download</a>
-                                                      <a class="dropdown-item text-1" name="img_Del" href="javascript:;" ref="D001_Logosite2" ><i class="fa fa-trash-o"></i> Apagar</a>
+                                                      <a class="dropdown-item text-1" href="/images/config/<?php echo $view_config_lista[0]['D001_Logosite2'] ?>" download="logo_alt"><i class="fa fa-download"></i> <?php echo translate("Download"); ?></a>
+                                                      <a class="dropdown-item text-1" name="img_Del" href="javascript:;" ref="D001_Logosite2" ><i class="fa fa-trash-o"></i> <?php echo translate("Apagar"); ?></a>
                                                     </div>
                                                   </div>
                                                 </div>
@@ -324,14 +324,14 @@
 
                                   <?php if(false): ?>
                                   <div class="form-group row">
-                                    <label class="col-sm-12 control-label text-sm-left pt-2"><strong>Imagem para partilhar redes sociais (LINKS)</strong></label>
+                                    <label class="col-sm-12 control-label text-sm-left pt-2"><strong><?php echo translate("Imagem para partilhar redes sociais (LINKS)"); ?></strong></label>
                                     <div class="col-sm-12 media-gallery">
                                       <div id="queue4" class="mt-3 mb-3"></div>
                                       <input id="cfg_logosocial" name="cfg_logosocial" type="file" multiple>
                                       <input type="hidden" id="timestamp2" value="<?php echo $timestamp2 = time();?>">
                                       <input type="hidden" id="unique_salt2" value="<?php echo md5('unique_salt' . $timestamp2);?>"> 
                                       <input type="hidden" id="config_logosocial" value="<?php echo $view_config_lista[0]['D001_Logosocial'];?>">
-                                      <span class="pull-right">tam: 500px x 500px</span>
+                                      <span class="pull-right"><?php echo translate("tamanho"); ?>: 500px x 500px</span>
                                       <hr class="mt-3 mb-3">
                                       <?php if(!empty($view_config_lista[0]['D001_Logosocial'] )): ?>
 
@@ -349,8 +349,8 @@
                                                   <div class="mg-group float-right show">                                        
                                                     <button class="dropdown-toggle mg-toggle" data-toggle="dropdown" aria-expanded="true"><span class="caret"></span></button>
                                                     <div class="dropdown-menu mg-dropdown show" role="menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(271px, 28px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                                      <a class="dropdown-item text-1" href="/images/config/<?php echo $view_config_lista[0]['D001_Logosocial'] ?>" download="logo-social"><i class="fa fa-download"></i> Download</a>
-                                                      <a class="dropdown-item text-1" name="img_Del" href="javascript:;" ref="D001_Logosocial" ><i class="fa fa-trash-o"></i> Apagar</a>
+                                                      <a class="dropdown-item text-1" href="/images/config/<?php echo $view_config_lista[0]['D001_Logosocial'] ?>" download="logo-social"><i class="fa fa-download"></i> <?php echo translate("Download"); ?></a>
+                                                      <a class="dropdown-item text-1" name="img_Del" href="javascript:;" ref="D001_Logosocial" ><i class="fa fa-trash-o"></i> <?php echo translate("Apagar"); ?></a>
                                                     </div>
                                                   </div>
                                                 </div>
@@ -373,14 +373,14 @@
 
 
                                   <div class="form-group row">
-                                    <label class="col-sm-12 control-label text-sm-left pt-2"><strong>Pino do mapa</strong></label>
+                                    <label class="col-sm-12 control-label text-sm-left pt-2"><strong><?php echo translate("Pino do mapa"); ?></strong></label>
                                     <div class="col-sm-12 media-gallery">
                                       <div id="queue5" class="mt-3 mb-3"></div>
                                       <input id="cfg_pino" name="cfg_pino" type="file" multiple>
                                       <input type="hidden" id="timestamp2" value="<?php echo $timestamp2 = time();?>">
                                       <input type="hidden" id="unique_salt2" value="<?php echo md5('unique_salt' . $timestamp2);?>"> 
                                       <input type="hidden" id="config_pino" value="<?php echo $view_config_lista[0]['D001_Pino'];?>">
-                                      <span class="pull-right">tam: 64px x 64px</span>
+                                      <span class="pull-right"><?php echo translate("tamanho"); ?>: 64px x 64px</span>
                                       <hr class="mt-3 mb-3">
                                       <?php if(!empty($view_config_lista[0]['D001_Pino'] )): ?>
 
@@ -390,7 +390,7 @@
                                           <div class="thumbnail">
                                             <div class="thumb-preview">
                                               <a class="thumb-image" href="/images/config/<?php echo $view_config_lista[0]['D001_Pino'] ?>">
-                                                <img src="/images/config/<?php echo $view_config_lista[0]['D001_Pino'] ?>" class="img-fluid" height="50"  alt="pino">
+                                                <img src="/images/config/<?php echo $view_config_lista[0]['D001_Pino'] ?>" class="img-fluid" height="50"  alt="<?php echo translate("Pino do mapa"); ?>">
                                               </a>
                                               <div class="mg-thumb-options" style="overflow: visible;">
                                                 <!-- <div class="mg-zoom"><i class="fa fa-search"></i></div> -->
@@ -398,8 +398,8 @@
                                                   <div class="mg-group float-right show">                                        
                                                     <button class="dropdown-toggle mg-toggle" data-toggle="dropdown" aria-expanded="true"><span class="caret"></span></button>
                                                     <div class="dropdown-menu mg-dropdown show" role="menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(271px, 28px, 0px); top: 0px; left: 0px; will-change: transform;">
-                                                      <a class="dropdown-item text-1" href="/images/config/<?php echo $view_config_lista[0]['D001_Pino'] ?>" download="pino"><i class="fa fa-download"></i> Download</a>
-                                                      <a class="dropdown-item text-1" name="img_Del" href="javascript:;" ref="D001_Pino" ><i class="fa fa-trash-o"></i> Apagar</a>
+                                                      <a class="dropdown-item text-1" href="/images/config/<?php echo $view_config_lista[0]['D001_Pino'] ?>" download="pino"><i class="fa fa-download"></i> <?php echo translate("Download"); ?></a>
+                                                      <a class="dropdown-item text-1" name="img_Del" href="javascript:;" ref="D001_Pino" ><i class="fa fa-trash-o"></i> <?php echo translate("Apagar"); ?></a>
                                                     </div>
                                                   </div>
                                                 </div>

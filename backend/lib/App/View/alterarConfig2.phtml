@@ -2,7 +2,7 @@
 <?php $languageLIST = unserialize (LANGUAGE_LIST); ?>
 
 <header class="page-header">
-    <h2>Configuração</h2>
+    <h2><?php echo translate("Configuração"); ?></h2>
 
     <div class="right-wrapper text-right">
         <ol class="breadcrumbs">
@@ -11,8 +11,8 @@
                     <i class="fa fa-home"></i>
                 </a>
             </li>
-            <li><span>Home</span></li>
-            <li><span>Configuração</span></li>
+            <li><span><?php echo translate("Home"); ?></span></li>
+            <li><span><?php echo translate("Configuração"); ?></span></li>
         </ol>
 
         <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-calendar"></i></a>
@@ -46,7 +46,7 @@
           
                         <div class="sidebar-widget m-0">
                             <div class="widget-header clearfix">
-                                <h6 class="title float-left mt-1">MENU</h6>
+                                <h6 class="title float-left mt-1"><?php echo translate("MENU"); ?></h6>
                          <!--        <div class="float-right">
                                     <a href="/backend/idioma/registar" class="btn btn-dark btn-sm btn-widget-act">TESTE</a>
                                 </div> -->
@@ -66,8 +66,8 @@
             <div class="inner-toolbar clearfix">
                 <ul>
                     <li class="col-md-12 pb-3">
-                        <h3 class="mt-0 mb-0 text-light font-weight-bold pull-left">Dados Avançados</h3>
-                        <a name="bt_cfg" id="bt_cfg" href="javascript:;" class="btn text-light btn-primary btn-sm btn-widget-act pull-right mt-0 mb-4" style="margin-top: -5px!important;">Guardar</a>
+                        <h3 class="mt-0 mb-0 text-light font-weight-bold pull-left"><?php echo translate("Dados Avançados"); ?></h3>
+                        <a name="bt_cfg" id="bt_cfg" href="javascript:;" class="btn text-light btn-primary btn-sm btn-widget-act pull-right mt-0 mb-4" style="margin-top: -5px!important;"><?php echo translate("Guardar"); ?></a>
                     </li>
                 </ul>
             </div>
@@ -75,132 +75,132 @@
               <div class="col-md-9">
                 <section class="card mb-4">
                   <header class="card-header">
-                    <h2 class="card-title">Informações</h2>
+                    <h2 class="card-title"><?php echo translate("Informações"); ?></h2>
                   </header>
                   <div class="card-body">
                     <form class="form-horizontal form-bordered" method="post">
 
                       <div class="form-group row">
-                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Fonts Google</label>
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Fonts Google"); ?></label>
                         <div class="col-lg-9">
                           <textarea class="form-control" id="cfg_fontgoogle"><?php echo $view_config_lista[0]['D001_Fontgoogle']; ?></textarea>
                         </div>
                       </div>
 
                       <div class="form-group row">
-                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Font Config Google</label>
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Font Config Google"); ?></label>
                         <div class="col-lg-9">
                            <input type="text" id="cfg_fontconfig" class="form-control" value="<?php echo $view_config_lista[0]['D001_Fontconfig']; ?>">
                         </div>
                       </div>
 
                       <div class="form-group row">
-                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">RSS</label>
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("RSS"); ?></label>
                         <div class="col-lg-9">
                           <input type="text" id="cfg_rss" class="form-control" value="<?php echo $view_config_lista[0]['D001_Rss']; ?>">
                         </div>
                       </div>
 
                       <div class="form-group row">
-                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Ao vivo</label>
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Ao vivo"); ?></label>
                         <div class="col-lg-9">
                           <input type="text" id="cfg_aovivo" class="form-control" value="<?php echo $view_config_lista[0]['D001_Aovivo']; ?>">
                         </div>
                       </div>
 
                       <div class="form-group row">
-                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Ao vivo radio</label>
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Ao vivo radio"); ?></label>
                         <div class="col-lg-9">
                           <input type="text" id="cfg_aovivoradio" class="form-control" value="<?php echo $view_config_lista[0]['D001_Aovivoradio']; ?>">
                         </div>
                       </div>
 
                       <div class="form-group row">
-                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">META TAG Description</label>
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("META TAG Description"); ?></label>
                         <div class="col-lg-9">
                           <textarea class="form-control" maxlength="255" id="cfg_descricao"><?php echo $view_config_lista[0]['D001_Descricao']; ?></textarea>
                         </div>
                       </div>
 
                       <div class="form-group row">
-                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Skype</label>
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Skype"); ?></label>
                         <div class="col-lg-9">
                           <input type="text" id="cfg_skype" class="form-control" value="<?php echo $view_config_lista[0]['D001_Skypeusu']; ?>">
                         </div>
                       </div>
 
                       <div class="form-group row">
-                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Whatsapp</label>
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Whatsapp"); ?></label>
                         <div class="col-lg-9">
                           <input type="text" id="cfg_whatsapp" class="form-control" value="<?php echo $view_config_lista[0]['D001_Whatsapp']; ?>">
                         </div>
                       </div>
 
                       <div class="form-group row">
-                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Facebook</label>
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Facebook"); ?></label>
                         <div class="col-lg-9">
                            <input type="text" id="cfg_facebook" class="form-control" value="<?php echo $view_config_lista[0]['D001_Facebook']; ?>">
                         </div>
                       </div>
 
                       <div class="form-group row">
-                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Widget Facebook</label>
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Widget Facebook"); ?></label>
                         <div class="col-lg-9">
                            <textarea class="form-control" id="cfg_facebooktxt"><?php echo $view_config_lista[0]['D001_Facebooktxt'];?></textarea>
                         </div>
                       </div>
 
                       <div class="form-group row">
-                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Twitter</label>
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Twitter"); ?></label>
                         <div class="col-lg-9">
                           <input type="text" id="cfg_twitter" class="form-control" value="<?php echo $view_config_lista[0]['D001_Twitter']; ?>">
                         </div>
                       </div>
 
                       <div class="form-group row">
-                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Widget Twitter</label>
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Widget Twitter"); ?></label>
                         <div class="col-lg-9">
                           <textarea class="form-control" id="cfg_twittertxt"><?php echo $view_config_lista[0]['D001_Twittertxt']; ?></textarea>
                         </div>
                       </div>
 
                       <div class="form-group row">
-                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Youtube</label>
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Youtube"); ?></label>
                         <div class="col-lg-9">
                           <input type="text" id="cfg_youtube" class="form-control" value="<?php echo $view_config_lista[0]['D001_Youtube']; ?>">
                         </div>
                       </div>
 
                       <div class="form-group row">
-                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Blog</label>
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Blog"); ?></label>
                         <div class="col-lg-9">
                            <input type="text" id="cfg_blog" class="form-control" value="<?php echo $view_config_lista[0]['D001_Blog']; ?>">
                         </div>
                       </div>
 
                       <div class="form-group row">
-                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Google+</label>
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Google+"); ?></label>
                         <div class="col-lg-9">
                           <input type="text" id="cfg_google" class="form-control" value="<?php echo $view_config_lista[0]['D001_Google']; ?>">
                         </div>
                       </div>
 
                       <div class="form-group row">
-                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Instagram</label>
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Instagram"); ?></label>
                         <div class="col-lg-9">
                           <input type="text" id="cfg_instagram" class="form-control" value="<?php echo $view_config_lista[0]['D001_Instagram']; ?>">
                         </div>
                       </div>
 
                       <div class="form-group row">
-                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Widget Instagram</label>
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Widget Instagram"); ?></label>
                         <div class="col-lg-9">
                           <textarea class="form-control" id="cfg_instagramtxt"><?php echo $view_config_lista[0]['D001_Instagramtxt']; ?></textarea>
                         </div>
                       </div>
 
                       <div class="form-group row">
-                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Instagram Ativação</label>
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Instagram Ativação"); ?></label>
                         <div class="col-lg-9">
                           <?php
                             if ($view_config_lista[0]['D001_Instagramview'] == "true"):
@@ -216,7 +216,7 @@
                       </div>
 
                       <div class="form-group row">
-                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Tema</label>
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Tema"); ?></label>
                         <div class="col-lg-9">
                           <div class="input-group color" data-plugin-colorpicker>
                             <span class="input-group-addon"><i></i></span>
@@ -226,7 +226,7 @@
                       </div>
 
                       <div class="form-group row">
-                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Tema2</label>
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Tema2"); ?></label>
                         <div class="col-lg-9">
                           <div class="input-group color" data-plugin-colorpicker>
                             <span class="input-group-addon"><i></i></span>
@@ -236,28 +236,28 @@
                       </div>
 
                       <div class="form-group row">
-                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Latitude</label>
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Latitude"); ?></label>
                         <div class="col-lg-9">
                            <input type="text" id="cfg_latitude" class="form-control" value="<?php echo $view_config_lista[0]['D001_Latitude']; ?>">
                         </div>
                       </div>
 
                       <div class="form-group row">
-                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Longitude</label>
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Longitude"); ?></label>
                         <div class="col-lg-9">
                            <input type="text" id="cfg_longitude" class="form-control" value="<?php echo $view_config_lista[0]['D001_Longitude']; ?>">
                         </div>
                       </div>
 
                       <div class="form-group row">
-                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Google Map</label>
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Google Map"); ?></label>
                         <div class="col-lg-9">
                            <textarea class="form-control" id="cfg_googlemap"><?php echo $view_config_lista[0]['D001_Googlemap']; ?></textarea>
                         </div>
                       </div>
 
                       <div class="form-group row">
-                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">GAPI</label>
+                        <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("GAPI"); ?></label>
                         <div class="col-lg-9">
                            <input type="text" id="cfg_keyvisita" class="form-control" value="<?php echo $view_config_lista[0]['D001_Keyvisita']; ?>">
                         </div>
@@ -265,7 +265,7 @@
 
                       <div class="form-group row">
              
-                        <label class="col-sm-3 control-label text-sm-right pt-2">Template - NAVBAR</label>
+                        <label class="col-sm-3 control-label text-sm-right pt-2"><?php echo translate("Template - NAVBAR"); ?></label>
                         <div class="btn-group col-sm-9 pull-right" data-toggle="buttons">
                           <?php 
                             if($view_config_lista[0]['D001_TP_Header'] == "left"):
@@ -281,10 +281,10 @@
                             endif;
                           ?>
                           <label class="btn btn-primary <?php echo $active1; ?>">
-                            <input type="radio" name="cfg_nav" id="option1" autocomplete="off" value="left" <?php echo $checked1; ?>> LEFT
+                            <input type="radio" name="cfg_nav" id="option1" autocomplete="off" value="left" <?php echo $checked1; ?>> <?php echo translate("LEFT"); ?>
                           </label>
                           <label class="btn btn-primary <?php echo $active2; ?>">
-                            <input type="radio" name="cfg_nav" id="option2" autocomplete="off"  value="center"  <?php echo $checked2; ?>> CENTER
+                            <input type="radio" name="cfg_nav" id="option2" autocomplete="off"  value="center"  <?php echo $checked2; ?>> <?php echo translate("CENTER"); ?>
                           </label>
                         </div>
 

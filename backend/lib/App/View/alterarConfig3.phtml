@@ -2,7 +2,7 @@
 <?php $languageLIST = unserialize (LANGUAGE_LIST); ?>
 
 <header class="page-header">
-    <h2>Manutenção</h2>
+    <h2><?php echo translate("Manutenção"); ?></h2>
 
     <div class="right-wrapper text-right">
         <ol class="breadcrumbs">
@@ -11,8 +11,8 @@
                     <i class="fa fa-home"></i>
                 </a>
             </li>
-            <li><span>Home</span></li>
-            <li><span>Manutenção</span></li>
+            <li><span><?php echo translate("Home"); ?></span></li>
+            <li><span><?php echo translate("Manutenção"); ?></span></li>
         </ol>
 
         <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-calendar"></i></a>
@@ -46,7 +46,7 @@
           
                         <div class="sidebar-widget m-0">
                             <div class="widget-header clearfix">
-                                <h6 class="title float-left mt-1">MENU</h6>
+                                <h6 class="title float-left mt-1"><?php echo translate("MENU"); ?></h6>
                          <!--        <div class="float-right">
                                     <a href="/backend/idioma/registar" class="btn btn-dark btn-sm btn-widget-act">TESTE</a>
                                 </div> -->
@@ -66,8 +66,8 @@
             <div class="inner-toolbar clearfix">
                 <ul>
                     <li class="col-md-12 pb-3">
-                        <h3 class="mt-0 mb-0 text-light font-weight-bold pull-left">Manutenção</h3>
-                        <a name="bt_cfg" id="bt_cfg" href="javascript:;" class="btn text-light btn-primary btn-sm btn-widget-act pull-right mt-0 mb-4" style="margin-top: -5px!important;">Guardar</a>
+                        <h3 class="mt-0 mb-0 text-light font-weight-bold pull-left"><?php echo translate("Manutenção"); ?></h3>
+                        <a name="bt_cfg" id="bt_cfg" href="javascript:;" class="btn text-light btn-primary btn-sm btn-widget-act pull-right mt-0 mb-4" style="margin-top: -5px!important;"><?php echo translate("Guardar"); ?></a>
                     </li>
                 </ul>
             </div>
@@ -76,27 +76,27 @@
                 <div class="col-md-9">
                   <section class="card mb-4">
                     <header class="card-header">
-                      <h2 class="card-title">Informações</h2>
+                      <h2 class="card-title"><?php echo translate("Informações"); ?></h2>
                     </header>
                     <div class="card-body">
                       <form class="form-horizontal form-bordered" method="post">
 
                           <div class="form-group row">
-                            <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Título</label>
+                            <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Título"); ?></label>
                             <div class="col-lg-9">
                                 <input type="text" id="cfg_pc_titulo" class="form-control" value="<?php echo str_replace('|', '/', $view_config_lista[0]['D001_PC_titulo']); ?>">
                             </div>
                           </div>
 
                           <div class="form-group row">
-                            <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Descrição</label>
+                            <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Descrição"); ?></label>
                             <div class="col-lg-9">
                                 <textarea class="form-control" id="cfg_pc_descricao"><?php echo str_replace('|', '/', $view_config_lista[0]['D001_PC_descricao']); ?></textarea>
                             </div>
                           </div>
 
                           <div class="form-group row">
-                            <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Status</label>
+                            <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault"><?php echo translate("Status"); ?></label>
                             <div class="col-lg-9">
                                 <?php
                                 if ($view_config_lista[0]['D001_PC_status'] == "true"):

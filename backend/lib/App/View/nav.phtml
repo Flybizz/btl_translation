@@ -25,32 +25,32 @@ $habilitados = array_keys($arr);
         
             <ul class="nav nav-main">
                 <!--nav-expanded nav-active-->
-                <li data-search="<?php echo translate(MENU_DASHBOARD); ?>">
+                <li data-search="<?php echo translate("Dashboard"); ?>">
                   <a href="/../backend/index/" class="nav-link">
                     <i class="fa fa-home" aria-hidden="true"></i>
-                    <span><?php echo translate(MENU_DASHBOARD); ?></span>
+                    <span><?php echo translate("Dashboard"); ?></span>
                   </a>
                 </li>
                 <?php if(in_array('per_cliente', $habilitados)) { ?>        
-                <li data-search="<?php echo translate(MENU_CALENDARIO); ?>">
+                <li data-search="<?php echo translate("Calendário"); ?>">
                   <a href="/../backend/calendario">
                     <i class="fa fa-calendar" aria-hidden="true"></i>
-                    <span><?php echo translate(MENU_CALENDARIO); ?></span>
+                    <span><?php echo translate("Calendário"); ?></span>
                   </a>
                 </li>
                 <?php } ?>
                 <?php if(in_array('per_cliente', $habilitados)) { ?>        
-                <li class="nav-parent" data-search="<?php echo translate(MENU_CLIENTES); ?>">
+                <li class="nav-parent" data-search="<?php echo translate("Clientes"); ?>">
                   <a href="javascript:void(0);">
                     <i class="fa fa-user-plus" aria-hidden="true"></i>
-                    <span><?php echo translate(MENU_CLIENTES); ?></span>
+                    <span><?php echo translate("Clientes"); ?></span>
                   </a>
                   <ul class="nav nav-children">
-                    <li data-search="<?php echo translate(MENU_VER_TODOS); ?>">
-                      <a class="nav-link" href="/../backend/cliente/listar/lang/<?php echo $languageDEFAULT[0]; ?>"><?php echo translate(MENU_VER_TODOS); ?></a>
+                    <li data-search="<?php echo translate("Ver todos"); ?>">
+                      <a class="nav-link" href="/../backend/cliente/listar/lang/<?php echo $languageDEFAULT[0]; ?>"><?php echo translate("Ver todos"); ?></a>
                     </li>
-                    <li data-search="<?php echo translate(MENU_ADICIONAR); ?>">
-                      <a class="nav-link" href="/../backend/cliente/registar/lang/<?php echo $languageDEFAULT[0]; ?>"><?php echo translate(MENU_ADICIONAR); ?></a>
+                    <li data-search="<?php echo translate("Adicionar"); ?>">
+                      <a class="nav-link" href="/../backend/cliente/registar/lang/<?php echo $languageDEFAULT[0]; ?>"><?php echo translate("Adicionar"); ?></a>
                     </li>
                   </ul>
                 </li>
@@ -59,33 +59,33 @@ $habilitados = array_keys($arr);
                 
                 
                 <?php if(in_array('per_produtos', $habilitados)) { ?>
-                <li data-search="<?php echo translate(MENU_PRODUTOS); ?>">
+                <li data-search="<?php echo translate("Produtos"); ?>">
                   <a class="nav-link" href="/../backend/produto/listar/lang/<?php echo $languageDEFAULT[0]; ?>">
                     <i class="fa fa-archive" aria-hidden="true"></i>
-                    <span><?php echo translate(MENU_PRODUTOS); ?></span>
+                    <span><?php echo translate("Produtos"); ?></span>
                   </a>
                 </li> 
                 <?php } ?>  
 
                 <?php if($_SESSION['nivel_acesso'] == 1 || $_SESSION['nivel_acesso'] == 2 ):  ?>
                 
-                <li class="nav-parent" data-search="<?php echo translate(MENU_REGISTROS); ?>">
+                <li class="nav-parent" data-search="<?php echo translate("Registros"); ?>">
                   <a href="javascript:void(0);">
                     <i class="fa fa-th-list" aria-hidden="true"></i>
-                    <span><?php echo translate(MENU_REGISTROS); ?></span>
+                    <span><?php echo translate("Registros"); ?></span>
                   </a>
                   <ul class="nav nav-children">
-                    <li data-search="<?php echo translate(MENU_AREA_NEGOCIOS); ?>">
-                      <a class="nav-link" href="/../backend/area/listar"><?php echo translate(MENU_AREA_NEGOCIOS); ?></a>
+                    <li data-search="<?php echo translate("Área de negócios"); ?>">
+                      <a class="nav-link" href="/../backend/area/listar"><?php echo translate("Área de negócios"); ?></a>
                     </li>
-                    <li data-search="<?php echo translate(MENU_CARGOS); ?>">
-                      <a class="nav-link" href="/../backend/cargo/listar"><?php echo translate(MENU_CARGOS); ?></a>
+                    <li data-search="<?php echo translate("Cargos"); ?>">
+                      <a class="nav-link" href="/../backend/cargo/listar"><?php echo translate("Cargos"); ?></a>
                     </li>
-                    <li data-search="<?php echo translate(MENU_ESPECIALIDADES); ?>">
-                      <a class="nav-link" href="/../backend/especialidade/listar"><?php echo translate(MENU_ESPECIALIDADES); ?></a>
+                    <li data-search="<?php echo translate("Especialidades"); ?>">
+                      <a class="nav-link" href="/../backend/especialidade/listar"><?php echo translate("Especialidades"); ?></a>
                     </li>
-                    <li data-search="<?php echo translate(MENU_TIPOS); ?>">
-                      <a class="nav-link" href="/../backend/tipo/listar"><?php echo translate(MENU_TIPOS); ?></a>
+                    <li data-search="<?php echo translate("Tipos"); ?>">
+                      <a class="nav-link" href="/../backend/tipo/listar"><?php echo translate("Tipos"); ?></a>
                     </li>
                     <!-- <li>
                       <a class="nav-link" href="/../backend/vendedor/listar">Vendedor</a>
@@ -96,55 +96,55 @@ $habilitados = array_keys($arr);
                 <?php endif; ?>               
              
                 <?php if(in_array('per_configuracao', $habilitados)): ?>
-                <li class="nav-parent" data-search="<?php echo translate(MENU_UTILIZADORES); ?>">
+                <li class="nav-parent" data-search="<?php echo translate("Utilizadores"); ?>">
                   <a class="nav-link" href="javascript:void(0);">
                     <i class="fa fa-group" aria-hidden="true"></i>
-                    <span><?php echo translate(MENU_UTILIZADORES); ?></span>
+                    <span><?php echo translate("Utilizadores"); ?></span>
                   </a>
                   <ul class="nav nav-children">
-                    <li data-search="<?php echo translate(MENU_ADICIONAR); ?>">
-                      <a href="/../backend/usuario/registar"><?php echo translate(MENU_ADICIONAR); ?></a>
+                    <li data-search="<?php echo translate("Adicionar"); ?>">
+                      <a href="/../backend/usuario/registar"><?php echo translate("Adicionar"); ?></a>
                     </li>
-                    <li data-search="<?php echo translate(MENU_LISTAR_UTILIZADORES); ?>">
-                      <a href="/../backend/usuario/listar"><?php echo translate(MENU_LISTAR_UTILIZADORES); ?></a>
+                    <li data-search="<?php echo translate("Listar utilizadores"); ?>">
+                      <a href="/../backend/usuario/listar"><?php echo translate("Listar utilizadores"); ?></a>
                     </li>
                     <?php if($_SESSION['nivel_acesso'] == 1 || $_SESSION['nivel_acesso'] == 2 ):  ?>
-                    <li data-search="<?php echo translate(MENU_NIVEIS_E_PERMISSOES); ?>">
-                      <a class="nav-link" href="/../backend/nivel/listar"><?php echo translate(MENU_NIVEIS_E_PERMISSOES); ?></a>
+                    <li data-search="<?php echo translate("Níveis e permissões"); ?>">
+                      <a class="nav-link" href="/../backend/nivel/listar"><?php echo translate("Níveis e permissões"); ?></a>
                     </li>
                     <?php endif; ?>
                   </ul>
                 </li>
                 <?php endif; ?>
                 
-                <li class="nav-parent" data-search="<?php echo translate(MENU_LEADS_CONVERSION); ?>">
+                <li class="nav-parent" data-search="<?php echo translate("Leads Conversion"); ?>">
                   <a class="nav-link" href="javascript:void(0);">
                     <i class="fa fa-filter" aria-hidden="true"></i>
-                    <span><?php echo translate(MENU_LEADS_CONVERSION); ?></span>
+                    <span><?php echo translate("Leads Conversion"); ?></span>
                   </a>
                   <ul class="nav nav-children">                                    
-                    <li data-search="<?php echo translate(MENU_LEADS_SEM_CLASSIFICACAO); ?>">
+                    <li data-search="<?php echo translate("S/ Classificação"); ?>">
                       <a class="nav-link" href="/../backend/lead/list/ref/noclassification">
                       <i class="fa fa-circle circle_sclassification" aria-hidden="true" ></i>
-                      <span><?php echo translate(MENU_LEADS_SEM_CLASSIFICACAO); ?></span>
+                      <span><?php echo translate("S/ Classificação"); ?></span>
                       </a>
                     </li>
-                    <li data-search="<?php echo translate(MENU_LEADS); ?>">
+                    <li data-search="<?php echo translate("Leads"); ?>">
                       <a class="nav-link" href="/../backend/lead/list/ref/leads">
                       <i class="fa fa-circle circle_leads" aria-hidden="true"></i>
-                      <span><?php echo translate(MENU_LEADS); ?></span>
+                      <span><?php echo translate("Leads"); ?></span>
                       </a>
                     </li>
-                    <li data-search="<?php echo translate(MENU_LEADS_PROSPECTS); ?>">
+                    <li data-search="<?php echo translate("Prospects"); ?>">
                       <a class="nav-link" href="/../backend/lead/list/ref/prospects">
                       <i class="fa fa-circle circle_prospects" aria-hidden="true"></i>
-                      <span><?php echo translate(MENU_LEADS_PROSPECTS); ?></span>
+                      <span><?php echo translate("Prospects"); ?></span>
                       </a>
                     </li>
-                    <li data-search="<?php echo translate(MENU_LEADS_CLIENTS); ?>">
+                    <li data-search="<?php echo translate("Clients"); ?>">
                       <a class="nav-link" href="/../backend/lead/list/ref/clients">
                       <i class="fa fa-circle circle_clients" aria-hidden="true"></i>
-                      <span><?php echo translate(MENU_LEADS_CLIENTS); ?></span>
+                      <span><?php echo translate("Clients"); ?></span>
                       </a>
                     </li>                    
                   </ul>
@@ -152,20 +152,20 @@ $habilitados = array_keys($arr);
 
                 <?php if($_SESSION['nivel_acesso'] == 1 || $_SESSION['nivel_acesso'] == 2 ):  ?>
                   <?php if(in_array('per_configuracao', $habilitados)): ?>
-                  <li class="nav-parent" data-search="<?php echo translate(MENU_LOGS); ?>">
+                  <li class="nav-parent" data-search="<?php echo translate("Logs"); ?>">
                     <a class="nav-link" href="javascript:void(0);">
                       <i class="fa fa-clock-o" aria-hidden="true"></i>
-                      <span><?php echo translate(MENU_LOGS); ?></span>
+                      <span><?php echo translate("Logs"); ?></span>
                     </a>
                     <ul class="nav nav-children">                                    
-                      <li data-search="<?php echo translate("MENU_PESQUISAS_EXPORTADAS"); ?>">
-                        <a class="nav-link" href="/../backend/log/dbgerados"><?php echo translate(MENU_PESQUISAS_EXPORTADAS); ?></a>
+                      <li data-search="<?php echo translate("Pesquisas exportadas"); ?>">
+                        <a class="nav-link" href="/../backend/log/dbgerados"><?php echo translate("Pesquisas exportadas"); ?></a>
                       </li>
-                      <li data-search="<?php echo translate(MENU_CONTROLO_ACESSO); ?>">
-                        <a class="nav-link" href="/../backend/log/logins"><?php echo translate(MENU_CONTROLO_ACESSO); ?></a>
+                      <li data-search="<?php echo translate("Controlo de acesso"); ?>">
+                        <a class="nav-link" href="/../backend/log/logins"><?php echo translate("Controlo de acesso"); ?></a>
                       </li>
-                      <li data-search="<?php echo translate(MENU_ACOMPANHAMENTO); ?>">
-                        <a class="nav-link" href="/../backend/log/eventos"><?php echo translate(MENU_ACOMPANHAMENTO); ?></a>
+                      <li data-search="<?php echo translate("Acompanhamento de clientes"); ?>">
+                        <a class="nav-link" href="/../backend/log/eventos"><?php echo translate("Acompanhamento de clientes"); ?></a>
                       </li>
                     </ul>
                   </li>
@@ -173,32 +173,32 @@ $habilitados = array_keys($arr);
                 <?php endif; ?>
 
                 <?php if(in_array('per_configuracao', $habilitados)): ?>
-                <li class="nav-parent" data-search="<?php echo translate(MENU_CONFIGURACAO); ?>">
+                <li class="nav-parent" data-search="<?php echo translate("Configuração"); ?>">
                   <a class="nav-link" href="javascript:void(0);">
                     <i class="fa fa-cogs" aria-hidden="true"></i>
-                    <span><?php echo translate(MENU_CONFIGURACAO); ?></span>
+                    <span><?php echo translate("Configuração"); ?></span>
                   </a>
                   <ul class="nav nav-children">
-                    <li data-search="<?php echo translate(MENU_CONFIGURACAO_EMPRESA); ?>">
-                      <a class="nav-link" href="/../backend/configuracao/config_1"><?php echo translate(MENU_CONFIGURACAO_EMPRESA); ?></a>
+                    <li data-search="<?php echo translate("Empresa"); ?>">
+                      <a class="nav-link" href="/../backend/configuracao/config_1"><?php echo translate("Empresa"); ?></a>
                     </li>
-                    <li data-search="<?php echo translate(MENU_CONFIGURACAO_AVANCADAS); ?>">
-                      <a class="nav-link" href="/../backend/configuracao/config_3"><?php echo translate(MENU_CONFIGURACAO_AVANCADAS); ?></a>
+                    <li data-search="<?php echo translate("Avançadas"); ?>">
+                      <a class="nav-link" href="/../backend/configuracao/config_3"><?php echo translate("Avançadas"); ?></a>
                     </li>
-                    <li data-search="<?php echo translate(MENU_CONFIGURACAO_INTEGRACOES); ?>">
-                      <a class="nav-link" href="/../backend/configuracao/config_4"><?php echo translate(MENU_CONFIGURACAO_INTEGRACOES); ?></a>
+                    <li data-search="<?php echo translate("Integrações"); ?>">
+                      <a class="nav-link" href="/../backend/configuracao/config_4"><?php echo translate("Integrações"); ?></a>
                     </li>
-                    <li data-search="<?php echo translate(MENU_CONFIGURACAO_CALENDARIO); ?>">
-                      <a class="nav-link" href="/../backend/configuracao/config_calendario"><?php echo translate(MENU_CONFIGURACAO_CALENDARIO); ?></a>
+                    <li data-search="<?php echo translate("Calendário"); ?>">
+                      <a class="nav-link" href="/../backend/configuracao/config_calendario"><?php echo translate("Calendário"); ?></a>
                     </li>                                      
                   </ul>
                 </li>
                 <?php endif; ?>
 
-                <li data-search="<?php echo translate(MENU_SAIR); ?>">
+                <li data-search="<?php echo translate("Sair"); ?>">
                   <a class="nav-link" href="/../backend/logout">
                     <i class="fa fa-power-off" aria-hidden="true"></i>
-                    <span><?php echo translate(MENU_SAIR); ?></span>
+                    <span><?php echo translate("Sair"); ?></span>
                   </a>
                 </li>
             
