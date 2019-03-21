@@ -8,13 +8,7 @@
     <div class="right-wrapper text-right">
         <?php $LANGUAGE_DEFAULT = unserialize(LANGUAGE_DEFAULT); ?>
         <?php $LANGUAGE_LIST = unserialize(LANGUAGE_LIST); ?>
-        <?php if(!empty($LANGUAGE_LIST)): ?>
-          <?php foreach ($LANGUAGE_LIST as $lang):
-          $icon_lang = ($lang["D008_Icon"] == "en" ? "gb" : $lang["D008_Icon"]);
-          ?>
-          <a href="/backend/especialidade/alterar/lang/<?php echo $lang['D008_Sigla']; ?>/ref/<?php echo $view_especialidade_lista_alt[0]['esp_id']; ?>" class="mb-1 mt-3 mr-0 ml-0 p-1 btn btn-xs btn-default"><i class="flag-icon flag-icon-<?php echo $icon_lang; ?>" style="font-size: 14px;"></i></a>
-        <?php endforeach; ?>
-        <?php endif; ?>
+        
         <a name="bt_especialidade_alterar" id="bt_especialidade_alterar" href="javascript:void(0);" class="mb-1 mt-3 mr-1 btn btn-xs btn-primary"><strong><?php echo translate("Gravar"); ?></strong></a>
         <a href="/backend/especialidade/listar/lang/<?php echo $LANGUAGE_DEFAULT[0]; ?>" class="mb-1 mt-3 mr-1 ml-1 btn btn-xs btn-default"><strong><?php echo translate("Voltar"); ?></strong></a>
         <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-calendar"></i></a>

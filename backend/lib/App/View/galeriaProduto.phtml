@@ -1,7 +1,7 @@
 <router base="produto/galeria">
 <input type="hidden" id="idioma" value="<?php echo $view_produto[0]['prod_idioma'];?>">
 <header class="page-header">
-	<h2>Galeria de Imagens - Produtos</h2>
+	<h2><?php echo translate("Galeria de Imagens - Produtos"); ?></h2>
 
 	<div class="right-wrapper text-right">
 		<ol class="breadcrumbs">
@@ -10,9 +10,9 @@
 					<i class="fa fa-home"></i>
 				</a>
 			</li>
-			<li><span>Página</span></li>
-			<li><span>Produtos</span></li>
-			<li><span>Galeria</span></li>
+			<li><span><?php echo translate("Página"); ?></span></li>
+			<li><span><?php echo translate("Produtos"); ?></span></li>
+			<li><span><?php echo translate("Galeria"); ?></span></li>
 		</ol>
 
 		<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-calendar"></i></a>
@@ -66,7 +66,7 @@
 					</li>
 					<li class="right">
 						<a class="btn btn-block btn-primary btn-md pt-2 pb-2 pr-3 pl-3 text-3 text-light" href="/backend/produto/alterar/lang/<?php echo $view_produto[0]['prod_idioma']; ?>/ref/<?php echo $view_produto[0]['prod_referencia']; ?>">
-							Fechar
+							<?php echo translate("Fechar"); ?>
 						</a>
 					</li>
 				</ul>
@@ -107,7 +107,7 @@
 								<div class="mg-toolbar">
 									<div class="mg-option checkbox-custom checkbox-inline">
 										<input type="checkbox" id="<?php echo $galeria['prod_id'] ?>" value="<?php echo $galeria['prod_id'] ?>">
-										<label for="<?php echo $galeria['prod_id'] ?>">EDITAR</label>
+										<label for="<?php echo $galeria['prod_id'] ?>"><?php echo translate("EDITAR"); ?></label>
 									</div>
 									<div class="mg-group float-right">
 										<a id="img_Del_galeria" code-id="<?php echo $galeria['prod_id'];?>" href="javascript:void(0);"><i class="fa fa-trash-o fa-lg"></i></a>
