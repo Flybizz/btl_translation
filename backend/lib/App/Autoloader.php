@@ -143,7 +143,8 @@
             //include_once(.../pt.php"));
         }
 
-        return "||" . constant($slug) . "||";
+        //return "||" . constant($slug) . "||";
+        return constant($slug);
         
     }
 ?>

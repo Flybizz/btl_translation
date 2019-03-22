@@ -185,7 +185,7 @@ define("Imagem", "Imagem");
 define("Tipo de Página", "Tipo de Página"); 
 define("Galeria de Imagens", "Galeria de Imagens"); 
 define("Alterar Conteúdo", "Alterar Conteúdo"); 
-define("Informações Principais", "LAS INFORMACIONES"); 
+define("Informações Principais", "Informações Principais"); 
 define("Destaque / Imagem", "Destaque / Imagem");
 define("MENU", "MENU");
 define("EMPRESA", "EMPRESA");
@@ -290,4 +290,6 @@ define("Alterar especialidade", "Alterar especialidade");
 define("Alterar Cargo", "Alterar Cargo");
 define("Follow up", "Follow up");
 define("Nenhum resultado de pesquisa", "Nenhum resultado de pesquisa");
+define("A apresentar eventos de hoje", "A apresentar eventos de hoje");
+define("De momento não tem tarefas associadas", "De momento não tem tarefas associadas");
 ?>
